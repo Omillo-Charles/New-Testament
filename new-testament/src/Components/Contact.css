@@ -1,0 +1,179 @@
+@import url('../index.css');
+
+div.contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100vw;
+    margin: 1.6rem auto;
+    padding: 1.6rem;
+    background-color: var(--color-gray);
+    color: var(--color-white);
+    flex-direction: column;
+
+    @media screen and (max-width: 768px) {
+        width: 90vw;
+    }
+}
+
+div.contact h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+div.contact h2 hr {
+    width: 2rem;
+    border: 2px solid var(--color-blue);
+    margin: 8px;
+}
+
+div.contact h2 span {
+    font-size: 2rem;
+    color: var(--color-blue);
+    margin: 0 0.4rem;
+}
+
+div.mainContact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 1.6rem;
+    flex-wrap: wrap;
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column; 
+    }
+}
+
+div.contact form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 1.6rem 0;
+    background-color: var(--color-light-gray);
+    padding: 1.6rem;
+    border-radius: 0.4rem;
+}
+
+div.contact form input, div.contact form textarea{
+    width: 20rem;
+    padding: 0.8rem;
+    margin: 0.4rem 0;
+    font-size: 1.2rem;
+    border-radius: 0.4rem;
+    border: none;
+    background-color: var(--color-white);
+    color: var(--color-black);
+    outline: none;
+    transition: 0.4s ease;
+    font-family: var(--font-family);
+    font-weight: 400;
+    border: 2px solid var(--color-blue);
+    box-shadow: 0 0 0.4rem var(--color-blue);
+
+    @media screen and (max-width: 768px) {
+        width: 72vw;
+    }
+}
+
+div.contact form textarea{
+    height: 6rem;
+}
+
+div.contact input[type="submit"]{
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    transition: 0.4s ease;
+    font-size: 1.2rem;
+    font-family: var(--font-family);
+    font-weight: 400;
+    width: 10rem;
+    transition: 0.4s ease;
+    border: none;
+    box-shadow: none;
+}
+
+div.contact input[type="submit"]:hover{
+    background-color: var(--color-red);
+}
+
+div.socialIcons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: fit-content;
+     margin: 0 1.6rem;
+    padding: 1.6rem;
+    background-color: var(--color-light-gray);
+    border-radius: 0.4rem;
+}
+
+div.location{
+    display: flex;
+    flex-direction: column;
+    color: var(--color-black);
+}
+
+div.location i{
+    font-size: 1.2rem;
+    color: var(--color-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0.4rem;
+    padding: 0.4rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    background-color: var(--color-blue);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+
+div.socialIcons h3{
+    color: var(--color-black);
+    text-align: center;
+}
+
+div.iconsContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+div.social i.bi{
+    font-size: 1.2rem;
+    color: var(--color-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0.4rem;
+    padding: 0.4rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    background-color: var(--color-blue);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+
+div.social i.bi:hover{
+    background-color: var(--color-red);
+    color: var(--color-white);
+}
+
+

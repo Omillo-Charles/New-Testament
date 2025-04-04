@@ -1,0 +1,38 @@
+@import url('../index.css');
+
+div.footer{
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    box-shadow: 0 0 2px var(--color-red);
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        align-items: center; 
+    }
+}
+
+div.footer p.quick{
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.2rem;
+}
+
+div.footer p.quick ul li{
+    cursor: pointer;
+}
+
+
+div.footer p.quick ul li:hover{
+    text-decoration: underline;
+}
+
+div.footer p.copy{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+}

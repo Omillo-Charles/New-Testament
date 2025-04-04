@@ -1,0 +1,64 @@
+@import url('../index.css');
+
+div.about{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 60vw;
+    margin: 1.6rem auto;
+    padding: 1.6rem;
+    background-color: var(--color-light-gray);
+    color: var(--color-black);
+
+    @media screen and (max-width: 768px) {
+        width: 90vw;
+        
+    }
+}
+
+div.about h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+h2.about hr{
+    width: 2rem;
+    border: 2px solid var(--color-blue);
+    margin: 8px;
+}
+
+h2.about span{
+    font-size: 2rem;
+    color: var(--color-blue);
+}
+
+div.text {
+    line-height: 1.6rem;
+}
+
+div.more{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 80%;
+    margin-top: 0.8rem;
+}
+
+div.more i{
+    font-style: normal;
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+
+div.more i:hover{
+    background-color: var(--color-red);
+    color: var(--color-white);
+}

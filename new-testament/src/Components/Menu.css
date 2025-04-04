@@ -1,0 +1,66 @@
+@import url('../index.css');
+
+div.menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 3.2rem auto;
+    background-color: var(--color-gray);
+    padding: 1.6rem;
+
+    @media screen and (max-width: 768px){
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
+        padding: 0;
+        margin: 3.2rem auto;
+    }
+}
+
+div.menu img{
+    @media screen and (max-width: 768px){
+        width: 100vw;
+        height: 200px;  
+    }
+}
+
+div.ourChurch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+div.ourChurch div.OurChurchheading{
+    position: absolute;
+    color: var(--color-white);
+}
+
+div.theChurch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}   
+
+div.theChurch div.TheChurchheading{
+    position: absolute;
+    color: var(--color-white);
+}
+
+div.events{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+div.events div.Eventsheading{
+    position: absolute;
+    color: var(--color-white);
+}

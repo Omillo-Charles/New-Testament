@@ -2,7 +2,7 @@
 
 div.navbar{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
     background-color: var(--color-blue);
@@ -12,6 +12,12 @@ div.navbar{
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100vw;
+
+    @media screen and (max-width: 768px){
+        padding: 0 16px;
+        width: 100vw;
+    }
 }
 
 div.heading{
