@@ -13,3 +13,12 @@ html{
   --color-gray: #808080;
   --color-light-gray: #D3D3D3;
 }
+
+body{
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  font-family: var(--font-family);
+  background-color: var(--color-white);
+}

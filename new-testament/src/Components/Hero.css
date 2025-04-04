@@ -1,0 +1,62 @@
+@import url('../index.css');
+
+div.hero{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+    margin: 1.6rem auto;
+    width: 100vw;
+}
+
+div.heroImg figure{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+div.heroImg figure img{
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--color-gray);
+}
+
+div.heroImg figure figcaption{
+    text-shadow: 0 0 2px var(--color-gray);
+    text-align: center;
+}
+
+div.mission_vision{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    @media screen and (max-width: 768px){
+        flex-direction: column;
+    }
+}
+
+div.ssion{
+    width: 20rem;
+    padding: 1.6rem;
+    margin: 0 0.8rem;
+    border-radius: 16px;
+    box-shadow: 0 0 10px var(--color-gray);
+
+    @media screen and (max-width: 768px){
+        width: 72%;
+        margin: 0.8rem 0; 
+    }
+}
+
+div.mission{
+    background-color: var(--color-blue);
+    color: var(--color-white);
+}
+
+div.vision{
+    background-color: var(--color-red);
+    color: var(--color-white);
+}
