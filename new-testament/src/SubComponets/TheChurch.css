@@ -1,0 +1,153 @@
+@import url('../index.css');
+
+div.TheChurch{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:'left right'
+                        'left right'
+                ;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: calc(100vh - 5.4rem);
+    overflow: hidden;
+}
+
+div.TheChurchLeft{
+    grid-area: left;
+    background-color: var(--color-light-gray);
+    height: 100%;
+    overflow: hidden;
+}
+
+div.TheChurchRight{
+    grid-area: right;
+    height: 100%;
+    overflow: hidden;
+}
+
+div.TheChurchDiv{
+    height: 100%;
+    overflow-y: auto;
+}
+
+div.TheChurchImage{
+    margin: 1.6rem;
+}
+
+div.TheChurchImage img{
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--color-gray);
+}
+
+div.TheChurchLeft{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.6rem;
+    flex-direction: column;
+    box-shadow: 0 0 8px var(--color-blue);
+}
+
+div.TheChurchText{
+    line-height: 1.6;
+}
+
+div.TheChurchText span{
+    font-weight: 560;
+    font-size: 1.2rem;
+    color: var(--color-blue);
+}
+
+div.ThechurchRight{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form.TheChurchForm{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form.TheChurchForm input{
+    width: 19.5rem;
+    font-family: var(--font-family);
+    padding: 0.8rem;
+    font-size: 1.2rem;
+    outline: none;
+    border: 2px solid var(--color-blue);
+    margin: 0.6rem 0;
+    color: var(--color-black);
+    font-weight: 480;
+    border-radius: 8px;
+    box-shadow: inset 0 0 4px var(--color-gray);
+}
+
+form.TheChurchForm input:focus{
+    box-shadow: 0 0 4px var(--color-blue);
+    animation: rotate-border 4s ease  infinite;
+}
+
+div.names input{
+    width: 8rem;
+    margin: 0 0.8rem;
+}
+
+div.ChurchBranch{
+    position: relative;
+}
+
+div.ChurchBranch i{
+    position: absolute;
+    right: 1.2rem;
+    top: 1.6rem;
+    color: var(--color-blue);
+}
+
+div.ChurchLevel{
+    position: relative;
+}
+
+div.ChurchLevel i{
+    position: absolute;
+    right: 1.2rem;
+    top: 1.6rem;
+    color: var(--color-blue);
+}
+div.submit input{
+    background-color: var(--color-blue);
+    width: 10rem;
+    color: var(--color-white);
+    cursor: pointer;
+    transition: 0.4s ease;
+    padding: 0.4rem 0.8rem;
+}
+
+div.submit input:focus{
+    animation: none;
+}
+
+div.submit input:hover{
+    background-color: var(--color-red);
+    border: 2px solid var(--color-red);
+}
+
+div.login p{
+    letter-spacing: 1.6px;
+}
+
+div.login p span{
+    color: var(--color-blue);
+    text-decoration: underline;
+    transition: 0.4s ease;
+    cursor: pointer;
+}
+
+div.login span:hover{
+    color: var(--color-red);
+}

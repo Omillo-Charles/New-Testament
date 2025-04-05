@@ -17,12 +17,14 @@ const Menu = () => {
       </div>
       </NavLink>
 
+      <NavLink to='/thechurch'>
       <div className="theChurch">
       <img src={TheChurch} alt="" width={450} height={200}/>
         <div className="TheChurchheading">
             <h2>THE CHURCH</h2>
         </div>
       </div>
+      </NavLink>
 
       <div className="events">
         <img src={Events} alt="" width={450} height={200} />

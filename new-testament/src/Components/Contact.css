@@ -86,6 +86,9 @@ div.contact form textarea{
     height: 6rem;
 }
 
+div.contact form input:focus, div.contact form textarea:focus{
+    animation: rotate-border 4s ease  infinite;
+}
 div.contact input[type="submit"]{
     background-color: var(--color-blue);
     color: var(--color-white);

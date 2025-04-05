@@ -39,10 +39,6 @@ div.left{
     align-items: center;
     flex-wrap: wrap;
     flex-direction: row;
-    
-    @media screen and (max-width: 768px){
-       display: none;
-    }
 }
 
 div.left div{

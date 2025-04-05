@@ -26,5 +26,45 @@ body{
 }
 
 a.active{
-  color: var(--color-white);
+ text-decoration: underline 1px solid var(--color-white);
 }
+
+a:visited{
+  text-decoration: underline 1px solid var(--color-blue);
+}
+
+@keyframes rotate-border {
+  0% {
+    border-top-color: #FF5733;      /* Red */
+    border-right-color: #3357FF;    /* Blue */
+    border-bottom-color: #FF5733;   /* Red */
+    border-left-color: #3357FF;     /* Blue */
+  }
+  25% {
+    border-top-color: #3357FF;      /* Blue */
+    border-right-color: #FF5733;    /* Red */
+    border-bottom-color: #3357FF;   /* Blue */
+    border-left-color: #FF5733;     /* Red */
+  }
+  50% {
+    border-top-color: #FF5733;      /* Red */
+    border-right-color: #3357FF;    /* Blue */
+    border-bottom-color: #FF5733;   /* Red */
+    border-left-color: #3357FF;     /* Blue */
+  }
+  75% {
+    border-top-color: #3357FF;      /* Blue */
+    border-right-color: #FF5733;    /* Red */
+    border-bottom-color: #3357FF;   /* Blue */
+    border-left-color: #FF5733;     /* Red */
+  }
+  100% {
+    border-top-color: #FF5733;      /* Red */
+    border-right-color: #3357FF;    /* Blue */
+    border-bottom-color: #FF5733;   /* Red */
+    border-left-color: #3357FF;     /* Blue */
+  }
+}
+
+
+
