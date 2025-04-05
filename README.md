@@ -6,5 +6,5 @@ This is a church website which will help in the runnning of day to day activitie
 4. Access to church history, constitution, administration and the church's beliefs and doctrine.
 5. Will help in Church events planning and decision making.
 
-![The Navigation Bar](new-testament/src/assets/OurChurch.jpg)
+![The Navigation Bar]()
 
