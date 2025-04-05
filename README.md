@@ -1,5 +1,5 @@
 # The New Testament Church Of God - Kenya.
-This is a church website which will help in the runnning of day to day activities. The website is built using technologies such as React JS and CSS. The project will help in the following:
+This is a church website which will help in the runnning of day to day activities. The website is built using technologies such as React JS and CSS. The webpage is responsive and multipaged. The project will help in the following:
 1. Church members' registration.
 2. Events announcements.
 3. Report submission for the clergy men and women.
