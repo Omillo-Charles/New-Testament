@@ -10,6 +10,6 @@ This is a church website which will help in the runnning of day to day activitie
 ![The Hero Sectiion](https://github.com/Omillo-Charles/Images/blob/3b82d7d5a848cafdab828881676cb592b52ef204/Screenshot%202025-04-05%20133455.png)
 ![The Menu section](https://github.com/Omillo-Charles/Images/blob/3b82d7d5a848cafdab828881676cb592b52ef204/Screenshot%202025-04-05%20133518.png)
 ![The About Section](https://github.com/Omillo-Charles/Images/blob/3b82d7d5a848cafdab828881676cb592b52ef204/Screenshot%202025-04-05%20133542.png)
-![The Contact Section]()
+![The Contact Section](https://github.com/Omillo-Charles/Images/blob/3b82d7d5a848cafdab828881676cb592b52ef204/Screenshot%202025-04-05%20133602.png)
 ![The Footer]()
 
