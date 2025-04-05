@@ -10,7 +10,6 @@ const Contact = () => {
          <form action="#" className="contactForm">
             <input type="text" placeholder='Your name' name='name' />
             <input type="email" placeholder='Your email' name='email' />
-            <input type="text" placeholder='Your level' name='level' />
             <textarea name="subject" id="subject" placeholder='Type here...'></textarea>
             <input type="submit" value="Message" />
          </form>
@@ -18,9 +17,17 @@ const Contact = () => {
          <div className="socialIcons">
             <div className="location">
                 <h3>Find Us</h3>
-                 <i class="bi bi-geo-alt-fill"></i><span>00100,Nairobi, Kenya.</span>
-                    <i class="bi bi-telephone-fill"></i><span>+254 700 000 000</span>
-                    <i class="bi bi-envelope-fill"></i><span>info@ntcogk.co.ke</span>
+                  <div className="geo">
+                  <i class="bi bi-geo-alt-fill"></i><span>00100,Nairobi, Kenya.</span>
+                  </div>
+
+                   <div className="tel">
+                   <i class="bi bi-telephone-fill"></i><span>+254 700 000 000</span>
+                   </div>
+
+                   <div className="em">
+                   <i class="bi bi-envelope-fill"></i><span>info@ntcogk.co.ke</span>
+                   </div>
             </div>
 
             <div className="social">

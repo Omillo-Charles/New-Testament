@@ -7,6 +7,10 @@ div.hero{
     flex-direction: column;
     margin: 1.6rem auto;
     width: 100vw;
+    
+    @media screen and (max-width: 768px){
+        width: 100vw;
+    }
 }
 
 div.heroImg figure{

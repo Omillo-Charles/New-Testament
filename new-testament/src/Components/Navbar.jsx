@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import './Navbar.css'
 
 const Navbar = () => {
@@ -11,9 +12,9 @@ const Navbar = () => {
 
       <div className="navLinks">
         <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
+           <NavLink to='/'><li>Home</li></NavLink>
+            <NavLink to='/about'><li>About</li></NavLink>
+            <NavLink to='/contact'><li>Contact</li></NavLink>
             <li><i class="bi bi-list"></i></li>
         </ul>
       </div>

@@ -176,4 +176,10 @@ div.social i.bi:hover{
     color: var(--color-white);
 }
 
+div.location div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 

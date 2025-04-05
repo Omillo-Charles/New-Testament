@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import Events from '../assets/Events.jpg'
 import OurChurch from '../assets/OurChurch.jpg'
 import TheChurch from '../assets/TheChurch.jpg'
@@ -7,12 +8,14 @@ import './Menu.css'
 const Menu = () => {
   return (
     <div className='menu'>
+      <NavLink to='/ourchurch'>
       <div className="ourChurch">
         <img src={OurChurch} alt="" width={450} height={200} />
         <div className="OurChurchheading">
             <h2>OUR CHURCH</h2>
         </div>
       </div>
+      </NavLink>
 
       <div className="theChurch">
       <img src={TheChurch} alt="" width={450} height={200}/>
