@@ -7,4 +7,9 @@ This is a church website which will help in the runnning of day to day activitie
 5. Will help in Church events planning and decision making.
 
 ![The Navigation Bar]()
+![The Hero Sectiion]()
+![The Menu section]()
+![The About Section]()
+![The Contact Section]()
+![The Footer]()
 
