@@ -7,6 +7,7 @@ import Contact from './Components/Contact'
 import About from './Components/About'
 import OurChurch from './SubComponets/OurChurch'
 import TheChurch from './SubComponets/TheChurch'
+import Events from './SubComponets/Events'
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path='/contact' element={<Contact />}/>
           <Route path='/ourchurch' element={<OurChurch />}/>
           <Route path='/thechurch' element={<TheChurch />}/>
+          <Route path='/events' element={<Events />}/>
         </Routes>
     </div>
   )

@@ -38,3 +38,11 @@ div.footer p.copy{
     align-items: center;
     font-size: 1.2rem;
 }
+
+div.footer p.quick a:active{
+    text-decoration: underline;
+}
+
+div.footer p.quick a:visited{
+    color: var(--color-white);
+}

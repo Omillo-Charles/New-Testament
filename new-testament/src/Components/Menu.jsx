@@ -26,12 +26,14 @@ const Menu = () => {
       </div>
       </NavLink>
 
+      <NavLink to='/events'>
       <div className="events">
         <img src={Events} alt="" width={450} height={200} />
             <div className="Eventsheading">
                 <h2>EVENTS</h2>
             </div>
       </div>
+      </NavLink>
     </div>
   )
 }
