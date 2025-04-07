@@ -1,0 +1,28 @@
+div.nnot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+div.nnotContent{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: ce;
+    align-items: center;
+    flex-direction: column;
+    margin: 4rem auto
+}
+
+div.nnotContent i{
+    color: red;
+    font-size: 4rem;
+}
+
+div.nnotContent p{
+    font-size: 1.2rem;
+}

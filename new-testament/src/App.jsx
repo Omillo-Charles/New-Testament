@@ -9,6 +9,7 @@ import Settings from './Components/Settings'
 import OurChurch from './SubComponets/OurChurch'
 import TheChurch from './SubComponets/TheChurch'
 import Events from './SubComponets/Events'
+import NotFound from './Contents/NotFound'
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path='/ourchurch' element={<OurChurch />}/>
           <Route path='/thechurch' element={<TheChurch />}/>
           <Route path='/events' element={<Events />}/>
+          <Route path='*' element={<NotFound />} />
         </Routes>
     </div>
   )
