@@ -15,3 +15,6 @@ The website contains several pages built using different components.
 ![The Contact Section](https://github.com/Omillo-Charles/Images/blob/3b82d7d5a848cafdab828881676cb592b52ef204/Screenshot%202025-04-05%20133602.png)
 ![The Footer](https://github.com/Omillo-Charles/Images/blob/3b82d7d5a848cafdab828881676cb592b52ef204/Screenshot%202025-04-05%20133615.png)
 
+2. THE 'OUR CHURCH' SECTION
+![The 'OurChurch' Section](https://github.com/Omillo-Charles/Images/blob/4a2f007ce8a13fe1a75e92e26a8e336686bce724/Screenshot%202025-04-07%20182028.png)
+
