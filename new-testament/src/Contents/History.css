@@ -18,6 +18,9 @@ div.heading h2.history{
     color: var(--color-blue);
 }
 
+div.heading h2.history span{
+    text-shadow: 2px 0 4px var(--color-red);
+}
 div.heading p{
     line-height: 1.3;
 }

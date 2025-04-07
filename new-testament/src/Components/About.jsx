@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import './About.css'
 
 const About = () => {
@@ -20,8 +21,12 @@ const About = () => {
       </div>
 
       <div className="more">
-        <i>Find more</i>
-        <i>Read more</i>
+        <NavLink to='/ourchurch'>
+          <i>Find more</i>
+        </NavLink>
+        <NavLink to='/ourchurch'>
+          <i>Read more</i>
+        </NavLink>
       </div>
     </div>
   )

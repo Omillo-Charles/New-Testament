@@ -5,7 +5,7 @@ const History = () => {
   return (
     <div className='history'>
       <div className="heading">
-        <h2 className='history'>THE HISTORY OF THE CHURCH OF GOD.</h2>
+        <h2 className='history'>THE HISTORY OF THE <span>CHURCH OF GOD</span>.</h2>
 
         <p>
         The Church of God began in 1886 with only 8 men and now the church is all over the world. Looking back where we have come from, we cannot be silent to thank God for this far as we celebrate 40 years since we were established in Kenya.
