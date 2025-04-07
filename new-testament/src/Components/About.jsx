@@ -13,7 +13,10 @@ const About = () => {
       </h2>
 
       <div className="text">
-        <p>The New Testament Church Of God Kenya was established in 1962 by a group of Christians called the Omillos in Cleaveland, Tennesse in USA. The Church has since then spread to at least 168 countries.</p>
+        <p>The Church of God began in 1886 with only 8 men and now the church is all over the world. Looking back where we have come from, we cannot be silent to thank God for this far as we celebrate 40 years since we were established in Kenya.
+        The church is built on a very sound declaration of faith, the best doctrinal and practical commitment. The church administrative structure has made its growth with emphasis on unity, love, care and great faith in the biblical principles. This historical book is versioned by the current Seventy National Administrative Bishop Dr. David Gilbert Bwire...
+
+        </p>
       </div>
 
       <div className="more">
