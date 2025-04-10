@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './TheChurch.css'
+import TheDefault from "../Contents/TheDefault";
 
 const OurChurch = () => {
   const [activeComponent, setActiveComponent] = useState("default");
@@ -11,7 +12,7 @@ const OurChurch = () => {
       case "two": return <h1>BRETHREN</h1>;
       case "three": return <h1>THE YOUTH</h1>;
       case "four": return <h1>SUNDAY SCHOOL.</h1>
-      default: return <h1>TheDefault</h1>
+      default: return <TheDefault />
     }
   };
 

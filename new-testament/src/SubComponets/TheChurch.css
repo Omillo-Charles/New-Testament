@@ -30,7 +30,7 @@
 
 .main-content {
   grid-area: main;
-  background-color: #fff;
+  background-color: var(--color-gray);
   padding: 20px;
   overflow-y: auto;
   height: 100%;

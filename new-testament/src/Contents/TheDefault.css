@@ -1,0 +1,24 @@
+div.tdf{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+div.timg img{
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--color-light-gray);
+}
+
+div.dtext p{
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+div.dtext p span{
+    font-size: 1.3rem;
+    font-weight: 660;
+}
