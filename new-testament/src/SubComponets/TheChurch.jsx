@@ -1,57 +1,42 @@
-import React from 'react'
-import Logo from '../assets/Logo.png'
+import React, { useState } from "react";
 import './TheChurch.css'
 
-const TheChurch = () => {
-  return (
-    <div className='TheChurch'>
-      <div className="TheChurchLeft TheChurchDiv">
-        <div className="TheChurchImage">
-            <img src={Logo} alt="The" width={200} height={200} />
-        </div>
+const OurChurch = () => {
+  const [activeComponent, setActiveComponent] = useState("default");
+  const [showButtons, setShowButtons] = useState(false);
 
-        <div className="TheChurchText">
-            <p><span>📖 Ephesians 2:19–22 (NIV)</span> "Consequently, you are no longer foreigners and strangers, but fellow citizens with God’s people and also members of his household,
-            built on the foundation of the apostles and prophets, with Christ Jesus himself as the chief cornerstone.
-            In him the whole building is joined together and rises to become a holy temple in the Lord.
-            And in him you too are being built together to become a dwelling in which God lives by his Spirit."
-            </p>
-        </div>
+  const renderComponent = () => {
+    switch (activeComponent) {
+      case "one": return <h1>CLERGY.</h1>;
+      case "two": return <h1>BRETHREN</h1>;
+      case "three": return <h1>THE YOUTH</h1>;
+      case "four": return <h1>SUNDAY SCHOOL.</h1>
+      default: return <h1>TheDefault</h1>
+    }
+  };
+
+  return (
+    <div className="layout">
+      {/* Mobile header */}
+      <div className="mobile-header">
+        <h2>THE CHURCH.</h2>
+        <button className="settings-icon" onClick={() => setShowButtons(!showButtons)}>☰</button>
       </div>
 
-      <div className="ThechurchRight TheChurchDiv">
-        <form action="#" className="TheChurchForm">
-            <h2>Become the church.</h2>
-            <div className="names">
-                <input type="text" placeholder='First Name' />
-                <input type="text" placeholder='Last Name'/>
-            </div>
+      {/* Buttons sidebar */}
+      <div className={`sidebar ${showButtons ? "show" : ""}`} id="scrollable">
+        <button onClick={() => { setActiveComponent("one"); setShowButtons(false); }}>CLERGY.</button>
+        <button onClick={() => { setActiveComponent("two"); setShowButtons(false); }}>BRETHREN.</button>
+        <button onClick={() => { setActiveComponent("three"); setShowButtons(false); }}>THE YOUTH.</button>
+        <button onClick={() => { setActiveComponent("four"); setShowButtons(false); }}>SUNDAY SHOOL.</button>
+      </div>
 
-            <div className="email">
-                <input type="email" placeholder='Your Email' />
-            </div>
-
-            <div className="ChurchBranch">
-                <input type="text" placeholder='Church Branch'/>
-                <i class="bi bi-caret-down-fill"></i>
-            </div>
-
-            <div className="ChurchLevel">
-                <input type="text" placeholder='Church Position'/>
-                <i class="bi bi-caret-down-fill"></i>
-            </div>
-
-            <div className="submit">
-                <input type="submit" value="Register" />
-            </div>
-
-            <div className="login">
-                <p>Already have an account? <span>login.</span></p>
-            </div>
-        </form>
+      {/* Content area */}
+      <div className="main-content" id="scrollable">
+        {renderComponent()}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TheChurch
+export default OurChurch;
