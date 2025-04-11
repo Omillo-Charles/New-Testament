@@ -8,7 +8,7 @@ const OurChurch = () => {
 
   const renderComponent = () => {
     switch (activeComponent) {
-      case "one": return <h1>CLERGY.</h1>;
+      case "one": return <h1>Clergy</h1>;
       case "two": return <h1>BRETHREN</h1>;
       case "three": return <h1>THE YOUTH</h1>;
       case "four": return <h1>SUNDAY SCHOOL.</h1>
