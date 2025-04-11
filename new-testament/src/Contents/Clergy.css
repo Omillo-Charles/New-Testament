@@ -1,0 +1,31 @@
+div.dual-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+div.dual-container figure{
+    background-color: var(--color-white);
+    border-radius: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 4px var(--color-white);
+}
+
+div.dual-container figure:hover{
+    box-shadow: 0 0 8px var(--color-white);
+}
+
+div.dual-container figure img{
+    border-top-right-radius: 16px;
+    border-top-left-radius: 16px;
+}
+
+div.dual-container figure figcaption{
+    margin-left: 8px;
+    margin-top: 1.2rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
