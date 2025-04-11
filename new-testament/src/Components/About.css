@@ -62,3 +62,15 @@ div.more i:hover{
     background-color: var(--color-red);
     color: var(--color-white);
 }
+
+div.more a{
+    text-decoration: none;
+}
+
+div.more a.active{
+    text-decoration: none;
+}
+
+div.more a:visited{
+    text-decoration: none;
+}

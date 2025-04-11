@@ -157,6 +157,10 @@ div.iconsContainer{
     flex-wrap: wrap;
 }
 
+div.iconsContainer a{
+    text-decoration: none;
+}
+
 div.social i.bi{
     font-size: 1.2rem;
     color: var(--color-white);

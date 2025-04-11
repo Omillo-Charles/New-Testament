@@ -7,7 +7,7 @@ const Navbar = () => {
     <div className='navbar'>
       <div className="heading">
         <h2 className='PC'>NEW-TESTAMENT</h2>
-        <h2 className="mobile">NT</h2>
+        <h2 className="mobile">NT.</h2>
       </div>
 
       <div className="navLinks">

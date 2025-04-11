@@ -39,3 +39,12 @@ div.footer p.copy{
     font-size: 1.2rem;
 }
 
+div.footer p.quick ul a{
+    color: white;
+}
+
+div.footer p.quick ul a.active{
+    color: whitesmoke;
+    text-decoration: none;
+}
+

@@ -33,11 +33,11 @@ const Contact = () => {
             <div className="social">
                 <h3>Follow Us</h3>
                 <div className="iconsContainer">
-                <i class="bi bi-twitter-x"></i>
-                <i class="bi bi-facebook"></i>
-                <i class="bi bi-instagram"></i>
-                <i class="bi bi-tiktok"></i>
-                <i class="bi bi-youtube"></i>
+                <a href="https://x.com/Omillo_Charles" target='_blank'><i class="bi bi-twitter-x"></i></a>
+                <a href="https://facebook.com/OmilloCharles" target='_blank'><i class="bi bi-facebook"></i></a>
+                <a href="https://instagram.com/Omillo.Charles" target='_blank'><i class="bi bi-instagram"></i></a>
+                <a href="https://www.tiktok.com/@omillo_charles" target='_blank'><i class="bi bi-tiktok"></i></a>
+                <a href="https://www.youtube.com/@Omillo_Charles" target='_blank'><i class="bi bi-youtube"></i></a>
             </div>
         </div>
          </div>
