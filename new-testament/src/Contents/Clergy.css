@@ -29,3 +29,19 @@ div.dual-container figure figcaption{
     display: flex;
     align-items: center;
 }
+
+button.back-button{
+    background-color: transparent;
+    color: var(--color-blue);
+    font-size: 2rem;
+    font-style: normal;
+    margin-left: -50px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+div.back{
+    display: flex;
+    flex-direction: column;
+}

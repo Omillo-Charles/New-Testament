@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import Rotation from '../assets/Rotation.jpeg'
+import Rotations from '../assets/Rotations.jpeg'
 import Ministry from '../assets/Ministry.jpeg'
 import Meetings from '../assets/Meetings.jpeg'
 import Reports from '../assets/Reports.jpeg'
+import Rotation from './Rotation';
 import './Clergy.css'
 
 function Clergy() {
@@ -11,7 +12,7 @@ function Clergy() {
     const renderContent = () => {
       switch (activeContent) {
         case 'Home':
-          return <h1>Home</h1>;
+          return <Rotation />;
         case 'About':
           return <h1>About</h1>;
         case 'Services':
@@ -29,7 +30,7 @@ function Clergy() {
           <>
             <div onClick={() => setActiveContent('Home')}>
                 <figure className="rotation">
-                    <img src={Rotation} alt="" width={250} height={250}/>
+                    <img src={Rotations} alt="" width={250} height={250}/>
                     <figcaption>
                         PASTOR'S ROTATION.
                     </figcaption>
@@ -64,12 +65,13 @@ function Clergy() {
             </div>
           </>
         ) : (
-          <>
-            {renderContent()}
+          <div className='back'>
             <button className="back-button" onClick={() => setActiveContent('')}>
-              Go Back
+            <i class="bi bi-chevron-left">back</i>
             </button>
-          </>
+            {renderContent()}
+           
+          </div>
         )}
       </div>
     );
