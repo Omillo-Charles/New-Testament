@@ -3,7 +3,6 @@ import Rotations from '../assets/Rotations.jpeg'
 import Ministry from '../assets/Ministry.jpeg'
 import Meetings from '../assets/Meetings.jpeg'
 import Reports from '../assets/Reports.jpeg'
-import Rotation from './Rotation';
 import './Clergy.css'
 
 function Clergy() {
@@ -12,7 +11,7 @@ function Clergy() {
     const renderContent = () => {
       switch (activeContent) {
         case 'Home':
-          return <Rotation />;
+          return <h1>Home</h1>;
         case 'About':
           return <h1>About</h1>;
         case 'Services':
@@ -65,13 +64,13 @@ function Clergy() {
             </div>
           </>
         ) : (
-          <div className='back'>
-            <button className="back-button" onClick={() => setActiveContent('')}>
-            <i class="bi bi-chevron-left">back</i>
+          <>
+           <button className="back-button" onClick={() => setActiveContent('')}>
+              Go Back
             </button>
             {renderContent()}
            
-          </div>
+          </>
         )}
       </div>
     );
