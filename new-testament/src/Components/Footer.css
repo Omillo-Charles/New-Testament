@@ -48,3 +48,7 @@ div.footer p.quick ul a.active{
     text-decoration: none;
 }
 
+div.footer p.quick ul a:visited{
+    text-decoration: none;
+}
+

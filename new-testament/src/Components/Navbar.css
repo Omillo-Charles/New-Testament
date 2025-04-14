@@ -65,5 +65,17 @@ div.navbar div.navLinks ul li i{
 }
 
 div.navbar div.navLinks ul li:hover{
-    text-decoration: underline;
+    text-decoration: none;
+}
+
+div.navbar div.navLinks ul li a{
+    text-decoration: none;
+}
+
+div.navbar div.navLinks ul li a:active{
+    text-decoration: none;
+}
+
+div.navbar div.navLinks ul li a:visited{
+    text-decoration: none;
 }

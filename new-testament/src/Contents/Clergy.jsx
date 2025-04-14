@@ -10,14 +10,14 @@ function Clergy() {
 
     const renderContent = () => {
       switch (activeContent) {
-        case 'Home':
-          return <h1>Home</h1>;
-        case 'About':
-          return <h1>About</h1>;
-        case 'Services':
-          return <h1>Services</h1>;
-        case 'Contact':
-          return <h1>Contact</h1>;
+        case 'Rotation':
+          return <h1>Pastors' Rotation.</h1>;
+        case 'Ministries':
+          return <h1>Ministries.</h1>;
+        case 'Meetings':
+          return <h1>Pastoral Meetings.</h1>;
+        case 'Reports':
+          return <h1>Reports Submission.</h1>;
         default:
           return null;
       }
@@ -27,7 +27,7 @@ function Clergy() {
       <div className="dual-container">
         {activeContent === '' ? (
           <>
-            <div onClick={() => setActiveContent('Home')}>
+            <div onClick={() => setActiveContent('Rotation')}>
                 <figure className="rotation">
                     <img src={Rotations} alt="" width={250} height={250}/>
                     <figcaption>
@@ -36,7 +36,7 @@ function Clergy() {
                 </figure>
             </div>
 
-            <div onClick={() => setActiveContent('About')}>
+            <div onClick={() => setActiveContent('Ministries')}>
                 <figure className="ministries">
                     <img src={Ministry} alt="" width={250} height={250}/>
                     <figcaption>
@@ -45,7 +45,7 @@ function Clergy() {
                 </figure>
             </div>
 
-            <div onClick={() => setActiveContent('Services')}>
+            <div onClick={() => setActiveContent('Meetings')}>
                 <figure className="meetings">
                     <img src={Meetings} alt="" width={250} height={250}/>
                     <figcaption>
@@ -54,7 +54,7 @@ function Clergy() {
                 </figure>
             </div>
 
-            <div onClick={() => setActiveContent('Contact')}>
+            <div onClick={() => setActiveContent('Reports')}>
                  <figure className="reports">
                     <img src={Reports} alt="" width={250} height={250}/>
                     <figcaption>
@@ -64,13 +64,13 @@ function Clergy() {
             </div>
           </>
         ) : (
-          <>
+          <div className='back'>
            <button className="back-button" onClick={() => setActiveContent('')}>
-              Go Back
+           <i class="bi bi-chevron-left"></i>
             </button>
             {renderContent()}
            
-          </>
+          </div>
         )}
       </div>
     );

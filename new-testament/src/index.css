@@ -26,11 +26,11 @@ body{
 }
 
 a.active{
- text-decoration: underline 1px solid var(--color-white);
+ text-decoration: none;
 }
 
 a:visited{
-  text-decoration: underline 1px solid var(--color-blue);
+  text-decoration: none;
 }
 
 @keyframes rotate-border {
