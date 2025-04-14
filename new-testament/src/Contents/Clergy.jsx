@@ -4,6 +4,7 @@ import Ministry from '../assets/Ministry.jpeg'
 import Meetings from '../assets/Meetings.jpeg'
 import Reports from '../assets/Reports.jpeg'
 import './Clergy.css'
+import Ministries from '../Servers/Ministries';
 
 function Clergy() {
     const [activeContent, setActiveContent] = useState('');
@@ -13,7 +14,7 @@ function Clergy() {
         case 'Rotation':
           return <h1>Pastors' Rotation.</h1>;
         case 'Ministries':
-          return <h1>Ministries.</h1>;
+          return <Ministries />;
         case 'Meetings':
           return <h1>Pastoral Meetings.</h1>;
         case 'Reports':
