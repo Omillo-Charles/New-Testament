@@ -4,7 +4,7 @@ import Ministry from '../assets/Ministry.jpeg'
 import Meetings from '../assets/Meetings.jpeg'
 import Reports from '../assets/Reports.jpeg'
 import './Clergy.css'
-import Ministries from '../Servers/Ministries';
+import Ministries from '../Ministries';
 
 function Clergy() {
     const [activeContent, setActiveContent] = useState('');
@@ -66,9 +66,6 @@ function Clergy() {
           </>
         ) : (
           <div className='back'>
-           <button className="back-button" onClick={() => setActiveContent('')}>
-           <i class="bi bi-chevron-left"></i>
-            </button>
             {renderContent()}
            
           </div>

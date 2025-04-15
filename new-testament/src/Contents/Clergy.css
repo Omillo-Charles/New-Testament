@@ -30,26 +30,6 @@ div.dual-container figure figcaption{
     align-items: center;
 }
 
-button.back-button{
-    background-color: var(--color-blue);
-    color: var(--color-white);
-    width: 3.2rem;
-    height: 2.2rem;
-    padding: 1.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    border-radius: 8px;
-    border: 2px solid var(--color-white);
-    font-size: 2rem;
-    font-style: normal;
-    margin-top: 2rem;
-    margin-left: -300px;
-    cursor: pointer;
-}
-
 div.back{
     display: flex;
     flex-direction: column;
