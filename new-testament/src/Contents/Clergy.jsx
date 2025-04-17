@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Rotations from '../assets/Rotations.jpeg'
 import Ministry from '../assets/Ministry.jpeg'
 import Meetings from '../assets/Meetings.jpeg'
 import Reports from '../assets/Reports.jpeg'
@@ -11,8 +10,6 @@ function Clergy() {
 
     const renderContent = () => {
       switch (activeContent) {
-        case 'Rotation':
-          return <h1>Pastors' Rotation.</h1>;
         case 'Ministries':
           return <Ministries />;
         case 'Meetings':
@@ -28,14 +25,6 @@ function Clergy() {
       <div className="dual-container">
         {activeContent === '' ? (
           <>
-            <div onClick={() => setActiveContent('Rotation')}>
-                <figure className="rotation">
-                    <img src={Rotations} alt="" width={250} height={250}/>
-                    <figcaption>
-                        PASTOR'S ROTATION.
-                    </figcaption>
-                </figure>
-            </div>
 
             <div onClick={() => setActiveContent('Ministries')}>
                 <figure className="ministries">
