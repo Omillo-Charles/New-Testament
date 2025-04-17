@@ -9,13 +9,13 @@ const Ministries = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    fetch("http://localhost:500/churches")
-      .then((res) => res.json())
-      .then((data) => {
-        const sorted = data.sort((a, b) => a.name.localeCompare(b.name));
-        setChurches(sorted);
-        setFiltered(sorted);
-      });
+    fetch("/ministries.json")
+  .then((res) => res.json())
+  .then(({ churches }) => {
+    const sorted = churches.sort((a, b) => a.name.localeCompare(b.name));
+    setChurches(sorted);
+    setFiltered(sorted);
+  });
   }, []);
 
   const handleRegionFilter = (value) => {
