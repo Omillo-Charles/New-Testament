@@ -60,22 +60,14 @@ div.navbar div.navLinks ul li{
     }
 }
 
-div.navbar div.navLinks ul li i{
-    font-size: 2rem;
-}
-
-div.navbar div.navLinks ul li:hover{
+div.navbar div.navLinks ul a{
     text-decoration: none;
 }
 
-div.navbar div.navLinks ul li a{
+div.navbar div.navLinks ul a.active{
     text-decoration: none;
 }
 
-div.navbar div.navLinks ul li a:active{
-    text-decoration: none;
-}
-
-div.navbar div.navLinks ul li a:visited{
+div.navbar div.navLinks ul a:visited{
     text-decoration: none;
 }

@@ -24,11 +24,12 @@ div.footer p.quick{
 
 div.footer p.quick ul li{
     cursor: pointer;
+    text-decoration: none;
 }
 
 
 div.footer p.quick ul li:hover{
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 div.footer p.copy{
@@ -41,6 +42,7 @@ div.footer p.copy{
 
 div.footer p.quick ul a{
     color: white;
+    text-decoration: none;
 }
 
 div.footer p.quick ul a.active{
