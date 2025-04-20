@@ -1,5 +1,5 @@
 <h1>THE NEW TESTAMENT CHURCH OF GOD KENYA WEBSITE.</h1>
-<p>A church website built using the React JS technology. It is made up of various components and servers.</p>
+<p>A church website built using the React JS Library with VITE Technology. It is made up of various components and servers.</p>
 <p>The page incorporates features such as:</p>
 <ul>
   <li>A good user interface, appealing to the eyes.</li>
