@@ -9,3 +9,5 @@
    <li>An enabled routing for easy and efficient navigation.</li>
    <li>A Reports submission section for the clergy.</li>
 </ul>
+
+<h3>Sections and Components.</h3>
