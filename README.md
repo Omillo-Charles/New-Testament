@@ -11,3 +11,4 @@
 </ul>
 
 <h3>Sections and Components.</h3>
+<img src='https://github.com/Omillo-Charles/Images/blob/4a2f007ce8a13fe1a75e92e26a8e336686bce724/Screenshot%202025-04-05%20133435.png' />
