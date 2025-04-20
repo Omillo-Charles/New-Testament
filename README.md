@@ -20,3 +20,18 @@
   <figcaption>The Home Section</figcaption>
   <img src='https://github.com/Omillo-Charles/Images/blob/4a2f007ce8a13fe1a75e92e26a8e336686bce724/Screenshot%202025-04-05%20133455.png' />
 </figure>
+
+<figure>
+  <figcaption>The Menu.</figcaption>
+  <img src='https://github.com/Omillo-Charles/Images/blob/4a2f007ce8a13fe1a75e92e26a8e336686bce724/Screenshot%202025-04-05%20133518.png' />
+</figure>
+
+<figure>
+  <figcaption>The Contact Section</figcaption>
+  <img src='https://github.com/Omillo-Charles/Images/blob/4a2f007ce8a13fe1a75e92e26a8e336686bce724/Screenshot%202025-04-05%20133602.png' />
+</figure>
+
+<figure>
+  <figcaption>The Footer</figcaption>
+  <img src='https://github.com/Omillo-Charles/Images/blob/4a2f007ce8a13fe1a75e92e26a8e336686bce724/Screenshot%202025-04-05%20133615.png' />
+</figure>
