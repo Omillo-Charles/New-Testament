@@ -189,4 +189,25 @@ div.location div{
     align-items: center;
 }
 
+.popup-message {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4BB543;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 500;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    z-index: 999;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+  
+
 
