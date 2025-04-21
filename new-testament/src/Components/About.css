@@ -1,6 +1,6 @@
 @import url('../index.css');
 
-div.about{
+div.about {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,10 +10,11 @@ div.about{
     padding: 1.6rem;
     background-color: var(--color-light-gray);
     color: var(--color-black);
+}
 
-    @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
+    div.about {
         width: 90vw;
-        
     }
 }
 
@@ -22,24 +23,26 @@ div.about h2{
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    font-size: 2rem;
 }
 
-h2.about hr{
+.about h2 hr {
     width: 2rem;
     border: 2px solid var(--color-blue);
     margin: 8px;
 }
 
-h2.about span{
+.about h2 span {
     font-size: 2rem;
     color: var(--color-blue);
+    margin: 0 0.4rem;
 }
 
 div.text {
     line-height: 1.6rem;
 }
 
-div.more{
+div.more {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,7 +51,7 @@ div.more{
     margin-top: 0.8rem;
 }
 
-div.more i{
+div.more i {
     font-style: normal;
     background-color: var(--color-blue);
     color: var(--color-white);
@@ -58,19 +61,19 @@ div.more i{
     transition: 0.4s ease;
 }
 
-div.more i:hover{
+div.more i:hover {
     background-color: var(--color-red);
     color: var(--color-white);
 }
 
-div.more a{
+div.more a {
     text-decoration: none;
 }
 
-div.more a.active{
+div.more a.active {
     text-decoration: none;
 }
 
-div.more a:visited{
+div.more a:visited {
     text-decoration: none;
 }
