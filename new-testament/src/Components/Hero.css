@@ -76,6 +76,11 @@ div.vision{
     font-family: var(--font-family);
     animation: blink-caret 0.75s step-end infinite;
     transition: opacity 0.5s ease-in-out;
+
+    @media screen and (min-width: 600px) {
+        min-height: 2.5rem; /* Prevent layout shift */
+        
+    }
   }
   
   @keyframes blink-caret {
