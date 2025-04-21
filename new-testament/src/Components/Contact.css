@@ -201,7 +201,7 @@ div.location div{
     font-weight: 500;
     box-shadow: 0 5px 10px rgba(0,0,0,0.2);
     z-index: 999;
-    animation: fadeIn 2s ease;
+    animation: fadeIn 8s ease;
   }
   
   @keyframes fadeIn {
