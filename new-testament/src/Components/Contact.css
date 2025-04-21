@@ -191,7 +191,7 @@ div.location div{
 
 .popup-message {
     position: fixed;
-    top: 30px;
+    top: 60px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #4BB543;
@@ -201,7 +201,7 @@ div.location div{
     font-weight: 500;
     box-shadow: 0 5px 10px rgba(0,0,0,0.2);
     z-index: 999;
-    animation: fadeIn 0.5s ease-in-out;
+    animation: fadeIn 2s ease;
   }
   
   @keyframes fadeIn {
