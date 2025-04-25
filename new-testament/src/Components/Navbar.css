@@ -39,6 +39,11 @@ div.heading h2.mobile{
     }
 }
 
+div.heading h2.mobile img{
+    box-shadow: 0 0 8px var(--color-blue);
+    border: none;
+    border-radius: 50%;
+}
 div.navbar div.navLinks ul{
     display: flex;
     justify-content: center;
