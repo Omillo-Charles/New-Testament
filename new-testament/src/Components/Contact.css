@@ -81,7 +81,7 @@ div.contact form input, div.contact form textarea{
     box-shadow: 0 0 0.4rem var(--color-blue);
 
     @media screen and (max-width: 768px) {
-        width: 72vw;
+        width: 98vw;
     }
 }
 
