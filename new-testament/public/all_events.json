@@ -4,7 +4,7 @@
     "type": "National",
     "date": "2025-06-10",
     "description": "Youth from all over Kenya gathering for fellowship.",
-    "image": "/src/assets/YouthImages/Youth.jpeg"
+    "image": "/YouthImages/Youth.jpeg"
   },
   {
     "title": "Western Regional Praise Night",
@@ -12,7 +12,7 @@
     "province": "Western",
     "date": "2025-05-20",
     "description": "Night of worship and praise in Western Kenya.",
-    "image": "/src/assets/BrethrenImages/Praise.jpeg"
+    "image": "/BrethrenImages/Praise.jpeg"
   },
   {
     "title": "Eastern Regional Conference",
@@ -20,13 +20,13 @@
     "province": "Eastern",
     "date": "2025-07-12",
     "description": "Bringing churches together in Eastern region.",
-    "image": "/src/assets/BrethrenImages/Conference.jpeg"
+    "image": "/BrethrenImages/Conference.jpeg"
   },
   {
     "title": "National Women's Summit",
     "type": "National",
     "date": "2025-08-15",
     "description": "Empowering women across the nation.",
-    "image": "/src/assets/BrethrenImages/Women.jpeg"
+    "image": "/BrethrenImages/Women.jpeg"
   }
 ]

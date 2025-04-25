@@ -5,7 +5,7 @@
     "province": "Western",
     "date": "2025-05-20",
     "description": "Night of worship and praise in Western Kenya.",
-    "image": "/src/assets/BrethrenImages/Praise.jpeg"
+    "image": "/BrethrenImages/Praise.jpeg"
   },
   {
     "title": "Eastern Regional Conference",
@@ -13,6 +13,6 @@
     "province": "Eastern",
     "date": "2025-07-12",
     "description": "Bringing churches together in Eastern region.",
-    "image": "/src/assets/BrethrenImages/Conference.jpeg"
+    "image": "/BrethrenImages/Conference.jpeg"
   }
 ]
