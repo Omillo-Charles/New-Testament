@@ -4,13 +4,13 @@
     "type": "National",
     "date": "2025-06-10",
     "description": "Youth from all over Kenya gathering for fellowship.",
-    "image": "/images/national_youth.jpg"
+    "image": "/src/assets/YouthImages/Youth.jpeg"
   },
   {
     "title": "National Women's Summit",
     "type": "National",
     "date": "2025-08-15",
     "description": "Empowering women across the nation.",
-    "image": "/images/national_women.jpg"
+    "image": "/src/assets/BrethrenImages/Women.jpeg"
   }
 ]
