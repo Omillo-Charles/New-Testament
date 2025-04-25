@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Western Regional Praise Night",
+    "type": "Regional",
+    "province": "Western",
+    "date": "2025-05-20",
+    "description": "Night of worship and praise in Western Kenya.",
+    "image": "/images/western_praise.jpg"
+  },
+  {
+    "title": "Eastern Regional Conference",
+    "type": "Regional",
+    "province": "Eastern",
+    "date": "2025-07-12",
+    "description": "Bringing churches together in Eastern region.",
+    "image": "/images/eastern_conf.jpg"
+  }
+]
