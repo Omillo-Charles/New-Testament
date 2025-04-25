@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className="heading">
         <h2 className='PC'>NEW-TESTAMENT</h2>
         <h2 className="mobile">
-          <img src={Favicon} alt="" />
+          <img src={Favicon} alt="Favicon" />
         </h2>
       </div>
 
