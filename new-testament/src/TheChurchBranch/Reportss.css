@@ -1,0 +1,76 @@
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #ccc;
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+        margin: auto;
+      
+    }
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-container form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  input, select {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--color-blue);
+    outline: none;
+    box-shadow:  0 0 2px var(--color-blue);
+    border-radius: 6px;
+    width: 20rem;
+    font-size: 1.05rem;
+  }
+  
+  button {
+    padding: 10px;
+    background-color:var(--color-blue);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.4s ease;
+  }
+  
+  button:hover {
+    background-color:var(--color-red);
+  }
+  button.LogOut{
+    background-color: none;
+    color: var(--color-red);
+    border: none;
+    outline: none;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .dashboard form {
+    display: flex;
+    flex-direction: column;
+  }
+  

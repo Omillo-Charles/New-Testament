@@ -4,6 +4,7 @@ import Meetings from '../assets/Meetings.jpeg'
 import Reports from '../assets/Reports.jpeg'
 import './Clergy.css'
 import Ministries from '../Ministries';
+import Reportss from '../TheChurchBranch/Reportss';
 
 function Clergy() {
     const [activeContent, setActiveContent] = useState('');
@@ -15,7 +16,7 @@ function Clergy() {
         case 'Meetings':
           return <h1>Pastoral Meetings.</h1>;
         case 'Reports':
-          return <h1>Reports</h1>
+          return <Reportss />
         default:
           return null;
       }

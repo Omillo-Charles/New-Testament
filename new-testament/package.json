@@ -12,6 +12,7 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "aos": "^2.3.4",
+    "axios": "^1.9.0",
     "bootstrap": "^5.3.4",
     "bootstrap-icons": "^1.11.3",
     "react": "^19.0.0",
