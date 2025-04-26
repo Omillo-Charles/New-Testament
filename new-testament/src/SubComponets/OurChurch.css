@@ -64,7 +64,5 @@
 
 /* Main Content */
 .our-church-content {
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 10px;
+  width: 90vw;
 }
