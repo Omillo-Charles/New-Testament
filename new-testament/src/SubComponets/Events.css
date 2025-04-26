@@ -15,14 +15,16 @@
   }
   
   .nav button {
-    padding: 10px 15px;
-    background-color: var(--color-blue);
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-family: var(--font-family);
-    transition: 0.4s ease;
-    border-radius: 20px;
+        white-space: nowrap;
+      flex: 0 0 auto;
+      padding: 12px 20px;
+      background-color:var(--color-blue);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.4s ease;
   }
   
   .nav button:hover {

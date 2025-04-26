@@ -10,11 +10,12 @@ div.dual-container figure{
     background-color: var(--color-white);
     border-radius: 16px;
     cursor: pointer;
-    box-shadow: 0 0 4px var(--color-white);
+    box-shadow: 0 0 2px var(--color-blue);
+    border: 1px solid var(--color-blue);
 }
 
 div.dual-container figure:hover{
-    box-shadow: 0 0 8px var(--color-white);
+    box-shadow: 0 0 4px var(--color-blue);
 }
 
 div.dual-container figure img{
@@ -23,11 +24,12 @@ div.dual-container figure img{
 }
 
 div.dual-container figure figcaption{
-    margin-left: 8px;
-    margin-top: 1.2rem;
     text-align: center;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px auto;
 }
 
 div.back{
