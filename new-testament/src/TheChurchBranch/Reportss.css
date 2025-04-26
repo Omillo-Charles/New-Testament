@@ -32,7 +32,7 @@
     flex-direction: column;
   }
 
-  input {
+  .form-container input {
     padding: 12px;
     margin-bottom: 15px;
     border: 1px solid var(--color-blue);
@@ -41,9 +41,14 @@
     border-radius: 6px;
     width: 20rem;
     font-size: 1.05rem;
+
+    @media screen and (max-width: 768px) {
+      width: 78vw;
+      margin-left: -0.8rem;
+  }
   }
   
-  button {
+  .form-container button {
     padding: 10px;
     background-color:var(--color-blue);
     color: white;
@@ -57,7 +62,7 @@
     background-color:var(--color-red);
   }
 
-  button.LogOut{
+  .form-container button.LogOut{
     background-color: none;
     color: var(--color-red);
     border: none;
