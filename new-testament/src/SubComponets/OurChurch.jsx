@@ -1,40 +1,51 @@
 import React, { useState } from "react";
-import History from '../Contents/History'
-import "./OurChurch.css";
+import History from "../Contents/History";
 import Default from "../Contents/Default";
+import "./OurChurch.css";
 
 const OurChurch = () => {
   const [activeComponent, setActiveComponent] = useState("default");
-  const [showButtons, setShowButtons] = useState(false);
 
   const renderComponent = () => {
     switch (activeComponent) {
-      case "one": return <History />;
-      case "two": return <h1>CHURCH ADMINISTRATION.</h1>;
-      case "three": return <h1>CHURCH CONSTITUTION.</h1>;
-      case "four": return <h1>ARTICLES OF FAITH.</h1>
-      default: return <Default />;
+      case "one":
+        return <History />;
+      case "two":
+        return <h1>CHURCH ADMINISTRATION.</h1>;
+      case "three":
+        return <h1>CHURCH CONSTITUTION.</h1>;
+      case "four":
+        return <h1>ARTICLES OF FAITH.</h1>;
+      default:
+        return <Default />;
     }
   };
 
   return (
-    <div className="layout">
-      {/* Mobile header */}
-      <div className="mobile-header">
-        <h2>OUR CHURCH.</h2>
-        <button className="settings-icon" onClick={() => setShowButtons(!showButtons)}>☰</button>
+    <div className="our-church-container">
+      <h2 className="our-church-heading">OUR CHURCH.</h2>
+
+      {/* Scrollable Navigation Menu */}
+      <div className="our-church-nav-wrapper">
+        <div className="our-church-nav">
+          <button onClick={() => setActiveComponent("one")}>
+            History
+          </button>
+          <button onClick={() => setActiveComponent("two")}>
+            Administration
+          </button>
+          <button onClick={() => setActiveComponent("three")}>
+            Consitution
+          </button>
+          <button onClick={() => setActiveComponent("four")}>
+            Articles Of Faith
+          </button>
+          {/* Add more buttons if needed */}
+        </div>
       </div>
 
-      {/* Buttons sidebar */}
-      <div className={`sidebar ${showButtons ? "show" : ""}`} id="scrollable">
-        <button onClick={() => { setActiveComponent("one"); setShowButtons(false); }}>HISTORY OF <br />THE CHURCH.</button>
-        <button onClick={() => { setActiveComponent("two"); setShowButtons(false); }}>CHURCH <br />ADMINISTRATION.</button>
-        <button onClick={() => { setActiveComponent("three"); setShowButtons(false); }}>CHURCH <br />CONSTITUTION.</button>
-        <button onClick={() => { setActiveComponent("four"); setShowButtons(false); }}>ARTICLES <br />OF FAITH.</button>
-      </div>
-
-      {/* Content area */}
-      <div className="main-content" id="scrollable">
+      {/* Content Area */}
+      <div className="our-church-content">
         {renderComponent()}
       </div>
     </div>
