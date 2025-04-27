@@ -147,7 +147,7 @@ function Reportss() {
         <div className="dashboard">
           <h2>Submit Report</h2>
           <form onSubmit={handleSubmitReport}>
-            <ReportDropdown />
+            <ReportDropdown className='Reportss-Dropdown'/>
             <input type="file" onChange={handleFileUpload} required />
             <button type="submit">Submit Report</button>
           </form>

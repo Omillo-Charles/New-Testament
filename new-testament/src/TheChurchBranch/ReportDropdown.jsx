@@ -40,7 +40,7 @@ const ReportDropdown = () => {
     <div className="dropdown-container">
       <input
         type="text"
-        placeholder="Search..."
+        placeholder="Church Name..."
         value={searchTerm}
         onChange={handleInputChange}
         onFocus={() => setShowDropdown(true)}

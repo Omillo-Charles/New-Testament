@@ -7,9 +7,8 @@
     box-shadow: 0px 0px 10px #ccc;
 
     @media screen and (max-width: 768px) {
-        width: 100%;
+        width: 72vw;
         margin: auto;
-      
     }
   }
   
@@ -18,6 +17,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    margin-left: 6px;
   }
   
   h2 {
@@ -79,20 +80,24 @@
   .dashboard form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
   }
-  
+
   .dashboard h2{
     margin-bottom: -28px;
   }
 
   .dashboard input[type='file']{
-    width: 19rem;
+    width: 280px;
     border: 1px solid var(--color-blue);
     outline: none;
     margin-top: -20px ;
     border-radius: 4px;
     margin-bottom: 18px;
     background-color: var(--color-white);
+    font-size: 1.05rem;
   }
 
   .dashboard input[type='file']::file-selector-button {
