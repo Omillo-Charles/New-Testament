@@ -12,6 +12,7 @@
     @media screen and (Max-width:768px) {
         width: 100vw;
         margin: 0;
+        margin-top: -5rem;
     }
   }
   
