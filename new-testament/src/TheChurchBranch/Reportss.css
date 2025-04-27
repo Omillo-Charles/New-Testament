@@ -1,4 +1,4 @@
-.container {
+.Reportss-container {
     max-width: 800px;
     margin: 50px auto;
     padding: 30px;
@@ -56,6 +56,7 @@
     border-radius: 6px;
     cursor: pointer;
     transition: 0.4s ease;
+    font-size: 1.05rem;
   }
   
   button:hover {
@@ -79,4 +80,52 @@
     display: flex;
     flex-direction: column;
   }
+  
+  .dashboard h2{
+    margin-bottom: -28px;
+  }
+
+  .dashboard input[type='file']{
+    width: 19rem;
+    border: 1px solid var(--color-blue);
+    outline: none;
+    margin-top: -20px ;
+    border-radius: 4px;
+    margin-bottom: 18px;
+    background-color: var(--color-white);
+  }
+
+  .dashboard input[type='file']::file-selector-button {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.4s ease;
+  }
+
+  .dashboard input[type='file']::file-selector-button:hover {
+    background-color: var(--color-red);
+  }
+
+  .dashboard input[type='file']::file-selector-button:focus {
+    box-shadow: 0 0 2px var(--color-blue);
+  }
+
+  .dashboard button[type='submit'] {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.4s ease;
+    font-size: 1.05rem;
+  }
+
+  .dashboard button[type='submit']:hover {
+    background-color: var(--color-red);
+  }
+  
   

@@ -66,7 +66,7 @@ const Events = () => {
   };
 
   return (
-    <div className="container">
+    <div className="Events-container">
       <h1 className="Eventsheading">Church Events</h1>
 
       <div className="nav">
@@ -75,13 +75,15 @@ const Events = () => {
         <button onClick={() => handleFilter("Regionals")} className={activeTab === "Regionals" ? "active" : ""}>Regionals</button>
       </div>
 
-      <input
-        type="text"
-        className="search"
-        placeholder="Search events..."
-        value={eventSearchTerm}
-        onChange={handleEventSearch}
-      />
+      <div className="input">
+        <input
+          type="text"
+          className="search"
+          placeholder="Search events..."
+          value={eventSearchTerm}
+          onChange={handleEventSearch}
+        />
+      </div>
 
       {/* Suggestions list */}
       {suggestions.length > 0 && (
