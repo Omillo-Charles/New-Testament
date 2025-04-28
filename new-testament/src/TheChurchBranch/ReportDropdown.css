@@ -14,7 +14,6 @@
     outline: none;
     margin-bottom: -5rem;
     font-size: 1.05rem;
-    margin-left: -16px;
   }
 
   .dropdown-input:focus {
@@ -26,7 +25,6 @@
     width: 100%;
     max-height: 150px;
     overflow-y: auto;
-    margin-left: -16px;
     padding: 5px 0;
     list-style: none;
     background-color: #fff;

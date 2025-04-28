@@ -45,7 +45,8 @@ const Ministries = () => {
           <option value="Nairobi">Nairobi</option>
           <option value="Mombasa">Mombasa</option>
           <option value="Kisumu">Kisumu</option>
-          {/* Add more regions as needed */}
+          <option value="Eldoret">Eldoret</option>
+          <option value="Nakuru">Nakuru</option>
         </select>
       </div>
 
