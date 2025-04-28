@@ -98,7 +98,6 @@
     margin-bottom: 18px;
     background-color: var(--color-white);
     font-size: 1.05rem;
-    margin-left: -16px;
   }
 
   .dashboard input[type='file']::file-selector-button {

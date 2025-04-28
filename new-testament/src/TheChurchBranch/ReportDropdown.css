@@ -33,6 +33,7 @@
     border-top: none;
     border-radius: 0 0 5px 5px;
     z-index: 10;
+    margin-left: -16px;
   }
   
   .dropdown-item {
