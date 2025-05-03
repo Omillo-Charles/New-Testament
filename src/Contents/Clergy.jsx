@@ -89,4 +89,4 @@ const Clergy = () => {
   );
 };
 
-export default Clergy;
+export default Clergy; 

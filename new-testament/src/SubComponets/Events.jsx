@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "./Events.css";
 
 const Events = () => {
@@ -9,12 +9,11 @@ const Events = () => {
   const [eventSearchTerm, setEventSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [activeTab, setActiveTab] = useState("All");
-  const [noEventsMessage, setNoEventsMessage] = useState(""); 
-
-  const localRef = useRef();
-  const regionalRef = useRef();
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    setIsVisible(true);
+    
     fetch("/national_events.json")
       .then(res => res.json())
       .then(data => setNationalEvents(data));
@@ -27,11 +26,10 @@ const Events = () => {
       .then(res => res.json())
       .then(data => {
         setEvents(data);
-        setFilteredEvents(data); // Default view
+        setFilteredEvents(data);
       });
   }, []);
 
-  // Handle search term and filter events
   const handleEventSearch = (e) => {
     const val = e.target.value;
     setEventSearchTerm(val);
@@ -46,77 +44,126 @@ const Events = () => {
     }
   };
 
-  // Handle clicking a suggestion
   const handleSuggestionClick = (eventTitle) => {
     const selectedEvent = events.find(ev => ev.title === eventTitle);
     setFilteredEvents([selectedEvent]);
-    setEventSearchTerm(eventTitle); // Show the selected event title in the search input
-    setSuggestions([]); // Hide suggestions after selection
+    setEventSearchTerm(eventTitle);
+    setSuggestions([]);
   };
 
   const handleFilter = (category) => {
     setActiveTab(category);
+    setEventSearchTerm("");
+    setSuggestions([]);
+    
     if (category === "All") {
       setFilteredEvents(events);
     } else if (category === "National") {
       setFilteredEvents(nationalEvents);
-    } else if (category === "Regionals") {
+    } else if (category === "Regional") {
       setFilteredEvents(regionalEvents);
     }
   };
 
   return (
-    <div className="Events-container">
-      <h1 className="Eventsheading">Church Events</h1>
-
-      <div className="nav">
-        <button onClick={() => handleFilter("All")} className={activeTab === "All" ? "active" : ""}>All</button>
-        <button onClick={() => handleFilter("National")} className={activeTab === "National" ? "active" : ""}>National</button>
-        <button onClick={() => handleFilter("Regionals")} className={activeTab === "Regionals" ? "active" : ""}>Regionals</button>
+    <div className={`events-container ${isVisible ? 'visible' : ''}`}>
+      <div className="events-header">
+        <h2 className="events-heading">
+          <span className="heading-icon">
+            <i className="bi bi-calendar-event-fill"></i>
+          </span>
+          Church Events
+          <div className="heading-line"></div>
+        </h2>
+        <p className="events-subtitle">
+          Stay connected with our upcoming events and gatherings
+        </p>
       </div>
 
-      <div className="input">
-        <input
-          type="text"
-          className="search"
-          placeholder="Search events..."
-          value={eventSearchTerm}
-          onChange={handleEventSearch}
-        />
-      </div>
-
-      {/* Suggestions list */}
-      {suggestions.length > 0 && (
-        <ul className="suggestions">
-          {suggestions.map((event, index) => (
-            <li 
-              key={index} 
-              className="suggestion-item"
-              onClick={() => handleSuggestionClick(event.title)}
+      <div className="events-nav-wrapper">
+        <div className="events-nav">
+          {["All", "National", "Regional"].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => handleFilter(tab)}
+              className={`nav-button ${activeTab === tab ? 'active' : ''}`}
             >
-              {event.title}
-            </li>
+              <i className={`bi ${
+                tab === "All" ? "bi-grid-fill" :
+                tab === "National" ? "bi-flag-fill" :
+                "bi-geo-alt-fill"
+              }`}></i>
+              <span>{tab}</span>
+            </button>
           ))}
-        </ul>
-      )}
+        </div>
 
-      {/* Display No Events Message */}
-      {noEventsMessage && <p className="no-events-message">{noEventsMessage}</p>}
+        <div className="search-wrapper">
+          <div className="search-input">
+            <i className="bi bi-search"></i>
+            <input
+              type="text"
+              placeholder="Search events..."
+              value={eventSearchTerm}
+              onChange={handleEventSearch}
+            />
+          </div>
+          
+          {suggestions.length > 0 && (
+            <ul className="suggestions-list">
+              {suggestions.map((event, index) => (
+                <li 
+                  key={index}
+                  onClick={() => handleSuggestionClick(event.title)}
+                >
+                  <i className="bi bi-calendar-event"></i>
+                  {event.title}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
 
-      <hr className="divider" />
-
-      <div className="events">
+      <div className="events-grid">
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event, index) => (
-            <div className="event-card" key={index}>
-              <img src={event.image} alt={event.title} className="event-image" />
-              <h3>{event.title}</h3>
-              <p>{event.date}</p>
-              <p>{event.description}</p>
+            <div 
+              className="event-card" 
+              key={index}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className="event-image">
+                <img src={event.image} alt={event.title} />
+                <div className="event-type">
+                  <i className={`bi ${event.type === "National" ? "bi-flag-fill" : "bi-geo-alt-fill"}`}></i>
+                  {event.type}
+                </div>
+              </div>
+              <div className="event-content">
+                <h3>{event.title}</h3>
+                <div className="event-date">
+                  <i className="bi bi-calendar3"></i>
+                  {new Date(event.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </div>
+                <p>{event.description}</p>
+                <button className="event-details">
+                  Learn More
+                  <i className="bi bi-arrow-right"></i>
+                </button>
+              </div>
             </div>
           ))
         ) : (
-          <p>No events found</p>
+          <div className="no-events">
+            <i className="bi bi-calendar-x"></i>
+            <h3>No Events Found</h3>
+            <p>Try adjusting your search or filter criteria</p>
+          </div>
         )}
       </div>
     </div>

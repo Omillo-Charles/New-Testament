@@ -1,98 +1,267 @@
 @import url('../index.css');
 
-div.hero{
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    flex-direction: column;
-    margin: 1.6rem auto;
-    width: 100vw;
-    
-    @media screen and (max-width: 768px){
-        width: 100vw;
-    }
+.hero {
+  min-height: calc(100vh - 120px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 4rem 0;
+  background: linear-gradient(to bottom, var(--color-gray-100), var(--color-white));
+  overflow: hidden;
 }
 
-div.heroImg figure{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, var(--color-primary) 0%, transparent 70%);
+  opacity: 0.05;
+  z-index: 0;
 }
 
-div.heroImg figure img{
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--color-gray);
+.heroImg {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 3rem;
 }
 
-div.heroImg figure figcaption{
-    text-shadow: 0 0 2px var(--color-gray);
-    text-align: center;
+.heroImg figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
 
-div.mission_vision{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-
-    @media screen and (max-width: 768px){
-        flex-direction: column;
-    }
+.heroImg figure img {
+  border-radius: 50%;
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition-normal);
+  animation: float 6s ease-in-out infinite;
 }
 
-div.ssion{
-    width: 20rem;
-    padding: 1.6rem;
-    margin: 0 0.8rem;
-    border-radius: 16px;
-    box-shadow: 0 0 10px var(--color-gray);
-
-    @media screen and (max-width: 768px){
-        width: 72%;
-        margin: 0.8rem 0; 
-    }
+.heroImg figure img:hover {
+  transform: scale(1.05);
 }
 
-div.mission{
-    background-color: var(--color-blue);
-    color: var(--color-white);
+.heroImg figure figcaption {
+  text-align: center;
+  max-width: 800px;
+  padding: 0 1rem;
 }
 
-div.vision{
-    background-color: var(--color-red);
-    color: var(--color-white);
+.mission_vision {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+  margin-top: 4rem;
+  z-index: 1;
+  position: relative;
+}
+
+.ssion {
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-normal);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ssion::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-primary);
+  opacity: 0.95;
+  z-index: -1;
+}
+
+.ssion:hover {
+  transform: translateY(-5px);
+}
+
+.ssion:hover::before {
+  opacity: 1;
+}
+
+.mission::before {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+}
+
+.vision::before {
+  background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-1-dark));
+}
+
+.ssion h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin: 0;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 1rem;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ssion h2 i {
+  font-size: 1.75rem;
+}
+
+.mission h2 i {
+  color: var(--color-gray-100);
+}
+
+.vision h2 i {
+  color: var(--color-gray-100);
+}
+
+.ssion h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--color-white);
+  opacity: 0.5;
+  transition: width var(--transition-normal);
+}
+
+.ssion:hover h2::after {
+  width: 100px;
+  opacity: 0.8;
+}
+
+.ssion p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin: 0;
+  color: var(--color-gray-100);
+  position: relative;
+  z-index: 1;
 }
 
 .typewriter {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--color-black);
-    white-space: wrap;
-    overflow: hidden;
-    border-right: 3px solid var(--color-black);
-    min-height: 6rem; /* Prevent layout shift */
-    font-family: var(--font-family);
-    animation: blink-caret 0.75s step-end infinite;
-    transition: opacity 0.5s ease-in-out;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  white-space: pre-wrap;
+  overflow: hidden;
+  min-height: 6rem;
+  position: relative;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  transition: opacity var(--transition-normal);
+}
 
-    @media screen and (min-width: 600px) {
-        min-height: 2.5rem; /* Prevent layout shift */
-        
-    }
+.typewriter::after {
+  content: '|';
+  position: absolute;
+  right: -4px;
+  animation: blink 0.75s step-end infinite;
+}
+
+.fade-in {
+  opacity: 1;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
   }
-  
-  @keyframes blink-caret {
-    from, to { border-color: transparent; }
-    50% { border-color: var(--color-black); }
+  50% {
+    transform: translateY(-10px);
   }
-  
-  .fade-in {
-    opacity: 1;
-  }
-  
-  .fade-out {
+}
+
+@keyframes blink {
+  from, to {
     opacity: 0;
   }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    padding: 2rem 0;
+  }
+
+  .mission_vision {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .typewriter {
+    font-size: 1.5rem;
+    min-height: 8rem;
+  }
+
+  .ssion {
+    padding: 2rem;
+  }
+
+  .ssion h2 {
+    font-size: 1.75rem;
+  }
+
+  .ssion h2 i {
+    font-size: 1.5rem;
+  }
+
+  .ssion p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .mission_vision {
+    padding: 1rem;
+  }
+
+  .ssion {
+    padding: 1.5rem;
+  }
+
+  .ssion h2 {
+    font-size: 1.5rem;
+  }
+
+  .ssion h2 i {
+    font-size: 1.25rem;
+  }
+
+  .ssion p {
+    font-size: 1rem;
+  }
+}
   

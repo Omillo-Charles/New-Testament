@@ -1,216 +1,203 @@
 @import url('../index.css');
 
-div.contact {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 100vw;
-    margin: 1.6rem auto;
-    padding: 1.6rem;
-    background-color: var(--color-gray);
-    color: var(--color-white);
-    flex-direction: column;
-
-    @media screen and (max-width: 768px) {
-        flex-direction: column;
-        align-items: center; 
-        width: 100vw;
-        margin-left: -1.5rem;
-    }
+.contact {
+  padding: 4rem 2rem;
+  background: linear-gradient(to bottom, var(--color-gray-100), var(--color-white));
+  min-height: calc(100vh - 200px);
 }
 
-div.contact h2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
+.contact h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: var(--font-heading);
 }
 
-div.contact h2 hr {
-    width: 2rem;
-    border: 2px solid var(--color-blue);
-    margin: 8px;
+.contact h2 hr {
+  width: 50px;
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, var(--color-primary), var(--color-accent-1));
 }
 
-div.contact h2 span {
-    font-size: 2rem;
-    color: var(--color-blue);
-    margin: 0 0.4rem;
+.contact h2 span {
+  color: var(--color-primary);
 }
 
-div.mainContact{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    width: 100%;
-    margin-top: 1.6rem;
-    flex-wrap: wrap;
-
-    @media screen and (max-width: 768px) {
-        flex-direction: column; 
-    }
+.mainContact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-div.contact form{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 1.6rem 0;
-    background-color: var(--color-light-gray);
-    padding: 1.6rem;
-    border-radius: 0.4rem;
+.contactForm {
+  background: var(--color-white);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-div.contact form input, div.contact form textarea{
-    width: 20rem;
-    padding: 0.8rem;
-    margin: 0.4rem 0;
-    font-size: 1.2rem;
-    border-radius: 0.4rem;
-    border: none;
-    background-color: var(--color-white);
-    color: var(--color-black);
-    outline: none;
-    transition: 0.4s ease;
-    font-family: var(--font-family);
-    font-weight: 400;
-    border: 2px solid var(--color-blue);
-    box-shadow: 0 0 0.4rem var(--color-blue);
-
-    @media screen and (max-width: 768px) {
-        width: 72vw;
-    }
+.contactForm input,
+.contactForm textarea {
+  padding: 1rem;
+  border: 2px solid var(--color-gray-200);
+  border-radius: 0.5rem;
+  font-family: var(--font-family);
+  font-size: 1rem;
+  transition: all var(--transition-normal);
+  width: 100%;
+  box-sizing: border-box;
 }
 
-div.contact form textarea{
-    height: 6rem;
+.contactForm input:focus,
+.contactForm textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
 }
 
-div.contact form input:focus, div.contact form textarea:focus{
-    animation: rotate-border 4s ease  infinite;
-}
-div.contact input[type="submit"]{
-    background-color: var(--color-blue);
-    color: var(--color-white);
-    padding: 0.4rem 0.8rem;
-    border-radius: 0.4rem;
-    cursor: pointer;
-    transition: 0.4s ease;
-    font-size: 1.2rem;
-    font-family: var(--font-family);
-    font-weight: 400;
-    width: 10rem;
-    transition: 0.4s ease;
-    border: none;
-    box-shadow: none;
+.contactForm textarea {
+  min-height: 150px;
+  resize: vertical;
 }
 
-div.contact input[type="submit"]:hover{
-    background-color: var(--color-red);
+.contactForm input[type="submit"] {
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  padding: 1rem 2rem;
+  transition: all var(--transition-normal);
+  font-family: var(--font-family);
 }
 
-div.socialIcons{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: fit-content;
-     margin: 0 1.6rem;
-    padding: 1.6rem;
-    background-color: var(--color-light-gray);
-    border-radius: 0.4rem;
+.contactForm input[type="submit"]:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
 }
 
-div.location{
-    display: flex;
-    flex-direction: column;
-    color: var(--color-black);
+.socialIcons {
+  background: var(--color-white);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-lg);
 }
 
-div.location i{
-    font-size: 1.2rem;
-    color: var(--color-white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: 0.4rem;
-    padding: 0.4rem;
-    width: 1.4rem;
-    height: 1.4rem;
-    background-color: var(--color-blue);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.4s ease;
+.location,
+.social {
+  margin-bottom: 2rem;
 }
 
-div.socialIcons h3{
-    color: var(--color-black);
-    text-align: center;
+.location h3,
+.social h3 {
+  font-family: var(--font-heading);
+  color: var(--color-gray-800);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
 }
 
-div.iconsContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
+.location div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  color: var(--color-gray-700);
 }
 
-div.iconsContainer a{
-    text-decoration: none;
+.location i {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: 50%;
+  font-size: 1.2rem;
 }
 
-div.social i.bi{
-    font-size: 1.2rem;
-    color: var(--color-white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: 0.4rem;
-    padding: 0.4rem;
-    width: 1.4rem;
-    height: 1.4rem;
-    background-color: var(--color-blue);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.4s ease;
+.iconsContainer {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-div.social i.bi:hover{
-    background-color: var(--color-red);
-    color: var(--color-white);
+.iconsContainer a {
+  text-decoration: none;
 }
 
-div.location div{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.social i.bi {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: 50%;
+  font-size: 1.2rem;
+  transition: transform var(--transition-normal);
+}
+
+.social i.bi:hover {
+  transform: scale(1.1);
+  background: var(--color-accent-1);
 }
 
 .popup-message {
-    position: fixed;
-    top: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #4BB543;
-    color: white;
-    padding: 14px 28px;
-    border-radius: 10px;
-    font-weight: 500;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-    z-index: 999;
-    animation: fadeIn 8s ease;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  background: var(--color-white);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translate(-50%, -100%);
+    opacity: 0;
   }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
-    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
   }
-  
+}
+
+@media screen and (max-width: 768px) {
+  .contact {
+    padding: 2rem 1rem;
+  }
+
+  .mainContact {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .contactForm,
+  .socialIcons {
+    padding: 1.5rem;
+  }
+
+  .location i,
+  .social i.bi {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+}
 
 

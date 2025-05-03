@@ -1,56 +1,110 @@
 @import url('../index.css');
 
-div.footer{
-    background-color: var(--color-blue);
-    color: var(--color-white);
-    box-shadow: 0 0 2px var(--color-red);
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: row;
-
-    @media screen and (max-width: 768px) {
-        flex-direction: column;
-        align-items: center; 
-        width: 100vw;
-        margin: 0;
-    }
+.footer {
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: 4rem 2rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  position: relative;
 }
 
-div.footer p.quick{
-    margin: 0px;
-    padding: 0px;
-    font-size: 1.2rem;
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--color-accent-1);
 }
 
-div.footer p.quick ul li{
-    cursor: pointer;
-    text-decoration: none;
+.quick {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 0;
 }
 
-
-div.footer p.quick ul li:hover{
-    text-decoration: none;
+.quick h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  position: relative;
+  padding-bottom: 0.5rem;
 }
 
-div.footer p.copy{
+.quick h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: var(--color-accent-2);
+}
+
+.quick ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.quick ul a {
+  color: var(--color-gray-100);
+  text-decoration: none;
+  transition: color var(--transition-normal);
+  display: inline-block;
+  position: relative;
+}
+
+.quick ul a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-accent-1);
+  transition: width var(--transition-normal);
+}
+
+.quick ul a:hover {
+  color: var(--color-white);
+}
+
+.quick ul a:hover::after {
+  width: 100%;
+}
+
+.copy {
+  text-align: center;
+  padding-top: 2rem;
+  margin: 0;
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--color-gray-700);
+  color: var(--color-gray-100);
+  font-size: 0.9rem;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 3rem 1.5rem 1.5rem;
     text-align: center;
-    display: flex;
-    justify-content: center;
+  }
+
+  .quick h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .quick ul {
     align-items: center;
-    font-size: 1.2rem;
-}
-
-div.footer p.quick ul a{
-    color: white;
-    text-decoration: none;
-}
-
-div.footer p.quick ul a.active{
-    color: whitesmoke;
-    text-decoration: none;
-}
-
-div.footer p.quick ul a:visited{
-    text-decoration: none;
+  }
 }
 

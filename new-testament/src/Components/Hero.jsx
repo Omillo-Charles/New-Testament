@@ -59,13 +59,27 @@ const Hero = () => {
 
       <div className="mission_vision">
         <div className="mission ssion" data-aos="fade-right">
-          <h2>Our Mission:</h2>
-          <p>To reach the world with the gospel of Jesus Christ, and to establish them in the faith.</p>
+          <h2>
+            <i className="bi bi-compass-fill"></i>
+            Our Mission
+          </h2>
+          <p>
+            To reach the world with the transformative message of Jesus Christ, establishing 
+            believers in faith through biblical teaching, compassionate service, and fostering 
+            a loving community that reflects God's grace.
+          </p>
         </div>
 
         <div className="vision ssion" data-aos="fade-left">
-          <h2>Our Vision:</h2>
-          <p>To be a church that is committed to reaching the world with the gospel of Jesus Christ.</p>
+          <h2>
+            <i className="bi bi-eye-fill"></i>
+            Our Vision
+          </h2>
+          <p>
+            To be a beacon of hope and transformation, nurturing a thriving community of 
+            believers who are equipped to share God's love, serve others with compassion, 
+            and make a lasting impact in our world.
+          </p>
         </div>
       </div>
     </div>

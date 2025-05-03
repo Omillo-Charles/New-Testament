@@ -1,64 +1,325 @@
 .the-church-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 4rem 2rem;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  overflow: hidden;
+}
+
+.the-church-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.the-church-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
 }
 
 .the-church-heading {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 32px;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.heading-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent-1));
+  border-radius: 12px;
+  color: var(--color-white);
+  font-size: 1.5rem;
+  transform: rotate(-10deg);
+  box-shadow: var(--shadow-md);
+}
+
+.heading-line {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(to right, var(--color-primary), var(--color-accent-1));
+  border-radius: 2px;
+}
+
+.the-church-subtitle {
+  font-size: 1.2rem;
+  color: var(--color-gray-600);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 /* Navigation Wrapper */
 .the-church-nav-wrapper {
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
-  margin-bottom: 30px;
+  position: relative;
+  margin-bottom: 3rem;
 }
 
-.the-church-nav-wrapper::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
-}
-
-/* Navigation Bar */
+/* Navigation Cards */
 .the-church-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 0.5rem;
+}
+
+.nav-card {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  min-width: max-content;
-  padding: 10px 0;
-}
-
-.the-church-nav button {
-  white-space: nowrap;
-  flex: 0 0 auto;
-  padding: 12px 20px;
-  background-color:var(--color-blue);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 1rem;
   cursor: pointer;
-  transition: 0.4s ease;
+  transition: all var(--transition-normal);
+  text-align: left;
 }
 
-.the-church-nav button:hover {
-  background-color:var(--color-red);
+.nav-card i {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  transition: all var(--transition-normal);
 }
 
-/* Main Content */
+.nav-card-content {
+  flex: 1;
+}
+
+.nav-card-title {
+  display: block;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin-bottom: 0.5rem;
+}
+
+.nav-card-description {
+  font-size: 0.9rem;
+  color: var(--color-gray-600);
+  margin: 0;
+}
+
+.nav-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.nav-card.active {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent-1));
+  border-color: transparent;
+}
+
+.nav-card.active i,
+.nav-card.active .nav-card-title,
+.nav-card.active .nav-card-description {
+  color: var(--color-white);
+}
+
+/* Content Area */
 .the-church-content {
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: var(--color-white);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  position: relative;
+}
 
-  @media screen and (max-width: 768px) {
-   box-shadow: none;
+.content-wrapper {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--transition-normal);
+}
+
+.content-wrapper.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Content Section Styling */
+.church-content-section {
+  padding: 3rem 2rem;
+}
+
+.content-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.content-header i {
+  font-size: 3rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.content-header h1 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--color-gray-900);
+  margin-bottom: 1rem;
+}
+
+.content-header p {
+  font-size: 1.2rem;
+  color: var(--color-gray-600);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.content-card {
+  background: var(--color-gray-100);
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  transition: all var(--transition-normal);
+}
+
+.content-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.content-card i {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.content-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-gray-900);
+  margin-bottom: 1rem;
+}
+
+.content-card p {
+  color: var(--color-gray-600);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Decorative Elements */
+.decorative-shape {
+  position: absolute;
+  z-index: -1;
+}
+
+.shape-1 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, var(--color-primary), transparent);
+  top: -200px;
+  right: -200px;
+  border-radius: 100px;
+  transform: rotate(45deg);
+  opacity: 0.1;
+}
+
+.shape-2 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, var(--color-secondary), transparent);
+  bottom: -150px;
+  left: -150px;
+  border-radius: 0 100px 0 0;
+  opacity: 0.1;
+}
+
+.decorative-dots {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-image: radial-gradient(var(--color-gray-400) 2px, transparent 2px);
+  background-size: 20px 20px;
+  top: 50%;
+  right: -100px;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+@media screen and (max-width: 768px) {
+  .the-church-container {
+    padding: 2rem 1rem;
   }
+
+  .the-church-heading {
+    font-size: 2rem;
+  }
+
+  .nav-card {
+    padding: 1rem;
+  }
+
+  .church-content-section {
+    padding: 2rem 1rem;
+  }
+
+  .content-header h1 {
+    font-size: 2rem;
+  }
+
+  .content-card {
+    padding: 1.5rem;
+  }
+}
+
+.content-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+
+.content-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  color: var(--color-gray-700);
+  font-size: 0.95rem;
+  transition: all var(--transition-normal);
+}
+
+.content-list li i {
+  color: var(--color-primary);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.content-list li:hover {
+  color: var(--color-primary);
+  transform: translateX(5px);
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .content-list li {
+  color: var(--color-gray-400);
+}
+
+[data-theme="dark"] .content-list li:hover {
+  color: var(--color-primary);
 }

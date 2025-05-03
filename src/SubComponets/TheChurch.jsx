@@ -5,6 +5,7 @@ import Clergy from "../Contents/Clergy";
 import Brethren from "../Contents/Brethren";
 import Youth from "../Contents/Youth";
 import SundaySchool from "../Contents/SundaySchool";
+import Store from "../Contents/Store";
 
 const TheChurch = () => {
   const [activeComponent, setActiveComponent] = useState("default");
@@ -38,6 +39,12 @@ const TheChurch = () => {
       label: "Sunday School", 
       icon: "bi bi-mortarboard-fill",
       description: "Nurturing young minds in faith and biblical knowledge"
+    },
+    {
+      id: "five",
+      label: "Store",
+      icon: "bi bi-shop",
+      description: "Browse and purchase Christian books, music, and more"
     }
   ];
 
@@ -51,6 +58,8 @@ const TheChurch = () => {
         return <Youth />;
       case "four":
         return <SundaySchool />;
+      case "five":
+        return <Store />;
       default:
         return <TheDefault />;
     }
@@ -105,4 +114,4 @@ const TheChurch = () => {
   );
 };
 
-export default TheChurch;
+export default TheChurch; 

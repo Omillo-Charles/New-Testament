@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import History from "../Contents/History";
-import Default from "../Contents/Default";
+import TheDefault from "../Contents/TheDefault";
 import Store from "../Contents/Store";
 import "./OurChurch.css";
 
@@ -17,7 +17,7 @@ const OurChurch = () => {
     { id: "two", label: "Administration", icon: "bi bi-building" },
     { id: "three", label: "Constitution", icon: "bi bi-journal-text" },
     { id: "four", label: "Articles Of Faith", icon: "bi bi-book" },
-    { id: "five", label: "Store", icon: "bi bi-shop" },
+    { id: "five", label: "Store", icon: "bi bi-shop" }
   ];
 
   const renderComponent = () => {
@@ -51,7 +51,7 @@ const OurChurch = () => {
       case "five":
         return <Store />;
       default:
-        return <Default />;
+        return <TheDefault />;
     }
   };
 
@@ -100,4 +100,4 @@ const OurChurch = () => {
   );
 };
 
-export default OurChurch;
+export default OurChurch; 

@@ -1,65 +1,97 @@
 @import url('../index.css');
 
-div.menu{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 3.2rem auto;
-    background-color: var(--color-gray);
-    padding: 1.6rem;
-
-    @media screen and (max-width: 768px){
-        flex-direction: column;
-        width: 100vw;
-        padding: 0;
-        margin: 3.2rem auto;
-    }
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 4rem 2rem;
+  background: linear-gradient(to bottom, var(--color-gray-100), var(--color-white));
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-div.menu img{
-    @media screen and (max-width: 768px){
-        width: 100vw;
-        height: 200px;  
-    }
+.menu a {
+  text-decoration: none;
+  color: inherit;
 }
 
-div.ourChurch{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    cursor: pointer;
+.ourChurch,
+.theChurch,
+.events {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition-normal);
+  cursor: pointer;
 }
 
-div.ourChurch div.OurChurchheading{
-    position: absolute;
-    color: var(--color-white);
+.ourChurch:hover,
+.theChurch:hover,
+.events:hover {
+  transform: translateY(-10px);
 }
 
-div.theChurch{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    cursor: pointer;
-}   
-
-div.theChurch div.TheChurchheading{
-    position: absolute;
-    color: var(--color-white);
+.ourChurch img,
+.theChurch img,
+.events img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
 }
 
-div.events{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    cursor: pointer;
+.ourChurch:hover img,
+.theChurch:hover img,
+.events:hover img {
+  transform: scale(1.1);
 }
 
-div.events div.Eventsheading{
-    position: absolute;
-    color: var(--color-white);
+.OurChurchheading,
+.TheChurchheading,
+.Eventsheading {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: var(--color-white);
+  transform: translateY(0);
+  transition: transform var(--transition-normal);
+}
+
+.ourChurch:hover .OurChurchheading,
+.theChurch:hover .TheChurchheading,
+.events:hover .Eventsheading {
+  transform: translateY(-10px);
+}
+
+.OurChurchheading h2,
+.TheChurchheading h2,
+.Eventsheading h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 768px) {
+  .menu {
+    grid-template-columns: 1fr;
+    padding: 2rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .ourChurch img,
+  .theChurch img,
+  .events img {
+    height: 250px;
+  }
+
+  .OurChurchheading h2,
+  .TheChurchheading h2,
+  .Eventsheading h2 {
+    font-size: 1.25rem;
+  }
 }

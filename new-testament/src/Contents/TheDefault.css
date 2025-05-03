@@ -1,24 +1,212 @@
-div.tdf{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 90%;
-    margin: 2rem auto;
-    text-align: center;
+@import url('../index.css');
+
+.default-content {
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-div.timg img{
-    border-radius: 50%;
-    box-shadow: 0 0 12px var(--color-light-gray);
+.welcome-section {
+  text-align: center;
 }
 
-div.dtext p{
-    font-size: 1.2rem;
-    line-height: 1.5;
+.welcome-header {
+  margin-bottom: 4rem;
 }
 
-div.dtext p span{
-    font-size: 1.3rem;
-    font-weight: 660;
+.welcome-header i {
+  font-size: 3.5rem;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.welcome-header h1 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--color-gray-900);
+  margin-bottom: 1rem;
+}
+
+.welcome-header p {
+  font-size: 1.2rem;
+  color: var(--color-gray-600);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 4rem 0;
+}
+
+.highlight-card {
+  background: var(--color-white);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.highlight-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.highlight-card i {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.highlight-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-gray-900);
+  margin-bottom: 1rem;
+}
+
+.highlight-card p {
+  color: var(--color-gray-600);
+  line-height: 1.6;
+}
+
+.scripture-quote {
+  margin: 4rem auto;
+  max-width: 800px;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--color-primary-alpha), var(--color-accent-1-alpha));
+  border-radius: 1rem;
+}
+
+.scripture-quote blockquote {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--color-gray-800);
+  margin: 0;
+  position: relative;
+  padding: 0 2rem;
+}
+
+.scripture-quote blockquote i {
+  font-size: 2rem;
+  color: var(--color-primary);
+  opacity: 0.5;
+  position: absolute;
+  left: 0;
+  top: -0.5rem;
+}
+
+.call-to-action {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.call-to-action p {
+  font-size: 1.2rem;
+  color: var(--color-gray-600);
+  margin-bottom: 2rem;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.action-button:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+.action-button i {
+  font-size: 1.2rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] {
+  .highlight-card {
+    background: var(--color-gray-800);
+  }
+
+  .highlight-card h3 {
+    color: var(--color-gray-100);
+  }
+
+  .highlight-card p {
+    color: var(--color-gray-300);
+  }
+
+  .welcome-header h1 {
+    color: var(--color-gray-100);
+  }
+
+  .welcome-header p,
+  .call-to-action p {
+    color: var(--color-gray-300);
+  }
+
+  .scripture-quote blockquote {
+    color: var(--color-gray-100);
+  }
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .default-content {
+    padding: 2rem 1rem;
+  }
+
+  .welcome-header h1 {
+    font-size: 2rem;
+  }
+
+  .welcome-header p {
+    font-size: 1.1rem;
+  }
+
+  .highlight-card {
+    padding: 1.5rem;
+  }
+
+  .scripture-quote blockquote {
+    font-size: 1.1rem;
+    padding: 0 1.5rem;
+  }
+
+  .action-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
 }

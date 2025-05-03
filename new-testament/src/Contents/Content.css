@@ -1,0 +1,184 @@
+@import url('../index.css');
+
+/* Common Content Section Styles */
+.church-content-section {
+  padding: 3rem 2rem;
+}
+
+.content-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.content-header i {
+  font-size: 3rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.content-header h1 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--color-gray-900);
+  margin-bottom: 1rem;
+}
+
+.content-header p {
+  font-size: 1.2rem;
+  color: var(--color-gray-600);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.content-card {
+  background: var(--color-gray-100);
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  transition: all var(--transition-normal);
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.content-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.content-card i {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.content-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-gray-900);
+  margin-bottom: 1rem;
+}
+
+.content-card p {
+  color: var(--color-gray-600);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.content-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  text-align: left;
+}
+
+.content-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-gray-700);
+}
+
+.content-list li i {
+  font-size: 1rem;
+  margin: 0;
+  color: var(--color-accent-1);
+}
+
+/* Quote Styles */
+.clergy-quote,
+.brethren-quote,
+.youth-quote,
+.sunday-school-quote {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--color-primary-alpha), var(--color-accent-1-alpha));
+  border-radius: 1rem;
+}
+
+blockquote {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--color-gray-800);
+  margin: 0;
+  position: relative;
+  padding: 0 2rem;
+}
+
+blockquote i {
+  font-size: 2rem;
+  color: var(--color-primary);
+  opacity: 0.5;
+  position: absolute;
+  left: 0;
+  top: -0.5rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .church-content-section {
+    padding: 2rem 1rem;
+  }
+
+  .content-header h1 {
+    font-size: 2rem;
+  }
+
+  .content-header p {
+    font-size: 1.1rem;
+  }
+
+  .content-card {
+    padding: 1.5rem;
+  }
+
+  blockquote {
+    font-size: 1.1rem;
+    padding: 0 1.5rem;
+  }
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] {
+  .content-card {
+    background: var(--color-gray-800);
+  }
+
+  .content-card h3 {
+    color: var(--color-gray-100);
+  }
+
+  .content-card p {
+    color: var(--color-gray-300);
+  }
+
+  .content-list li {
+    color: var(--color-gray-300);
+  }
+
+  blockquote {
+    color: var(--color-gray-100);
+  }
+} 

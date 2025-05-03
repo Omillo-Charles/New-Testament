@@ -1,0 +1,36 @@
+@import url('./Content.css');
+
+/* Brethren-specific styles */
+.brethren-section .content-card {
+  border-radius: 1rem;
+  border: 2px solid transparent;
+  background: linear-gradient(var(--color-white), var(--color-white)) padding-box,
+              linear-gradient(135deg, var(--color-primary), var(--color-accent-1)) border-box;
+}
+
+.brethren-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.brethren-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(to right, var(--color-primary), var(--color-accent-1));
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.brethren-card:hover::after {
+  opacity: 1;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .brethren-section .content-card {
+  background: linear-gradient(var(--color-gray-800), var(--color-gray-800)) padding-box,
+              linear-gradient(135deg, var(--color-primary), var(--color-accent-1)) border-box;
+} 
