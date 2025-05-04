@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import History from "../Contents/History";
 import Default from "../Contents/Default";
 import Store from "../Contents/Store";
@@ -7,10 +7,31 @@ import "./OurChurch.css";
 const OurChurch = () => {
   const [activeComponent, setActiveComponent] = useState("default");
   const [isVisible, setIsVisible] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const contentRef = useRef(null);
 
   useEffect(() => {
     setIsVisible(true);
+    // Initial scroll to top when component mounts
+    window.scrollTo(0, 0);
   }, []);
+
+  const handleComponentChange = (componentId) => {
+    setIsTransitioning(true);
+    
+    // Smooth scroll to content area
+    const targetOffset = contentRef.current?.offsetTop || 0;
+    window.scrollTo({
+      top: Math.max(0, targetOffset - 50),
+      behavior: 'smooth'
+    });
+
+    // Animate component change
+    setTimeout(() => {
+      setActiveComponent(componentId);
+      setIsTransitioning(false);
+    }, 300);
+  };
 
   const menuItems = [
     { id: "one", label: "History", icon: "bi bi-clock-history" },
@@ -62,9 +83,9 @@ const OurChurch = () => {
           <span className="heading-icon">
             <i className="bi bi-church"></i>
           </span>
-          Our Church
-          <div className="heading-line"></div>
+          <span className="heading-text">Our Church</span>
         </h2>
+        <div className="heading-line"></div>
         <p className="our-church-subtitle">
           Discover our rich history, leadership, and foundational beliefs
         </p>
@@ -76,8 +97,8 @@ const OurChurch = () => {
           {menuItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => setActiveComponent(item.id)}
-              className={activeComponent === item.id ? 'active' : ''}
+              onClick={() => handleComponentChange(item.id)}
+              className={`nav-button ${activeComponent === item.id ? 'active' : ''}`}
             >
               <i className={item.icon}></i>
               <span>{item.label}</span>
@@ -87,8 +108,15 @@ const OurChurch = () => {
       </div>
 
       {/* Content Area with Animation */}
-      <div className="our-church-content">
-        <div className={`content-wrapper ${activeComponent !== 'default' ? 'active' : ''}`}>
+      <div className="our-church-content" ref={contentRef}>
+        <div 
+          className={`content-wrapper ${activeComponent !== 'default' ? 'active' : ''} ${isTransitioning ? 'transitioning' : ''}`}
+          style={{
+            minHeight: '400px',
+            width: '100%',
+            position: 'relative'
+          }}
+        >
           {renderComponent()}
         </div>
       </div>

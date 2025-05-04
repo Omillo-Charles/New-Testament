@@ -10,9 +10,13 @@ const Events = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [activeTab, setActiveTab] = useState("All");
   const [isVisible, setIsVisible] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
+    // Set initial visibility after a short delay to trigger animation
+    setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
     
     fetch("/national_events.json")
       .then(res => res.json())
@@ -45,24 +49,33 @@ const Events = () => {
   };
 
   const handleSuggestionClick = (eventTitle) => {
+    setIsTransitioning(true);
     const selectedEvent = events.find(ev => ev.title === eventTitle);
-    setFilteredEvents([selectedEvent]);
-    setEventSearchTerm(eventTitle);
-    setSuggestions([]);
+    
+    setTimeout(() => {
+      setFilteredEvents([selectedEvent]);
+      setEventSearchTerm(eventTitle);
+      setSuggestions([]);
+      setIsTransitioning(false);
+    }, 300);
   };
 
   const handleFilter = (category) => {
-    setActiveTab(category);
+    setIsTransitioning(true);
     setEventSearchTerm("");
     setSuggestions([]);
     
-    if (category === "All") {
-      setFilteredEvents(events);
-    } else if (category === "National") {
-      setFilteredEvents(nationalEvents);
-    } else if (category === "Regional") {
-      setFilteredEvents(regionalEvents);
-    }
+    setTimeout(() => {
+      setActiveTab(category);
+      if (category === "All") {
+        setFilteredEvents(events);
+      } else if (category === "National") {
+        setFilteredEvents(nationalEvents);
+      } else if (category === "Regional") {
+        setFilteredEvents(regionalEvents);
+      }
+      setIsTransitioning(false);
+    }, 300);
   };
 
   return (
@@ -72,9 +85,9 @@ const Events = () => {
           <span className="heading-icon">
             <i className="bi bi-calendar-event-fill"></i>
           </span>
-          Church Events
-          <div className="heading-line"></div>
+          <span className="heading-text">Church Events</span>
         </h2>
+        <div className="heading-line"></div>
         <p className="events-subtitle">
           Stay connected with our upcoming events and gatherings
         </p>
@@ -125,13 +138,18 @@ const Events = () => {
         </div>
       </div>
 
-      <div className="events-grid">
+      <div className={`events-grid ${isTransitioning ? 'transitioning' : ''}`}>
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event, index) => (
             <div 
               className="event-card" 
               key={index}
-              style={{ animationDelay: `${index * 0.1}s` }}
+              style={{ 
+                animationDelay: `${index * 0.1}s`,
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+                transition: 'opacity 0.5s ease-out, transform 0.5s ease-out'
+              }}
             >
               <div className="event-image">
                 <img src={event.image} alt={event.title} />

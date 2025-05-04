@@ -1,18 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import './TheChurch.css';
 import TheDefault from "../Contents/TheDefault";
 import Clergy from "../Contents/Clergy";
 import Brethren from "../Contents/Brethren";
 import Youth from "../Contents/Youth";
 import SundaySchool from "../Contents/SundaySchool";
+import Store from "../Contents/Store";
 
 const TheChurch = () => {
   const [activeComponent, setActiveComponent] = useState("default");
   const [isVisible, setIsVisible] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const contentRef = useRef(null);
 
   useEffect(() => {
     setIsVisible(true);
+    // Initial scroll to top when component mounts
+    window.scrollTo(0, 0);
   }, []);
+
+  const handleComponentChange = (componentId) => {
+    setIsTransitioning(true);
+    
+    // Smooth scroll to content area
+    const targetOffset = contentRef.current?.offsetTop || 0;
+    window.scrollTo({
+      top: Math.max(0, targetOffset - 50),
+      behavior: 'smooth'
+    });
+
+    // Animate component change
+    setTimeout(() => {
+      setActiveComponent(componentId);
+      setIsTransitioning(false);
+    }, 300);
+  };
 
   const menuItems = [
     { 
@@ -38,6 +60,12 @@ const TheChurch = () => {
       label: "Sunday School", 
       icon: "bi bi-mortarboard-fill",
       description: "Nurturing young minds in faith and biblical knowledge"
+    },
+    {
+      id: "five",
+      label: "Store",
+      icon: "bi bi-shop",
+      description: "Browse and purchase Christian books, music, and more"
     }
   ];
 
@@ -51,6 +79,8 @@ const TheChurch = () => {
         return <Youth />;
       case "four":
         return <SundaySchool />;
+      case "five":
+        return <Store />;
       default:
         return <TheDefault />;
     }
@@ -63,9 +93,9 @@ const TheChurch = () => {
           <span className="heading-icon">
             <i className="bi bi-building-fill"></i>
           </span>
-          The Church
-          <div className="heading-line"></div>
+          <span className="heading-text">The Church</span>
         </h2>
+        <div className="heading-line"></div>
         <p className="the-church-subtitle">
           Explore our vibrant community and various ministries
         </p>
@@ -77,7 +107,7 @@ const TheChurch = () => {
           {menuItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => setActiveComponent(item.id)}
+              onClick={() => handleComponentChange(item.id)}
               className={`nav-card ${activeComponent === item.id ? 'active' : ''}`}
             >
               <i className={item.icon}></i>
@@ -91,8 +121,15 @@ const TheChurch = () => {
       </div>
 
       {/* Content Area with Animation */}
-      <div className="the-church-content">
-        <div className={`content-wrapper ${activeComponent !== 'default' ? 'active' : ''}`}>
+      <div className="the-church-content" ref={contentRef}>
+        <div 
+          className={`content-wrapper ${activeComponent !== 'default' ? 'active' : ''} ${isTransitioning ? 'transitioning' : ''}`}
+          style={{
+            minHeight: '400px',
+            width: '100%',
+            position: 'relative'
+          }}
+        >
           {renderComponent()}
         </div>
       </div>

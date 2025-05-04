@@ -14,35 +14,25 @@ const translations = [
 ];
 
 const Hero = () => {
-  const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isFading, setIsFading] = useState(false);
+  const [nextIndex, setNextIndex] = useState(1);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     AOS.init({ duration: 1200 });
-  }, []);
 
-  useEffect(() => {
-    if (charIndex < translations[currentIndex].length) {
-      const timeout = setTimeout(() => {
-        setDisplayText(prev => prev + translations[currentIndex].charAt(charIndex));
-        setCharIndex(prev => prev + 1);
-      }, 60);
-      return () => clearTimeout(timeout);
-    } else {
-      const pause = setTimeout(() => {
-        setIsFading(true);
-        setTimeout(() => {
-          setDisplayText('');
-          setCharIndex(0);
-          setCurrentIndex((prev) => (prev + 1) % translations.length);
-          setIsFading(false);
-        }, 500); // Fade out before resetting
-      }, 2500);
-      return () => clearTimeout(pause);
-    }
-  }, [charIndex, currentIndex]);
+    const interval = setInterval(() => {
+      setIsTransitioning(true);
+      
+      setTimeout(() => {
+        setCurrentIndex(nextIndex);
+        setNextIndex((nextIndex + 1) % translations.length);
+        setIsTransitioning(false);
+      }, 1000); // Match this with the CSS transition duration
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [nextIndex]);
 
   return (
     <div className='hero'>
@@ -50,9 +40,11 @@ const Hero = () => {
         <figure>
           <img src={Logo} alt="NT_LOGO" width={200} height={200} />
           <figcaption>
-            <h1 className={`typewriter ${isFading ? 'fade-out' : 'fade-in'}`}>
-              {displayText}
-            </h1>
+            <div className="message-container">
+              <h1 className={`welcome-text ${isTransitioning ? 'fade-out' : 'fade-in'}`}>
+                {translations[currentIndex]}
+              </h1>
+            </div>
           </figcaption>
         </figure>
       </div>
