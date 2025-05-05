@@ -1,12 +1,36 @@
 {
   "name": "New Testament Church",
   "short_name": "NT Church",
-  "description": "New Testament Church of God Kenya",
+  "description": "New Testament Church of God Kenya - Official Mobile App",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#1a365d",
   "theme_color": "#1a365d",
-  "orientation": "portrait-primary",
+  "orientation": "portrait",
+  "categories": ["religion", "lifestyle"],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Events",
+      "url": "/events",
+      "description": "View upcoming church events"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact",
+      "description": "Contact the church"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/home.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Home Screen"
+    }
+  ],
   "icons": [
     {
       "src": "/icons/icon-72x72.png",
