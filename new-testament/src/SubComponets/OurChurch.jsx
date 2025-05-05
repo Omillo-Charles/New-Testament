@@ -34,11 +34,36 @@ const OurChurch = () => {
   };
 
   const menuItems = [
-    { id: "one", label: "History", icon: "bi bi-clock-history" },
-    { id: "two", label: "Administration", icon: "bi bi-building" },
-    { id: "three", label: "Constitution", icon: "bi bi-journal-text" },
-    { id: "four", label: "Articles Of Faith", icon: "bi bi-book" },
-    { id: "five", label: "Store", icon: "bi bi-shop" },
+    { 
+      id: "one", 
+      label: "History", 
+      icon: "bi bi-clock-history",
+      description: "Explore our church's rich heritage and journey of faith"
+    },
+    { 
+      id: "two", 
+      label: "Administration", 
+      icon: "bi bi-building",
+      description: "Learn about our church leadership and organizational structure"
+    },
+    { 
+      id: "three", 
+      label: "Constitution", 
+      icon: "bi bi-journal-text",
+      description: "Understand our church's governing principles and regulations"
+    },
+    { 
+      id: "four", 
+      label: "Articles Of Faith", 
+      icon: "bi bi-book",
+      description: "Discover our fundamental beliefs and doctrinal foundations"
+    },
+    { 
+      id: "five", 
+      label: "Store", 
+      icon: "bi bi-shop",
+      description: "Browse our collection of Christian resources and materials"
+    }
   ];
 
   const renderComponent = () => {
@@ -91,7 +116,7 @@ const OurChurch = () => {
         </p>
       </div>
 
-      {/* Modern Navigation Menu */}
+      {/* Navigation Menu */}
       <div className="our-church-nav-wrapper">
         <div className="our-church-nav">
           {menuItems.map((item) => (
@@ -101,7 +126,10 @@ const OurChurch = () => {
               className={`nav-button ${activeComponent === item.id ? 'active' : ''}`}
             >
               <i className={item.icon}></i>
-              <span>{item.label}</span>
+              <div className="nav-button-content">
+                <span>{item.label}</span>
+                <p className="nav-button-description">{item.description}</p>
+              </div>
             </button>
           ))}
         </div>
@@ -124,6 +152,7 @@ const OurChurch = () => {
       {/* Decorative Elements */}
       <div className="decorative-circle circle-1"></div>
       <div className="decorative-circle circle-2"></div>
+      <div className="decorative-dots"></div>
     </div>
   );
 };
