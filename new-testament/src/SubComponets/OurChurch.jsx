@@ -127,7 +127,7 @@ const OurChurch = () => {
             >
               <i className={item.icon}></i>
               <div className="nav-button-content">
-                <span>{item.label}</span>
+                <span className="nav-button-title">{item.label}</span>
                 <p className="nav-button-description">{item.description}</p>
               </div>
             </button>
