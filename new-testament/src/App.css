@@ -3,19 +3,22 @@
   display: flex;
   flex-direction: column;
   background-color: var(--color-gray-50);
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .app-content {
   flex: 1;
-  padding: calc(60px + env(safe-area-inset-top)) 0 env(safe-area-inset-bottom);
+  padding: calc(60px + env(safe-area-inset-top)) 0 0;
   overflow-x: hidden;
   position: relative;
   -webkit-overflow-scrolling: touch;
+  width: 100%;
 }
 
 @media (max-width: 767px) {
   .app-content {
-    padding-bottom: calc(64px + env(safe-area-inset-bottom));
+    padding-bottom: 0; /* Remove bottom padding since footer handles it */
   }
 }
 
@@ -47,6 +50,7 @@
   max-width: 100%;
   margin: 0 auto;
   padding: 16px;
+  box-sizing: border-box;
 }
 
 /* Add touch ripple effect */

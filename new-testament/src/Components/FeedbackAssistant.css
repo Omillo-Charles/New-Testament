@@ -1,11 +1,25 @@
 .feedback-assistant {
   position: fixed;
-  bottom: 2rem;
+  bottom: calc(80px + 1rem); /* Position above bottom nav (64px + safe area) plus some spacing */
   right: 2rem;
   z-index: 9999;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.feedback-assistant.hidden {
+  transform: translateY(100px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              pointer-events 0.2s step-end;
 }
 
 .feedback-button {
@@ -20,7 +34,12 @@
   gap: 0.5rem;
   font-weight: 600;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.feedback-button:focus-visible {
+  box-shadow: 0 0 0 3px var(--color-white), 0 0 0 6px var(--color-primary);
 }
 
 .feedback-button i {
@@ -42,7 +61,8 @@
 
 .feedback-panel {
   position: absolute;
-  bottom: calc(100% + 1rem);
+  bottom: 100%;  /* Changed to open upwards */
+  margin-bottom: 1rem;  /* Space between button and panel */
   right: 0;
   width: 320px;
   background: var(--color-white);
@@ -122,6 +142,7 @@
 .form-group textarea:focus {
   outline: none;
   border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.2);
 }
 
 .submit-button {
@@ -147,6 +168,12 @@
 
 .submit-button:active {
   transform: translateY(0);
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .success-message {
@@ -198,7 +225,7 @@
 
 [data-theme="dark"] .form-group input:focus,
 [data-theme="dark"] .form-group textarea:focus {
-  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.3);
 }
 
 [data-theme="dark"] .success-message h3 {
@@ -209,19 +236,52 @@
   color: var(--color-gray-300);
 }
 
+/* Improve dark mode focus states */
+[data-theme="dark"] .feedback-button:focus-visible {
+  box-shadow: 0 0 0 3px var(--color-gray-800), 0 0 0 6px var(--color-primary);
+}
+
 /* Mobile styles */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
   .feedback-assistant {
-    bottom: 1rem;
+    bottom: calc(80px + 1rem); /* Keep consistent with desktop */
     right: 1rem;
   }
 
   .feedback-button {
     padding: 0.625rem 1.25rem;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .feedback-button i {
+    font-size: 1.1rem;
   }
 
   .feedback-panel {
     width: calc(100vw - 2rem);
     max-width: 320px;
+    bottom: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Improve touch targets on mobile */
+  .close-button {
+    padding: 0.5rem;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .submit-button {
+    min-height: 44px;
+  }
+}
+
+/* Adjust for devices with safe-area-inset-bottom */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .feedback-assistant {
+    bottom: calc(80px + 1rem + env(safe-area-inset-bottom));
   }
 } 
