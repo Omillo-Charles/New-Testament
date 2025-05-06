@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nt-church-v1';
+const CACHE_NAME = 'nt-church-v2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -11,6 +11,9 @@ const urlsToCache = [
   '/icons/icon-192x192.png',
   '/icons/icon-384x384.png',
   '/icons/icon-512x512.png',
+  '/static/js/main.chunk.js',
+  '/static/js/bundle.js',
+  '/static/js/vendors~main.chunk.js',
   // Add other static assets and routes that should be cached
 ];
 
@@ -23,6 +26,8 @@ self.addEventListener('install', event => {
         return cache.addAll(urlsToCache);
       })
   );
+  // Immediately activate the new service worker
+  self.skipWaiting();
 });
 
 // Cache and return requests
@@ -30,10 +35,7 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
       .then(response => {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
+        // Always try network first, then fall back to cache
         return fetch(event.request)
           .then(response => {
             // Check if we received a valid response
@@ -50,6 +52,10 @@ self.addEventListener('fetch', event => {
               });
 
             return response;
+          })
+          .catch(() => {
+            // If network fails, return from cache
+            return response;
           });
       })
   );
@@ -63,10 +69,14 @@ self.addEventListener('activate', event => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheWhitelist.indexOf(cacheName) === -1) {
+            // Delete old cache versions
             return caches.delete(cacheName);
           }
         })
       );
+    }).then(() => {
+      // Take control of all pages immediately
+      clients.claim();
     })
   );
 }); 

@@ -1,6 +1,7 @@
 {
   "name": "New Testament Church",
   "short_name": "NT Church",
+  "version": "2.0.0",
   "description": "New Testament Church of God Kenya - Official Mobile App",
   "start_url": "/",
   "scope": "/",
