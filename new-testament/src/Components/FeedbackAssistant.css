@@ -1,0 +1,227 @@
+.feedback-assistant {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.feedback-button {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent-1));
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.feedback-button i {
+  font-size: 1.25rem;
+}
+
+.feedback-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.feedback-button:active {
+  transform: translateY(0);
+}
+
+.feedback-button.active {
+  background: var(--color-gray-800);
+}
+
+.feedback-panel {
+  position: absolute;
+  bottom: calc(100% + 1rem);
+  right: 0;
+  width: 320px;
+  background: var(--color-white);
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.feedback-header {
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent-1));
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.feedback-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.close-button:hover {
+  transform: scale(1.1);
+}
+
+.feedback-content {
+  padding: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--color-gray-700);
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--color-gray-200);
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent-1));
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+.success-message {
+  padding: 2rem;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.success-message i {
+  font-size: 3rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.success-message h3 {
+  margin: 0 0 0.5rem;
+  color: var(--color-gray-900);
+}
+
+.success-message p {
+  margin: 0;
+  color: var(--color-gray-600);
+}
+
+/* Dark mode styles */
+[data-theme="dark"] .feedback-panel {
+  background: var(--color-gray-800);
+}
+
+[data-theme="dark"] .form-group label {
+  color: var(--color-gray-300);
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group textarea {
+  background: var(--color-gray-700);
+  border-color: var(--color-gray-600);
+  color: var(--color-white);
+}
+
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .form-group textarea:focus {
+  border-color: var(--color-primary);
+}
+
+[data-theme="dark"] .success-message h3 {
+  color: var(--color-white);
+}
+
+[data-theme="dark"] .success-message p {
+  color: var(--color-gray-300);
+}
+
+/* Mobile styles */
+@media screen and (max-width: 480px) {
+  .feedback-assistant {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .feedback-button {
+    padding: 0.625rem 1.25rem;
+  }
+
+  .feedback-panel {
+    width: calc(100vw - 2rem);
+    max-width: 320px;
+  }
+} 

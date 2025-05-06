@@ -10,6 +10,7 @@ import OurChurch from './SubComponets/OurChurch'
 import TheChurch from './SubComponets/TheChurch'
 import Events from './SubComponets/Events'
 import NotFound from './Contents/NotFound'
+import FeedbackAssistant from './Components/FeedbackAssistant'
 import './App.css'
 
 const pageTransition = {
@@ -47,6 +48,7 @@ const App = () => {
         </AnimatePresence>
       </main>
       <BottomNav />
+      <FeedbackAssistant />
     </div>
   )
 }
