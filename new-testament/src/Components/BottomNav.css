@@ -4,44 +4,44 @@
   left: 0;
   right: 0;
   height: 64px;
-  background: var(--color-white);
+  background-color: var(--color-gray-50);
   display: flex;
   justify-content: space-around;
   align-items: center;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
-  z-index: 1000;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   padding-bottom: env(safe-area-inset-bottom);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.95);
+  z-index: 1000;
+}
+
+@media (min-width: 768px) {
+  .bottom-nav {
+    display: none;
+  }
 }
 
 .nav-item {
-  flex: 1;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: var(--color-gray-400);
+  min-width: 64px;
+  height: 100%;
+  color: var(--color-gray-500);
   text-decoration: none;
-  padding: 8px 4px;
-  position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  -webkit-tap-highlight-color: transparent;
+  transition: color 0.2s ease;
 }
 
 .nav-item i {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   margin-bottom: 4px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
+  transition: transform 0.2s ease;
 }
 
-.nav-item span {
-  font-size: 0.7rem;
+.nav-label {
+  font-size: 0.75rem;
   font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0.8;
+  transition: opacity 0.2s ease;
 }
 
 .nav-item.active {
@@ -49,28 +49,35 @@
 }
 
 .nav-item.active i {
-  transform: translateY(-4px);
-}
-
-.nav-item.active span {
   transform: translateY(-2px);
-  opacity: 1;
 }
 
-.nav-indicator {
+/* Add a subtle indicator for active items */
+.nav-item::after {
+  content: '';
   position: absolute;
-  bottom: 8px;
+  bottom: 0;
   left: 50%;
-  width: 4px;
-  height: 4px;
-  background: var(--color-primary);
-  border-radius: 50%;
-  transform: translateX(-50%) scale(0);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%) scaleX(0);
+  width: 20px;
+  height: 3px;
+  background-color: var(--color-primary);
+  border-radius: 3px;
+  transition: transform 0.2s ease;
 }
 
-.nav-item.active .nav-indicator {
-  transform: translateX(-50%) scale(1);
+.nav-item.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .bottom-nav {
+    background-color: var(--color-gray-900);
+  }
+  
+  .nav-item {
+    color: var(--color-gray-400);
+  }
 }
 
 /* Add touch effect */

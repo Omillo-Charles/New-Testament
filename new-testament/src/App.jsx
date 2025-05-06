@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
+import TopHeader from './Components/TopHeader'
 import BottomNav from './Components/BottomNav'
 import Home from './Components/Home'
 import Contact from './Components/Contact'
@@ -22,6 +23,7 @@ const App = () => {
 
   return (
     <div className='app'>
+      <TopHeader />
       <main className='app-content'>
         <AnimatePresence mode='wait'>
           <motion.div

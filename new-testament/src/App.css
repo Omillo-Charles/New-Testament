@@ -7,17 +7,23 @@
 
 .app-content {
   flex: 1;
-  padding: env(safe-area-inset-top) 0 calc(64px + env(safe-area-inset-bottom));
+  padding: calc(60px + env(safe-area-inset-top)) 0 env(safe-area-inset-bottom);
   overflow-x: hidden;
   position: relative;
   -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 767px) {
+  .app-content {
+    padding-bottom: calc(64px + env(safe-area-inset-bottom));
+  }
 }
 
 /* Add pull-to-refresh styling */
 .app-content::before {
   content: '';
   position: absolute;
-  top: 0;
+  top: 60px;
   left: 0;
   right: 0;
   height: 80px;
@@ -41,7 +47,6 @@
   max-width: 100%;
   margin: 0 auto;
   padding: 16px;
-  padding-top: max(16px, env(safe-area-inset-top));
 }
 
 /* Add touch ripple effect */

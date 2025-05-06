@@ -132,13 +132,12 @@
 /* Navigation Wrapper */
 .our-church-nav-wrapper {
   margin-bottom: 3rem;
-  width: 100%;
 }
 
-/* Navigation Bar */
+/* Navigation Cards */
 .our-church-nav {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -198,6 +197,10 @@
   transition: all 0.3s ease;
   position: relative;
   z-index: 1;
+  min-width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-button:hover i {
@@ -210,44 +213,11 @@
   transform: none;
 }
 
-.nav-button span {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--color-gray-900);
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
-}
-
-.nav-button:hover span {
-  color: var(--color-primary);
-}
-
-.nav-button.active span {
-  color: var(--color-white);
-}
-
 .nav-button-content {
   flex: 1;
+  min-width: 0;
   position: relative;
   z-index: 1;
-  width: 100%;
-}
-
-.nav-button-description {
-  font-size: 0.9rem;
-  color: var(--color-gray-600);
-  margin: 0;
-  transition: all 0.3s ease;
-  line-height: 1.5;
-}
-
-.nav-button:hover .nav-button-description {
-  color: var(--color-gray-800);
-}
-
-.nav-button.active .nav-button-description {
-  color: var(--color-gray-100);
 }
 
 .nav-button-title {
@@ -267,166 +237,81 @@
   color: var(--color-white);
 }
 
-/* Content Area */
-.our-church-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-  position: relative;
-}
-
-.content-wrapper {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  z-index: 1;
-}
-
-.content-wrapper.active {
-  opacity: 1;
-  transform: translateY(0);
-  position: relative;
-}
-
-.content-wrapper.transitioning {
-  opacity: 0;
-  transform: translateY(-20px);
-  pointer-events: none;
-}
-
-/* Placeholder Content Styling */
-.placeholder-content {
-  text-align: center;
-  padding: 3rem;
-  background: var(--color-white);
-  border-radius: 1rem;
-  box-shadow: var(--shadow-sm);
-  height: 100%;
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.placeholder-content i {
-  font-size: 3rem;
-  color: var(--color-primary);
-  margin-bottom: 1.5rem;
-}
-
-.placeholder-content h1 {
-  font-size: 2rem;
-  color: var(--color-gray-900);
-  margin-bottom: 1rem;
-}
-
-.placeholder-content p {
+.nav-button-description {
+  font-size: 0.9rem;
   color: var(--color-gray-600);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
+  margin: 0;
+  transition: all 0.3s ease;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Decorative Elements */
-.decorative-circle {
-  position: absolute;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent-1));
-  opacity: 0.1;
-  z-index: -1;
+.nav-button:hover .nav-button-description {
+  color: var(--color-gray-800);
 }
 
-.circle-1 {
-  width: 300px;
-  height: 300px;
-  top: -150px;
-  left: -150px;
-}
-
-.circle-2 {
-  width: 200px;
-  height: 200px;
-  bottom: -100px;
-  right: -100px;
-}
-
-.decorative-dots {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-image: radial-gradient(var(--color-gray-300) 1px, transparent 1px);
-  background-size: 20px 20px;
-  opacity: 0.2;
-  z-index: -1;
+.nav-button.active .nav-button-description {
+  color: var(--color-white);
 }
 
 /* Media Queries */
 @media screen and (max-width: 768px) {
   .our-church-container {
-    padding: 1rem 0;
+    padding: 1rem;
   }
 
   .our-church-nav-wrapper {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
+    margin: 1.5rem 0;
   }
 
   .our-church-nav {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    max-width: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 0 1rem;
   }
 
-  .our-church-nav .nav-button {
-    width: 98vw !important;
-    margin: 0 auto;
+  .nav-button {
     padding: 1rem;
-    max-width: none;
-    box-sizing: border-box;
+    border-radius: 0.75rem;
+    min-height: 72px;
   }
 
-  .nav-button-content {
-    width: calc(100% - 2.5rem);
+  .nav-button i {
+    font-size: 1.25rem;
   }
 
-  .nav-button span {
-    font-size: 1.1rem;
+  .nav-button-title {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
   }
 
   .nav-button-description {
-    font-size: 0.9rem;
-    line-height: 1.4;
+    font-size: 0.875rem;
+  }
+
+  .nav-button:active {
+    transform: scale(0.98);
   }
 }
 
+/* Even smaller screens */
 @media screen and (max-width: 480px) {
-  .nav-button {
-    padding: 0.875rem;
+  .our-church-container {
+    padding: 0.75rem;
   }
 
-  .nav-button span {
-    font-size: 1rem;
+  .nav-button {
+    padding: 0.75rem;
+  }
+
+  .nav-button-title {
+    font-size: 0.9375rem;
   }
 
   .nav-button-description {
-    font-size: 0.85rem;
-    line-height: 1.3;
+    font-size: 0.8125rem;
   }
 }
 

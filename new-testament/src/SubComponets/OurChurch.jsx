@@ -102,33 +102,33 @@ const OurChurch = () => {
   };
 
   return (
-    <div className={`our-church-container ${isVisible ? 'visible' : ''}`}>
-      <div className="our-church-header">
-        <h2 className="our-church-heading">
+    <div className={`the-church-container ${isVisible ? 'visible' : ''}`}>
+      <div className="the-church-header">
+        <h2 className="the-church-heading">
           <span className="heading-icon">
             <i className="bi bi-church"></i>
           </span>
           <span className="heading-text">Our Church</span>
         </h2>
         <div className="heading-line"></div>
-        <p className="our-church-subtitle">
+        <p className="the-church-subtitle">
           Discover our rich history, leadership, and foundational beliefs
         </p>
       </div>
 
-      {/* Navigation Menu */}
-      <div className="our-church-nav-wrapper">
-        <div className="our-church-nav">
+      {/* Navigation Cards */}
+      <div className="the-church-nav-wrapper">
+        <div className="the-church-nav">
           {menuItems.map((item) => (
             <button
               key={item.id}
               onClick={() => handleComponentChange(item.id)}
-              className={`nav-button ${activeComponent === item.id ? 'active' : ''}`}
+              className={`nav-card ${activeComponent === item.id ? 'active' : ''}`}
             >
               <i className={item.icon}></i>
-              <div className="nav-button-content">
-                <span className="nav-button-title">{item.label}</span>
-                <p className="nav-button-description">{item.description}</p>
+              <div className="nav-card-content">
+                <span className="nav-card-title">{item.label}</span>
+                <p className="nav-card-description">{item.description}</p>
               </div>
             </button>
           ))}
@@ -136,7 +136,7 @@ const OurChurch = () => {
       </div>
 
       {/* Content Area with Animation */}
-      <div className="our-church-content" ref={contentRef}>
+      <div className="the-church-content" ref={contentRef}>
         <div 
           className={`content-wrapper ${activeComponent !== 'default' ? 'active' : ''} ${isTransitioning ? 'transitioning' : ''}`}
           style={{
@@ -150,8 +150,8 @@ const OurChurch = () => {
       </div>
 
       {/* Decorative Elements */}
-      <div className="decorative-circle circle-1"></div>
-      <div className="decorative-circle circle-2"></div>
+      <div className="decorative-shape shape-1"></div>
+      <div className="decorative-shape shape-2"></div>
       <div className="decorative-dots"></div>
     </div>
   );

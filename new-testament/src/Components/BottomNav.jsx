@@ -1,15 +1,13 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './BottomNav.css';
 
 const BottomNav = () => {
-  const location = useLocation();
-  
   const navItems = [
-    { path: '/', icon: 'bi-house-fill', label: 'Home' },
-    { path: '/events', icon: 'bi-calendar-event-fill', label: 'Events' },
-    { path: '/ourchurch', icon: 'bi-building-fill', label: 'Church' },
-    { path: '/contact', icon: 'bi-person-lines-fill', label: 'Contact' }
+    { path: '/', icon: 'bi-house', label: 'Home' },
+    { path: '/events', icon: 'bi-calendar-event', label: 'Events' },
+    { path: '/ourchurch', icon: 'bi-building', label: 'Church' },
+    { path: '/thechurch', icon: 'bi-people', label: 'Community' }
   ];
 
   return (
@@ -19,10 +17,10 @@ const BottomNav = () => {
           key={path}
           to={path}
           className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
+          aria-label={label}
         >
           <i className={`bi ${icon}`} />
-          <span>{label}</span>
-          <div className="nav-indicator" />
+          <span className="nav-label">{label}</span>
         </NavLink>
       ))}
     </nav>
