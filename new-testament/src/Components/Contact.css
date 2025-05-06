@@ -1,9 +1,10 @@
 @import url('../index.css');
 
 .contact {
-  padding: 4rem 2rem;
+  padding: 4rem 0;
   background: linear-gradient(to bottom, var(--color-gray-100), var(--color-white));
   min-height: calc(100vh - 200px);
+  width: 100%;
 }
 
 .contact h2 {
@@ -31,8 +32,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .contactForm {
@@ -179,12 +182,13 @@
 
 @media screen and (max-width: 768px) {
   .contact {
-    padding: 2rem 1rem;
+    padding: 2rem 0;
   }
 
   .mainContact {
     grid-template-columns: 1fr;
     gap: 2rem;
+    padding: 0 1rem;
   }
 
   .contactForm,

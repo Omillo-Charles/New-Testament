@@ -5,8 +5,7 @@ div.about {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    width: 60vw;
-    margin: 1.6rem auto;
+    width: 100%;
     padding: 1.6rem;
     background-color: var(--color-light-gray);
     color: var(--color-black);
@@ -14,16 +13,18 @@ div.about {
 
 @media screen and (max-width: 768px) {
     div.about {
-        width: 90vw;
+        width: 100%;
+        padding: 1rem;
     }
 }
 
-div.about h2{
+div.about h2 {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
     font-size: 2rem;
+    width: 100%;
 }
 
 .about h2 hr {

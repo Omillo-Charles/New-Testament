@@ -18,7 +18,7 @@
 
 @media (max-width: 767px) {
   .app-content {
-    padding-bottom: 0; /* Remove bottom padding since footer handles it */
+    padding-bottom: 0;
   }
 }
 
@@ -45,12 +45,13 @@
   transform: translateY(0);
 }
 
-/* Ensure content is properly spaced */
+/* Remove padding and ensure full width */
 .app-content > div {
   max-width: 100%;
-  margin: 0 auto;
-  padding: 16px;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  width: 100%;
 }
 
 /* Add touch ripple effect */
