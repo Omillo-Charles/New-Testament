@@ -18,7 +18,7 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  color: var(--color-primary-light);
+  color: var(--color-primary);
   font-size: 1.25rem;
   font-weight: 600;
 }
@@ -32,19 +32,8 @@
   gap: 2rem;
 }
 
-/* Hide desktop navigation on small screens */
-@media (max-width: 768px) {
-  .desktop-nav {
-    display: none;
-  }
-  
-  .top-header {
-    padding: 0 1rem;
-  }
-}
-
 .nav-link {
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
   text-decoration: none;
   font-weight: 500;
   transition: all var(--transition-normal);
@@ -63,7 +52,7 @@
 }
 
 .nav-link:hover {
-  color: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 .nav-link:hover::after {
@@ -71,7 +60,7 @@
 }
 
 .nav-link.active {
-  color: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 .nav-link.active::after {
@@ -85,7 +74,7 @@
 .settings-button {
   background: none;
   border: none;
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
   padding: 0.5rem;
   border-radius: 0.5rem;
   cursor: pointer;
@@ -97,7 +86,7 @@
 }
 
 .settings-button:hover {
-  color: var(--color-primary-light);
+  color: var(--color-primary);
   background: var(--color-bg-tertiary);
 }
 
@@ -119,7 +108,7 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
   text-decoration: none;
   border-radius: 6px;
   transition: all var(--transition-normal);
@@ -137,7 +126,7 @@
 
 .settings-item:hover {
   background-color: var(--color-bg-tertiary);
-  color: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 @keyframes slideIn {
@@ -149,4 +138,40 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Dark mode styles */
+[data-theme="dark"] .top-header {
+  background-color: var(--color-gray-900);
+}
+
+[data-theme="dark"] .settings-button {
+  color: var(--color-gray-400);
+}
+
+[data-theme="dark"] .settings-button:hover {
+  color: var(--color-primary);
+  background: var(--color-gray-800);
+}
+
+[data-theme="dark"] .nav-link {
+  color: var(--color-gray-400);
+}
+
+[data-theme="dark"] .nav-link:hover,
+[data-theme="dark"] .nav-link.active {
+  color: var(--color-primary);
+}
+
+[data-theme="dark"] .settings-menu {
+  background-color: var(--color-gray-800);
+}
+
+[data-theme="dark"] .settings-item {
+  color: var(--color-gray-300);
+}
+
+[data-theme="dark"] .settings-item:hover {
+  background-color: var(--color-gray-700);
+  color: var(--color-primary);
 } 

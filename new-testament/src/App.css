@@ -2,7 +2,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-gray-50);
+  background-color: var(--color-bg-primary);
   width: 100%;
   overflow-x: hidden;
 }
@@ -32,7 +32,7 @@
   height: 80px;
   background: linear-gradient(
     to bottom,
-    var(--color-gray-100) 0%,
+    var(--color-bg-tertiary) 0%,
     transparent 100%
   );
   opacity: 0;
@@ -60,32 +60,13 @@
   border-radius: 50%;
   transform: scale(0);
   animation: ripple 0.6s linear;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 @keyframes ripple {
   to {
     transform: scale(4);
     opacity: 0;
-  }
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .app {
-    background-color: var(--color-gray-900);
-  }
-
-  .app-content::before {
-    background: linear-gradient(
-      to bottom,
-      var(--color-gray-800) 0%,
-      transparent 100%
-    );
-  }
-
-  .touch-ripple {
-    background-color: rgba(255, 255, 255, 0.1);
   }
 }
 

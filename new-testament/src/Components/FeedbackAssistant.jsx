@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import './FeedbackAssistant.css';
 
 const FeedbackAssistant = () => {
@@ -8,8 +9,11 @@ const FeedbackAssistant = () => {
   const [name, setName] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [message, setMessage] = useState('');
+  const [showMessage, setShowMessage] = useState(false);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
+  const form = useRef();
 
   // Throttled scroll handler
   const handleScroll = useCallback(() => {
@@ -54,8 +58,15 @@ const FeedbackAssistant = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Here you would typically send the feedback to your backend
-      console.log({ name, email, feedback });
+      await emailjs.sendForm(
+        'service_47iflrc',
+        'template_tvo4vqn',
+        form.current,
+        'Lm9-rCpua-WHLbtvm'
+      );
+      
+      setMessage('✅ Feedback sent successfully!');
+      setShowMessage(true);
       setSubmitted(true);
       
       // Reset form after delay
@@ -65,10 +76,12 @@ const FeedbackAssistant = () => {
         setFeedback('');
         setEmail('');
         setName('');
+        setShowMessage(false);
       }, 3000);
     } catch (error) {
       console.error('Failed to submit feedback:', error);
-      // You could add error handling UI here
+      setMessage('❌ Failed to send feedback. Please try again.');
+      setShowMessage(true);
     }
   };
 
@@ -82,6 +95,8 @@ const FeedbackAssistant = () => {
       role="complementary"
       aria-label="Feedback form"
     >
+      {showMessage && <div className="popup-message">{message}</div>}
+      
       {isOpen && (
         <div 
           className="feedback-panel"
@@ -90,7 +105,7 @@ const FeedbackAssistant = () => {
           aria-labelledby="feedback-title"
         >
           {!submitted ? (
-            <form onSubmit={handleSubmit} noValidate>
+            <form ref={form} onSubmit={handleSubmit} noValidate>
               <div className="feedback-header">
                 <h3 id="feedback-title">Send us your feedback</h3>
                 <button 
@@ -108,6 +123,7 @@ const FeedbackAssistant = () => {
                   <input
                     type="text"
                     id="name"
+                    name="name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Your name"
@@ -120,6 +136,7 @@ const FeedbackAssistant = () => {
                   <input
                     type="email"
                     id="email"
+                    name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Your email"
@@ -132,6 +149,7 @@ const FeedbackAssistant = () => {
                   <label htmlFor="feedback">Your Message</label>
                   <textarea
                     id="feedback"
+                    name="message"
                     value={feedback}
                     onChange={(e) => setFeedback(e.target.value)}
                     placeholder="How can we help you?"
