@@ -12,6 +12,7 @@
   box-shadow: var(--shadow-md);
   z-index: 1000;
   border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .logo {
@@ -21,10 +22,13 @@
   color: var(--color-primary-light);
   font-size: 1.25rem;
   font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .logo i {
   font-size: 1.5rem;
+  color: var(--primary-color);
+  transition: color 0.3s ease;
 }
 
 .desktop-nav {
@@ -47,7 +51,7 @@
   color: var(--color-text-primary);
   text-decoration: none;
   font-weight: 500;
-  transition: all var(--transition-normal);
+  transition: color 0.3s ease;
   position: relative;
 }
 
@@ -149,4 +153,90 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.theme-container {
+  position: relative;
+  margin-left: 1rem;
+}
+
+.theme-button {
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.theme-button:hover {
+  color: var(--color-primary-light);
+  background: var(--color-bg-tertiary);
+}
+
+.theme-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  padding: 0.5rem;
+  min-width: 150px;
+  z-index: 1000;
+  animation: slideIn 0.2s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.theme-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  border-radius: 6px;
+}
+
+.theme-item:hover {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-primary-light);
+}
+
+.theme-item i {
+  font-size: 1.25rem;
+}
+
+/* Dark mode styles */
+[data-theme="dark"] {
+  --color-bg-primary: #1a1a1a;
+  --color-bg-secondary: #242424;
+  --color-bg-tertiary: #2a2a2a;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a0a0;
+  --color-border: #333333;
+  --color-primary: #4a9eff;
+  --color-primary-light: #6bb5ff;
+}
+
+/* Light mode styles */
+[data-theme="light"] {
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f5f5f5;
+  --color-bg-tertiary: #e5e5e5;
+  --color-text-primary: #333333;
+  --color-text-secondary: #666666;
+  --color-border: #e0e0e0;
+  --color-primary: #0066cc;
+  --color-primary-light: #0088ff;
 } 
