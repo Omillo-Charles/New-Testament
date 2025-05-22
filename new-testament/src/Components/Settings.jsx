@@ -2,26 +2,31 @@ import React, { useState, useEffect } from 'react';
 import './Settings.css';
 
 const Settings = ({ isOpen, onClose }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [fontSize, setFontSize] = useState('normal');
   const [isAnimationsEnabled, setIsAnimationsEnabled] = useState(true);
   const [language, setLanguage] = useState('en');
 
   useEffect(() => {
     // Load saved preferences
-    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+    const savedDarkMode = localStorage.getItem('darkMode');
     const savedFontSize = localStorage.getItem('fontSize') || 'normal';
     const savedAnimations = localStorage.getItem('animations') !== 'false';
     const savedLanguage = localStorage.getItem('language') || 'en';
 
-    setIsDarkMode(savedDarkMode);
+    // Set dark mode as default if no preference is saved
+    const darkModePreference = savedDarkMode === null ? true : savedDarkMode === 'true';
+    setIsDarkMode(darkModePreference);
     setFontSize(savedFontSize);
     setIsAnimationsEnabled(savedAnimations);
     setLanguage(savedLanguage);
 
     // Apply dark mode
-    if (savedDarkMode) {
-      document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.setAttribute('data-theme', darkModePreference ? 'dark' : 'light');
+    
+    // Save dark mode preference if it wasn't set before
+    if (savedDarkMode === null) {
+      localStorage.setItem('darkMode', 'true');
     }
   }, []);
 
