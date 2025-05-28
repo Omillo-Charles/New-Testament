@@ -3,36 +3,56 @@ import { NavLink } from 'react-router-dom';
 import './TopHeader.css';
 
 const TopHeader = () => {
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    // Check localStorage first, then system preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      return savedTheme === 'dark';
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
 
   const navItems = [
     { path: '/', icon: 'bi-house', label: 'Home' },
-    { path: '/events', icon: 'bi-calendar-event', label: 'Events' },
-    { path: '/ourchurch', icon: 'bi-building', label: 'Church' },
-    { path: '/thechurch', icon: 'bi-people', label: 'Community' }
+    { path: '/about', icon: 'bi-info-circle', label: 'About Us' },
+    { path: '/contact', icon: 'bi-telephone', label: 'Contact' }
   ];
 
-  const handleSettingsClick = () => {
-    setIsSettingsOpen(!isSettingsOpen);
+  const handleThemeClick = () => {
+    setIsThemeMenuOpen(!isThemeMenuOpen);
   };
 
-  // Close settings menu when clicking outside
+  const toggleTheme = () => {
+    const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
+    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', newTheme ? 'dark' : 'light');
+    setIsThemeMenuOpen(false);
+  };
+
+  // Apply theme on initial load
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+  }, []);
+
+  // Close theme menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (isSettingsOpen && !event.target.closest('.settings-container')) {
-        setIsSettingsOpen(false);
+      if (isThemeMenuOpen && !event.target.closest('.theme-container')) {
+        setIsThemeMenuOpen(false);
       }
     };
 
     document.addEventListener('click', handleClickOutside);
     return () => document.removeEventListener('click', handleClickOutside);
-  }, [isSettingsOpen]);
+  }, [isThemeMenuOpen]);
 
   return (
     <header className="top-header">
       <div className="logo">
         <i className="bi bi-church"></i>
-        <span>New Testament</span>
+        <span>Busia Possibility Center</span>
       </div>
       <nav className="desktop-nav">
         {navItems.map(({ path, label }) => (
@@ -45,24 +65,24 @@ const TopHeader = () => {
           </NavLink>
         ))}
       </nav>
-      <div className="settings-container">
+      <div className="theme-container">
         <button 
-          className="settings-button" 
-          aria-label="Settings"
-          onClick={handleSettingsClick}
+          className="theme-button" 
+          aria-label="Theme Toggle"
+          onClick={handleThemeClick}
         >
-          <i className="bi bi-gear-fill"></i>
+          <i className="bi bi-list"></i>
         </button>
-        {isSettingsOpen && (
-          <div className="settings-menu">
-            <a href="#" className="settings-item">
-              <i className="bi bi-person-circle"></i>
-              Profile
-            </a>
-            <a href="#" className="settings-item">
-              <i className="bi bi-box-arrow-right"></i>
-              Logout
-            </a>
+        {isThemeMenuOpen && (
+          <div className="theme-menu">
+            <button 
+              className="theme-item"
+              onClick={toggleTheme}
+              aria-label={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            >
+              <i className={`bi ${isDarkMode ? 'bi-sun-fill' : 'bi-moon-fill'}`}></i>
+              {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+            </button>
           </div>
         )}
       </div>
