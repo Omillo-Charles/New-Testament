@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Footer = () => {
   return (
@@ -9,12 +10,17 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="md:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-[#E02020] rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">N</span>
+              <div className="w-12 h-12 relative rounded-lg shadow-md bg-white p-1">
+                <Image
+                  src="/mainLogo.png"
+                  alt="NTCG Kenya Logo"
+                  fill
+                  className="object-contain rounded-md"
+                />
               </div>
               <div>
-                <span className="text-2xl font-bold text-[#E02020]">NTCG</span>
-                <span className="text-lg text-[#1E4E9A] block leading-tight font-medium">
+                <span className="text-2xl font-bold text-white">NTCG</span>
+                <span className="text-lg text-gray-200 block leading-tight font-medium">
                   Kenya
                 </span>
               </div>
@@ -81,15 +87,15 @@ const Footer = () => {
                   href="/portals"
                   className="text-gray-300 hover:text-white transition-colors duration-200"
                 >
-                  Find a Branch
+                  Portals
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/events"
+                  href="/programs"
                   className="text-gray-300 hover:text-white transition-colors duration-200"
                 >
-                  Events
+                  Programs
                 </Link>
               </li>
               <li>
@@ -103,32 +109,40 @@ const Footer = () => {
             </ul>
           </div>
           
-          {/* Ministries */}
+          {/* Resources */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">Ministries</h4>
+            <h4 className="text-lg font-semibold mb-4 text-white">Resources</h4>
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/ministries/adults"
+                  href="/resources/churches"
                   className="text-gray-300 hover:text-white transition-colors duration-200"
                 >
-                  Adults
+                  Churches
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/ministries/youth"
+                  href="/resources/gallery"
                   className="text-gray-300 hover:text-white transition-colors duration-200"
                 >
-                  Youth
+                  Gallery
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/ministries/children"
+                  href="/resources/beliefs"
                   className="text-gray-300 hover:text-white transition-colors duration-200"
                 >
-                  Children
+                  Beliefs
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/resources/legals"
+                  className="text-gray-300 hover:text-white transition-colors duration-200"
+                >
+                  Legals
                 </Link>
               </li>
             </ul>
@@ -149,6 +163,21 @@ const Footer = () => {
                 Terms of Service
               </Link>
             </div>
+          </div>
+          
+          {/* Developer Credit */}
+          <div className="mt-4 pt-4 border-t border-gray-800">
+            <p className="text-center text-gray-400 text-sm">
+              Built and maintained by{" "}
+              <a
+                href="https://omytech.co.ke"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#1E4E9A] hover:text-[#163E7A] transition-colors duration-200 font-medium"
+              >
+                OMYTECH
+              </a>
+            </p>
           </div>
         </div>
       </div>

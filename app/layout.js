@@ -6,6 +6,11 @@ export const metadata = {
   title: "New Testament Church of God Kenya",
   description:
     "Welcome to the New Testament Church of God Kenya - Building faith, community, and hope across Kenya.",
+  icons: {
+    icon: "/icons/favicon.ico",
+    shortcut: "/icons/favicon.ico",
+    apple: "/icons/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }) {

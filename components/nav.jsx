@@ -2,31 +2,76 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isPortalsDropdownOpen, setIsPortalsDropdownOpen] = useState(false);
+  const [isProgramsDropdownOpen, setIsProgramsDropdownOpen] = useState(false);
   const pathname = usePathname();
 
   // Close mobile menu when route changes
   useEffect(() => {
     setIsOpen(false);
     setIsDropdownOpen(false);
+    setIsPortalsDropdownOpen(false);
+    setIsProgramsDropdownOpen(false);
   }, [pathname]);
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isDropdownOpen && !event.target.closest(".resources-dropdown")) {
+        setIsDropdownOpen(false);
+      }
+      if (isPortalsDropdownOpen && !event.target.closest(".portals-dropdown")) {
+        setIsPortalsDropdownOpen(false);
+      }
+      if (
+        isProgramsDropdownOpen &&
+        !event.target.closest(".programs-dropdown")
+      ) {
+        setIsProgramsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDropdownOpen, isPortalsDropdownOpen, isProgramsDropdownOpen]);
 
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
-    { href: "/portals", label: "Portals" },
-    { href: "/events", label: "Events" },
     { href: "/contact", label: "Contact" },
   ];
 
-  const ministryLinks = [
-    { href: "/ministries/adults", label: "Adults" },
-    { href: "/ministries/youth", label: "Youth" },
-    { href: "/ministries/children", label: "Children" },
+  const resourcesLinks = [
+    { href: "/resources/churches", label: "Churches" },
+    { href: "/resources/gallery", label: "Gallery" },
+    { href: "/resources/beliefs", label: "Beliefs" },
+    { href: "/resources/legals", label: "Legals" },
+  ];
+
+  const portalsLinks = [
+    { href: "/portals/adults", label: "Adults" },
+    { href: "/portals/youth", label: "Youth" },
+    { href: "/portals/children", label: "Children" },
+    { href: "/portals/submissions", label: "Submissions" },
+    { href: "/portals/clergy", label: "Clergy" },
+    { href: "/portals/shop", label: "Shop" },
+  ];
+
+  const programsLinks = [
+    {
+      href: "/programs/bible-college",
+      label: "Bible College / Training Center",
+    },
+    { href: "/programs/discipleship", label: "Discipleship Courses" },
+    { href: "/programs/conferences", label: "Conferences & Events" },
   ];
 
   const isActiveLink = (href) => {
@@ -34,8 +79,16 @@ const Navbar = () => {
     return pathname.startsWith(href);
   };
 
-  const isMinistryActive = () => {
-    return pathname.startsWith("/ministries");
+  const isResourcesActive = () => {
+    return pathname.startsWith("/resources");
+  };
+
+  const isPortalsActive = () => {
+    return pathname.startsWith("/portals");
+  };
+
+  const isProgramsActive = () => {
+    return pathname.startsWith("/programs");
   };
 
   return (
@@ -44,8 +97,13 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-[#E02020] rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">N</span>
+            <div className="w-10 h-10 relative rounded-lg shadow-md bg-white p-1">
+              <Image
+                src="/mainLogo.png"
+                alt="NTCG Kenya Logo"
+                fill
+                className="object-contain rounded-md"
+              />
             </div>
             <div>
               <span className="text-xl font-bold text-[#E02020]">NTCG</span>
@@ -57,35 +115,35 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.slice(0, 3).map((link, index) => (
+            {navLinks.slice(0, 2).map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={`font-medium transition-colors duration-200 ${
                   isActiveLink(link.href)
-                    ? index % 2 === 0 
-                      ? "text-[#E02020] font-semibold" 
+                    ? index % 2 === 0
+                      ? "text-[#E02020] font-semibold"
                       : "text-[#1E4E9A] font-semibold"
-                    : index % 2 === 0 
-                      ? "text-gray-800 hover:text-[#E02020]" 
-                      : "text-gray-800 hover:text-[#1E4E9A]"
+                    : index % 2 === 0
+                    ? "text-gray-800 hover:text-[#E02020]"
+                    : "text-gray-800 hover:text-[#1E4E9A]"
                 }`}
               >
                 {link.label}
               </Link>
             ))}
 
-            {/* Ministries Dropdown */}
-            <div className="relative">
+            {/* Resources Dropdown */}
+            <div className="relative resources-dropdown">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className={`flex items-center font-medium transition-colors duration-200 ${
-                  isMinistryActive()
+                  isResourcesActive()
                     ? "text-[#1E4E9A] font-semibold"
                     : "text-gray-800 hover:text-[#1E4E9A]"
                 }`}
               >
-                Ministries
+                Resources
                 <svg
                   className={`ml-1 h-4 w-4 transition-transform duration-200 ${
                     isDropdownOpen ? "rotate-180" : ""
@@ -106,40 +164,148 @@ const Navbar = () => {
               {/* Dropdown Menu */}
               {isDropdownOpen && (
                 <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-[#1E4E9A]/20 py-2 z-50">
-                  {ministryLinks.map((ministry, index) => (
+                  {resourcesLinks.map((resource, index) => (
                     <Link
-                      key={ministry.href}
-                      href={ministry.href}
+                      key={resource.href}
+                      href={resource.href}
                       className={`block px-4 py-2 transition-colors ${
-                        isActiveLink(ministry.href)
-                          ? index % 2 === 0 
-                            ? "text-[#E02020] font-semibold bg-gray-50" 
+                        isActiveLink(resource.href)
+                          ? index % 2 === 0
+                            ? "text-[#E02020] font-semibold bg-gray-50"
                             : "text-[#1E4E9A] font-semibold bg-gray-50"
-                          : index % 2 === 0 
-                            ? "text-gray-800 hover:bg-gray-50 hover:text-[#E02020]" 
-                            : "text-gray-800 hover:bg-gray-50 hover:text-[#1E4E9A]"
+                          : index % 2 === 0
+                          ? "text-gray-800 hover:bg-gray-50 hover:text-[#E02020]"
+                          : "text-gray-800 hover:bg-gray-50 hover:text-[#1E4E9A]"
                       }`}
                       onClick={() => setIsDropdownOpen(false)}
                     >
-                      {ministry.label}
+                      {resource.label}
                     </Link>
                   ))}
                 </div>
               )}
             </div>
 
-            {navLinks.slice(3).map((link, index) => (
+            {/* Portals Dropdown */}
+            <div className="relative portals-dropdown">
+              <button
+                onClick={() => setIsPortalsDropdownOpen(!isPortalsDropdownOpen)}
+                className={`flex items-center font-medium transition-colors duration-200 ${
+                  isPortalsActive()
+                    ? "text-[#E02020] font-semibold"
+                    : "text-gray-800 hover:text-[#E02020]"
+                }`}
+              >
+                Portals
+                <svg
+                  className={`ml-1 h-4 w-4 transition-transform duration-200 ${
+                    isPortalsDropdownOpen ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+
+              {/* Dropdown Menu */}
+              {isPortalsDropdownOpen && (
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-[#E02020]/20 py-2 z-50">
+                  {portalsLinks.map((portal, index) => (
+                    <Link
+                      key={portal.href}
+                      href={portal.href}
+                      className={`block px-4 py-2 transition-colors ${
+                        isActiveLink(portal.href)
+                          ? index % 2 === 0
+                            ? "text-[#E02020] font-semibold bg-gray-50"
+                            : "text-[#1E4E9A] font-semibold bg-gray-50"
+                          : index % 2 === 0
+                          ? "text-gray-800 hover:bg-gray-50 hover:text-[#E02020]"
+                          : "text-gray-800 hover:bg-gray-50 hover:text-[#1E4E9A]"
+                      }`}
+                      onClick={() => setIsPortalsDropdownOpen(false)}
+                    >
+                      {portal.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Programs Dropdown */}
+            <div className="relative programs-dropdown">
+              <button
+                onClick={() =>
+                  setIsProgramsDropdownOpen(!isProgramsDropdownOpen)
+                }
+                className={`flex items-center font-medium transition-colors duration-200 ${
+                  isProgramsActive()
+                    ? "text-[#1E4E9A] font-semibold"
+                    : "text-gray-800 hover:text-[#1E4E9A]"
+                }`}
+              >
+                Programs
+                <svg
+                  className={`ml-1 h-4 w-4 transition-transform duration-200 ${
+                    isProgramsDropdownOpen ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+
+              {/* Dropdown Menu */}
+              {isProgramsDropdownOpen && (
+                <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-[#1E4E9A]/20 py-2 z-50">
+                  {programsLinks.map((program, index) => (
+                    <Link
+                      key={program.href}
+                      href={program.href}
+                      className={`block px-4 py-2 transition-colors ${
+                        isActiveLink(program.href)
+                          ? index % 2 === 0
+                            ? "text-[#E02020] font-semibold bg-gray-50"
+                            : "text-[#1E4E9A] font-semibold bg-gray-50"
+                          : index % 2 === 0
+                          ? "text-gray-800 hover:bg-gray-50 hover:text-[#E02020]"
+                          : "text-gray-800 hover:bg-gray-50 hover:text-[#1E4E9A]"
+                      }`}
+                      onClick={() => setIsProgramsDropdownOpen(false)}
+                    >
+                      {program.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {navLinks.slice(2).map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={`font-medium transition-colors duration-200 ${
                   isActiveLink(link.href)
-                    ? index % 2 === 0 
-                      ? "text-[#E02020] font-semibold" 
+                    ? index % 2 === 0
+                      ? "text-[#E02020] font-semibold"
                       : "text-[#1E4E9A] font-semibold"
-                    : index % 2 === 0 
-                      ? "text-gray-800 hover:text-[#E02020]" 
-                      : "text-gray-800 hover:text-[#1E4E9A]"
+                    : index % 2 === 0
+                    ? "text-gray-800 hover:text-[#E02020]"
+                    : "text-gray-800 hover:text-[#1E4E9A]"
                 }`}
               >
                 {link.label}
@@ -200,62 +366,132 @@ const Navbar = () => {
         >
           <div className="px-4 py-4 bg-white border-t border-gray-100 max-h-80 overflow-y-auto">
             <div className="flex flex-col space-y-3">
-              {navLinks.slice(0, 3).map((link, index) => (
+              {navLinks.slice(0, 2).map((link, index) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   className={`block py-2 px-3 rounded-lg transition-colors ${
                     isActiveLink(link.href)
-                      ? index % 2 === 0 
-                        ? "text-[#E02020] font-semibold bg-red-50" 
+                      ? index % 2 === 0
+                        ? "text-[#E02020] font-semibold bg-red-50"
                         : "text-[#1E4E9A] font-semibold bg-blue-50"
-                      : index % 2 === 0 
-                        ? "text-gray-800 hover:bg-gray-50 hover:text-[#E02020]" 
-                        : "text-gray-800 hover:bg-gray-50 hover:text-[#1E4E9A]"
+                      : index % 2 === 0
+                      ? "text-gray-800 hover:bg-gray-50 hover:text-[#E02020]"
+                      : "text-gray-800 hover:bg-gray-50 hover:text-[#1E4E9A]"
                   }`}
                 >
                   {link.label}
                 </Link>
               ))}
 
-              {/* Mobile Ministries Section */}
+              {/* Mobile Resources Section */}
               <div className="py-2 px-3">
-                <span className={`font-medium ${
-                  isMinistryActive() ? "text-[#1E4E9A] font-semibold" : "text-gray-800"
-                }`}>Ministries</span>
+                <span
+                  className={`font-medium ${
+                    isResourcesActive()
+                      ? "text-[#1E4E9A] font-semibold"
+                      : "text-gray-800"
+                  }`}
+                >
+                  Resources
+                </span>
                 <div className="ml-4 mt-2 space-y-2">
-                  {ministryLinks.map((ministry, index) => (
+                  {resourcesLinks.map((resource, index) => (
                     <Link
-                      key={ministry.href}
-                      href={ministry.href}
+                      key={resource.href}
+                      href={resource.href}
                       className={`block py-1 px-2 rounded transition-colors ${
-                        isActiveLink(ministry.href)
-                          ? index % 2 === 0 
-                            ? "text-[#E02020] font-semibold bg-red-50" 
+                        isActiveLink(resource.href)
+                          ? index % 2 === 0
+                            ? "text-[#E02020] font-semibold bg-red-50"
                             : "text-[#1E4E9A] font-semibold bg-blue-50"
-                          : index % 2 === 0 
-                            ? "text-gray-700 hover:bg-gray-50 hover:text-[#E02020]" 
-                            : "text-gray-700 hover:bg-gray-50 hover:text-[#1E4E9A]"
+                          : index % 2 === 0
+                          ? "text-gray-700 hover:bg-gray-50 hover:text-[#E02020]"
+                          : "text-gray-700 hover:bg-gray-50 hover:text-[#1E4E9A]"
                       }`}
                     >
-                      {ministry.label}
+                      {resource.label}
                     </Link>
                   ))}
                 </div>
               </div>
 
-              {navLinks.slice(3).map((link, index) => (
+              {/* Mobile Portals Section */}
+              <div className="py-2 px-3">
+                <span
+                  className={`font-medium ${
+                    isPortalsActive()
+                      ? "text-[#E02020] font-semibold"
+                      : "text-gray-800"
+                  }`}
+                >
+                  Portals
+                </span>
+                <div className="ml-4 mt-2 space-y-2">
+                  {portalsLinks.map((portal, index) => (
+                    <Link
+                      key={portal.href}
+                      href={portal.href}
+                      className={`block py-1 px-2 rounded transition-colors ${
+                        isActiveLink(portal.href)
+                          ? index % 2 === 0
+                            ? "text-[#E02020] font-semibold bg-red-50"
+                            : "text-[#1E4E9A] font-semibold bg-blue-50"
+                          : index % 2 === 0
+                          ? "text-gray-700 hover:bg-gray-50 hover:text-[#E02020]"
+                          : "text-gray-700 hover:bg-gray-50 hover:text-[#1E4E9A]"
+                      }`}
+                    >
+                      {portal.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Mobile Programs Section */}
+              <div className="py-2 px-3">
+                <span
+                  className={`font-medium ${
+                    isProgramsActive()
+                      ? "text-[#1E4E9A] font-semibold"
+                      : "text-gray-800"
+                  }`}
+                >
+                  Programs
+                </span>
+                <div className="ml-4 mt-2 space-y-2">
+                  {programsLinks.map((program, index) => (
+                    <Link
+                      key={program.href}
+                      href={program.href}
+                      className={`block py-1 px-2 rounded transition-colors ${
+                        isActiveLink(program.href)
+                          ? index % 2 === 0
+                            ? "text-[#E02020] font-semibold bg-red-50"
+                            : "text-[#1E4E9A] font-semibold bg-blue-50"
+                          : index % 2 === 0
+                          ? "text-gray-700 hover:bg-gray-50 hover:text-[#E02020]"
+                          : "text-gray-700 hover:bg-gray-50 hover:text-[#1E4E9A]"
+                      }`}
+                    >
+                      {program.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {navLinks.slice(2).map((link, index) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   className={`block py-2 px-3 rounded-lg transition-colors ${
                     isActiveLink(link.href)
-                      ? index % 2 === 0 
-                        ? "text-[#E02020] font-semibold bg-red-50" 
+                      ? index % 2 === 0
+                        ? "text-[#E02020] font-semibold bg-red-50"
                         : "text-[#1E4E9A] font-semibold bg-blue-50"
-                      : index % 2 === 0 
-                        ? "text-gray-800 hover:bg-gray-50 hover:text-[#E02020]" 
-                        : "text-gray-800 hover:bg-gray-50 hover:text-[#1E4E9A]"
+                      : index % 2 === 0
+                      ? "text-gray-800 hover:bg-gray-50 hover:text-[#E02020]"
+                      : "text-gray-800 hover:bg-gray-50 hover:text-[#1E4E9A]"
                   }`}
                 >
                   {link.label}
