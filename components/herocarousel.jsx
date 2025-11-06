@@ -77,8 +77,8 @@ const HeroCarousel = () => {
             onClick={() => goToSlide(index)}
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
               index === currentSlide
-                ? 'bg-white/60 scale-125'
-                : 'bg-white/20 hover:bg-white/40'
+                ? 'bg-white/30 scale-125'
+                : 'bg-white/10 hover:bg-white/20'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
