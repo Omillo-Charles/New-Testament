@@ -1,5 +1,6 @@
 "use client";
 import Head from "next/head";
+import { FaBook } from "react-icons/fa";
 
 const BeliefsPage = () => {
   const articles = [
@@ -132,7 +133,7 @@ const BeliefsPage = () => {
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
             <div className="text-center">
               <div className="inline-flex items-center justify-center w-20 h-20 bg-white bg-opacity-20 rounded-2xl mb-8 backdrop-blur-sm">
-                <span className="text-4xl">✝️</span>
+                <FaBook className="text-4xl text-[#E02020]" />
               </div>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
                 Our Beliefs
