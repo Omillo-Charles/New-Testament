@@ -71,7 +71,7 @@ const Navbar = () => {
       label: "Bible College / Training Center",
     },
     { href: "/programs/discipleship", label: "Discipleship Courses" },
-    { href: "/programs/conferences", label: "Conferences & Events" },
+    { href: "/programs/events", label: "Conferences & Events" },
   ];
 
   const isActiveLink = (href) => {
