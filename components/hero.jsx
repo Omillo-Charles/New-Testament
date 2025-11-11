@@ -61,7 +61,7 @@ const HeroSection = () => {
               Find a Branch
             </Link>
             <Link
-              href="/events"
+              href="/programs/events"
               className="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-[#E02020] font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 text-center"
             >
               Upcoming Events
