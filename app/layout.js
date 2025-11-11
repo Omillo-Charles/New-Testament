@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
         className="font-sans antialiased"
         style={{
           fontFamily:
-            '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+            '"Webly Sleek UI", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif',
         }}
       >
         <Navbar />
