@@ -53,6 +53,9 @@ const Navbar = () => {
     { href: "/resources/churches", label: "Churches" },
     { href: "/resources/gallery", label: "Gallery" },
     { href: "/resources/beliefs", label: "Beliefs" },
+    { href: "/resources/events-calendar", label: "Events Calendar" },
+    { href: "/resources/publications", label: "Publications" },
+    { href: "/resources/faqs", label: "FAQs" },
     { href: "/resources/legals", label: "Legals" },
   ];
 
