@@ -221,23 +221,25 @@ const ShopPage = () => {
       </section>
 
       {/* Categories */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8">
+      <section className="py-4 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap gap-4 justify-center">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`flex items-center space-x-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
-                  selectedCategory === category.id
-                    ? "bg-[#E02020] text-white shadow-lg"
-                    : "bg-white text-gray-700 hover:bg-gray-100 shadow"
-                }`}
-              >
-                {category.icon}
-                <span>{category.name}</span>
-              </button>
-            ))}
+          <div className="overflow-x-auto scrollbar-hide">
+            <div className="flex gap-3 min-w-max sm:justify-center pb-2">
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`flex items-center space-x-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap ${
+                    selectedCategory === category.id
+                      ? "bg-[#E02020] text-white shadow-lg"
+                      : "bg-white text-gray-700 hover:bg-gray-100 shadow"
+                  }`}
+                >
+                  {category.icon}
+                  <span>{category.name}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>

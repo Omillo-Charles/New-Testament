@@ -111,32 +111,34 @@ const GalleryPage = () => {
       </section>
 
       {/* Filter Tabs */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-white shadow-sm sticky top-16 z-30">
+      <section className="py-4 px-4 sm:px-6 lg:px-8 bg-white shadow-sm sticky top-16 z-30">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-4">
-            <button
-              onClick={() => setSelectedCategory("all")}
-              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
-                selectedCategory === "all"
-                  ? "bg-[#E02020] text-white shadow-lg"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-            >
-              All Photos ({allImages.length})
-            </button>
-            {galleryCategories.map((category) => (
+          <div className="overflow-x-auto scrollbar-hide">
+            <div className="flex gap-3 min-w-max sm:justify-center pb-2">
               <button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
-                  selectedCategory === category.id
-                    ? "bg-[#1E4E9A] text-white shadow-lg"
+                onClick={() => setSelectedCategory("all")}
+                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap ${
+                  selectedCategory === "all"
+                    ? "bg-[#E02020] text-white shadow-lg"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                 }`}
               >
-                {category.name} ({category.images.length})
+                All Photos ({allImages.length})
               </button>
-            ))}
+              {galleryCategories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap ${
+                    selectedCategory === category.id
+                      ? "bg-[#1E4E9A] text-white shadow-lg"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
+                >
+                  {category.name} ({category.images.length})
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
