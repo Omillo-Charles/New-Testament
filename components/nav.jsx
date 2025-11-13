@@ -53,6 +53,7 @@ const Navbar = () => {
     { href: "/resources/churches", label: "Churches" },
     { href: "/resources/gallery", label: "Gallery" },
     { href: "/resources/beliefs", label: "Beliefs" },
+    { href: "/resources/doctrinal-commitment", label: "Doctrinal Commitment" },
     { href: "/resources/events-calendar", label: "Events Calendar" },
     { href: "/resources/faqs", label: "FAQs" },
     { href: "/resources/legals", label: "Legals" },
@@ -64,6 +65,7 @@ const Navbar = () => {
     { href: "/portals/children", label: "Children" },
     { href: "/portals/submissions", label: "Submissions" },
     { href: "/portals/clergy", label: "Clergy" },
+    { href: "/portals/giving", label: "Giving" },
     { href: "/portals/shop", label: "Shop" },
   ];
 
