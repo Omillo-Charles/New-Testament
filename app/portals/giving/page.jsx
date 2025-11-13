@@ -375,30 +375,30 @@ const GivingPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-8 border border-white border-opacity-30">
-              <h3 className="text-2xl font-bold mb-4">
+            <div className="bg-white rounded-xl p-8 shadow-lg">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">
                 Financial Management Seminars
               </h3>
-              <p className="text-blue-100 mb-4">
+              <p className="text-gray-700 mb-4">
                 Church leaders regularly organize seminars on financial
                 management and biblical stewardship to help members understand
                 God's principles for handling finances.
               </p>
-              <p className="text-sm text-blue-200 italic">
+              <p className="text-sm text-[#1E4E9A] italic font-semibold">
                 Contact your local church for upcoming seminar dates
               </p>
             </div>
 
-            <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-8 border border-white border-opacity-30">
-              <h3 className="text-2xl font-bold mb-4">
+            <div className="bg-white rounded-xl p-8 shadow-lg">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">
                 Teaching on Tithing & Giving
               </h3>
-              <p className="text-blue-100 mb-4">
+              <p className="text-gray-700 mb-4">
                 Regular teaching on the blessing of tithing and the joy of
                 giving helps members grow in their understanding of biblical
                 stewardship and generosity.
               </p>
-              <p className="text-sm text-blue-200 italic">
+              <p className="text-sm text-[#E02020] italic font-semibold">
                 "God loves a cheerful giver" - 2 Corinthians 9:7
               </p>
             </div>
