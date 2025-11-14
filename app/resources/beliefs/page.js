@@ -1,6 +1,6 @@
 "use client";
-import Head from "next/head";
-import { FaBook } from "react-icons/fa";
+import React from "react";
+import { FaBook, FaBible, FaCross } from "react-icons/fa";
 
 const BeliefsPage = () => {
   const articles = [
@@ -105,113 +105,141 @@ const BeliefsPage = () => {
   ];
 
   return (
-    <>
-      <Head>
-        <title>Our Beliefs | New Testament Church of God Kenya</title>
-        <meta
-          name="description"
-          content="The 14 Articles of Faith — what we believe as the New Testament Church of God Kenya. Rooted in the Word of God, inspired by the Holy Spirit, and centered on Jesus Christ."
-        />
-      </Head>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
+      {/* Hero Section */}
+      <section className="relative bg-[#1E4E9A] text-white py-20 overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+          style={{
+            backgroundImage: "url('/heroImages/hero10.png')",
+          }}
+        ></div>
 
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
-        {/* Modern Hero Section */}
-        <div className="relative overflow-hidden bg-gradient-to-r from-[#1E4E9A] via-[#2563EB] to-[#1E40AF] text-white">
-          {/* Background Image */}
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: "url('/heroImages/hero10.png')",
-            }}
-          ></div>
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1E4E9A]/80 via-[#2563EB]/70 to-[#1E40AF]/80"></div>
-          <div className="absolute inset-0">
-            <div className="absolute top-10 left-10 w-72 h-72 bg-white opacity-5 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-10 right-10 w-96 h-96 bg-blue-300 opacity-10 rounded-full blur-3xl"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center justify-center w-24 h-24 bg-white bg-opacity-30 rounded-full mb-6 backdrop-blur-sm shadow-lg">
+            <FaBible className="text-5xl text-[#E02020]" />
           </div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-white bg-opacity-20 rounded-2xl mb-8 backdrop-blur-sm">
-                <FaBook className="text-4xl text-[#E02020]" />
-              </div>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
-                Our Beliefs
-              </h1>
-              <p className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed mb-8">
-                The 14 Articles of Faith that guide our church community and
-                shape our understanding of God's Word
-              </p>
-              <div className="flex justify-center">
-                <div className="w-32 h-1 bg-gradient-to-r from-transparent via-white to-transparent rounded-full"></div>
-              </div>
-            </div>
-          </div>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            Doctrinal Commitments
+          </h1>
+          <p className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed mb-4">
+            The 14 Articles of Faith That Guide Our Church Community
+          </p>
+          <p className="text-lg text-blue-200 max-w-3xl mx-auto">
+            Rooted in the Word of God, inspired by the Holy Spirit, and centered
+            on Jesus Christ
+          </p>
         </div>
+      </section>
 
-        {/* Modern Articles Grid */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      {/* Articles Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              14 Articles of Faith
+            </h2>
+            <p className="text-xl text-gray-600">
+              Our foundational beliefs based on Scripture
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {articles.map((article) => (
               <div
                 key={article.number}
-                className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200 p-8"
+                className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
               >
-                <div className="flex items-start mb-6">
-                  <div className="w-12 h-12 bg-[#1E4E9A] rounded-lg flex items-center justify-center text-white font-bold text-lg mr-4">
-                    {article.number}
+                <div className="p-8">
+                  <div className="flex items-start mb-6">
+                    <div className="w-14 h-14 bg-[#E02020] rounded-lg flex items-center justify-center text-white font-bold text-xl mr-4 flex-shrink-0 shadow-md">
+                      {article.number}
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="text-2xl font-bold text-gray-900 leading-tight">
+                        {article.title}
+                      </h2>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <h2 className="text-2xl font-bold text-gray-800 leading-tight">
-                      {article.title}
-                    </h2>
-                  </div>
-                </div>
-                <p className="text-gray-600 leading-relaxed mb-6 text-lg">
-                  {article.content}
-                </p>
-                <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-[#1E4E9A]">
-                  <p className="text-sm text-gray-700">
-                    <span className="font-semibold text-gray-800">
-                      Key Scriptures:
-                    </span>{" "}
-                    {article.scriptures}
+                  <p className="text-gray-700 leading-relaxed mb-6 text-lg">
+                    {article.content}
                   </p>
+                  <div className="bg-blue-50 rounded-lg p-4 border-l-4 border-[#1E4E9A]">
+                    <p className="text-sm text-gray-700">
+                      <FaBible className="inline mr-2 text-[#1E4E9A]" />
+                      <span className="font-semibold text-gray-900">
+                        Key Scriptures:
+                      </span>{" "}
+                      {article.scriptures}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Call to Action Section */}
-          <div className="mt-20 bg-white rounded-lg shadow-lg p-12 text-center">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Ready to Join Our Community?
-              </h2>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                These beliefs form the foundation of our faith community. Take
-                the next step in your faith journey and discover what it means
-                to be part of the NTCG Kenya family.
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#1E4E9A] text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-[#E02020] rounded-full mb-6 shadow-lg">
+            <FaCross className="text-3xl text-white" />
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Ready to Join Our Community?
+          </h2>
+          <p className="text-xl mb-8 text-blue-100 leading-relaxed">
+            These beliefs form the foundation of our faith community. Take the
+            next step in your faith journey and discover what it means to be
+            part of the NTCG Kenya family.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/resources/churches"
+              className="bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
+            >
+              Find a Church
+            </a>
+            <a
+              href="/contact"
+              className="bg-white text-[#1E4E9A] hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
+            >
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Scripture Foundation Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            Founded on Scripture
+          </h2>
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              Our doctrinal commitments are firmly rooted in the Holy
+              Scriptures, which we believe to be the inspired, infallible Word
+              of God. These 14 Articles of Faith represent the core beliefs that
+              unite us as the New Testament Church of God Kenya.
+            </p>
+            <div className="bg-blue-50 rounded-lg p-6 border-l-4 border-[#1E4E9A]">
+              <p className="text-lg text-gray-900 italic">
+                "All Scripture is God-breathed and is useful for teaching,
+                rebuking, correcting and training in righteousness, so that the
+                servant of God may be thoroughly equipped for every good work."
+                <br />
+                <span className="text-sm font-semibold mt-2 block">
+                  - 2 Timothy 3:16-17
+                </span>
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md sm:max-w-none mx-auto">
-                <a
-                  href="/portals"
-                  className="w-full sm:w-auto bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 text-center"
-                >
-                  Find a Branch
-                </a>
-                <a
-                  href="/contact"
-                  className="w-full sm:w-auto border-2 border-[#1E4E9A] text-[#1E4E9A] hover:bg-[#1E4E9A] hover:text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 text-center"
-                >
-                  Contact Us
-                </a>
-              </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
+      </section>
+    </div>
   );
 };
 

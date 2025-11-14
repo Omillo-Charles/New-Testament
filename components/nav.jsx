@@ -50,23 +50,23 @@ const Navbar = () => {
   ];
 
   const resourcesLinks = [
-    { href: "/resources/churches", label: "Churches" },
-    { href: "/resources/gallery", label: "Gallery" },
-    { href: "/resources/beliefs", label: "Beliefs" },
-    { href: "/resources/doctrinal-commitment", label: "Doctrinal Commitment" },
+    { href: "/resources/churches", label: "Our Churches" },
+    { href: "/resources/gallery", label: "NTCG Gallery" },
+    { href: "/resources/beliefs", label: "Doctrinal Commitments" },
+    { href: "/resources/practical-commitment", label: "Practical Commitment" },
     { href: "/resources/events-calendar", label: "Events Calendar" },
     { href: "/resources/faqs", label: "FAQs" },
     { href: "/resources/legals", label: "Legals" },
   ];
 
   const portalsLinks = [
-    { href: "/portals/adults", label: "Adults" },
-    { href: "/portals/youth", label: "Youth" },
-    { href: "/portals/children", label: "Children" },
+    { href: "/portals/adults", label: "Adult Fellowship" },
+    { href: "/portals/youth", label: "Youth Ministry" },
+    { href: "/portals/children", label: "Kids Ministry" },
     { href: "/portals/submissions", label: "Submissions" },
-    { href: "/portals/clergy", label: "Clergy" },
-    { href: "/portals/giving", label: "Giving" },
-    { href: "/portals/shop", label: "Shop" },
+    { href: "/portals/clergy", label: "Leadership" },
+    { href: "/portals/giving", label: "Support Ministry" },
+    { href: "/portals/shop", label: "Ministry Store" },
   ];
 
   const programsLinks = [
