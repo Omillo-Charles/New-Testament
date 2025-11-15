@@ -448,7 +448,7 @@ const BibleCollegePage = () => {
               <div className="text-center p-4 bg-blue-50 rounded-lg">
                 <FaEnvelope className="text-3xl text-[#1E4E9A] mx-auto mb-2" />
                 <h3 className="font-bold text-gray-900 mb-1">Email</h3>
-                <p className="text-sm text-gray-600">info@ntcgkenya.org</p>
+                <p className="text-sm text-gray-600">info@ntcogk.org</p>
               </div>
             </div>
 

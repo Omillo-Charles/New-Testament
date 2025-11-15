@@ -105,33 +105,6 @@ const ChildrenPage = () => {
     },
   ];
 
-  const parentResources = [
-    {
-      icon: <FaBook className="text-3xl text-blue-500" />,
-      title: "Daily Devotions for Kids",
-      description:
-        "Simple, age-appropriate devotions to do with your children at home.",
-    },
-    {
-      icon: <FaPray className="text-3xl text-red-500" />,
-      title: "Teaching Kids to Pray",
-      description:
-        "Practical tips and guides for helping children develop a prayer life.",
-    },
-    {
-      icon: <FaHeart className="text-3xl text-pink-500" />,
-      title: "Bible Memory Verses",
-      description:
-        "Fun ways to help children memorize and understand God's Word.",
-    },
-    {
-      icon: <FaUsers className="text-3xl text-green-500" />,
-      title: "Family Activities",
-      description:
-        "Faith-building activities and games for the whole family to enjoy.",
-    },
-  ];
-
   return (
     <>
       <style jsx>{`
@@ -243,7 +216,10 @@ const ChildrenPage = () => {
                 className="flex flex-col sm:flex-row gap-4 animate-fade-in-up"
                 style={{ animationDelay: "1s" }}
               >
-                <button className="group bg-gradient-to-r from-[#E02020] to-[#B81C1C] hover:from-[#B81C1C] hover:to-[#8B1A1A] text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg">
+                <Link
+                  href="/contact"
+                  className="group bg-gradient-to-r from-[#E02020] to-[#B81C1C] hover:from-[#B81C1C] hover:to-[#8B1A1A] text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg text-center"
+                >
                   <span className="flex items-center justify-center">
                     Join Sunday School
                     <svg
@@ -258,8 +234,11 @@ const ChildrenPage = () => {
                       />
                     </svg>
                   </span>
-                </button>
-                <button className="group border-2 border-white text-white hover:bg-white hover:text-[#1E4E9A] font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
+                </Link>
+                <Link
+                  href="/about"
+                  className="group border-2 border-white text-white hover:bg-white hover:text-[#1E4E9A] font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm text-center"
+                >
                   <span className="flex items-center justify-center">
                     <svg
                       className="mr-2 w-5 h-5"
@@ -268,13 +247,13 @@ const ChildrenPage = () => {
                     >
                       <path
                         fillRule="evenodd"
-                        d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                         clipRule="evenodd"
                       />
                     </svg>
-                    Volunteer with Kids
+                    Learn More
                   </span>
-                </button>
+                </Link>
               </div>
 
               {/* Stats or Quick Info - Hidden on desktop for children's page */}
@@ -283,13 +262,13 @@ const ChildrenPage = () => {
                 style={{ animationDelay: "1.2s" }}
               >
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-red-300">200+</div>
+                  <div className="text-3xl font-bold text-red-300">5000+</div>
                   <div className="text-sm uppercase tracking-wider">
                     Happy Kids
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-red-300">8+</div>
+                  <div className="text-3xl font-bold text-red-300">300+</div>
                   <div className="text-sm uppercase tracking-wider">
                     Teachers
                   </div>
@@ -433,13 +412,10 @@ const ChildrenPage = () => {
                     <p className="text-gray-600 mb-4 leading-relaxed">
                       {program.description}
                     </p>
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center">
                       <span className="text-blue-600 font-semibold">
                         {program.time}
                       </span>
-                      <button className="bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-2 px-6 rounded-full transition-all duration-200 transform hover:scale-105">
-                        Learn More
-                      </button>
                     </div>
                   </div>
                 </div>
@@ -487,9 +463,12 @@ const ChildrenPage = () => {
             </div>
 
             <div className="text-center mt-12">
-              <button className="bg-[#E02020] hover:bg-[#B81C1C] text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+              <Link
+                href="/resources/gallery"
+                className="inline-block bg-[#E02020] hover:bg-[#B81C1C] text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
+              >
                 View More Photos
-              </button>
+              </Link>
             </div>
           </div>
         </section>
@@ -507,129 +486,17 @@ const ChildrenPage = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {upcomingEvents.map((event, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-                >
-                  <div className="bg-[#1E4E9A] p-6 text-white">
-                    <h3 className="text-xl font-bold mb-2">{event.title}</h3>
-                    <div className="flex items-center space-x-2 text-blue-100">
-                      <FaCalendarAlt className="text-lg" />
-                      <span>{event.date}</span>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <div className="space-y-3 mb-4">
-                      <div className="flex items-center space-x-2 text-gray-600">
-                        <span>🕐</span>
-                        <span>{event.time}</span>
-                      </div>
-                      <div className="flex items-center space-x-2 text-gray-600">
-                        <span>📍</span>
-                        <span>{event.location}</span>
-                      </div>
-                    </div>
-                    <p className="text-gray-700 mb-4">{event.description}</p>
-                    <button className="w-full bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-2 px-4 rounded-full transition-colors duration-200">
-                      Register Now
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="text-center mt-12">
-              <button className="bg-[#1E4E9A] hover:bg-[#163E7A] text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
-                View All Events
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* Meet the Teachers */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-800 mb-6">
-                Meet Our Amazing Teachers
-              </h2>
-              <p className="text-xl text-gray-600">
-                Loving and dedicated teachers who care about your child's
-                spiritual growth
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {teachers.map((teacher, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-                >
-                  <div className="relative">
-                    <div className="aspect-square bg-[#1E4E9A]">
-                      <Image
-                        src={teacher.image}
-                        alt={teacher.name}
-                        width={300}
-                        height={300}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                  </div>
-                  <div className="p-6 text-center">
-                    <h3 className="text-xl font-bold text-gray-800 mb-2">
-                      {teacher.name}
-                    </h3>
-                    <p className="text-[#E02020] font-semibold mb-3">
-                      {teacher.title}
-                    </p>
-                    <p className="text-gray-600 text-sm mb-4">
-                      {teacher.description}
-                    </p>
-                    <button className="bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-2 px-4 rounded-full transition-colors duration-200 text-sm">
-                      Say Hello
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Parent Resources */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-50 to-purple-50">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-800 mb-6">
-                Resources for Parents
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Helpful tools and guides to support your child's faith journey
-                at home
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {parentResources.map((resource, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-3xl shadow-lg p-8 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-                >
-                  <div className="mb-4">{resource.icon}</div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">
-                    {resource.title}
-                  </h3>
-                  <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-                    {resource.description}
-                  </p>
-                  <button className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-semibold py-2 px-6 rounded-full transition-all duration-200 text-sm">
-                    Download
-                  </button>
-                </div>
-              ))}
+            <div className="max-w-2xl mx-auto">
+              <div className="bg-white rounded-3xl shadow-lg p-12 text-center">
+                <FaCalendarAlt className="text-6xl text-[#1E4E9A] mx-auto mb-6" />
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                  No Events Scheduled
+                </h3>
+                <p className="text-lg text-gray-600">
+                  Contact your church leadership for more information about
+                  upcoming children's ministry events.
+                </p>
+              </div>
             </div>
           </div>
         </section>

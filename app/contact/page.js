@@ -597,7 +597,12 @@ export default function Contact() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white rounded-xl shadow-lg p-8 text-center">
+            <a
+              href="https://www.facebook.com/ntcogk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-2xl transition-all duration-300 transform hover:scale-105 block"
+            >
               <div className="w-16 h-16 bg-[#E02020] rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg
                   className="w-8 h-8 text-white"
@@ -617,9 +622,14 @@ export default function Contact() {
               <p className="text-[#E02020] font-medium">
                 New Testament Church of God Kenya
               </p>
-            </div>
+            </a>
 
-            <div className="bg-white rounded-xl shadow-lg p-8 text-center">
+            <a
+              href="https://www.ntcogk.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-2xl transition-all duration-300 transform hover:scale-105 block"
+            >
               <div className="w-16 h-16 bg-[#1E4E9A] rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg
                   className="w-8 h-8 text-white"
@@ -642,7 +652,7 @@ export default function Contact() {
                 Explore our ministries, programs, and upcoming events online.
               </p>
               <p className="text-[#1E4E9A] font-medium">www.ntcogk.org</p>
-            </div>
+            </a>
           </div>
         </div>
       </section>

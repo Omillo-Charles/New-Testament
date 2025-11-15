@@ -56,14 +56,9 @@ const AdultsPage = () => {
       description: "Corporate prayer sessions for personal needs, church vision, and national concerns."
     },
     {
-      title: "Monthly Fellowship Gatherings",
-      time: "Last Saturday of the Month",
-      description: "Social events, testimonies, and community building activities for adults."
-    },
-    {
-      title: "Quarterly Retreats",
-      time: "Every 3 Months",
-      description: "Spiritual renewal retreats for deeper connection with God and fellow believers."
+      title: "Joint Fellowship",
+      time: "First Sunday of the Month",
+      description: "Combined fellowship gathering bringing together all adults for worship, teaching, and community building."
     }
   ];
 
@@ -205,11 +200,11 @@ const AdultsPage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {programs.map((program, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300"
+                className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
               >
                 <div className="flex items-center space-x-2 text-[#1E4E9A] mb-3">
                   <FaCalendarAlt />
@@ -239,34 +234,17 @@ const AdultsPage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {upcomingEvents.map((event, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-              >
-                <div className="bg-[#1E4E9A] p-6 text-white">
-                  <div className="inline-block bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs font-semibold mb-3 uppercase">
-                    {event.category}
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{event.title}</h3>
-                  <div className="flex items-center space-x-2 text-blue-100">
-                    <FaCalendarAlt />
-                    <span className="text-sm">{event.date}</span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center space-x-2 text-gray-600 mb-4">
-                    <span>📍</span>
-                    <span className="text-sm">{event.location}</span>
-                  </div>
-                  <p className="text-gray-700 mb-4">{event.description}</p>
-                  <button className="w-full bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
-                    Register Now
-                  </button>
-                </div>
-              </div>
-            ))}
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-white rounded-xl shadow-lg p-12 text-center">
+              <FaCalendarAlt className="text-6xl text-[#1E4E9A] mx-auto mb-6" />
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                No Events Scheduled
+              </h3>
+              <p className="text-lg text-gray-600">
+                Contact your church leadership for more information about
+                upcoming adults ministry events.
+              </p>
+            </div>
           </div>
         </div>
       </section>

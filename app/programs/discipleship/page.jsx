@@ -567,15 +567,13 @@ const DiscipleshipPage = () => {
                 <FaEnvelope className="text-2xl text-white" />
               </div>
               <h3 className="font-bold text-lg mb-2">Email</h3>
-              <p className="text-blue-100">
-                admissions@ntcogdiscipleship.ac.ke
-              </p>
+              <p className="text-blue-100">info@ntcogk.org</p>
             </div>
           </div>
 
           <div className="text-center">
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/ntcogk"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center text-white hover:text-blue-200 transition-colors"
@@ -600,17 +598,6 @@ const DiscipleshipPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Floating WhatsApp Button */}
-      <a
-        href="https://wa.me/254751589698?text=Hello,%20I'd%20like%20to%20learn%20more%20about%20your%20Discipleship%20Courses."
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 z-50"
-        aria-label="Chat on WhatsApp"
-      >
-        <FaWhatsapp className="text-3xl" />
-      </a>
     </div>
   );
 };

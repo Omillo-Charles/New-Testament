@@ -245,69 +245,25 @@ const ShopPage = () => {
       </section>
 
       {/* Products Grid */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-6">
-            <h2 className="text-2xl font-bold text-gray-900">
-              {categories.find((c) => c.id === selectedCategory)?.name}
-            </h2>
-            <p className="text-gray-600">
-              {filteredProducts.length} products available
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {filteredProducts.map((product) => (
-              <div
-                key={product.id}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-white rounded-xl shadow-lg p-12 text-center">
+              <FaShoppingCart className="text-6xl text-[#1E4E9A] mx-auto mb-6" />
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                Shop Currently Unavailable
+              </h3>
+              <p className="text-lg text-gray-600 mb-6">
+                For church merchandise and materials, please contact the National Office.
+              </p>
+              <a
+                href="tel:+254759120222"
+                className="inline-flex items-center bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105"
               >
-                <div className="relative aspect-square bg-gray-200">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md">
-                    <div className="flex items-center space-x-1 text-yellow-500">
-                      <FaStar className="text-sm" />
-                      <span className="text-xs font-bold text-gray-800">
-                        {product.rating}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-4">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
-                    {product.name}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-                    {product.description}
-                  </p>
-                  <div className="mb-3">
-                    <span className="text-2xl font-bold text-[#E02020]">
-                      KSh {product.price.toLocaleString()}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={addToCart}
-                      className="flex-1 bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
-                    >
-                      Order Now
-                    </button>
-                    <button
-                      onClick={addToCart}
-                      className="bg-[#1E4E9A] hover:bg-[#163E7A] text-white p-2 rounded-lg transition-colors duration-200"
-                    >
-                      <FaPlus />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
+                <FaPhoneAlt className="mr-2" />
+                Call National Office
+              </a>
+            </div>
           </div>
         </div>
       </section>

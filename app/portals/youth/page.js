@@ -11,6 +11,7 @@ import {
   FaLaptop,
   FaBullseye,
   FaStar,
+  FaCalendarAlt,
 } from "react-icons/fa";
 
 const YouthPage = () => {
@@ -196,7 +197,10 @@ const YouthPage = () => {
                 className="flex flex-col sm:flex-row gap-4 animate-fade-in-up"
                 style={{ animationDelay: "1s" }}
               >
-                <button className="group bg-gradient-to-r from-[#E02020] to-[#B81C1C] hover:from-[#B81C1C] hover:to-[#8B1A1A] text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg">
+                <Link
+                  href="/contact"
+                  className="group bg-gradient-to-r from-[#E02020] to-[#B81C1C] hover:from-[#B81C1C] hover:to-[#8B1A1A] text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg text-center"
+                >
                   <span className="flex items-center justify-center">
                     Join the Movement
                     <svg
@@ -211,23 +215,22 @@ const YouthPage = () => {
                       />
                     </svg>
                   </span>
-                </button>
-                <button className="group border-2 border-white text-white hover:bg-white hover:text-[#1E4E9A] font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
+                </Link>
+                <a
+                  href="tel:+254721549789"
+                  className="group border-2 border-white text-white hover:bg-white hover:text-[#1E4E9A] font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm text-center"
+                >
                   <span className="flex items-center justify-center">
                     <svg
                       className="mr-2 w-5 h-5"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
-                      <path
-                        fillRule="evenodd"
-                        d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                      />
-                      <path d="m10 11.118l-8-4V14a2 2 0 002 2h12a2 2 0 002-2V7.118l-8 4z" />
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                     </svg>
                     Contact Youth Pastor
                   </span>
-                </button>
+                </a>
               </div>
 
               {/* Stats or Quick Info */}
@@ -352,43 +355,17 @@ const YouthPage = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {upcomingEvents.map((event, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-                >
-                  <div className="bg-[#1E4E9A] p-6 text-white">
-                    <h3 className="text-xl font-bold mb-2">{event.title}</h3>
-                    <div className="flex items-center space-x-2 text-red-100">
-                      <span className="text-lg">📅</span>
-                      <span>{event.date}</span>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <div className="space-y-3 mb-4">
-                      <div className="flex items-center space-x-2 text-gray-600">
-                        <span>🕐</span>
-                        <span>{event.time}</span>
-                      </div>
-                      <div className="flex items-center space-x-2 text-gray-600">
-                        <span>📍</span>
-                        <span>{event.location}</span>
-                      </div>
-                    </div>
-                    <p className="text-gray-700 mb-4">{event.description}</p>
-                    <button className="w-full bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
-                      Learn More
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="text-center mt-12">
-              <button className="bg-[#1E4E9A] hover:bg-[#163E7A] text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
-                View More Events
-              </button>
+            <div className="max-w-2xl mx-auto">
+              <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
+                <FaCalendarAlt className="text-6xl text-[#1E4E9A] mx-auto mb-6" />
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                  No Events Scheduled
+                </h3>
+                <p className="text-lg text-gray-600">
+                  Contact your church leadership for more information about
+                  upcoming youth ministry events.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -432,89 +409,6 @@ const YouthPage = () => {
           </div>
         </section>
 
-        {/* Youth Leaders */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-50 to-red-50">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-                Meet Our Youth Leaders
-              </h2>
-              <p className="text-xl text-gray-600">
-                Passionate leaders dedicated to guiding our youth in their
-                spiritual journey
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {youthLeaders.map((leader, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-                >
-                  <div className="relative">
-                    <div className="aspect-square bg-gradient-to-br from-[#1E4E9A] to-[#E02020]">
-                      <Image
-                        src={leader.image}
-                        alt={leader.name}
-                        width={300}
-                        height={300}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-                  </div>
-                  <div className="p-6 text-center">
-                    <h3 className="text-xl font-bold text-gray-800 mb-2">
-                      {leader.name}
-                    </h3>
-                    <p className="text-[#E02020] font-semibold mb-3">
-                      {leader.title}
-                    </p>
-                    <p className="text-gray-600 text-sm mb-4">
-                      {leader.description}
-                    </p>
-                    <button className="bg-[#1E4E9A] hover:bg-[#163E7A] text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 text-sm">
-                      Contact
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Get Involved */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-                Get Involved
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Discover your calling and use your gifts to serve God and others
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {ministryAreas.map((area, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-[#1E4E9A]"
-                >
-                  <div className="mb-4">{area.icon}</div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">
-                    {area.title}
-                  </h3>
-                  <p className="text-gray-600 mb-6">{area.description}</p>
-                  <button className="bg-gradient-to-r from-[#E02020] to-[#1E4E9A] hover:from-[#B81C1C] hover:to-[#163E7A] text-white font-semibold py-2 px-6 rounded-full transition-all duration-200">
-                    Contact Leader
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Call to Action */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
           <div className="max-w-4xl mx-auto text-center">
@@ -527,12 +421,12 @@ const YouthPage = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md sm:max-w-none mx-auto">
-              <Link
-                href="/contact"
+              <a
+                href="tel:+254721549789"
                 className="w-full sm:w-auto bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 text-center"
               >
                 Contact Youth Pastor
-              </Link>
+              </a>
               <Link
                 href="/portals"
                 className="w-full sm:w-auto border-2 border-[#1E4E9A] text-[#1E4E9A] hover:bg-[#1E4E9A] hover:text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 text-center"

@@ -480,7 +480,7 @@ const SubmissionsPage = () => {
             <div className="bg-white p-6 rounded-lg shadow-md">
               <FaEnvelope className="text-3xl text-[#E02020] mx-auto mb-3" />
               <h3 className="font-bold text-gray-800 mb-2">Email</h3>
-              <p className="text-gray-600">submissions@ntcgkenya.org</p>
+              <p className="text-gray-600">info@ntcogk.org</p>
             </div>
           </div>
         </div>

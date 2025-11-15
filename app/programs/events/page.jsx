@@ -10,6 +10,7 @@ import {
   FaChurch,
   FaChild,
   FaMusic,
+  FaPhone,
 } from "react-icons/fa";
 
 const EventsPage = () => {
@@ -222,80 +223,26 @@ const EventsPage = () => {
       </section>
 
       {/* Events Grid */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">
-              {categories.find((c) => c.id === selectedCategory)?.name}
-            </h2>
-            <p className="text-gray-600">
-              {filteredEvents.length} event
-              {filteredEvents.length !== 1 ? "s" : ""} found
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredEvents.map((event) => (
-              <div
-                key={event.id}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-              >
-                {/* Event Image */}
-                <div className="relative h-48 bg-gray-200">
-                  <Image
-                    src={event.image}
-                    alt={event.title}
-                    fill
-                    className="object-cover"
-                  />
-                  {event.recurring && (
-                    <div className="absolute top-4 right-4 bg-[#E02020] text-white px-3 py-1 rounded-full text-xs font-bold">
-                      Recurring
-                    </div>
-                  )}
-                </div>
-
-                {/* Event Details */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    {event.title}
-                  </h3>
-
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center space-x-2 text-gray-600">
-                      <FaCalendarAlt className="text-[#1E4E9A]" />
-                      <span className="text-sm">{event.date}</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-gray-600">
-                      <FaClock className="text-[#1E4E9A]" />
-                      <span className="text-sm">{event.time}</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-gray-600">
-                      <FaMapMarkerAlt className="text-[#E02020]" />
-                      <span className="text-sm">{event.location}</span>
-                    </div>
-                  </div>
-
-                  <p className="text-gray-700 mb-4 text-sm leading-relaxed">
-                    {event.description}
-                  </p>
-
-                  <button className="w-full bg-[#1E4E9A] hover:bg-[#163E7A] text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200">
-                    Learn More
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {filteredEvents.length === 0 && (
-            <div className="text-center py-20">
-              <FaCalendarAlt className="text-6xl text-gray-300 mx-auto mb-4" />
-              <p className="text-xl text-gray-500">
-                No events found in this category.
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-white rounded-xl shadow-lg p-12 text-center">
+              <FaCalendarAlt className="text-6xl text-[#1E4E9A] mx-auto mb-6" />
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                No Events Scheduled on Website
+              </h3>
+              <p className="text-lg text-gray-600 mb-6">
+                For information about upcoming church events and activities, please contact the National Office.
               </p>
+              <a
+                href="tel:+254759120222"
+                className="inline-flex items-center bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105"
+              >
+                <FaPhone className="mr-2" />
+                Call National Office
+              </a>
             </div>
-          )}
+          </div>
         </div>
       </section>
 

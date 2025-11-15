@@ -13,6 +13,7 @@ import {
   FaChurch,
   FaHeart,
   FaBullseye,
+  FaPhone,
 } from "react-icons/fa";
 
 const ClergyPage = () => {
@@ -20,22 +21,26 @@ const ClergyPage = () => {
     {
       icon: <FaBook className="text-4xl text-[#1E4E9A]" />,
       title: "Sermon Resources",
-      description: "Access sermon outlines, biblical commentaries, and preaching materials to enrich your ministry.",
+      description:
+        "Access sermon outlines, biblical commentaries, and preaching materials to enrich your ministry.",
     },
     {
       icon: <FaGraduationCap className="text-4xl text-[#E02020]" />,
       title: "Training & Development",
-      description: "Continuous learning opportunities, workshops, and theological education programs.",
+      description:
+        "Continuous learning opportunities, workshops, and theological education programs.",
     },
     {
       icon: <FaFileAlt className="text-4xl text-[#1E4E9A]" />,
       title: "Ministry Guidelines",
-      description: "Official policies, procedures, and best practices for effective church leadership.",
+      description:
+        "Official policies, procedures, and best practices for effective church leadership.",
     },
     {
       icon: <FaUsers className="text-4xl text-[#E02020]" />,
       title: "Pastoral Care",
-      description: "Support resources for counseling, crisis intervention, and member care.",
+      description:
+        "Support resources for counseling, crisis intervention, and member care.",
     },
   ];
 
@@ -44,47 +49,46 @@ const ClergyPage = () => {
       title: "National Clergy Conference",
       date: "March 15-17, 2025",
       location: "Nairobi Convention Center",
-      description: "Annual gathering of all NTCG Kenya clergy for fellowship, training, and strategic planning.",
+      description:
+        "Annual gathering of all NTCG Kenya clergy for fellowship, training, and strategic planning.",
     },
     {
       title: "Leadership Training Workshop",
       date: "April 10, 2025",
       location: "Regional Offices",
-      description: "Practical leadership skills and church management training for pastors and leaders.",
+      description:
+        "Practical leadership skills and church management training for pastors and leaders.",
     },
     {
       title: "Ordination Service",
       date: "May 5, 2025",
       location: "National Headquarters",
-      description: "Ordination ceremony for new ministers and recognition of ministry milestones.",
+      description:
+        "Ordination ceremony for new ministers and recognition of ministry milestones.",
     },
   ];
 
   const quickLinks = [
     {
       title: "Submit Documents",
-      description: "Submit reports, credentials, and official documents to the National Office.",
+      description:
+        "Submit reports, credentials, and official documents to the National Office.",
       link: "/portals/submissions",
       icon: <FaFileAlt className="text-3xl" />,
       color: "from-[#1E4E9A] to-[#163E7A]",
     },
     {
-      title: "Clergy Directory",
-      description: "Access the directory of ordained ministers and church leaders across Kenya.",
-      link: "#directory",
-      icon: <FaUsers className="text-3xl" />,
-      color: "from-[#E02020] to-[#B81C1C]",
-    },
-    {
       title: "Request Support",
-      description: "Request prayer support, counseling, or assistance from the National Office.",
+      description:
+        "Request prayer support, counseling, or assistance from the National Office.",
       link: "/contact",
       icon: <FaPray className="text-3xl" />,
       color: "from-[#1E4E9A] to-[#163E7A]",
     },
     {
       title: "Event Calendar",
-      description: "View upcoming clergy meetings, conferences, and important church events.",
+      description:
+        "View upcoming clergy meetings, conferences, and important church events.",
       link: "/events",
       icon: <FaCalendarAlt className="text-3xl" />,
       color: "from-[#E02020] to-[#B81C1C]",
@@ -106,11 +110,10 @@ const ClergyPage = () => {
           <div className="inline-flex items-center justify-center w-20 h-20 bg-white bg-opacity-30 rounded-full mb-6 backdrop-blur-sm shadow-lg">
             <FaChurch className="text-4xl text-[#E02020]" />
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Clergy Portal
-          </h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">Clergy Portal</h1>
           <p className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
-            Empowering and equipping God's servants for effective ministry across Kenya
+            Empowering and equipping God's servants for effective ministry
+            across Kenya
           </p>
         </div>
       </section>
@@ -125,25 +128,27 @@ const ClergyPage = () => {
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-[#1E4E9A] to-[#E02020] rounded-full mx-auto mb-6"></div>
             </div>
-            
+
             <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
               <p className="text-lg mb-4">
                 Dear Pastors, Ministers, and Church Leaders,
               </p>
               <p className="mb-4">
-                We honor and appreciate your dedication to serving God's people and advancing His kingdom 
-                across Kenya. This portal has been created to support you in your ministry calling by 
-                providing essential resources, training opportunities, and a platform for collaboration 
-                with fellow clergy members.
+                We honor and appreciate your dedication to serving God's people
+                and advancing His kingdom across Kenya. This portal has been
+                created to support you in your ministry calling by providing
+                essential resources, training opportunities, and a platform for
+                collaboration with fellow clergy members.
               </p>
               <p className="mb-4">
-                As shepherds of God's flock, you carry a sacred responsibility. We are committed to 
-                walking alongside you, providing the tools, guidance, and support you need to fulfill 
-                your calling with excellence and integrity.
+                As shepherds of God's flock, you carry a sacred responsibility.
+                We are committed to walking alongside you, providing the tools,
+                guidance, and support you need to fulfill your calling with
+                excellence and integrity.
               </p>
               <p className="text-lg font-semibold text-[#1E4E9A] italic">
-                "And I will give you shepherds after my own heart, who will feed you with knowledge 
-                and understanding." - Jeremiah 3:15
+                "And I will give you shepherds after my own heart, who will feed
+                you with knowledge and understanding." - Jeremiah 3:15
               </p>
             </div>
           </div>
@@ -162,62 +167,23 @@ const ClergyPage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {quickLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.link}
                 className="group bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
               >
-                <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${link.color} rounded-full mb-4 text-white group-hover:scale-110 transition-transform`}>
+                <div
+                  className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${link.color} rounded-full mb-4 text-white group-hover:scale-110 transition-transform`}
+                >
                   {link.icon}
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
                   {link.title}
                 </h3>
-                <p className="text-gray-600 text-sm">
-                  {link.description}
-                </p>
+                <p className="text-gray-600 text-sm">{link.description}</p>
               </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Resources */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Ministry Resources
-            </h2>
-            <p className="text-xl text-gray-600">
-              Tools and materials to strengthen your ministry effectiveness
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {resources.map((resource, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300"
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">{resource.icon}</div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                      {resource.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      {resource.description}
-                    </p>
-                    <button className="text-[#1E4E9A] hover:text-[#163E7A] font-semibold flex items-center space-x-2 transition-colors">
-                      <span>Access Resources</span>
-                      <span>→</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
             ))}
           </div>
         </div>
@@ -235,31 +201,24 @@ const ClergyPage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {upcomingEvents.map((event, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-white rounded-xl shadow-lg p-12 text-center">
+              <FaCalendarAlt className="text-6xl text-[#1E4E9A] mx-auto mb-6" />
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                No Events Scheduled
+              </h3>
+              <p className="text-lg text-gray-600 mb-6">
+                For information about upcoming clergy events and training,
+                please contact the National Office.
+              </p>
+              <a
+                href="tel:+254759120222"
+                className="inline-flex items-center bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105"
               >
-                <div className="bg-[#1E4E9A] p-6 text-white">
-                  <h3 className="text-xl font-bold mb-2">{event.title}</h3>
-                  <div className="flex items-center space-x-2 text-blue-100">
-                    <FaCalendarAlt />
-                    <span>{event.date}</span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center space-x-2 text-gray-600 mb-4">
-                    <FaChurch />
-                    <span>{event.location}</span>
-                  </div>
-                  <p className="text-gray-700 mb-4">{event.description}</p>
-                  <button className="w-full bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
-                    Register Now
-                  </button>
-                </div>
-              </div>
-            ))}
+                <FaPhone className="mr-2" />
+                Call National Office
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -280,18 +239,24 @@ const ClergyPage = () => {
                 <div className="flex items-start space-x-3">
                   <FaBullseye className="text-2xl text-yellow-300 flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-bold text-lg mb-2">Spiritual Integrity</h3>
+                    <h3 className="font-bold text-lg mb-2">
+                      Spiritual Integrity
+                    </h3>
                     <p className="text-blue-100">
-                      Maintain personal holiness and exemplary Christian character in all aspects of life.
+                      Maintain personal holiness and exemplary Christian
+                      character in all aspects of life.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <FaBullseye className="text-2xl text-yellow-300 flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-bold text-lg mb-2">Biblical Faithfulness</h3>
+                    <h3 className="font-bold text-lg mb-2">
+                      Biblical Faithfulness
+                    </h3>
                     <p className="text-blue-100">
-                      Preach and teach the Word of God with accuracy, clarity, and conviction.
+                      Preach and teach the Word of God with accuracy, clarity,
+                      and conviction.
                     </p>
                   </div>
                 </div>
@@ -300,7 +265,8 @@ const ClergyPage = () => {
                   <div>
                     <h3 className="font-bold text-lg mb-2">Pastoral Care</h3>
                     <p className="text-blue-100">
-                      Shepherd God's people with compassion, wisdom, and genuine concern for their wellbeing.
+                      Shepherd God's people with compassion, wisdom, and genuine
+                      concern for their wellbeing.
                     </p>
                   </div>
                 </div>
@@ -310,18 +276,24 @@ const ClergyPage = () => {
                 <div className="flex items-start space-x-3">
                   <FaBullseye className="text-2xl text-yellow-300 flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-bold text-lg mb-2">Unity & Collaboration</h3>
+                    <h3 className="font-bold text-lg mb-2">
+                      Unity & Collaboration
+                    </h3>
                     <p className="text-blue-100">
-                      Work together with fellow clergy to advance God's kingdom across Kenya.
+                      Work together with fellow clergy to advance God's kingdom
+                      across Kenya.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <FaBullseye className="text-2xl text-yellow-300 flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-bold text-lg mb-2">Continuous Growth</h3>
+                    <h3 className="font-bold text-lg mb-2">
+                      Continuous Growth
+                    </h3>
                     <p className="text-blue-100">
-                      Pursue ongoing spiritual, theological, and leadership development.
+                      Pursue ongoing spiritual, theological, and leadership
+                      development.
                     </p>
                   </div>
                 </div>
@@ -330,7 +302,8 @@ const ClergyPage = () => {
                   <div>
                     <h3 className="font-bold text-lg mb-2">Accountability</h3>
                     <p className="text-blue-100">
-                      Submit to godly oversight and maintain transparency in ministry and finances.
+                      Submit to godly oversight and maintain transparency in
+                      ministry and finances.
                     </p>
                   </div>
                 </div>
@@ -348,12 +321,15 @@ const ClergyPage = () => {
               Our Clergy in Action
             </h2>
             <p className="text-xl text-gray-600">
-              Celebrating our dedicated pastors and ministers serving across Kenya
+              Celebrating our dedicated pastors and ministers serving across
+              Kenya
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19].map((num) => (
+            {[
+              1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+            ].map((num) => (
               <div
                 key={num}
                 className="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
@@ -385,8 +361,8 @@ const ClergyPage = () => {
             Need Support or Guidance?
           </h2>
           <p className="text-lg text-gray-600 mb-8">
-            The National Office is here to support you in your ministry. Don't hesitate to reach out 
-            for prayer, counsel, or assistance.
+            The National Office is here to support you in your ministry. Don't
+            hesitate to reach out for prayer, counsel, or assistance.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
