@@ -129,7 +129,7 @@ export default function EventsCalendar() {
           }}
         ></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl md:text-5xl font-bold mb-4">
             Events Calendar
           </h1>
@@ -139,7 +139,7 @@ export default function EventsCalendar() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Calendar Container */}
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           {/* Calendar Header */}

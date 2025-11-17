@@ -82,7 +82,7 @@ const EventsPage = () => {
           }}
         ></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-white bg-opacity-30 rounded-full mb-6 backdrop-blur-sm shadow-lg">
             <FaCalendarAlt className="text-4xl text-[#E02020]" />
           </div>
@@ -96,7 +96,7 @@ const EventsPage = () => {
 
       {/* Category Filters */}
       <section className="py-3 px-4 sm:px-6 lg:px-8 bg-white shadow-sm sticky top-16 z-30">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="overflow-x-auto scrollbar-hide">
             <div className="flex gap-2 min-w-max">
               {categories.map((category) => (
@@ -120,7 +120,7 @@ const EventsPage = () => {
 
       {/* Events Grid */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           {filteredEvents.length === 0 ? (
             <div className="max-w-2xl mx-auto">
               <div className="bg-white rounded-xl shadow-lg p-12 text-center">

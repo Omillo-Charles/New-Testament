@@ -18,7 +18,7 @@ export default function Contact() {
         }}
       >
         <div className="absolute inset-0 bg-[#1E4E9A]/80"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">Contact Us</h1>
           <p className="text-xl md:text-2xl max-w-3xl mx-auto opacity-90">
             We would love to hear from you! Connect with our church family
@@ -29,7 +29,7 @@ export default function Contact() {
 
       {/* Get in Touch */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Get in Touch
@@ -132,7 +132,7 @@ export default function Contact() {
 
       {/* National Headquarters */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               National Headquarters
@@ -279,7 +279,7 @@ export default function Contact() {
 
       {/* Regional Offices */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Regional Offices
@@ -367,7 +367,7 @@ export default function Contact() {
 
       {/* How Can We Help */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               How Can We Help You?
@@ -461,7 +461,7 @@ export default function Contact() {
 
       {/* Visit Us */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
@@ -585,7 +585,7 @@ export default function Contact() {
 
       {/* Connect Online */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Connect With Us Online

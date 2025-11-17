@@ -74,7 +74,7 @@ const PortalsPage = () => {
           }}
         ></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             Ministry Portals
           </h1>
@@ -101,7 +101,7 @@ const PortalsPage = () => {
 
       {/* Portals Grid */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {portals.map((portal, index) => (
               <Link

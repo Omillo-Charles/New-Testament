@@ -101,7 +101,7 @@ const GalleryPage = () => {
           }}
         ></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl md:text-5xl font-bold mb-4">Our Gallery</h1>
           <p className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto">
             Capturing moments of faith, fellowship, and community across NTCG
@@ -112,7 +112,7 @@ const GalleryPage = () => {
 
       {/* Filter Tabs */}
       <section className="py-4 px-4 sm:px-6 lg:px-8 bg-white shadow-sm sticky top-16 z-30">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="overflow-x-auto scrollbar-hide">
             <div className="flex gap-3 min-w-max sm:justify-center pb-2">
               <button
@@ -145,7 +145,7 @@ const GalleryPage = () => {
 
       {/* Gallery Grid */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {filteredImages.map((image, index) => (
               <div

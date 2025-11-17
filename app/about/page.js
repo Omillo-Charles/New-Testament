@@ -26,7 +26,7 @@ export default function About() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             About NTCG Kenya
           </h1>
@@ -39,7 +39,7 @@ export default function About() {
 
       {/* Our Identity */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold text-gray-900 mb-4">
               Our Identity
@@ -132,7 +132,7 @@ export default function About() {
 
       {/* Vision & Mission */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="bg-white rounded-xl shadow-lg p-8">
               <div className="w-16 h-16 bg-[#E02020] rounded-full flex items-center justify-center mx-auto mb-6">
@@ -219,7 +219,7 @@ export default function About() {
 
       {/* Our History */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Our History
@@ -299,7 +299,7 @@ export default function About() {
 
       {/* Leadership */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Leadership
@@ -442,7 +442,7 @@ export default function About() {
 
       {/* Core Focus Areas */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Core Focus Areas

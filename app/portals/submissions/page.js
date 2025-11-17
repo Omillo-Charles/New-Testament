@@ -106,7 +106,7 @@ const SubmissionsPage = () => {
           }}
         ></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-white bg-opacity-30 rounded-full mb-4 backdrop-blur-sm shadow-lg">
             <FaFileUpload className="text-4xl text-[#E02020]" />
           </div>
@@ -121,7 +121,7 @@ const SubmissionsPage = () => {
 
       {/* Information Banner */}
       <section className="py-8 px-4 sm:px-6 lg:px-8 bg-blue-100 border-b-4 border-[#1E4E9A]">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="flex items-start space-x-4">
             <div className="flex-shrink-0">
               <div className="w-12 h-12 bg-[#1E4E9A] rounded-full flex items-center justify-center">

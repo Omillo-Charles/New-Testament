@@ -61,7 +61,7 @@ const YouthPage = () => {
           </div>
 
           {/* Content Container */}
-          <div className="relative z-40 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center lg:pt-20 py-8">
+          <div className="relative z-40 h-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center lg:pt-20 py-8">
             <div className="w-full lg:w-3/5 lg:ml-0">
               {/* Main Headline with Stagger Animation */}
               <div className="mb-6">
@@ -182,7 +182,7 @@ const YouthPage = () => {
 
         {/* About Youth Ministry */}
         <section className="py-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-[1600px] mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
                 About Our Youth Ministry
@@ -263,7 +263,7 @@ const YouthPage = () => {
 
         {/* Events & Activities */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-gray-50 to-blue-50">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-[1600px] mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
                 Upcoming Events & Activities
@@ -361,7 +361,7 @@ const YouthPage = () => {
 
         {/* Gallery Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-[1600px] mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
                 Youth in Action

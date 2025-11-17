@@ -109,7 +109,7 @@ const ChildrenPage = () => {
           </div>
 
           {/* Content Container */}
-          <div className="relative z-40 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center lg:pt-20 py-8">
+          <div className="relative z-40 h-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center lg:pt-20 py-8">
             <div className="w-full lg:w-3/5 lg:ml-0">
               {/* Main Headline with Stagger Animation */}
               <div className="mb-6">
@@ -328,7 +328,7 @@ const ChildrenPage = () => {
         </section>
         {/* Programs & Classes */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-blue-50">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-[1600px] mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-6">
                 Our Fun Programs & Classes
@@ -374,7 +374,7 @@ const ChildrenPage = () => {
 
         {/* Photo Gallery */}
         <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-[1600px] mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-6">
                 Happy Moments Gallery
@@ -423,7 +423,7 @@ const ChildrenPage = () => {
 
         {/* Upcoming Events */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-red-50">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-[1600px] mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-6">
                 Exciting Upcoming Events

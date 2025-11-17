@@ -34,7 +34,7 @@ const ShopPage = () => {
           }}
         ></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             <div>
               <h1 className="text-3xl md:text-5xl font-bold mb-4">
@@ -58,7 +58,7 @@ const ShopPage = () => {
 
       {/* Search Bar */}
       <section className="py-6 px-4 sm:px-6 lg:px-8 bg-white shadow-sm sticky top-16 z-30">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="flex items-center space-x-4">
             <div className="flex-1 relative">
               <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -76,7 +76,7 @@ const ShopPage = () => {
 
       {/* Categories */}
       <section className="py-4 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="overflow-x-auto scrollbar-hide">
             <div className="flex gap-3 min-w-max sm:justify-center pb-2">
               {categories.map((category) => (
@@ -100,7 +100,7 @@ const ShopPage = () => {
 
       {/* Products Grid */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="max-w-2xl mx-auto">
             <div className="bg-white rounded-xl shadow-lg p-12 text-center">
               <FaShoppingCart className="text-6xl text-[#1E4E9A] mx-auto mb-6" />
@@ -124,7 +124,7 @@ const ShopPage = () => {
 
       {/* Info Banner */}
       <section className="py-12 px-4 sm:px-6 lg:px-8 bg-blue-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
               <div className="inline-flex items-center justify-center w-16 h-16 bg-[#1E4E9A] text-white rounded-full mb-4">

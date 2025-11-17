@@ -76,7 +76,7 @@ const PracticalCommitmentPage = () => {
           }}
         ></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center justify-center w-24 h-24 bg-white bg-opacity-30 rounded-full mb-6 backdrop-blur-sm shadow-lg">
             <FaHandsHelping className="text-5xl text-[#E02020]" />
           </div>
@@ -104,7 +104,7 @@ const PracticalCommitmentPage = () => {
 
       {/* Commitment 1: Christ through Spiritual Disciplines */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-[#E02020] rounded-full mb-6 shadow-lg">
               <FaCross className="text-4xl text-white" />
@@ -152,7 +152,7 @@ const PracticalCommitmentPage = () => {
 
       {/* Commitment 2: Body of Christ */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-[#1E4E9A] rounded-full mb-6 shadow-lg">
               <FaChurch className="text-4xl text-white" />
@@ -216,7 +216,7 @@ const PracticalCommitmentPage = () => {
 
       {/* Commitment 3: Work of Christ through Stewardship */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-[#E02020] rounded-full mb-6 shadow-lg">
               <FaHandsHelping className="text-4xl text-white" />
