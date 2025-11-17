@@ -12,6 +12,7 @@ export default function EventsCalendar() {
   const events = [
     {
       name: "Annual General Meeting",
+      shortName: "AGM", // Abbreviation for calendar display
       startDate: new Date(2025, 10, 27), // November 27, 2025 (month is 0-indexed)
       endDate: new Date(2025, 10, 28), // November 28, 2025
       color: "#1E4E9A",
@@ -22,6 +23,7 @@ export default function EventsCalendar() {
     },
     {
       name: "Youth Explosion",
+      shortName: "Youth Explosion", // Short enough to display as is
       startDate: new Date(2025, 11, 8), // December 8, 2025 (month is 0-indexed)
       endDate: new Date(2025, 11, 13), // December 13, 2025
       color: "#E02020",
@@ -226,7 +228,7 @@ export default function EventsCalendar() {
                           <span>{day}</span>
                           {event && (
                             <span className="text-[10px] leading-tight text-center mt-0.5">
-                              {event.name}
+                              {event.shortName || event.name}
                             </span>
                           )}
                         </span>
