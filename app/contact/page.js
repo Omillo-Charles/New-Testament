@@ -1,15 +1,127 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
-export const metadata = {
-  title: "Contact Us - New Testament Church of God Kenya",
-  description:
-    "Get in touch with NTCG Kenya. Find our locations, contact information, and connect with our church family across Kenya.",
-};
-
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: ""
+  });
+  
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
+
+  // Auto-dismiss success message after 5 seconds
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => {
+        setSuccess(false);
+      }, 5000); // 5 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [success]);
+
+  // Auto-dismiss error message after 7 seconds
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError("");
+      }, 7000); // 7 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    setSuccess(false);
+
+    try {
+      const response = await fetch(process.env.NEXT_PUBLIC_CONTACT_API_URL || "http://localhost:5500/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccess(true);
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: ""
+        });
+        
+        // Scroll to top to show success message
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        setError(data.message || "Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      setError("Failed to send message. Please check your connection and try again.");
+      console.error("Error submitting form:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <style jsx>{`
+        @keyframes bounce-in {
+          0% {
+            opacity: 0;
+            transform: scale(0.9) translateY(-20px);
+          }
+          50% {
+            transform: scale(1.02);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
+        }
+
+        @keyframes shake {
+          0%, 100% {
+            transform: translateX(0);
+          }
+          10%, 30%, 50%, 70%, 90% {
+            transform: translateX(-5px);
+          }
+          20%, 40%, 60%, 80% {
+            transform: translateX(5px);
+          }
+        }
+
+        .animate-bounce-in {
+          animation: bounce-in 0.5s ease-out;
+        }
+
+        .animate-shake {
+          animation: shake 0.5s ease-in-out;
+        }
+      `}</style>
+      <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section
         className="relative bg-[#1E4E9A] text-white py-20 bg-cover bg-center bg-no-repeat"
@@ -43,11 +155,61 @@ export default function Contact() {
 
           {/* Contact Form */}
           <div className="max-w-4xl mx-auto">
+            {/* Success Message */}
+            {success && (
+              <div className="mb-6 bg-green-500 border-2 border-green-600 p-6 rounded-xl shadow-2xl animate-bounce-in">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-white rounded-full flex items-center justify-center mr-4">
+                    <svg className="w-8 h-8 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-white mb-2">✓ Message Sent Successfully!</h3>
+                    <p className="text-green-50 text-lg">Thank you for contacting us. We've received your message and will get back to you soon.</p>
+                  </div>
+                  <button 
+                    onClick={() => setSuccess(false)}
+                    className="flex-shrink-0 text-white hover:text-green-100 ml-4"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Error Message */}
+            {error && (
+              <div className="mb-6 bg-red-500 border-2 border-red-600 p-6 rounded-xl shadow-2xl animate-shake">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-white rounded-full flex items-center justify-center mr-4">
+                    <svg className="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-white mb-2">⚠ Error Sending Message</h3>
+                    <p className="text-red-50 text-lg">{error}</p>
+                  </div>
+                  <button 
+                    onClick={() => setError("")}
+                    className="flex-shrink-0 text-white hover:text-red-100 ml-4"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            )}
+
             <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
               <h3 className="text-2xl font-semibold text-gray-900 mb-6 text-center">
                 Send Us a Message
               </h3>
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -55,8 +217,12 @@ export default function Contact() {
                     </label>
                     <input
                       type="text"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent transition-all duration-200 text-gray-900 placeholder-gray-500"
+                      disabled={loading}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent transition-all duration-200 text-gray-900 placeholder-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
                       placeholder="Enter your full name"
                     />
                   </div>
@@ -66,8 +232,12 @@ export default function Contact() {
                     </label>
                     <input
                       type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent transition-all duration-200 text-gray-900 placeholder-gray-500"
+                      disabled={loading}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent transition-all duration-200 text-gray-900 placeholder-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
                       placeholder="Enter your email"
                     />
                   </div>
@@ -80,7 +250,11 @@ export default function Contact() {
                     </label>
                     <input
                       type="tel"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent transition-all duration-200 text-gray-900 placeholder-gray-500"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      disabled={loading}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent transition-all duration-200 text-gray-900 placeholder-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
                       placeholder="Enter your phone number"
                     />
                   </div>
@@ -89,8 +263,12 @@ export default function Contact() {
                       Subject *
                     </label>
                     <select
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent transition-all duration-200 text-gray-900"
+                      disabled={loading}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent transition-all duration-200 text-gray-900 disabled:bg-gray-100 disabled:cursor-not-allowed"
                     >
                       <option value="">Select a subject</option>
                       <option value="prayer">Prayer Request</option>
@@ -109,9 +287,13 @@ export default function Contact() {
                     Message *
                   </label>
                   <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     required
+                    disabled={loading}
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent transition-all duration-200 resize-vertical min-h-[120px] text-gray-900 placeholder-gray-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent transition-all duration-200 resize-vertical min-h-[120px] text-gray-900 placeholder-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
                     placeholder="Please share your message, prayer request, or inquiry..."
                   ></textarea>
                 </div>
@@ -119,9 +301,20 @@ export default function Contact() {
                 <div className="text-center">
                   <button
                     type="submit"
-                    className="w-full sm:w-auto bg-gradient-to-r from-[#E02020] to-[#1E4E9A] hover:from-[#B81C1C] hover:to-[#163E7A] text-white font-semibold py-4 px-12 sm:px-16 rounded-lg transition-all duration-300 transform hover:scale-105"
+                    disabled={loading}
+                    className="w-full sm:w-auto bg-gradient-to-r from-[#E02020] to-[#1E4E9A] hover:from-[#B81C1C] hover:to-[#163E7A] text-white font-semibold py-4 px-12 sm:px-16 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                   >
-                    Send Message
+                    {loading ? (
+                      <span className="flex items-center justify-center">
+                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Sending...
+                      </span>
+                    ) : (
+                      "Send Message"
+                    )}
                   </button>
                 </div>
               </form>
@@ -789,5 +982,6 @@ export default function Contact() {
         </div>
       </section>
     </div>
+    </>
   );
 }
