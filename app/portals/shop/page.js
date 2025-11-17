@@ -1,15 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 import {
   FaShoppingCart,
   FaBook,
   FaTshirt,
-  FaMusic,
   FaGift,
   FaSearch,
-  FaStar,
-  FaPlus,
   FaTruck,
   FaCreditCard,
   FaPhoneAlt,
@@ -26,21 +22,6 @@ const ShopPage = () => {
     { id: "books", name: "Books & Bibles", icon: <FaBook /> },
     { id: "accessories", name: "Cups & Calendars", icon: <FaGift /> },
   ];
-
-  const filteredProducts = products
-    .filter((product) =>
-      selectedCategory === "all" ? true : product.category === selectedCategory
-    )
-    .filter((product) =>
-      searchQuery === ""
-        ? true
-        : product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          product.description.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-  const addToCart = () => {
-    setCartCount(cartCount + 1);
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
