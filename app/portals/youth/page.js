@@ -12,6 +12,8 @@ import {
   FaBullseye,
   FaStar,
   FaCalendarAlt,
+  FaClock,
+  FaMapMarkerAlt,
 } from "react-icons/fa";
 
 const YouthPage = () => {
@@ -272,18 +274,88 @@ const YouthPage = () => {
               </p>
             </div>
 
-            <div className="max-w-2xl mx-auto">
-              <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
-                <FaCalendarAlt className="text-6xl text-[#1E4E9A] mx-auto mb-6" />
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                  No Events Scheduled
-                </h3>
-                <p className="text-lg text-gray-600">
-                  Contact your church leadership for more information about
-                  upcoming youth ministry events.
-                </p>
-              </div>
-            </div>
+            {(() => {
+              const today = new Date();
+              today.setHours(0, 0, 0, 0);
+              
+              const events = [
+                {
+                  id: 1,
+                  title: "Annual General Meeting",
+                  date: "November 27-28, 2025",
+                  endDate: new Date(2025, 10, 28),
+                  time: "9:00 AM - 5:00 PM",
+                  location: "EastMore Model Academy, Nakuru",
+                  description: "Join us for our Annual General Meeting where we review the year's achievements and discuss future plans.",
+                  image: "/clergyImages/clergy20.png",
+                },
+                {
+                  id: 2,
+                  title: "Youth Explosion",
+                  date: "December 8-13, 2025",
+                  endDate: new Date(2025, 11, 13),
+                  time: "8:00 AM - 5:00 PM",
+                  location: "LifeSpring Academy, Langata, Nairobi",
+                  description: "An explosive week of worship, teaching, and fellowship for young people. Registration Fee: KSh 1,500.",
+                  image: "/youthImages/youth10.png",
+                },
+              ].filter(event => event.endDate >= today);
+
+              return events.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                  {events.map((event) => (
+                    <div
+                      key={event.id}
+                      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                    >
+                      <div className="relative h-48 overflow-hidden">
+                        <Image
+                          src={event.image}
+                          alt={event.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">
+                          {event.title}
+                        </h3>
+                        <div className="space-y-2 mb-4">
+                          <div className="flex items-center text-gray-600">
+                            <FaCalendarAlt className="mr-2 text-[#1E4E9A]" />
+                            <span className="text-sm">{event.date}</span>
+                          </div>
+                          <div className="flex items-center text-gray-600">
+                            <FaClock className="mr-2 text-[#1E4E9A]" />
+                            <span className="text-sm">{event.time}</span>
+                          </div>
+                          <div className="flex items-center text-gray-600">
+                            <FaMapMarkerAlt className="mr-2 text-[#1E4E9A]" />
+                            <span className="text-sm">{event.location}</span>
+                          </div>
+                        </div>
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          {event.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="max-w-2xl mx-auto">
+                  <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
+                    <FaCalendarAlt className="text-6xl text-[#1E4E9A] mx-auto mb-6" />
+                    <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                      No Events Scheduled
+                    </h3>
+                    <p className="text-lg text-gray-600">
+                      Contact your church leadership for more information about
+                      upcoming youth ministry events.
+                    </p>
+                  </div>
+                </div>
+              );
+            })()}
           </div>
         </section>
 

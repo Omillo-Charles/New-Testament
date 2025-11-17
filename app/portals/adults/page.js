@@ -14,6 +14,8 @@ import {
   FaUserFriends,
   FaMale,
   FaFemale,
+  FaClock,
+  FaMapMarkerAlt,
 } from "react-icons/fa";
 
 const AdultsPage = () => {
@@ -208,18 +210,78 @@ const AdultsPage = () => {
             </p>
           </div>
 
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-white rounded-xl shadow-lg p-12 text-center">
-              <FaCalendarAlt className="text-6xl text-[#1E4E9A] mx-auto mb-6" />
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                No Events Scheduled
-              </h3>
-              <p className="text-lg text-gray-600">
-                Contact your church leadership for more information about
-                upcoming adults ministry events.
-              </p>
-            </div>
-          </div>
+          {(() => {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            const events = [
+              {
+                id: 1,
+                title: "Annual General Meeting",
+                date: "November 27-28, 2025",
+                endDate: new Date(2025, 10, 28),
+                time: "9:00 AM - 5:00 PM",
+                location: "EastMore Model Academy, Nakuru",
+                description: "Join us for our Annual General Meeting where we review the year's achievements, discuss future plans, and make important decisions for the church.",
+                image: "/clergyImages/clergy20.png",
+              },
+            ].filter(event => event.endDate >= today);
+
+            return events.length > 0 ? (
+              <div className="max-w-2xl mx-auto">
+                {events.map((event) => (
+                  <div
+                    key={event.id}
+                    className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
+                  >
+                    <div className="relative h-64 overflow-hidden">
+                      <Image
+                        src={event.image}
+                        alt={event.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="p-8">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                        {event.title}
+                      </h3>
+                      <div className="space-y-3 mb-4">
+                        <div className="flex items-center text-gray-600">
+                          <FaCalendarAlt className="mr-3 text-[#1E4E9A]" />
+                          <span>{event.date}</span>
+                        </div>
+                        <div className="flex items-center text-gray-600">
+                          <FaClock className="mr-3 text-[#1E4E9A]" />
+                          <span>{event.time}</span>
+                        </div>
+                        <div className="flex items-center text-gray-600">
+                          <FaMapMarkerAlt className="mr-3 text-[#1E4E9A]" />
+                          <span>{event.location}</span>
+                        </div>
+                      </div>
+                      <p className="text-gray-600 leading-relaxed">
+                        {event.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="max-w-2xl mx-auto">
+                <div className="bg-white rounded-xl shadow-lg p-12 text-center">
+                  <FaCalendarAlt className="text-6xl text-[#1E4E9A] mx-auto mb-6" />
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                    No Events Scheduled
+                  </h3>
+                  <p className="text-lg text-gray-600">
+                    Contact your church leadership for more information about
+                    upcoming adults ministry events.
+                  </p>
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </section>
 
