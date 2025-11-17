@@ -10,11 +10,14 @@ import {
   FaChurch,
   FaChild,
   FaMusic,
-  FaPhone,
+  FaChevronDown,
+  FaChevronUp,
+  FaMobileAlt,
 } from "react-icons/fa";
 
 const EventsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [showRegistration, setShowRegistration] = useState({});
 
   const categories = [
     { id: "all", name: "All Events", icon: <FaCalendarAlt /> },
@@ -24,168 +27,49 @@ const EventsPage = () => {
     { id: "special", name: "Special Events", icon: <FaMusic /> },
   ];
 
-  const events = [
-    // Adults Events
+  const allEvents = [
     {
       id: 1,
-      title: "Sunday Adult Bible Study",
-      category: "adults",
-      date: "Every Sunday",
-      time: "9:00 AM",
-      location: "Fellowship Hall",
+      title: "Annual General Meeting",
+      category: "special",
+      date: "November 27-28, 2025",
+      endDate: new Date(2025, 10, 28), // November 28, 2025 (month is 0-indexed)
+      time: "9:00 AM - 5:00 PM",
+      location: "EastMore Model Academy, Nakuru",
       description:
-        "In-depth Bible study and discussion groups for spiritual growth and fellowship.",
-      image: "/clergyImages/clergy10.png",
-      recurring: true,
+        "Join us for our Annual General Meeting where we review the year's achievements, discuss future plans, and make important decisions for the church.",
+      image: "/clergyImages/clergy20.png",
+      recurring: false,
+      hasRegistration: false,
     },
     {
       id: 2,
-      title: "Midweek Prayer Meeting",
-      category: "adults",
-      date: "Every Wednesday",
-      time: "6:00 PM",
-      location: "Prayer Hall",
-      description:
-        "Corporate prayer for personal needs, church vision, and national concerns.",
-      image: "/heroImages/hero2.png",
-      recurring: true,
-    },
-    {
-      id: 11,
-      title: "Men's Fellowship Breakfast",
-      category: "adults",
-      date: "First Saturday of Month",
-      time: "8:00 AM",
-      location: "Church Hall",
-      description:
-        "Monthly gathering for men to fellowship, share, and encourage one another.",
-      image: "/clergyImages/clergy5.png",
-      recurring: true,
-    },
-    {
-      id: 12,
-      title: "Women's Prayer Circle",
-      category: "adults",
-      date: "Every Friday",
-      time: "10:00 AM",
-      location: "Prayer Room",
-      description:
-        "Weekly prayer meeting for women to intercede and support one another.",
-      image: "/clergyImages/clergy15.png",
-      recurring: true,
-    },
-    {
-      id: 3,
       title: "Youth Explosion",
       category: "youth",
       date: "December 8-13, 2025",
+      endDate: new Date(2025, 11, 13), // December 13, 2025 (month is 0-indexed)
       time: "8:00 AM - 5:00 PM",
-      location: "LifeSpring Academy",
+      location: "LifeSpring Academy, Langata, Nairobi",
       description:
         "An explosive week of worship, teaching, and fellowship for young people. Registration Fee: KSh 1,500. Expected Attendance: 2,000.",
-      image: "/youthImages/youth1.png",
+      image: "/youthImages/youth10.png",
       recurring: false,
-    },
-    {
-      id: 13,
-      title: "Youth Revival Night",
-      category: "youth",
-      date: "December 15, 2025",
-      time: "6:00 PM",
-      location: "Main Sanctuary",
-      description:
-        "A powerful night of worship, prayer, and testimonies for young people.",
-      image: "/youthImages/youth1.png",
-      recurring: false,
-    },
-    {
-      id: 4,
-      title: "Children's Day Celebration",
-      category: "children",
-      date: "June 1, 2025",
-      time: "10:00 AM - 2:00 PM",
-      location: "Church Grounds",
-      description:
-        "Special service celebrating our children with performances, games, and treats.",
-      image: "/childrenImages/child10.png",
-      recurring: false,
-    },
-    {
-      id: 5,
-      title: "Easter Sunday Service",
-      category: "special",
-      date: "April 20, 2025",
-      time: "7:00 AM & 10:00 AM",
-      location: "Main Sanctuary",
-      description:
-        "Celebrate the resurrection of Jesus Christ with special worship and communion.",
-      image: "/heroImages/hero3.png",
-      recurring: false,
-    },
-    {
-      id: 6,
-      title: "Christmas Carol Service",
-      category: "special",
-      date: "December 24, 2025",
-      time: "6:00 PM",
-      location: "Main Sanctuary",
-      description:
-        "Traditional carol service celebrating the birth of our Savior.",
-      image: "/heroImages/hero4.png",
-      recurring: false,
-    },
-    {
-      id: 7,
-      title: "Men's Conference",
-      category: "special",
-      date: "February 20-22, 2025",
-      time: "All Day",
-      location: "Nakuru Conference Center",
-      description:
-        "Three days of powerful teaching, worship, and fellowship for men.",
-      image: "/clergyImages/clergy5.png",
-      recurring: false,
-    },
-    {
-      id: 8,
-      title: "Women's Day Celebration",
-      category: "special",
-      date: "March 8, 2025",
-      time: "10:00 AM - 3:00 PM",
-      location: "National Headquarters",
-      description: "Celebrating and honoring the women of NTCG Kenya.",
-      image: "/clergyImages/clergy10.png",
-      recurring: false,
-    },
-    {
-      id: 9,
-      title: "Kids Summer Camp",
-      category: "children",
-      date: "July 15-19, 2025",
-      time: "9:00 AM - 3:00 PM",
-      location: "Church Grounds",
-      description:
-        "A week of fun activities, Bible stories, crafts, and making new friends.",
-      image: "/childrenImages/child15.png",
-      recurring: false,
-    },
-    {
-      id: 10,
-      title: "Youth Retreat",
-      category: "youth",
-      date: "January 5-7, 2025",
-      time: "All Day",
-      location: "Nakuru Retreat Center",
-      description: "3-day spiritual retreat to start the year with purpose.",
-      image: "/youthImages/youth5.png",
-      recurring: false,
+      hasRegistration: true,
     },
   ];
 
+  // Filter out past events
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  
+  const upcomingEvents = allEvents.filter((event) => {
+    return event.endDate >= today;
+  });
+
   const filteredEvents =
     selectedCategory === "all"
-      ? events
-      : events.filter((event) => event.category === selectedCategory);
+      ? upcomingEvents
+      : upcomingEvents.filter((event) => event.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
@@ -237,24 +121,121 @@ const EventsPage = () => {
       {/* Events Grid */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-white rounded-xl shadow-lg p-12 text-center">
-              <FaCalendarAlt className="text-6xl text-[#1E4E9A] mx-auto mb-6" />
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                No Events Scheduled on Website
-              </h3>
-              <p className="text-lg text-gray-600 mb-6">
-                For information about upcoming church events and activities, please contact the National Office.
-              </p>
-              <a
-                href="tel:+254759120222"
-                className="inline-flex items-center bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105"
-              >
-                <FaPhone className="mr-2" />
-                Call National Office
-              </a>
+          {filteredEvents.length === 0 ? (
+            <div className="max-w-2xl mx-auto">
+              <div className="bg-white rounded-xl shadow-lg p-12 text-center">
+                <FaCalendarAlt className="text-6xl text-[#1E4E9A] mx-auto mb-6" />
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  No Events in This Category
+                </h3>
+                <p className="text-lg text-gray-600 mb-6">
+                  Check other categories or contact the National Office for more information.
+                </p>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredEvents.map((event) => (
+                <div
+                  key={event.id}
+                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    <Image
+                      src={event.image}
+                      alt={event.title}
+                      fill
+                      className="object-cover"
+                    />
+                    {event.recurring && (
+                      <div className="absolute top-4 right-4 bg-[#E02020] text-white px-3 py-1 rounded-full text-xs font-semibold">
+                        Recurring
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">
+                      {event.title}
+                    </h3>
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center text-gray-600">
+                        <FaCalendarAlt className="mr-2 text-[#1E4E9A]" />
+                        <span className="text-sm">{event.date}</span>
+                      </div>
+                      <div className="flex items-center text-gray-600">
+                        <FaClock className="mr-2 text-[#1E4E9A]" />
+                        <span className="text-sm">{event.time}</span>
+                      </div>
+                      <div className="flex items-center text-gray-600">
+                        <FaMapMarkerAlt className="mr-2 text-[#1E4E9A]" />
+                        <span className="text-sm">{event.location}</span>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                      {event.description}
+                    </p>
+
+                    {/* Registration Details Button - Only show for events with registration */}
+                    {event.hasRegistration && (
+                      <div className="border-t pt-4">
+                        <button
+                          onClick={() =>
+                            setShowRegistration({
+                              ...showRegistration,
+                              [event.id]: !showRegistration[event.id],
+                            })
+                          }
+                          className="w-full flex items-center justify-between bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300"
+                        >
+                          <span>Registration Details</span>
+                          {showRegistration[event.id] ? (
+                            <FaChevronUp />
+                          ) : (
+                            <FaChevronDown />
+                          )}
+                        </button>
+
+                        {/* Dropdown Content */}
+                        {showRegistration[event.id] && (
+                          <div className="mt-3 p-4 bg-green-50 rounded-lg border border-green-200">
+                            <div className="flex items-start gap-3 mb-3">
+                              <FaMobileAlt className="w-5 h-5 text-green-600 mt-0.5" />
+                              <div className="flex-1">
+                                <h4 className="font-bold text-gray-900 mb-2">
+                                  MPESA Payment Details
+                                </h4>
+                                <div className="space-y-2">
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-sm font-semibold text-gray-700">
+                                      Paybill Number:
+                                    </span>
+                                    <span className="text-sm font-bold text-gray-900">
+                                      824520
+                                    </span>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-sm font-semibold text-gray-700">
+                                      Account Number:
+                                    </span>
+                                    <span className="text-sm font-bold text-gray-900">
+                                      Youth Reg
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <p className="text-xs text-gray-600 mt-2">
+                              Send KSh 1,500 to complete your registration
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

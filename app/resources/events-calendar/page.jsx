@@ -11,13 +11,23 @@ export default function EventsCalendar() {
   // Events data
   const events = [
     {
+      name: "Annual General Meeting",
+      startDate: new Date(2025, 10, 27), // November 27, 2025 (month is 0-indexed)
+      endDate: new Date(2025, 10, 28), // November 28, 2025
+      color: "#1E4E9A",
+      time: "9:00 AM - 5:00 PM",
+      venue: "EastMore Model Academy, Nakuru",
+      registrationFee: "N/A",
+      expectedAttendance: "TBD",
+    },
+    {
       name: "Youth Explosion",
       startDate: new Date(2025, 11, 8), // December 8, 2025 (month is 0-indexed)
       endDate: new Date(2025, 11, 13), // December 13, 2025
       color: "#E02020",
       time: "8:00 AM - 5:00 PM",
       venue: "LifeSpring Academy, Langata, Nairobi",
-      registrationFee: "KES 1,500",
+      registrationFee: "KSh 1,500",
       expectedAttendance: "2,000",
     },
   ];
