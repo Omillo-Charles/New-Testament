@@ -218,7 +218,7 @@ const EventsPage = () => {
                                       Account Number:
                                     </span>
                                     <span className="text-sm font-bold text-gray-900">
-                                      Youth Reg
+                                      Youth Reg.
                                     </span>
                                   </div>
                                 </div>
