@@ -51,60 +51,6 @@ const ChildrenPage = () => {
     },
   ];
 
-  const upcomingEvents = [
-    {
-      title: "Kids Summer Camp",
-      date: "July 15-19, 2025",
-      time: "9:00 AM - 3:00 PM",
-      location: "Church Grounds",
-      description:
-        "A week of fun activities, Bible stories, crafts, and making new friends in Christ!",
-    },
-    {
-      title: "Children's Day Celebration",
-      date: "June 1, 2025",
-      time: "10:00 AM - 2:00 PM",
-      location: "Main Sanctuary",
-      description:
-        "Special service celebrating our children with performances, games, and treats.",
-    },
-    {
-      title: "Easter Egg Hunt",
-      date: "April 20, 2025",
-      time: "2:00 PM - 4:00 PM",
-      location: "Church Garden",
-      description:
-        "Fun Easter celebration with egg hunting, Bible stories about Jesus' resurrection.",
-    },
-  ];
-
-  const teachers = [
-    {
-      name: "Teacher Mary Wanjiku",
-      title: "Children's Ministry Director",
-      image: "/childrenImages/child1.png",
-      description: "Passionate about nurturing young hearts for Jesus",
-    },
-    {
-      name: "Teacher John Kamau",
-      title: "Sunday School Coordinator",
-      image: "/childrenImages/child2.png",
-      description: "Making Bible stories come alive for children",
-    },
-    {
-      name: "Teacher Grace Akinyi",
-      title: "Worship & Music Leader",
-      image: "/childrenImages/child3.png",
-      description: "Leading children in joyful praise and worship",
-    },
-    {
-      name: "Teacher Peter Mwangi",
-      title: "Activities Coordinator",
-      image: "/childrenImages/child5.png",
-      description: "Creating fun and engaging learning experiences",
-    },
-  ];
-
   return (
     <>
       <style jsx>{`

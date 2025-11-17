@@ -52,7 +52,7 @@ const AdultsPage = () => {
     },
     {
       title: "Midweek Prayer Meetings",
-      time: "Wednesdays, 6:00 PM",
+      time: "Wednesdays, 11:00 AM",
       description: "Corporate prayer sessions for personal needs, church vision, and national concerns."
     },
     {
@@ -61,32 +61,6 @@ const AdultsPage = () => {
       description: "Combined fellowship gathering bringing together all adults for worship, teaching, and community building."
     }
   ];
-
-  const upcomingEvents = [
-    {
-      title: "Men's Conference 2025",
-      date: "February 20-22, 2025",
-      location: "Nakuru Conference Center",
-      description: "Three days of powerful teaching, worship, and fellowship for men of all ages.",
-      category: "men"
-    },
-    {
-      title: "Women's Day Celebration",
-      date: "March 8, 2025",
-      location: "National Headquarters",
-      description: "Celebrating and honoring the women of NTCG Kenya with special services and activities.",
-      category: "women"
-    },
-    {
-      title: "Marriage Enrichment Seminar",
-      date: "April 12-13, 2025",
-      location: "Various Branches",
-      description: "Practical workshops to strengthen marriages and build godly families.",
-      category: "couples"
-    }
-  ];
-
-
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-red-50">

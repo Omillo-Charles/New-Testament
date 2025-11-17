@@ -15,89 +15,6 @@ import {
 } from "react-icons/fa";
 
 const YouthPage = () => {
-  const upcomingEvents = [
-    {
-      title: "Youth Revival Night",
-      date: "December 15, 2025",
-      time: "6:00 PM",
-      location: "Main Sanctuary",
-      description: "A powerful night of worship, prayer, and testimonies",
-    },
-    {
-      title: "Christmas Outreach",
-      date: "December 22, 2025",
-      time: "10:00 AM",
-      location: "Community Center",
-      description: "Spreading Christmas joy to local families in need",
-    },
-    {
-      title: "New Year Youth Retreat",
-      date: "January 5-7, 2025",
-      time: "All Day",
-      location: "Nakuru Retreat Center",
-      description: "3-day spiritual retreat to start the year with purpose",
-    },
-  ];
-
-  const youthLeaders = [
-    {
-      name: "Pastor Sarah Mwangi",
-      title: "Youth Pastor",
-      image: "/youthImages/youth1.png",
-      description: "Leading our youth with passion and purpose",
-    },
-    {
-      name: "David Kimani",
-      title: "Worship Leader",
-      image: "/youthImages/youth2.png",
-      description: "Inspiring worship and praise among our youth",
-    },
-    {
-      name: "Grace Wanjiku",
-      title: "Outreach Coordinator",
-      image: "/youthImages/youth3.png",
-      description: "Organizing community service and missions",
-    },
-    {
-      name: "Michael Ochieng",
-      title: "Youth Secretary",
-      image: "/youthImages/youth4.png",
-      description: "Keeping our youth connected and informed",
-    },
-  ];
-
-  const ministryAreas = [
-    {
-      icon: <FaMusic className="text-5xl text-[#E02020]" />,
-      title: "Youth Choir",
-      description: "Join our vibrant choir and lift your voice in praise",
-    },
-    {
-      icon: <FaHandsHelping className="text-5xl text-[#E02020]" />,
-      title: "Community Outreach",
-      description: "Serve others and make a difference in our community",
-    },
-    {
-      icon: <FaBook className="text-5xl text-[#E02020]" />,
-      title: "Bible Study Groups",
-      description: "Grow deeper in God's Word with your peers",
-    },
-    {
-      icon: <FaRunning className="text-5xl text-[#E02020]" />,
-      title: "Sports Ministry",
-      description: "Fellowship through sports and healthy competition",
-    },
-    {
-      icon: <FaTheaterMasks className="text-5xl text-[#E02020]" />,
-      title: "Drama Team",
-      description: "Express faith through creative performances",
-    },
-    {
-      icon: <FaLaptop className="text-5xl text-[#E02020]" />,
-      title: "Media Team",
-      description: "Use technology to spread the Gospel message",
-    },
-  ];
 
   return (
     <>
@@ -239,19 +156,19 @@ const YouthPage = () => {
                 style={{ animationDelay: "1.2s" }}
               >
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-yellow-300">500+</div>
+                  <div className="text-3xl font-bold text-yellow-300">5000+</div>
                   <div className="text-sm uppercase tracking-wider">
                     Active Youth
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-yellow-300">15+</div>
+                  <div className="text-3xl font-bold text-yellow-300">200+</div>
                   <div className="text-sm uppercase tracking-wider">
                     Branches
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-yellow-300">40+</div>
+                  <div className="text-3xl font-bold text-yellow-300">20+</div>
                   <div className="text-sm uppercase tracking-wider">
                     Years Strong
                   </div>

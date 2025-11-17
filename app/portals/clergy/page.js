@@ -44,30 +44,6 @@ const ClergyPage = () => {
     },
   ];
 
-  const upcomingEvents = [
-    {
-      title: "National Clergy Conference",
-      date: "March 15-17, 2025",
-      location: "Nairobi Convention Center",
-      description:
-        "Annual gathering of all NTCG Kenya clergy for fellowship, training, and strategic planning.",
-    },
-    {
-      title: "Leadership Training Workshop",
-      date: "April 10, 2025",
-      location: "Regional Offices",
-      description:
-        "Practical leadership skills and church management training for pastors and leaders.",
-    },
-    {
-      title: "Ordination Service",
-      date: "May 5, 2025",
-      location: "National Headquarters",
-      description:
-        "Ordination ceremony for new ministers and recognition of ministry milestones.",
-    },
-  ];
-
   const quickLinks = [
     {
       title: "Submit Documents",
