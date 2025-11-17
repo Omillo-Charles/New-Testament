@@ -1,10 +1,45 @@
 "use client";
 
 import { useState } from "react";
-import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+import { IoChevronBack, IoChevronForward, IoChevronDown, IoChevronUp } from "react-icons/io5";
+import { FaMapMarkerAlt, FaClock, FaMoneyBillWave, FaUsers } from "react-icons/fa";
 
 export default function EventsCalendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [expandedEvent, setExpandedEvent] = useState(null);
+
+  // Events data
+  const events = [
+    {
+      name: "Youth Explosion",
+      startDate: new Date(2025, 11, 8), // December 8, 2025 (month is 0-indexed)
+      endDate: new Date(2025, 11, 13), // December 13, 2025
+      color: "#E02020",
+      time: "8:00 AM - 5:00 PM",
+      venue: "LifeSpring Academy, Langata, Nairobi",
+      registrationFee: "KES 1,500",
+      expectedAttendance: "2,000",
+    },
+  ];
+
+  const toggleEventDetails = (index) => {
+    setExpandedEvent(expandedEvent === index ? null : index);
+  };
+
+  // Check if a date has an event
+  const getEventForDate = (year, month, day) => {
+    const date = new Date(year, month, day);
+    return events.find((event) => {
+      return date >= event.startDate && date <= event.endDate;
+    });
+  };
+
+  // Filter upcoming events (events that haven't ended yet)
+  const upcomingEvents = events.filter((event) => {
+    const now = new Date();
+    now.setHours(0, 0, 0, 0); // Reset time to start of day for comparison
+    return event.endDate >= now;
+  });
 
   const monthNames = [
     "January",
@@ -147,28 +182,45 @@ export default function EventsCalendar() {
             <div className="grid grid-cols-7 gap-2">
               {calendarDays.map((day, index) => {
                 const isToday = isCurrentMonth && day === today.getDate();
+                const event = day
+                  ? getEventForDate(
+                      currentDate.getFullYear(),
+                      currentDate.getMonth(),
+                      day
+                    )
+                  : null;
 
                 return (
                   <div
                     key={index}
                     className={`
-                      aspect-square flex items-center justify-center
+                      aspect-square flex flex-col items-center justify-center
                       rounded-lg text-sm md:text-base
                       transition-all duration-200
                       ${day ? "hover:bg-blue-50 cursor-pointer" : ""}
                       ${
                         isToday
                           ? "bg-[#E02020] text-white font-bold hover:bg-[#B81C1C]"
+                          : event
+                          ? "bg-purple-100 text-purple-900 font-semibold hover:bg-purple-200"
                           : day
                           ? "bg-gray-50 text-gray-900"
                           : "bg-transparent"
                       }
                     `}
+                    title={event ? event.name : ""}
                   >
                     {day && (
-                      <span className="w-full h-full flex items-center justify-center">
-                        {day}
-                      </span>
+                      <>
+                        <span className="w-full h-full flex flex-col items-center justify-center p-1">
+                          <span>{day}</span>
+                          {event && (
+                            <span className="text-[10px] leading-tight text-center mt-0.5">
+                              {event.name}
+                            </span>
+                          )}
+                        </span>
+                      </>
                     )}
                   </div>
                 );
@@ -185,11 +237,120 @@ export default function EventsCalendar() {
               <span className="text-gray-700">Today</span>
             </div>
             <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-purple-100 border border-purple-200 rounded"></div>
+              <span className="text-gray-700">Event</span>
+            </div>
+            <div className="flex items-center gap-2">
               <div className="w-4 h-4 bg-gray-50 border border-gray-200 rounded"></div>
               <span className="text-gray-700">Regular Day</span>
             </div>
           </div>
         </div>
+
+        {/* Upcoming Events List */}
+        {upcomingEvents.length > 0 && (
+          <div className="mt-6 bg-white rounded-lg shadow-md p-6">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">
+              Upcoming Events
+            </h3>
+            <div className="space-y-3">
+              {upcomingEvents.map((event, index) => (
+                <div
+                  key={index}
+                  className="bg-purple-50 rounded-lg border border-purple-200 overflow-hidden"
+                >
+                  <div
+                    className="flex items-start gap-3 p-4 cursor-pointer hover:bg-purple-100 transition-colors"
+                    onClick={() => toggleEventDetails(index)}
+                  >
+                    <div className="flex-shrink-0 w-12 h-12 bg-purple-600 text-white rounded-lg flex flex-col items-center justify-center">
+                      <span className="text-xs font-semibold">
+                        {monthNames[event.startDate.getMonth()].slice(0, 3)}
+                      </span>
+                      <span className="text-lg font-bold">
+                        {event.startDate.getDate()}
+                      </span>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-gray-900">{event.name}</h4>
+                      <p className="text-sm text-gray-600">
+                        {monthNames[event.startDate.getMonth()]}{" "}
+                        {event.startDate.getDate()} -{" "}
+                        {monthNames[event.endDate.getMonth()]}{" "}
+                        {event.endDate.getDate()}, {event.endDate.getFullYear()}
+                      </p>
+                    </div>
+                    <div className="flex-shrink-0">
+                      {expandedEvent === index ? (
+                        <IoChevronUp className="w-6 h-6 text-purple-600" />
+                      ) : (
+                        <IoChevronDown className="w-6 h-6 text-purple-600" />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Dropdown Details */}
+                  {expandedEvent === index && (
+                    <div className="px-4 pb-4 pt-2 border-t border-purple-200 bg-white">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="flex items-start gap-3">
+                          <FaClock className="w-5 h-5 text-purple-600 mt-0.5" />
+                          <div>
+                            <p className="text-sm font-semibold text-gray-900">
+                              Date & Time
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              {monthNames[event.startDate.getMonth()]}{" "}
+                              {event.startDate.getDate()} -{" "}
+                              {monthNames[event.endDate.getMonth()]}{" "}
+                              {event.endDate.getDate()},{" "}
+                              {event.endDate.getFullYear()}
+                            </p>
+                            <p className="text-sm text-gray-600">{event.time}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-start gap-3">
+                          <FaMapMarkerAlt className="w-5 h-5 text-purple-600 mt-0.5" />
+                          <div>
+                            <p className="text-sm font-semibold text-gray-900">
+                              Venue
+                            </p>
+                            <p className="text-sm text-gray-600">{event.venue}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-start gap-3">
+                          <FaMoneyBillWave className="w-5 h-5 text-purple-600 mt-0.5" />
+                          <div>
+                            <p className="text-sm font-semibold text-gray-900">
+                              Registration Fee
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              {event.registrationFee}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-start gap-3">
+                          <FaUsers className="w-5 h-5 text-purple-600 mt-0.5" />
+                          <div>
+                            <p className="text-sm font-semibold text-gray-900">
+                              Expected Attendance
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              {event.expectedAttendance}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Call to Action */}
         <section className="mt-12 bg-white rounded-2xl shadow-xl p-8 md:p-12">

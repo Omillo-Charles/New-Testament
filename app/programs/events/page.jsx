@@ -76,6 +76,18 @@ const EventsPage = () => {
     },
     {
       id: 3,
+      title: "Youth Explosion",
+      category: "youth",
+      date: "December 8-13, 2025",
+      time: "8:00 AM - 5:00 PM",
+      location: "LifeSpring Academy",
+      description:
+        "An explosive week of worship, teaching, and fellowship for young people. Registration Fee: KSh 1,500. Expected Attendance: 2,000.",
+      image: "/youthImages/youth1.png",
+      recurring: false,
+    },
+    {
+      id: 13,
       title: "Youth Revival Night",
       category: "youth",
       date: "December 15, 2025",
