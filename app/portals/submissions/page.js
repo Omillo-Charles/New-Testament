@@ -30,6 +30,8 @@ const SubmissionsPage = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [error, setError] = useState("");
+  const [submissionId, setSubmissionId] = useState("");
 
   const submissionTypes = [
     "Monthly Report",
@@ -66,38 +68,93 @@ const SubmissionsPage = () => {
     setUploadedFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError("");
+    setSubmitSuccess(false);
 
-    // Simulate submission
-    setTimeout(() => {
+    try {
+      // Create FormData for file upload
+      const formDataToSend = new FormData();
+      
+      // Append form fields
+      Object.keys(formData).forEach(key => {
+        formDataToSend.append(key, formData[key]);
+      });
+
+      // Append files
+      uploadedFiles.forEach(file => {
+        formDataToSend.append('files', file);
+      });
+
+      // Send to API
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_SUBMISSIONS_API_URL || "http://localhost:5501/api/submissions",
+        {
+          method: "POST",
+          body: formDataToSend,
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitSuccess(true);
+        setSubmissionId(data.data.submissionId);
+        
+        // Reset form after 5 seconds
+        setTimeout(() => {
+          setSubmitSuccess(false);
+          setSubmissionId("");
+          setFormData({
+            fullName: "",
+            email: "",
+            phone: "",
+            position: "",
+            branch: "",
+            region: "",
+            submissionType: "",
+            subject: "",
+            description: "",
+            urgency: "normal",
+          });
+          setUploadedFiles([]);
+        }, 5000);
+      } else {
+        setError(data.message || "Failed to submit. Please try again.");
+      }
+    } catch (err) {
+      console.error("Submission error:", err);
+      setError("Failed to connect to the server. Please check your connection and try again.");
+    } finally {
       setIsSubmitting(false);
-      setSubmitSuccess(true);
-
-      // Reset form after 3 seconds
-      setTimeout(() => {
-        setSubmitSuccess(false);
-        setFormData({
-          fullName: "",
-          email: "",
-          phone: "",
-          position: "",
-          branch: "",
-          region: "",
-          submissionType: "",
-          subject: "",
-          description: "",
-          urgency: "normal",
-        });
-        setUploadedFiles([]);
-      }, 3000);
-    }, 2000);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
-      {/* Hero Section */}
+    <>
+      <style jsx>{`
+        @keyframes bounce-in {
+          0% {
+            opacity: 0;
+            transform: scale(0.9) translateY(-20px);
+          }
+          50% {
+            transform: scale(1.02);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
+        }
+
+        .animate-bounce-in {
+          animation: bounce-in 0.5s ease-out;
+        }
+      `}</style>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
+        {/* Hero Section */}
       <section className="relative bg-[#1E4E9A] text-white py-12 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
@@ -155,6 +212,56 @@ const SubmissionsPage = () => {
       {/* Submission Form */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
+          {/* Success Message */}
+          {submitSuccess && (
+            <div className="mb-6 bg-green-500 border-2 border-green-600 p-6 rounded-xl shadow-2xl animate-bounce-in">
+              <div className="flex items-start">
+                <div className="flex-shrink-0 w-12 h-12 bg-white rounded-full flex items-center justify-center mr-4">
+                  <FaCheckCircle className="w-8 h-8 text-green-500" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-white mb-2">✓ Submission Successful!</h3>
+                  <p className="text-green-50 text-lg mb-2">
+                    Your documents have been submitted successfully.
+                  </p>
+                  {submissionId && (
+                    <p className="text-white font-semibold bg-green-600 inline-block px-4 py-2 rounded-lg">
+                      Submission ID: {submissionId}
+                    </p>
+                  )}
+                  <p className="text-green-50 text-sm mt-3">
+                    Please save this ID for tracking your submission. You will also receive a confirmation email.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Error Message */}
+          {error && (
+            <div className="mb-6 bg-red-500 border-2 border-red-600 p-6 rounded-xl shadow-2xl">
+              <div className="flex items-start">
+                <div className="flex-shrink-0 w-12 h-12 bg-white rounded-full flex items-center justify-center mr-4">
+                  <svg className="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-white mb-2">⚠ Submission Failed</h3>
+                  <p className="text-red-50 text-lg">{error}</p>
+                </div>
+                <button 
+                  onClick={() => setError("")}
+                  className="flex-shrink-0 text-white hover:text-red-100 ml-4"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          )}
+
           <form
             onSubmit={handleSubmit}
             className="bg-white rounded-2xl shadow-xl p-8"
@@ -485,7 +592,8 @@ const SubmissionsPage = () => {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 
