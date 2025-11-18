@@ -1,13 +1,99 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-
-export const metadata = {
-  title: "Register - New Testament Church of God Kenya",
-  description: "Create your NTCG Kenya account to access member resources and services.",
-};
+import { useRouter } from "next/navigation";
 
 export default function Register() {
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    church: "",
+    password: "",
+    confirmPassword: "",
+    terms: false,
+    newsletter: false,
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    // Validate passwords match
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match");
+      setLoading(false);
+      return;
+    }
+
+    // Validate terms acceptance
+    if (!formData.terms) {
+      setError("You must accept the Terms of Service and Privacy Policy");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_AUTH_API_URL + "/register" || "http://localhost:5502/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            phone: formData.phone,
+            church: formData.church,
+            password: formData.password,
+            confirmPassword: formData.confirmPassword,
+            newsletter: formData.newsletter,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        // Store tokens
+        localStorage.setItem("accessToken", data.data.accessToken);
+        if (data.data.refreshToken) {
+          localStorage.setItem("refreshToken", data.data.refreshToken);
+        }
+        
+        setSuccess(true);
+        
+        // Redirect to home or dashboard after 2 seconds
+        setTimeout(() => {
+          router.push("/");
+        }, 2000);
+      } else {
+        setError(data.message || "Registration failed. Please try again.");
+      }
+    } catch (err) {
+      console.error("Registration error:", err);
+      setError("Failed to connect to the server. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -47,7 +133,23 @@ export default function Register() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10 border border-gray-100">
-          <form className="space-y-6">
+          {/* Success Message */}
+          {success && (
+            <div className="mb-6 bg-green-500 text-white p-4 rounded-lg">
+              <p className="font-semibold">✓ Registration Successful!</p>
+              <p className="text-sm">Redirecting you to the homepage...</p>
+            </div>
+          )}
+
+          {/* Error Message */}
+          {error && (
+            <div className="mb-6 bg-red-500 text-white p-4 rounded-lg">
+              <p className="font-semibold">⚠ Registration Failed</p>
+              <p className="text-sm">{error}</p>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
@@ -60,7 +162,10 @@ export default function Register() {
                     type="text"
                     autoComplete="given-name"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    disabled={loading}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900 disabled:bg-gray-100"
                     placeholder="First name"
                   />
                 </div>
@@ -77,7 +182,10 @@ export default function Register() {
                     type="text"
                     autoComplete="family-name"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    disabled={loading}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900 disabled:bg-gray-100"
                     placeholder="Last name"
                   />
                 </div>
@@ -95,7 +203,10 @@ export default function Register() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900"
+                  value={formData.email}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900 disabled:bg-gray-100"
                   placeholder="Enter your email"
                 />
               </div>
@@ -111,7 +222,10 @@ export default function Register() {
                   name="phone"
                   type="tel"
                   autoComplete="tel"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900 disabled:bg-gray-100"
                   placeholder="Enter your phone number"
                 />
               </div>
@@ -125,7 +239,10 @@ export default function Register() {
                 <select
                   id="church"
                   name="church"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900"
+                  value={formData.church}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900 disabled:bg-gray-100"
                 >
                   <option value="">Select your home church</option>
                   <option value="nairobi-central">Nairobi Central</option>
@@ -150,7 +267,10 @@ export default function Register() {
                   type="password"
                   autoComplete="new-password"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900"
+                  value={formData.password}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900 disabled:bg-gray-100"
                   placeholder="Create a password"
                 />
               </div>
@@ -170,7 +290,10 @@ export default function Register() {
                   type="password"
                   autoComplete="new-password"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900 disabled:bg-gray-100"
                   placeholder="Confirm your password"
                 />
               </div>
@@ -183,7 +306,10 @@ export default function Register() {
                   name="terms"
                   type="checkbox"
                   required
-                  className="h-4 w-4 text-[#1E4E9A] focus:ring-[#1E4E9A] border-gray-300 rounded"
+                  checked={formData.terms}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className="h-4 w-4 text-[#1E4E9A] focus:ring-[#1E4E9A] border-gray-300 rounded disabled:opacity-50"
                 />
               </div>
               <div className="ml-3 text-sm">
@@ -212,7 +338,10 @@ export default function Register() {
                   id="newsletter"
                   name="newsletter"
                   type="checkbox"
-                  className="h-4 w-4 text-[#1E4E9A] focus:ring-[#1E4E9A] border-gray-300 rounded"
+                  checked={formData.newsletter}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className="h-4 w-4 text-[#1E4E9A] focus:ring-[#1E4E9A] border-gray-300 rounded disabled:opacity-50"
                 />
               </div>
               <div className="ml-3 text-sm">
@@ -225,9 +354,20 @@ export default function Register() {
             <div>
               <button
                 type="submit"
-                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#E02020] hover:bg-[#B81C1C] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E02020] transition-colors duration-200"
+                disabled={loading}
+                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#E02020] hover:bg-[#B81C1C] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E02020] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Create Account
+                {loading ? (
+                  <span className="flex items-center">
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Creating Account...
+                  </span>
+                ) : (
+                  "Create Account"
+                )}
               </button>
             </div>
           </form>
@@ -245,6 +385,7 @@ export default function Register() {
             <div className="mt-6 grid grid-cols-2 gap-3">
               <button
                 type="button"
+                onClick={() => window.location.href = `${process.env.NEXT_PUBLIC_SOCIAL_AUTH_API_URL || 'http://localhost:5503/api/auth'}/google`}
                 className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -258,6 +399,7 @@ export default function Register() {
 
               <button
                 type="button"
+                onClick={() => window.location.href = `${process.env.NEXT_PUBLIC_SOCIAL_AUTH_API_URL || 'http://localhost:5503/api/auth'}/facebook`}
                 className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
