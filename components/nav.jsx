@@ -10,7 +10,44 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isPortalsDropdownOpen, setIsPortalsDropdownOpen] = useState(false);
   const [isProgramsDropdownOpen, setIsProgramsDropdownOpen] = useState(false);
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const pathname = usePathname();
+
+  // Check authentication status
+  useEffect(() => {
+    const checkAuth = () => {
+      const accessToken = localStorage.getItem("accessToken");
+      const userData = localStorage.getItem("user");
+      
+      if (accessToken && userData) {
+        try {
+          setUser(JSON.parse(userData));
+          setIsAuthenticated(true);
+        } catch (error) {
+          console.error("Error parsing user data:", error);
+          setIsAuthenticated(false);
+        }
+      } else {
+        setIsAuthenticated(false);
+        setUser(null);
+      }
+    };
+
+    checkAuth();
+    
+    // Listen for storage changes (login/logout in other tabs)
+    window.addEventListener("storage", checkAuth);
+    
+    // Listen for custom auth state change events
+    window.addEventListener("authStateChanged", checkAuth);
+    
+    return () => {
+      window.removeEventListener("storage", checkAuth);
+      window.removeEventListener("authStateChanged", checkAuth);
+    };
+  }, [pathname]);
 
   // Close mobile menu when route changes
   useEffect(() => {
@@ -18,6 +55,7 @@ const Navbar = () => {
     setIsDropdownOpen(false);
     setIsPortalsDropdownOpen(false);
     setIsProgramsDropdownOpen(false);
+    setIsProfileDropdownOpen(false);
   }, [pathname]);
 
   // Close dropdowns when clicking outside
@@ -35,13 +73,31 @@ const Navbar = () => {
       ) {
         setIsProgramsDropdownOpen(false);
       }
+      if (isProfileDropdownOpen && !event.target.closest(".profile-dropdown") && !event.target.closest(".profile-dropdown-mobile")) {
+        setIsProfileDropdownOpen(false);
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isDropdownOpen, isPortalsDropdownOpen, isProgramsDropdownOpen]);
+  }, [isDropdownOpen, isPortalsDropdownOpen, isProgramsDropdownOpen, isProfileDropdownOpen]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("user");
+    localStorage.removeItem("authProvider");
+    setIsAuthenticated(false);
+    setUser(null);
+    setIsProfileDropdownOpen(false);
+    
+    // Trigger auth state change event
+    window.dispatchEvent(new Event('authStateChanged'));
+    
+    window.location.href = "/";
+  };
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -319,20 +375,133 @@ const Navbar = () => {
 
           {/* Auth Buttons & Mobile Menu Toggle */}
           <div className="flex items-center space-x-4">
-            <div className="hidden sm:flex items-center space-x-3">
-              <Link
-                href="/login"
-                className="text-gray-800 hover:text-[#1E4E9A] font-medium transition-colors duration-200"
-              >
-                Login
-              </Link>
-              <Link
-                href="/register"
-                className="bg-[#E02020] hover:bg-[#B81C1C] text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
-              >
-                Register
-              </Link>
-            </div>
+            {/* Desktop Auth/Profile */}
+            {isAuthenticated ? (
+              <div className="hidden md:flex items-center space-x-3">
+                <div className="relative profile-dropdown">
+                  <button
+                    onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+                    className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                    aria-label="Profile menu"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-[#1E4E9A] border-2 border-[#E02020] flex items-center justify-center text-white font-semibold">
+                      {user?.firstName?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || "U"}
+                    </div>
+                    <svg
+                      className={`h-4 w-4 text-gray-600 transition-transform duration-200 ${
+                        isProfileDropdownOpen ? "rotate-180" : ""
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+
+                  {/* Profile Dropdown Menu */}
+                  {isProfileDropdownOpen && (
+                    <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                      <div className="px-4 py-3 border-b border-gray-100">
+                        <p className="text-sm font-semibold text-gray-900">
+                          {user?.firstName && user?.lastName 
+                            ? `${user.firstName} ${user.lastName}`
+                            : user?.email}
+                        </p>
+                        <p className="text-xs text-gray-500 mt-1">{user?.email}</p>
+                      </div>
+                      <Link
+                        href="/profile"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1E4E9A] transition-colors"
+                        onClick={() => setIsProfileDropdownOpen(false)}
+                      >
+                        My Profile
+                      </Link>
+                      <Link
+                        href="/profile/settings"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1E4E9A] transition-colors"
+                        onClick={() => setIsProfileDropdownOpen(false)}
+                      >
+                        Settings
+                      </Link>
+                      <button
+                        onClick={handleLogout}
+                        className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div className="hidden md:flex items-center space-x-3">
+                <Link
+                  href="/login"
+                  className="text-gray-800 hover:text-[#1E4E9A] font-medium transition-colors duration-200"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/register"
+                  className="bg-[#E02020] hover:bg-[#B81C1C] text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+                >
+                  Register
+                </Link>
+              </div>
+            )}
+
+            {/* Mobile Profile Icon (beside hamburger) */}
+            {isAuthenticated && (
+              <div className="md:hidden relative profile-dropdown-mobile">
+                <button
+                  onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+                  className="w-8 h-8 rounded-full bg-[#1E4E9A] border-2 border-[#E02020] flex items-center justify-center text-white font-semibold text-sm"
+                  aria-label="Profile menu"
+                >
+                  {user?.firstName?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || "U"}
+                </button>
+
+                {/* Mobile Profile Dropdown Menu */}
+                {isProfileDropdownOpen && (
+                  <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                    <div className="px-4 py-3 border-b border-gray-100">
+                      <p className="text-sm font-semibold text-gray-900">
+                        {user?.firstName && user?.lastName 
+                          ? `${user.firstName} ${user.lastName}`
+                          : user?.email}
+                      </p>
+                      <p className="text-xs text-gray-500 mt-1">{user?.email}</p>
+                    </div>
+                    <Link
+                      href="/profile"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1E4E9A] transition-colors"
+                      onClick={() => setIsProfileDropdownOpen(false)}
+                    >
+                      My Profile
+                    </Link>
+                    <Link
+                      href="/profile/settings"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1E4E9A] transition-colors"
+                      onClick={() => setIsProfileDropdownOpen(false)}
+                    >
+                      Settings
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Mobile menu button */}
             <button
@@ -501,24 +670,29 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-
-              <div className="flex flex-col space-y-2 mt-4">
-                <Link
-                  href="/login"
-                  className="text-center py-2 px-4 rounded-lg text-gray-800 hover:bg-gray-50 hover:text-[#1E4E9A] transition-colors"
-                >
-                  Login
-                </Link>
-                <Link
-                  href="/register"
-                  className="bg-[#E02020] hover:bg-[#B81C1C] text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 text-center"
-                >
-                  Register
-                </Link>
-              </div>
             </div>
           </div>
         </div>
+
+        {/* Mobile Auth Buttons - Below Menu (when not authenticated) */}
+        {isOpen && !isAuthenticated && (
+          <div className="md:hidden bg-gray-50 border-t border-gray-200 px-4 py-4">
+            <div className="flex flex-col space-y-2">
+              <Link
+                href="/login"
+                className="text-center py-2 px-4 rounded-lg text-gray-800 hover:bg-white hover:text-[#1E4E9A] transition-colors"
+              >
+                Login
+              </Link>
+              <Link
+                href="/register"
+                className="bg-[#E02020] hover:bg-[#B81C1C] text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 text-center"
+              >
+                Register
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
