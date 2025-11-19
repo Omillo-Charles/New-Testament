@@ -140,40 +140,34 @@ export default function Profile() {
             </h2>
             <div className="space-y-5">
               <div>
-                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">First Name</label>
-                <p className="text-base text-gray-900">{user.firstName || "Not provided"}</p>
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Last Name</label>
-                <p className="text-base text-gray-900">{user.lastName || "Not provided"}</p>
+                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Display Name</label>
+                <p className="text-base text-gray-900">{user.firstName || user.fullName || "Not provided"}</p>
               </div>
               <div>
                 <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Email Address</label>
                 <p className="text-base text-gray-900">{user.email}</p>
               </div>
-              <div>
-                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Phone Number</label>
-                <p className="text-base text-gray-900">{user.phone || "Not provided"}</p>
-              </div>
             </div>
           </div>
 
           {/* Church Information */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-              <svg className="w-5 h-5 mr-2 text-[#E02020]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-              </svg>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h2 className="text-lg font-bold text-gray-900 mb-6 pb-3 border-b border-gray-200 flex items-center">
+              <div className="w-8 h-8 rounded-lg bg-[#E02020] bg-opacity-10 flex items-center justify-center mr-3">
+                <svg className="w-5 h-5 text-[#E02020]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
               Church Information
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-5">
               <div>
-                <label className="text-sm font-medium text-gray-500">Home Church</label>
-                <p className="mt-1 text-gray-900">{user.church || "Not specified"}</p>
+                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Home Church</label>
+                <p className="text-base text-gray-900">{user.church || "Not specified"}</p>
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-500">Member Since</label>
-                <p className="mt-1 text-gray-900">
+                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Member Since</label>
+                <p className="text-base text-gray-900">
                   {user.createdAt 
                     ? new Date(user.createdAt).toLocaleDateString('en-US', { 
                         year: 'numeric', 
@@ -183,31 +177,23 @@ export default function Profile() {
                     : "Not available"}
                 </p>
               </div>
-              <div>
-                <label className="text-sm font-medium text-gray-500">Newsletter Subscription</label>
-                <p className="mt-1 text-gray-900">
-                  {user.newsletter ? (
-                    <span className="text-green-600">✓ Subscribed</span>
-                  ) : (
-                    <span className="text-gray-500">Not subscribed</span>
-                  )}
-                </p>
-              </div>
             </div>
           </div>
 
           {/* Account Information */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-              <svg className="w-5 h-5 mr-2 text-[#1E4E9A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h2 className="text-lg font-bold text-gray-900 mb-6 pb-3 border-b border-gray-200 flex items-center">
+              <div className="w-8 h-8 rounded-lg bg-[#1E4E9A] bg-opacity-10 flex items-center justify-center mr-3">
+                <svg className="w-5 h-5 text-[#1E4E9A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
               Account Information
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-5">
               <div>
-                <label className="text-sm font-medium text-gray-500">Account Status</label>
-                <p className="mt-1">
+                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Account Status</label>
+                <p className="text-base">
                   {user.isActive !== false ? (
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
                       Active
@@ -220,18 +206,18 @@ export default function Profile() {
                 </p>
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-500">Email Verification</label>
-                <p className="mt-1">
+                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Email Verification</label>
+                <p className="text-base">
                   {user.isEmailVerified ? (
-                    <span className="text-green-600">✓ Verified</span>
+                    <span className="text-green-600 font-medium">✓ Verified</span>
                   ) : (
-                    <span className="text-yellow-600">⚠ Not verified</span>
+                    <span className="text-yellow-600 font-medium">⚠ Not verified</span>
                   )}
                 </p>
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-500">Last Login</label>
-                <p className="mt-1 text-gray-900">
+                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Last Login</label>
+                <p className="text-base text-gray-900">
                   {user.lastLogin 
                     ? new Date(user.lastLogin).toLocaleString('en-US', { 
                         year: 'numeric', 
@@ -247,11 +233,13 @@ export default function Profile() {
           </div>
 
           {/* Quick Actions */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-              <svg className="w-5 h-5 mr-2 text-[#E02020]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h2 className="text-lg font-bold text-gray-900 mb-6 pb-3 border-b border-gray-200 flex items-center">
+              <div className="w-8 h-8 rounded-lg bg-[#E02020] bg-opacity-10 flex items-center justify-center mr-3">
+                <svg className="w-5 h-5 text-[#E02020]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
               Quick Actions
             </h2>
             <div className="space-y-3">

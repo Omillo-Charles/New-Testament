@@ -3,23 +3,20 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import ChurchSelector from "@/components/ChurchSelector";
 
 export default function Register() {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
-    phone: "",
     church: "",
     password: "",
-    confirmPassword: "",
     terms: false,
-    newsletter: false,
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -29,17 +26,17 @@ export default function Register() {
     }));
   };
 
+  const handleChurchChange = (church) => {
+    setFormData(prev => ({
+      ...prev,
+      church: church,
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
-
-    // Validate passwords match
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
-      setLoading(false);
-      return;
-    }
 
     // Validate terms acceptance
     if (!formData.terms) {
@@ -57,14 +54,9 @@ export default function Register() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            firstName: formData.firstName,
-            lastName: formData.lastName,
             email: formData.email,
-            phone: formData.phone,
             church: formData.church,
             password: formData.password,
-            confirmPassword: formData.confirmPassword,
-            newsletter: formData.newsletter,
           }),
         }
       );
@@ -72,26 +64,15 @@ export default function Register() {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        // Store tokens
-        localStorage.setItem("accessToken", data.data.accessToken);
-        if (data.data.refreshToken) {
-          localStorage.setItem("refreshToken", data.data.refreshToken);
-        }
-        
-        // Store user data
-        if (data.data.user) {
-          localStorage.setItem("user", JSON.stringify(data.data.user));
-        }
-        
-        // Trigger auth state change event
-        window.dispatchEvent(new Event('authStateChanged'));
+        // Store email temporarily for verification
+        localStorage.setItem("verificationEmail", formData.email);
         
         setSuccess(true);
         
-        // Redirect to home or dashboard after 2 seconds
+        // Redirect to verify email page after 1 second
         setTimeout(() => {
-          router.push("/");
-        }, 2000);
+          router.push("/verify-email");
+        }, 1000);
       } else {
         setError(data.message || "Registration failed. Please try again.");
       }
@@ -145,7 +126,7 @@ export default function Register() {
           {success && (
             <div className="mb-6 bg-green-500 text-white p-4 rounded-lg">
               <p className="font-semibold">✓ Registration Successful!</p>
-              <p className="text-sm">Redirecting you to the homepage...</p>
+              <p className="text-sm">Redirecting you to verify your email...</p>
             </div>
           )}
 
@@ -158,51 +139,9 @@ export default function Register() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
-                  First Name
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="firstName"
-                    name="firstName"
-                    type="text"
-                    autoComplete="given-name"
-                    required
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    disabled={loading}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900 disabled:bg-gray-100"
-                    placeholder="First name"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
-                  Last Name
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="lastName"
-                    name="lastName"
-                    type="text"
-                    autoComplete="family-name"
-                    required
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    disabled={loading}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900 disabled:bg-gray-100"
-                    placeholder="Last name"
-                  />
-                </div>
-              </div>
-            </div>
-
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email address
+                Email Address *
               </label>
               <div className="mt-1">
                 <input
@@ -214,96 +153,84 @@ export default function Register() {
                   value={formData.email}
                   onChange={handleChange}
                   disabled={loading}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900 disabled:bg-gray-100"
-                  placeholder="Enter your email"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                Phone Number
-              </label>
-              <div className="mt-1">
-                <input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  autoComplete="tel"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  disabled={loading}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900 disabled:bg-gray-100"
-                  placeholder="Enter your phone number"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900 disabled:bg-gray-100"
+                  placeholder="Enter your email address"
                 />
               </div>
             </div>
 
             <div>
               <label htmlFor="church" className="block text-sm font-medium text-gray-700">
-                Home Church (Optional)
+                Home Church *
               </label>
               <div className="mt-1">
-                <select
-                  id="church"
-                  name="church"
+                <ChurchSelector
                   value={formData.church}
-                  onChange={handleChange}
+                  onChange={handleChurchChange}
                   disabled={loading}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900 disabled:bg-gray-100"
-                >
-                  <option value="">Select your home church</option>
-                  <option value="nairobi-central">Nairobi Central</option>
-                  <option value="karen">Karen</option>
-                  <option value="mombasa">Mombasa</option>
-                  <option value="kisumu">Kisumu</option>
-                  <option value="nakuru">Nakuru</option>
-                  <option value="eldoret">Eldoret</option>
-                  <option value="other">Other</option>
-                </select>
+                  required
+                />
               </div>
             </div>
 
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
+                Password *
               </label>
-              <div className="mt-1">
+              <div className="mt-1 relative">
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   autoComplete="new-password"
                   required
                   value={formData.password}
                   onChange={handleChange}
                   disabled={loading}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900 disabled:bg-gray-100"
-                  placeholder="Create a password"
+                  className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900 disabled:bg-gray-100"
+                  placeholder="Create a strong password"
                 />
-              </div>
-              <p className="mt-1 text-xs text-gray-500">
-                Must be at least 8 characters long
-              </p>
-            </div>
-
-            <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
-                Confirm Password
-              </label>
-              <div className="mt-1">
-                <input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  autoComplete="new-password"
-                  required
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
                   disabled={loading}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900 disabled:bg-gray-100"
-                  placeholder="Confirm your password"
-                />
+                >
+                  {showPassword ? (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                    </svg>
+                  ) : (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+              <div className="mt-2 flex items-center space-x-2">
+                {formData.password.length > 0 && (
+                  <>
+                    {formData.password.length >= 8 ? (
+                      <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    ) : (
+                      <svg className="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                  </>
+                )}
+                <p className={`text-xs ${
+                  formData.password.length === 0 
+                    ? "text-gray-500" 
+                    : formData.password.length >= 8 
+                    ? "text-green-600 font-medium" 
+                    : "text-red-600 font-medium"
+                }`}>
+                  Must be at least 8 characters long {formData.password.length > 0 && `(${formData.password.length}/8)`}
+                </p>
               </div>
             </div>
 
@@ -340,24 +267,7 @@ export default function Register() {
               </div>
             </div>
 
-            <div className="flex items-start">
-              <div className="flex items-center h-5">
-                <input
-                  id="newsletter"
-                  name="newsletter"
-                  type="checkbox"
-                  checked={formData.newsletter}
-                  onChange={handleChange}
-                  disabled={loading}
-                  className="h-4 w-4 text-[#1E4E9A] focus:ring-[#1E4E9A] border-gray-300 rounded disabled:opacity-50"
-                />
-              </div>
-              <div className="ml-3 text-sm">
-                <label htmlFor="newsletter" className="text-gray-700">
-                  I would like to receive updates about church events and programs
-                </label>
-              </div>
-            </div>
+
 
             <div>
               <button

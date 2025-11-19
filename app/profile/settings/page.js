@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import ChurchSelector from "@/components/ChurchSelector";
 
 export default function ProfileSettings() {
   const router = useRouter();
@@ -13,12 +14,8 @@ export default function ProfileSettings() {
   const [activeTab, setActiveTab] = useState("personal");
 
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
-    phone: "",
     church: "",
-    newsletter: false,
   });
 
   const [passwordData, setPasswordData] = useState({
@@ -41,12 +38,8 @@ export default function ProfileSettings() {
         const parsedUser = JSON.parse(userData);
         setUser(parsedUser);
         setFormData({
-          firstName: parsedUser.firstName || "",
-          lastName: parsedUser.lastName || "",
           email: parsedUser.email || "",
-          phone: parsedUser.phone || "",
           church: parsedUser.church || "",
-          newsletter: parsedUser.newsletter || false,
         });
       } catch (error) {
         console.error("Error parsing user data:", error);
@@ -97,11 +90,7 @@ export default function ProfileSettings() {
           Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify({
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          phone: formData.phone,
           church: formData.church,
-          newsletter: formData.newsletter,
         }),
       });
 
@@ -272,40 +261,6 @@ export default function ProfileSettings() {
           {activeTab === "personal" && (
             <form onSubmit={handleSubmit} className="p-6">
               <div className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
-                      First Name
-                    </label>
-                    <input
-                      type="text"
-                      id="firstName"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      disabled={saving}
-                      placeholder="Enter your first name"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent disabled:bg-gray-100 text-gray-900 placeholder-gray-400"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
-                      Last Name
-                    </label>
-                    <input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      disabled={saving}
-                      placeholder="Enter your last name"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent disabled:bg-gray-100 text-gray-900 placeholder-gray-400"
-                    />
-                  </div>
-                </div>
-
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                     Email Address
@@ -322,64 +277,14 @@ export default function ProfileSettings() {
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    disabled={saving}
-                    placeholder="Enter your phone number"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent disabled:bg-gray-100 text-gray-900 placeholder-gray-400"
-                  />
-                </div>
-
-                <div>
                   <label htmlFor="church" className="block text-sm font-medium text-gray-700 mb-2">
                     Home Church
                   </label>
-                  <select
-                    id="church"
-                    name="church"
+                  <ChurchSelector
                     value={formData.church}
-                    onChange={handleChange}
+                    onChange={(church) => setFormData(prev => ({ ...prev, church }))}
                     disabled={saving}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent disabled:bg-gray-100 text-gray-900"
-                  >
-                    <option value="" className="text-gray-400">Select your home church</option>
-                    <option value="nairobi-central">Nairobi Central</option>
-                    <option value="karen">Karen</option>
-                    <option value="mombasa">Mombasa</option>
-                    <option value="kisumu">Kisumu</option>
-                    <option value="nakuru">Nakuru</option>
-                    <option value="eldoret">Eldoret</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="newsletter"
-                      name="newsletter"
-                      type="checkbox"
-                      checked={formData.newsletter}
-                      onChange={handleChange}
-                      disabled={saving}
-                      className="h-4 w-4 text-[#1E4E9A] focus:ring-[#1E4E9A] border-gray-300 rounded disabled:opacity-50"
-                    />
-                  </div>
-                  <div className="ml-3">
-                    <label htmlFor="newsletter" className="text-sm font-medium text-gray-700">
-                      Newsletter Subscription
-                    </label>
-                    <p className="text-xs text-gray-500 mt-1">
-                      Receive updates about church events and programs
-                    </p>
-                  </div>
+                  />
                 </div>
               </div>
 

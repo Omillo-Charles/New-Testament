@@ -13,6 +13,7 @@ const Navbar = () => {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const pathname = usePathname();
 
   // Check authentication status
@@ -84,19 +85,28 @@ const Navbar = () => {
     };
   }, [isDropdownOpen, isPortalsDropdownOpen, isProgramsDropdownOpen, isProfileDropdownOpen]);
 
-  const handleLogout = () => {
+  const handleLogoutClick = () => {
+    setShowLogoutModal(true);
+    setIsProfileDropdownOpen(false);
+  };
+
+  const confirmLogout = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("user");
     localStorage.removeItem("authProvider");
     setIsAuthenticated(false);
     setUser(null);
-    setIsProfileDropdownOpen(false);
+    setShowLogoutModal(false);
     
     // Trigger auth state change event
     window.dispatchEvent(new Event('authStateChanged'));
     
     window.location.href = "/";
+  };
+
+  const cancelLogout = () => {
+    setShowLogoutModal(false);
   };
 
   const navLinks = [
@@ -415,6 +425,20 @@ const Navbar = () => {
                         </p>
                         <p className="text-xs text-gray-500 mt-1">{user?.email}</p>
                       </div>
+                      {(user?.role === "admin" || user?.role === "super-admin") && (
+                        <Link
+                          href="/admin"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1E4E9A] transition-colors border-b border-gray-100"
+                          onClick={() => setIsProfileDropdownOpen(false)}
+                        >
+                          <span className="flex items-center">
+                            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                            Admin Dashboard
+                          </span>
+                        </Link>
+                      )}
                       <Link
                         href="/profile"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1E4E9A] transition-colors"
@@ -430,7 +454,7 @@ const Navbar = () => {
                         Settings
                       </Link>
                       <button
-                        onClick={handleLogout}
+                        onClick={handleLogoutClick}
                         className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
                       >
                         Logout
@@ -478,6 +502,20 @@ const Navbar = () => {
                       </p>
                       <p className="text-xs text-gray-500 mt-1">{user?.email}</p>
                     </div>
+                    {(user?.role === "admin" || user?.role === "super-admin") && (
+                      <Link
+                        href="/admin"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1E4E9A] transition-colors border-b border-gray-100"
+                        onClick={() => setIsProfileDropdownOpen(false)}
+                      >
+                        <span className="flex items-center">
+                          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                          </svg>
+                          Admin Dashboard
+                        </span>
+                      </Link>
+                    )}
                     <Link
                       href="/profile"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1E4E9A] transition-colors"
@@ -493,7 +531,7 @@ const Navbar = () => {
                       Settings
                     </Link>
                     <button
-                      onClick={handleLogout}
+                      onClick={handleLogoutClick}
                       className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
                     >
                       Logout
@@ -690,6 +728,39 @@ const Navbar = () => {
               >
                 Register
               </Link>
+            </div>
+          </div>
+        )}
+
+        {/* Logout Confirmation Modal */}
+        {showLogoutModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-6">
+              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-red-100 mx-auto mb-4">
+                <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 text-center mb-2">
+                Confirm Logout
+              </h3>
+              <p className="text-gray-600 text-center mb-6">
+                Are you sure you want to logout? You'll need to sign in again to access your account.
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={cancelLogout}
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors font-medium"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={confirmLogout}
+                  className="flex-1 px-4 py-2 bg-[#E02020] hover:bg-[#B81C1C] text-white rounded-lg transition-colors font-medium"
+                >
+                  Logout
+                </button>
+              </div>
             </div>
           </div>
         )}

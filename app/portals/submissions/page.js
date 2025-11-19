@@ -283,7 +283,7 @@ const SubmissionsPage = () => {
                     value={formData.fullName}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors text-gray-900 placeholder-gray-400"
                     placeholder="Rev. John Doe"
                   />
                 </div>
@@ -298,7 +298,7 @@ const SubmissionsPage = () => {
                     value={formData.position}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors text-gray-900 placeholder-gray-400"
                     placeholder="Senior Pastor, Youth Leader, etc."
                   />
                 </div>
@@ -315,7 +315,7 @@ const SubmissionsPage = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full pl-10 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors"
+                      className="w-full pl-10 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors text-gray-900 placeholder-gray-400"
                       placeholder="pastor@example.com"
                     />
                   </div>
@@ -333,7 +333,7 @@ const SubmissionsPage = () => {
                       value={formData.phone}
                       onChange={handleInputChange}
                       required
-                      className="w-full pl-10 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors"
+                      className="w-full pl-10 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors text-gray-900 placeholder-gray-400"
                       placeholder="+254 700 000 000"
                     />
                   </div>
@@ -358,7 +358,7 @@ const SubmissionsPage = () => {
                     value={formData.branch}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors text-gray-900 placeholder-gray-400"
                     placeholder="NTCG Nairobi Central"
                   />
                 </div>
@@ -374,9 +374,9 @@ const SubmissionsPage = () => {
                       value={formData.region}
                       onChange={handleInputChange}
                       required
-                      className="w-full pl-10 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors appearance-none"
+                      className="w-full pl-10 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors appearance-none text-gray-900"
                     >
-                      <option value="">Select Region</option>
+                      <option value="" className="text-gray-400">Select Region</option>
                       <option value="nairobi">Nairobi Region</option>
                       <option value="central">Central Region</option>
                       <option value="coast">Coast Region</option>
@@ -407,9 +407,9 @@ const SubmissionsPage = () => {
                       value={formData.submissionType}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors"
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors text-gray-900"
                     >
-                      <option value="">Select Type</option>
+                      <option value="" className="text-gray-400">Select Type</option>
                       {submissionTypes.map((type) => (
                         <option key={type} value={type}>
                           {type}
@@ -427,7 +427,7 @@ const SubmissionsPage = () => {
                       value={formData.urgency}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors"
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors text-gray-900"
                     >
                       {urgencyLevels.map((level) => (
                         <option key={level.value} value={level.value}>
@@ -448,7 +448,7 @@ const SubmissionsPage = () => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors text-gray-900 placeholder-gray-400"
                     placeholder="Brief subject of your submission"
                   />
                 </div>
@@ -463,7 +463,7 @@ const SubmissionsPage = () => {
                     onChange={handleInputChange}
                     required
                     rows="5"
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors resize-none"
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1E4E9A] focus:outline-none transition-colors resize-none text-gray-900 placeholder-gray-400"
                     placeholder="Provide detailed information about your submission..."
                   ></textarea>
                 </div>
