@@ -51,34 +51,48 @@ export default function Contact() {
     setSuccess(false);
 
     try {
-      const response = await fetch(process.env.NEXT_PUBLIC_CONTACT_API_URL || "http://localhost:5500/api/contact", {
+      const apiUrl = process.env.NEXT_PUBLIC_CONTACT_API_URL || "http://localhost:5500/api/contact";
+      
+      const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        mode: "cors", // Explicitly set CORS mode
         body: JSON.stringify(formData),
       });
 
+      if (!response.ok) {
+        // Try to parse error message from response
+        const data = await response.json().catch(() => ({ message: "Server error" }));
+        throw new Error(data.message || `Server returned ${response.status}`);
+      }
+
       const data = await response.json();
 
-      if (response.ok) {
-        setSuccess(true);
-        setFormData({
-          fullName: "",
-          email: "",
-          phone: "",
-          subject: "",
-          message: ""
-        });
-        
-        // Scroll to top to show success message
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        setError(data.message || "Something went wrong. Please try again.");
-      }
+      setSuccess(true);
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: ""
+      });
+      
+      // Scroll to top to show success message
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
     } catch (err) {
-      setError("Failed to send message. Please check your connection and try again.");
       console.error("Error submitting form:", err);
+      
+      // Provide more specific error messages
+      if (err.message.includes("Failed to fetch") || err.name === "TypeError") {
+        setError("Unable to connect to the server. The backend service may be offline or there's a network issue. Please try again later or contact us directly at +254 759 120 222.");
+      } else if (err.message.includes("Too many")) {
+        setError("You've submitted too many requests. Please wait a few minutes before trying again.");
+      } else {
+        setError(err.message || "Failed to send message. Please try again or contact us directly.");
+      }
     } finally {
       setLoading(false);
     }
