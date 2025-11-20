@@ -29,6 +29,7 @@ function AuthCallbackContent() {
 
         // Fetch user profile
         try {
+          console.log('🔍 Fetching user profile...');
           const response = await fetch(
             `${process.env.NEXT_PUBLIC_SOCIAL_AUTH_API_URL || 'http://localhost:5503/api/auth'}/profile`,
             {
@@ -40,19 +41,37 @@ function AuthCallbackContent() {
 
           if (response.ok) {
             const data = await response.json();
+            console.log('✅ Profile fetch successful:', data);
+            
             if (data.success && data.data) {
               // Store user data
               localStorage.setItem("user", JSON.stringify(data.data));
               
+              console.log('✅ Auth data stored:', {
+                accessToken: !!localStorage.getItem('accessToken'),
+                user: !!localStorage.getItem('user'),
+                provider: localStorage.getItem('authProvider')
+              });
+              
               // Trigger auth state change event
               window.dispatchEvent(new Event('authStateChanged'));
+              
+              // Small delay to ensure state updates
+              setTimeout(() => {
+                console.log('🏠 Redirecting to home...');
+                router.push("/");
+              }, 300);
+              return;
             }
+          } else {
+            console.error('❌ Profile fetch failed:', response.status, response.statusText);
           }
         } catch (err) {
-          console.error("Error fetching user profile:", err);
+          console.error("❌ Error fetching user profile:", err);
         }
 
-        // Redirect to home
+        // Fallback redirect if profile fetch fails
+        console.log('🏠 Fallback redirect to home...');
         router.push("/");
       } else {
         // No tokens, redirect to login

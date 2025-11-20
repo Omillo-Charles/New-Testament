@@ -22,17 +22,26 @@ const Navbar = () => {
       const accessToken = localStorage.getItem("accessToken");
       const userData = localStorage.getItem("user");
       
+      console.log('🔍 Checking auth status:', { 
+        hasToken: !!accessToken, 
+        hasUserData: !!userData 
+      });
+      
       if (accessToken && userData) {
         try {
-          setUser(JSON.parse(userData));
+          const parsedUser = JSON.parse(userData);
+          setUser(parsedUser);
           setIsAuthenticated(true);
+          console.log('✅ User authenticated:', parsedUser.email);
         } catch (error) {
-          console.error("Error parsing user data:", error);
+          console.error("❌ Error parsing user data:", error);
           setIsAuthenticated(false);
+          setUser(null);
         }
       } else {
         setIsAuthenticated(false);
         setUser(null);
+        console.log('❌ User not authenticated');
       }
     };
 
