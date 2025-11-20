@@ -13,8 +13,15 @@ function AuthCallbackContent() {
       const provider = searchParams.get("provider");
       const error = searchParams.get("error");
 
+      console.log('🔍 Callback received:', { 
+        hasAccessToken: !!accessToken, 
+        hasRefreshToken: !!refreshToken,
+        provider,
+        error 
+      });
+
       if (error) {
-        // Redirect to login with error
+        console.error('❌ OAuth error:', error);
         router.push(`/login?error=${error}`);
         return;
       }
@@ -26,10 +33,13 @@ function AuthCallbackContent() {
           localStorage.setItem("refreshToken", refreshToken);
         }
         localStorage.setItem("authProvider", provider || "social");
+        
+        console.log('✅ Tokens stored in localStorage');
 
         // Fetch user profile
         try {
-          console.log('🔍 Fetching user profile...');
+          console.log('🔍 Fetching user profile from:', process.env.NEXT_PUBLIC_SOCIAL_AUTH_API_URL);
+          
           const response = await fetch(
             `${process.env.NEXT_PUBLIC_SOCIAL_AUTH_API_URL || 'http://localhost:5503/api/auth'}/profile`,
             {
@@ -39,6 +49,8 @@ function AuthCallbackContent() {
             }
           );
 
+          console.log('📡 Profile API response status:', response.status);
+
           if (response.ok) {
             const data = await response.json();
             console.log('✅ Profile fetch successful:', data);
@@ -47,34 +59,32 @@ function AuthCallbackContent() {
               // Store user data
               localStorage.setItem("user", JSON.stringify(data.data));
               
-              console.log('✅ Auth data stored:', {
-                accessToken: !!localStorage.getItem('accessToken'),
-                user: !!localStorage.getItem('user'),
-                provider: localStorage.getItem('authProvider')
-              });
+              console.log('✅ User data stored:', data.data.email);
               
               // Trigger auth state change event
               window.dispatchEvent(new Event('authStateChanged'));
+              console.log('📢 Auth state change event dispatched');
               
-              // Small delay to ensure state updates
+              // Use window.location for a hard redirect to ensure state updates
               setTimeout(() => {
                 console.log('🏠 Redirecting to home...');
-                router.push("/");
-              }, 300);
+                window.location.href = "/";
+              }, 500);
               return;
             }
           } else {
-            console.error('❌ Profile fetch failed:', response.status, response.statusText);
+            const errorText = await response.text();
+            console.error('❌ Profile fetch failed:', response.status, errorText);
           }
         } catch (err) {
           console.error("❌ Error fetching user profile:", err);
         }
 
-        // Fallback redirect if profile fetch fails
-        console.log('🏠 Fallback redirect to home...');
-        router.push("/");
+        // Fallback redirect if profile fetch fails - still redirect with tokens
+        console.log('🏠 Fallback redirect to home with stored tokens...');
+        window.location.href = "/";
       } else {
-        // No tokens, redirect to login
+        console.error('❌ No access token received');
         router.push("/login?error=authentication_failed");
       }
     };
