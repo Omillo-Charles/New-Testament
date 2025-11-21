@@ -42,3 +42,5 @@ next-env.d.ts
 
 #folders
 /New-Testament-Backend
+/event-register
+/submissions-handler
