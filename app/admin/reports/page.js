@@ -83,7 +83,10 @@ export default function GenerateReports() {
       }
 
       // Fetch submissions stats
-      const submissionsApiUrl = process.env.NEXT_PUBLIC_SUBMISSIONS_API_URL || "http://localhost:5501/api";
+      const isProduction = typeof window !== 'undefined' && window.location.hostname !== 'localhost';
+      const submissionsApiUrl = isProduction 
+        ? 'https://ntcogk-submissions-service.vercel.app/api' // Update this when you deploy
+        : (process.env.NEXT_PUBLIC_SUBMISSIONS_API_URL?.replace('/submissions', '') || "http://localhost:5501/api");
       
       const submissionsResponse = await fetch(`${submissionsApiUrl}/submissions/stats`, {
         headers: {
@@ -97,10 +100,10 @@ export default function GenerateReports() {
           setStats(prev => ({
             ...prev,
             submissions: {
-              total: submissionsResult.data.totalSubmissions || 0,
-              pending: submissionsResult.data.pendingSubmissions || 0,
-              approved: submissionsResult.data.approvedSubmissions || 0,
-              rejected: submissionsResult.data.rejectedSubmissions || 0,
+              total: submissionsResult.data.total || 0,
+              pending: submissionsResult.data.pending || 0,
+              approved: submissionsResult.data.approved || 0,
+              rejected: 0, // Backend doesn't have rejected count, calculate if needed
             },
           }));
         }

@@ -82,7 +82,12 @@ export default function AdminDashboard() {
       }
 
       // Fetch submissions stats
-      const submissionsApiUrl = process.env.NEXT_PUBLIC_SUBMISSIONS_API_URL || "http://localhost:5501/api";
+      const isProduction = typeof window !== 'undefined' && window.location.hostname !== 'localhost';
+      const submissionsApiUrl = isProduction 
+        ? 'https://ntcogk-submissions-service.vercel.app/api' // Update this when you deploy
+        : (process.env.NEXT_PUBLIC_SUBMISSIONS_API_URL?.replace('/submissions', '') || "http://localhost:5501/api");
+      
+      console.log("Fetching submission stats from:", `${submissionsApiUrl}/submissions/stats`);
       
       const submissionsResponse = await fetch(`${submissionsApiUrl}/submissions/stats`, {
         headers: {
@@ -90,15 +95,21 @@ export default function AdminDashboard() {
         },
       });
 
+      console.log("Submissions stats response status:", submissionsResponse.status);
+
       if (submissionsResponse.ok) {
         const submissionsResult = await submissionsResponse.json();
+        console.log("Submissions stats data:", submissionsResult);
+        
         if (submissionsResult.success) {
           setStats(prevStats => ({
             ...prevStats,
-            totalSubmissions: submissionsResult.data.totalSubmissions || 0,
-            pendingSubmissions: submissionsResult.data.pendingSubmissions || 0,
+            totalSubmissions: submissionsResult.data.total || 0,
+            pendingSubmissions: submissionsResult.data.pending || 0,
           }));
         }
+      } else {
+        console.error("Failed to fetch submission stats:", submissionsResponse.statusText);
       }
     } catch (error) {
       console.error("Error fetching stats:", error);
