@@ -48,21 +48,29 @@ export default function AdminSubmissions() {
 
   const fetchSubmissions = async (token) => {
     try {
-      const response = await fetch(
-        process.env.NEXT_PUBLIC_SUBMISSIONS_API_URL || "http://localhost:5501/api/submissions",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const apiUrl = process.env.NEXT_PUBLIC_SUBMISSIONS_API_URL || "http://localhost:5501/api/submissions";
+      console.log("Fetching submissions from:", apiUrl);
+      
+      const response = await fetch(apiUrl, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
+      console.log("Response status:", response.status);
+      
       if (response.ok) {
         const data = await response.json();
+        console.log("Submissions data:", data);
+        
         if (data.success) {
-          setSubmissions(data.data || []);
-          setFilteredSubmissions(data.data || []);
+          const submissionsArray = data.data?.submissions || data.data || [];
+          console.log("Submissions array:", submissionsArray);
+          setSubmissions(submissionsArray);
+          setFilteredSubmissions(submissionsArray);
         }
+      } else {
+        console.error("Failed to fetch submissions:", response.statusText);
       }
     } catch (error) {
       console.error("Error fetching submissions:", error);
@@ -149,8 +157,24 @@ export default function AdminSubmissions() {
             </svg>
             Back to Dashboard
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900">Document Submissions</h1>
-          <p className="text-gray-600 mt-2">Review and manage all submitted documents</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Document Submissions</h1>
+              <p className="text-gray-600 mt-2">Review and manage all submitted documents</p>
+            </div>
+            <button
+              onClick={() => {
+                const token = localStorage.getItem("accessToken");
+                if (token) fetchSubmissions(token);
+              }}
+              className="inline-flex items-center px-4 py-2 bg-[#1E4E9A] hover:bg-[#163E7A] text-white rounded-lg transition-colors"
+            >
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              Refresh
+            </button>
+          </div>
         </div>
 
         {/* Filters */}

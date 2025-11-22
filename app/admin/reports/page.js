@@ -55,19 +55,20 @@ export default function GenerateReports() {
 
   const fetchReportData = async (token) => {
     try {
+      // Fetch user stats
       const authProvider = localStorage.getItem("authProvider");
-      const apiUrl = authProvider === "social" 
+      const authApiUrl = authProvider === "social" 
         ? process.env.NEXT_PUBLIC_SOCIAL_AUTH_API_URL || "http://localhost:5503/api/auth"
         : process.env.NEXT_PUBLIC_AUTH_API_URL || "http://localhost:5502/api/auth";
 
-      const response = await fetch(`${apiUrl}/admin/stats`, {
+      const userResponse = await fetch(`${authApiUrl}/admin/stats`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      if (response.ok) {
-        const result = await response.json();
+      if (userResponse.ok) {
+        const result = await userResponse.json();
         if (result.success) {
           setStats(prev => ({
             ...prev,
@@ -76,6 +77,30 @@ export default function GenerateReports() {
               verified: result.data.verifiedUsers || 0,
               active: result.data.activeUsers || 0,
               newThisMonth: result.data.recentRegistrations || 0,
+            },
+          }));
+        }
+      }
+
+      // Fetch submissions stats
+      const submissionsApiUrl = process.env.NEXT_PUBLIC_SUBMISSIONS_API_URL || "http://localhost:5501/api";
+      
+      const submissionsResponse = await fetch(`${submissionsApiUrl}/submissions/stats`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (submissionsResponse.ok) {
+        const submissionsResult = await submissionsResponse.json();
+        if (submissionsResult.success) {
+          setStats(prev => ({
+            ...prev,
+            submissions: {
+              total: submissionsResult.data.totalSubmissions || 0,
+              pending: submissionsResult.data.pendingSubmissions || 0,
+              approved: submissionsResult.data.approvedSubmissions || 0,
+              rejected: submissionsResult.data.rejectedSubmissions || 0,
             },
           }));
         }
@@ -177,6 +202,65 @@ export default function GenerateReports() {
               <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
                 <svg className="w-6 h-6 text-[#E02020]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Submission Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">Total Submissions</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">{stats.submissions.total}</p>
+              </div>
+              <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">Pending</p>
+                <p className="text-3xl font-bold text-yellow-600 mt-2">{stats.submissions.pending}</p>
+              </div>
+              <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">Approved</p>
+                <p className="text-3xl font-bold text-green-600 mt-2">{stats.submissions.approved}</p>
+              </div>
+              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">Rejected</p>
+                <p className="text-3xl font-bold text-red-600 mt-2">{stats.submissions.rejected}</p>
+              </div>
+              <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </div>
             </div>
