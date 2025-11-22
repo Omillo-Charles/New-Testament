@@ -128,6 +128,10 @@ export default function GenerateReports() {
       const authProvider = localStorage.getItem("authProvider");
       const isProduction = typeof window !== 'undefined' && window.location.hostname !== 'localhost';
       
+      console.log("Downloading report:", reportType);
+      console.log("Auth provider:", authProvider);
+      console.log("Is production:", isProduction);
+      
       if (reportType.includes("Users") || reportType.includes("Registrations")) {
         // Fetch users data
         let authApiUrl;
@@ -141,13 +145,20 @@ export default function GenerateReports() {
             : (process.env.NEXT_PUBLIC_AUTH_API_URL || "http://localhost:5502/api/auth");
         }
 
+        console.log("Fetching users from:", `${authApiUrl}/admin/users`);
+
         const response = await fetch(`${authApiUrl}/admin/users`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
+        console.log("Response status:", response.status);
+
         if (response.ok) {
           const result = await response.json();
+          console.log("Users result:", result);
+          
           const users = result.data?.users || result.data || [];
+          console.log("Users array length:", users.length);
           
           // Filter based on report type
           if (reportType === "Active Users") {
@@ -159,6 +170,8 @@ export default function GenerateReports() {
           } else {
             data = users;
           }
+          
+          console.log("Filtered data length:", data.length);
 
           headers = ["Name", "Email", "Role", "Verified", "Active", "Joined", "Last Login"];
           data = data.map(u => [
@@ -171,6 +184,12 @@ export default function GenerateReports() {
             u.lastLogin ? new Date(u.lastLogin).toLocaleDateString() : "Never"
           ]);
           filename = `${reportType.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.csv`;
+        } else {
+          console.error("Failed to fetch users:", response.status, response.statusText);
+          const errorText = await response.text();
+          console.error("Error response:", errorText);
+          alert(`Failed to fetch users data. Status: ${response.status}`);
+          return;
         }
       } else if (reportType.includes("Submissions")) {
         // Fetch submissions data
@@ -212,8 +231,10 @@ export default function GenerateReports() {
         }
       }
 
+      console.log("Final data length:", data.length);
+      
       if (data.length === 0) {
-        alert("No data available for this report");
+        alert(`No data available for this report. Please check:\n1. You are logged in as admin\n2. The API is accessible\n3. There is data in the database\n\nCheck browser console for details.`);
         return;
       }
 
