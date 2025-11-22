@@ -99,12 +99,19 @@ export default function VerifyEmail() {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        // Store tokens and user data
+        // Store tokens and user data with verified status
         localStorage.setItem("accessToken", data.data.accessToken);
         if (data.data.refreshToken) {
           localStorage.setItem("refreshToken", data.data.refreshToken);
         }
-        localStorage.setItem("user", JSON.stringify(data.data.user));
+        
+        // Ensure user data includes verified status
+        const userData = {
+          ...data.data.user,
+          isEmailVerified: true
+        };
+        localStorage.setItem("user", JSON.stringify(userData));
+        localStorage.setItem("authProvider", "form");
         
         // Remove verification email from storage
         localStorage.removeItem("verificationEmail");
@@ -114,9 +121,9 @@ export default function VerifyEmail() {
         
         setSuccess(true);
         
-        // Redirect to home after 1.5 seconds
+        // Redirect to profile after 1.5 seconds
         setTimeout(() => {
-          router.push("/");
+          router.push("/profile");
         }, 1500);
       } else {
         setError(data.message || "Invalid verification code. Please try again.");
