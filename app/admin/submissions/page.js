@@ -11,6 +11,8 @@ export default function AdminSubmissions() {
   const [filteredSubmissions, setFilteredSubmissions] = useState([]);
   const [filter, setFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const [churchFilter, setChurchFilter] = useState("all");
+  const [churches, setChurches] = useState([]);
 
   useEffect(() => {
     const checkAdminAccess = async () => {
@@ -81,6 +83,12 @@ export default function AdminSubmissions() {
     }
   };
 
+  // Extract unique churches when submissions change
+  useEffect(() => {
+    const uniqueChurches = [...new Set(submissions.map(sub => sub.branch).filter(Boolean))].sort();
+    setChurches(uniqueChurches);
+  }, [submissions]);
+
   useEffect(() => {
     let filtered = submissions;
 
@@ -89,18 +97,24 @@ export default function AdminSubmissions() {
       filtered = filtered.filter(sub => sub.status === filter);
     }
 
+    // Apply church filter
+    if (churchFilter !== "all") {
+      filtered = filtered.filter(sub => sub.branch === churchFilter);
+    }
+
     // Apply search filter
     if (searchTerm) {
       filtered = filtered.filter(sub => 
         sub.fullName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         sub.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         sub.subject?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        sub.submissionType?.toLowerCase().includes(searchTerm.toLowerCase())
+        sub.submissionType?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        sub.branch?.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
     setFilteredSubmissions(filtered);
-  }, [filter, searchTerm, submissions]);
+  }, [filter, searchTerm, churchFilter, submissions]);
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -183,14 +197,14 @@ export default function AdminSubmissions() {
 
         {/* Filters */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Search</label>
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search by name, email, or subject..."
+                placeholder="Search by name, email, church..."
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900 placeholder-gray-400"
               />
             </div>
@@ -203,9 +217,25 @@ export default function AdminSubmissions() {
               >
                 <option value="all">All Submissions</option>
                 <option value="pending">Pending</option>
-                <option value="reviewed">Reviewed</option>
+                <option value="under-review">Under Review</option>
                 <option value="approved">Approved</option>
                 <option value="rejected">Rejected</option>
+                <option value="requires-action">Requires Action</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Church</label>
+              <select
+                value={churchFilter}
+                onChange={(e) => setChurchFilter(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-gray-900"
+              >
+                <option value="all">All Churches</option>
+                {churches.map((church) => (
+                  <option key={church} value={church}>
+                    {church}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

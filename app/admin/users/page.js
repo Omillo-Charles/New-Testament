@@ -47,34 +47,39 @@ export default function ManageUsers() {
   const fetchUsers = async (token) => {
     try {
       const authProvider = localStorage.getItem("authProvider") || "form";
-      const isProduction = typeof window !== 'undefined' && window.location.hostname !== 'localhost';
       
       console.log("Auth provider:", authProvider);
-      console.log("Is production:", isProduction);
       console.log("Hostname:", window.location.hostname);
       
+      // Use the same logic as the main admin page
       let apiUrl;
       if (authProvider === "social") {
-        apiUrl = isProduction
-          ? 'https://ntcogk-social-authentication-service.vercel.app/api/auth'
-          : (process.env.NEXT_PUBLIC_SOCIAL_AUTH_API_URL || "http://localhost:5503/api/auth");
+        apiUrl = process.env.NEXT_PUBLIC_SOCIAL_AUTH_API_URL || "http://localhost:5503/api/auth";
       } else {
-        // Default to form authentication
-        apiUrl = isProduction
-          ? 'https://ntcogk-form-authentication-service.vercel.app/api/auth'
-          : (process.env.NEXT_PUBLIC_AUTH_API_URL || "http://localhost:5502/api/auth");
+        apiUrl = process.env.NEXT_PUBLIC_AUTH_API_URL || "http://localhost:5502/api/auth";
       }
 
       console.log("API URL:", apiUrl);
       console.log("Fetching users from:", `${apiUrl}/admin/users`);
 
-      const response = await fetch(`${apiUrl}/admin/users`, {
+      let response = await fetch(`${apiUrl}/admin/users`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
       console.log("Users response status:", response.status);
+
+      // If 404, try alternative endpoint
+      if (response.status === 404) {
+        console.log("Trying alternative endpoint: /users");
+        response = await fetch(`${apiUrl}/users`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("Alternative endpoint status:", response.status);
+      }
 
       if (response.ok) {
         const result = await response.json();
@@ -97,7 +102,16 @@ export default function ManageUsers() {
         console.error("Failed to fetch users. Status:", response.status, response.statusText);
         const errorData = await response.json().catch(() => ({}));
         console.error("Error details:", errorData);
-        alert(`Failed to fetch users. Status: ${response.status}. Check console for details.`);
+        
+        // Show helpful message
+        if (response.status === 404) {
+          console.error(`Endpoint not found: ${apiUrl}/admin/users`);
+          console.log("Note: The /admin/stats endpoint works, but /admin/users is not implemented.");
+          console.log("You need to add the /admin/users endpoint to your authentication backend.");
+          alert(`The user list endpoint is not available.\n\nThe authentication backend needs to implement:\nGET ${apiUrl}/admin/users\n\nThis endpoint should return all users for admin management.`);
+        } else {
+          alert(`Failed to fetch users. Status: ${response.status}. Check console for details.`);
+        }
       }
     } catch (error) {
       console.error("Error fetching users:", error);
