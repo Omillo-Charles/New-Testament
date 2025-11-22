@@ -48,7 +48,11 @@ export default function AdminSubmissions() {
 
   const fetchSubmissions = async (token) => {
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_SUBMISSIONS_API_URL || "http://localhost:5501/api/submissions";
+      // Use production URL if on production, otherwise use local
+      const isProduction = window.location.hostname !== 'localhost';
+      const apiUrl = isProduction 
+        ? 'https://ntcogk-submissions-service.vercel.app/api/submissions' // Update this when you deploy
+        : (process.env.NEXT_PUBLIC_SUBMISSIONS_API_URL || "http://localhost:5501/api/submissions");
       console.log("Fetching submissions from:", apiUrl);
       
       const response = await fetch(apiUrl, {
