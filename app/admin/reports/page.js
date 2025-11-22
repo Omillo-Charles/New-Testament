@@ -113,8 +113,131 @@ export default function GenerateReports() {
     }
   };
 
-  const downloadReport = (reportType) => {
-    alert(`Downloading ${reportType} report... (Feature coming soon)`);
+  const downloadReport = async (reportType) => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      alert("Please login to download reports");
+      return;
+    }
+
+    try {
+      let data = [];
+      let filename = "";
+      let headers = [];
+
+      const authProvider = localStorage.getItem("authProvider");
+      const isProduction = typeof window !== 'undefined' && window.location.hostname !== 'localhost';
+      
+      if (reportType.includes("Users") || reportType.includes("Registrations")) {
+        // Fetch users data
+        let authApiUrl;
+        if (authProvider === "social") {
+          authApiUrl = isProduction
+            ? 'https://ntcogk-social-authentication-service.vercel.app/api/auth'
+            : (process.env.NEXT_PUBLIC_SOCIAL_AUTH_API_URL || "http://localhost:5503/api/auth");
+        } else {
+          authApiUrl = isProduction
+            ? 'https://ntcogk-form-authentication-service.vercel.app/api/auth'
+            : (process.env.NEXT_PUBLIC_AUTH_API_URL || "http://localhost:5502/api/auth");
+        }
+
+        const response = await fetch(`${authApiUrl}/admin/users`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          const users = result.data?.users || result.data || [];
+          
+          // Filter based on report type
+          if (reportType === "Active Users") {
+            data = users.filter(u => u.isActive);
+          } else if (reportType === "New Registrations") {
+            const oneMonthAgo = new Date();
+            oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+            data = users.filter(u => new Date(u.createdAt) >= oneMonthAgo);
+          } else {
+            data = users;
+          }
+
+          headers = ["Name", "Email", "Role", "Verified", "Active", "Joined", "Last Login"];
+          data = data.map(u => [
+            `${u.firstName || ""} ${u.lastName || ""}`.trim() || "N/A",
+            u.email || "N/A",
+            u.role || "user",
+            u.isVerified ? "Yes" : "No",
+            u.isActive ? "Yes" : "No",
+            u.createdAt ? new Date(u.createdAt).toLocaleDateString() : "N/A",
+            u.lastLogin ? new Date(u.lastLogin).toLocaleDateString() : "Never"
+          ]);
+          filename = `${reportType.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.csv`;
+        }
+      } else if (reportType.includes("Submissions")) {
+        // Fetch submissions data
+        const submissionsApiUrl = isProduction 
+          ? 'https://ntcogk-submissions-service.vercel.app/api'
+          : (process.env.NEXT_PUBLIC_SUBMISSIONS_API_URL?.replace('/submissions', '') || "http://localhost:5501/api");
+
+        const response = await fetch(`${submissionsApiUrl}/submissions`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          const submissions = result.data?.submissions || result.data || [];
+          
+          // Filter based on report type
+          if (reportType === "Pending Submissions") {
+            data = submissions.filter(s => s.status === "pending");
+          } else if (reportType === "By Region") {
+            data = submissions;
+          } else {
+            data = submissions;
+          }
+
+          headers = ["Submission ID", "Name", "Email", "Church", "Region", "Type", "Subject", "Urgency", "Status", "Date"];
+          data = data.map(s => [
+            s.submissionId || s._id || "N/A",
+            s.fullName || "N/A",
+            s.email || "N/A",
+            s.branch || "N/A",
+            s.region || "N/A",
+            s.submissionType || "N/A",
+            s.subject || "N/A",
+            s.urgency || "normal",
+            s.status || "pending",
+            s.createdAt ? new Date(s.createdAt).toLocaleDateString() : "N/A"
+          ]);
+          filename = `${reportType.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.csv`;
+        }
+      }
+
+      if (data.length === 0) {
+        alert("No data available for this report");
+        return;
+      }
+
+      // Generate CSV
+      const csvContent = [
+        headers.join(","),
+        ...data.map(row => row.map(cell => `"${cell}"`).join(","))
+      ].join("\n");
+
+      // Download CSV
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute("download", filename);
+      link.style.visibility = "hidden";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+    } catch (error) {
+      console.error("Error downloading report:", error);
+      alert("Failed to download report. Please try again.");
+    }
   };
 
   if (loading) {
