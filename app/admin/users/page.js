@@ -46,8 +46,12 @@ export default function ManageUsers() {
 
   const fetchUsers = async (token) => {
     try {
-      const authProvider = localStorage.getItem("authProvider");
+      const authProvider = localStorage.getItem("authProvider") || "form";
       const isProduction = typeof window !== 'undefined' && window.location.hostname !== 'localhost';
+      
+      console.log("Auth provider:", authProvider);
+      console.log("Is production:", isProduction);
+      console.log("Hostname:", window.location.hostname);
       
       let apiUrl;
       if (authProvider === "social") {
@@ -55,11 +59,13 @@ export default function ManageUsers() {
           ? 'https://ntcogk-social-authentication-service.vercel.app/api/auth'
           : (process.env.NEXT_PUBLIC_SOCIAL_AUTH_API_URL || "http://localhost:5503/api/auth");
       } else {
+        // Default to form authentication
         apiUrl = isProduction
           ? 'https://ntcogk-form-authentication-service.vercel.app/api/auth'
           : (process.env.NEXT_PUBLIC_AUTH_API_URL || "http://localhost:5502/api/auth");
       }
 
+      console.log("API URL:", apiUrl);
       console.log("Fetching users from:", `${apiUrl}/admin/users`);
 
       const response = await fetch(`${apiUrl}/admin/users`, {
@@ -76,17 +82,26 @@ export default function ManageUsers() {
         
         if (result.success) {
           const usersArray = result.data?.users || result.data || [];
-          console.log("Users array:", usersArray);
+          console.log("Users array length:", usersArray.length);
+          console.log("First user sample:", usersArray[0]);
           setUsers(usersArray);
           setFilteredUsers(usersArray);
+          
+          if (usersArray.length === 0) {
+            console.warn("No users found in the response");
+          }
+        } else {
+          console.error("API returned success: false");
         }
       } else {
-        console.error("Failed to fetch users:", response.statusText);
+        console.error("Failed to fetch users. Status:", response.status, response.statusText);
         const errorData = await response.json().catch(() => ({}));
         console.error("Error details:", errorData);
+        alert(`Failed to fetch users. Status: ${response.status}. Check console for details.`);
       }
     } catch (error) {
       console.error("Error fetching users:", error);
+      alert(`Error fetching users: ${error.message}. Check console for details.`);
     }
   };
 
