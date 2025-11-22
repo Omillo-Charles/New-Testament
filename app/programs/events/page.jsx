@@ -175,60 +175,21 @@ const EventsPage = () => {
                       {event.description}
                     </p>
 
-                    {/* Registration Details Button - Only show for events with registration */}
+                    {/* Registration Button - Only show for events with registration */}
                     {event.hasRegistration && (
                       <div className="border-t pt-4">
                         <button
-                          onClick={() =>
-                            setShowRegistration({
-                              ...showRegistration,
-                              [event.id]: !showRegistration[event.id],
-                            })
-                          }
-                          className="w-full flex items-center justify-between bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300"
+                          onClick={() => window.open("https://events.ntcogk.org", "_blank")}
+                          className="w-full flex items-center justify-center gap-2 bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105"
                         >
-                          <span>Registration Details</span>
-                          {showRegistration[event.id] ? (
-                            <FaChevronUp />
-                          ) : (
-                            <FaChevronDown />
-                          )}
+                          <span>Register for Event</span>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
                         </button>
-
-                        {/* Dropdown Content */}
-                        {showRegistration[event.id] && (
-                          <div className="mt-3 p-4 bg-green-50 rounded-lg border border-green-200">
-                            <div className="flex items-start gap-3 mb-3">
-                              <FaMobileAlt className="w-5 h-5 text-green-600 mt-0.5" />
-                              <div className="flex-1">
-                                <h4 className="font-bold text-gray-900 mb-2">
-                                  MPESA Payment Details
-                                </h4>
-                                <div className="space-y-2">
-                                  <div className="flex items-center gap-2">
-                                    <span className="text-sm font-semibold text-gray-700">
-                                      Paybill Number:
-                                    </span>
-                                    <span className="text-sm font-bold text-gray-900">
-                                      824520
-                                    </span>
-                                  </div>
-                                  <div className="flex items-center gap-2">
-                                    <span className="text-sm font-semibold text-gray-700">
-                                      Account Number:
-                                    </span>
-                                    <span className="text-sm font-bold text-gray-900">
-                                      Youth Reg.
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <p className="text-xs text-gray-600 mt-2">
-                              Send KSh 1,500 to complete your registration
-                            </p>
-                          </div>
-                        )}
+                        <p className="text-xs text-gray-500 text-center mt-2">
+                          Opens registration portal in new tab
+                        </p>
                       </div>
                     )}
                   </div>
