@@ -57,7 +57,8 @@ const HeroCarousel = () => {
               src={image}
               alt={`NTCG Kenya Church ${index + 1}`}
               fill
-              className="object-cover"
+              className="object-cover object-center md:object-center"
+              style={{ objectPosition: 'center 30%' }}
               priority={index === 0}
             />
           </div>
