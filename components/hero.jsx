@@ -22,6 +22,8 @@ const HeroSection = () => {
                 alt="NTCG Kenya Logo"
                 width={200}
                 height={200}
+                priority
+                quality={90}
                 className="mx-auto rounded-full"
                 style={{
                   filter:
