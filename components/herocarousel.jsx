@@ -56,9 +56,9 @@ const HeroCarousel = () => {
         ))}
       </div>
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1e3f]/90 via-[#1E4E9A]/60 to-[#0a1e3f]/30 z-10"></div>
-      <div className="absolute inset-0 bg-black/40 z-10"></div>
+      {/* Blue Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#1E4E9A]/95 via-[#1E4E9A]/70 to-[#1E4E9A]/30 z-10"></div>
+      <div className="absolute inset-0 bg-[#1E4E9A]/20 z-10"></div>
 
       {/* Slide Indicators */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">

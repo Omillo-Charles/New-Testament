@@ -15,18 +15,25 @@ const HeroSection = () => {
       <div className="relative z-20 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-5xl mx-auto">
           {/* Logo */}
-          <div className="mb-8 animate-in fade-in zoom-in duration-1000">
+          <div className="mb-10 animate-in fade-in zoom-in duration-1000">
             <div className="relative inline-block group">
-              <div className="absolute inset-0 bg-white/10 rounded-full blur-xl group-hover:bg-white/20 transition-all duration-500"></div>
-              <Image
-                src="/ntcogkLogo.jpeg"
-                alt="NTCG Kenya Logo"
-                width={180}
-                height={180}
-                priority
-                quality={90}
-                className="relative mx-auto rounded-full border-4 border-white/10 shadow-2xl"
-              />
+              {/* Pulsing Glow Effect */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] bg-white/20 rounded-full blur-3xl animate-pulse"></div>
+
+              {/* Glass Container Ring */}
+              <div className="relative p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                <div className="relative p-1 rounded-full bg-white/20 border border-white/30">
+                  <Image
+                    src="/ntcogkLogo.jpeg"
+                    alt="NTCG Kenya Logo"
+                    width={160}
+                    height={160}
+                    priority
+                    quality={100}
+                    className="rounded-full shadow-inner"
+                  />
+                </div>
+              </div>
             </div>
           </div>
 
