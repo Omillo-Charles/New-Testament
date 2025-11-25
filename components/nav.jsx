@@ -397,8 +397,9 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Mobile Auth & Profile Section */}
-          <div className="flex items-center space-x-3 lg:hidden">
+          {/* Mobile Menu Controls */}
+          <div className="flex items-center space-x-2 lg:hidden">
+            {/* Mobile Profile Icon (only when authenticated) */}
             {isAuthenticated && (
               <div className="relative profile-dropdown-mobile">
                 <button
@@ -410,7 +411,7 @@ const Navbar = () => {
                     {user?.firstName?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || "U"}
                   </div>
                   <svg
-                    className={`w-4 h-4 text-gray-600 transition-transform duration-200 ${
+                    className={`w-3 h-3 text-gray-500 transition-transform duration-200 ${
                       isProfileDropdownOpen ? "rotate-180" : ""
                     }`}
                     fill="none"
