@@ -397,16 +397,34 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Mobile Profile Icon (beside hamburger) */}
-          {isAuthenticated && (
-            <div className="lg:hidden relative profile-dropdown-mobile mr-2">
-              <button
-                onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
-                className="w-8 h-8 rounded-full bg-[#1E4E9A] border-2 border-[#E02020] flex items-center justify-center text-white font-semibold text-sm"
-                aria-label="Profile menu"
-              >
-                {user?.firstName?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || "U"}
-              </button>
+          {/* Mobile Auth & Profile Section */}
+          <div className="flex items-center space-x-3 lg:hidden">
+            {isAuthenticated && (
+              <div className="relative profile-dropdown-mobile">
+                <button
+                  onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+                  className="flex items-center space-x-1 p-1 rounded-lg hover:bg-gray-50 transition-colors"
+                  aria-label="Profile menu"
+                >
+                  <div className="w-8 h-8 rounded-full bg-[#1E4E9A] flex items-center justify-center text-white font-semibold text-sm shadow-lg">
+                    {user?.firstName?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || "U"}
+                  </div>
+                  <svg
+                    className={`w-4 h-4 text-gray-600 transition-transform duration-200 ${
+                      isProfileDropdownOpen ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
 
               {/* Mobile Profile Dropdown Menu */}
               {isProfileDropdownOpen && (
@@ -456,19 +474,20 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-          )}
+            )}
 
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors focus:outline-none"
-          >
-            <div className="w-6 h-5 flex flex-col justify-between">
-              <span className={`h-0.5 bg-current rounded-full transition-all duration-300 ${isOpen ? "w-6 rotate-45 translate-y-2.5" : "w-6"}`} />
-              <span className={`h-0.5 bg-current rounded-full transition-all duration-300 ${isOpen ? "w-0 opacity-0" : "w-4 ml-auto"}`} />
-              <span className={`h-0.5 bg-current rounded-full transition-all duration-300 ${isOpen ? "w-6 -rotate-45 -translate-y-2" : "w-5 ml-auto"}`} />
-            </div>
-          </button>
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors focus:outline-none"
+            >
+              <div className="w-6 h-5 flex flex-col justify-between">
+                <span className={`h-0.5 bg-current rounded-full transition-all duration-300 ${isOpen ? "w-6 rotate-45 translate-y-2.5" : "w-6"}`} />
+                <span className={`h-0.5 bg-current rounded-full transition-all duration-300 ${isOpen ? "w-0 opacity-0" : "w-4 ml-auto"}`} />
+                <span className={`h-0.5 bg-current rounded-full transition-all duration-300 ${isOpen ? "w-6 -rotate-45 -translate-y-2" : "w-5 ml-auto"}`} />
+              </div>
+            </button>
+          </div>
         </div>
       </div>
 
