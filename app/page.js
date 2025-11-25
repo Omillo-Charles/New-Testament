@@ -16,7 +16,7 @@ export default function Home() {
         </div>
 
         <div className="relative container-max max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-12">
             {[
               { end: 223, label: "Churches", color: "text-[#E02020]", suffix: "+" },
               { end: 15000, label: "Members", color: "text-[#1E4E9A]", suffix: "+" },

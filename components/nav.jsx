@@ -397,6 +397,67 @@ const Navbar = () => {
             )}
           </div>
 
+          {/* Mobile Profile Icon (beside hamburger) */}
+          {isAuthenticated && (
+            <div className="lg:hidden relative profile-dropdown-mobile mr-2">
+              <button
+                onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+                className="w-8 h-8 rounded-full bg-[#1E4E9A] border-2 border-[#E02020] flex items-center justify-center text-white font-semibold text-sm"
+                aria-label="Profile menu"
+              >
+                {user?.firstName?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || "U"}
+              </button>
+
+              {/* Mobile Profile Dropdown Menu */}
+              {isProfileDropdownOpen && (
+                <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                  <div className="px-4 py-3 border-b border-gray-100">
+                    <p className="text-sm font-semibold text-gray-900">
+                      {user?.firstName && user?.lastName 
+                        ? `${user.firstName} ${user.lastName}`
+                        : user?.email}
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">{user?.email}</p>
+                  </div>
+                  {(user?.role === "admin" || user?.role === "super-admin") && (
+                    <Link
+                      href="/admin"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1E4E9A] transition-colors border-b border-gray-100"
+                      onClick={() => setIsProfileDropdownOpen(false)}
+                    >
+                      <span className="flex items-center">
+                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                        Admin Dashboard
+                      </span>
+                    </Link>
+                  )}
+                  <Link
+                    href="/profile"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1E4E9A] transition-colors"
+                    onClick={() => setIsProfileDropdownOpen(false)}
+                  >
+                    My Profile
+                  </Link>
+                  <Link
+                    href="/profile/settings"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1E4E9A] transition-colors"
+                    onClick={() => setIsProfileDropdownOpen(false)}
+                  >
+                    Settings
+                  </Link>
+                  <button
+                    onClick={handleLogoutClick}
+                    className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
