@@ -7,75 +7,70 @@ import HeroCarousel from "./herocarousel";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-10">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background Carousel */}
       <HeroCarousel />
 
       {/* Content */}
       <div className="relative z-20 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {/* Logo */}
-          <div className="mb-4">
-            <div className="relative inline-block">
+          <div className="mb-8 animate-in fade-in zoom-in duration-1000">
+            <div className="relative inline-block group">
+              <div className="absolute inset-0 bg-white/10 rounded-full blur-xl group-hover:bg-white/20 transition-all duration-500"></div>
               <Image
                 src="/ntcogkLogo.jpeg"
                 alt="NTCG Kenya Logo"
-                width={200}
-                height={200}
+                width={180}
+                height={180}
                 priority
                 quality={90}
-                className="mx-auto rounded-full"
-                style={{
-                  filter:
-                    "drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6)) drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3))",
-                }}
+                className="relative mx-auto rounded-full border-4 border-white/10 shadow-2xl"
               />
-              {/* Subtle glow effect */}
-              <div className="absolute inset-0 rounded-full shadow-[0_0_80px_rgba(255,255,255,0.15)] pointer-events-none"></div>
             </div>
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-            Welcome to <span className="text-yellow-300">NTCG</span>{" "}
-            <span className="text-blue-200">Kenya</span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight tracking-tight animate-in slide-in-from-bottom-8 fade-in duration-1000 delay-150">
+            Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-100">NTCG</span>{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">Kenya</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-gray-100 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-gray-100 mb-10 max-w-3xl mx-auto leading-relaxed font-light animate-in slide-in-from-bottom-8 fade-in duration-1000 delay-300">
             Building faith, community, and hope across Kenya. Join us as we
             worship together, grow in faith, and serve our communities with
             love.
           </p>
 
           {/* Call to Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 w-full max-w-md sm:max-w-none mx-auto">
+          <div className="flex flex-col sm:flex-row gap-5 justify-center items-center mb-16 w-full max-w-md sm:max-w-none mx-auto animate-in slide-in-from-bottom-8 fade-in duration-1000 delay-500">
             <Link
               href="/about"
-              className="w-full sm:w-auto bg-white text-[#E02020] hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-center"
+              className="w-full sm:w-auto bg-white text-[#E02020] hover:bg-gray-50 font-bold py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl"
             >
               Learn About Us
             </Link>
             <Link
               href="/portals"
-              className="w-full sm:w-auto bg-[#1E4E9A] hover:bg-[#163E7A] text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-center"
+              className="w-full sm:w-auto bg-[#1E4E9A] hover:bg-[#163E7A] text-white font-bold py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl border border-white/10"
             >
               Find a Branch
             </Link>
             <Link
               href="/programs/events"
-              className="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-[#E02020] font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 text-center"
+              className="w-full sm:w-auto backdrop-blur-md bg-white/10 border border-white/30 text-white hover:bg-white/20 font-bold py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl"
             >
               Upcoming Events
             </Link>
           </div>
 
-          {/* Key Features */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+          {/* Key Features - Glass Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 animate-in slide-in-from-bottom-12 fade-in duration-1000 delay-700">
+            <div className="group p-8 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2">
+              <div className="w-16 h-16 bg-gradient-to-br from-white/20 to-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500">
                 <svg
-                  className="w-8 h-8 text-white"
+                  className="w-8 h-8 text-yellow-300"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -88,18 +83,18 @@ const HeroSection = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">
+              <h3 className="text-xl font-bold text-white mb-3 tracking-wide">
                 Community
               </h3>
-              <p className="text-gray-200">
+              <p className="text-blue-100 leading-relaxed text-sm">
                 Join a loving community of believers across Kenya
               </p>
             </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="group p-8 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2">
+              <div className="w-16 h-16 bg-gradient-to-br from-white/20 to-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500">
                 <svg
-                  className="w-8 h-8 text-white"
+                  className="w-8 h-8 text-yellow-300"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -112,18 +107,18 @@ const HeroSection = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">
+              <h3 className="text-xl font-bold text-white mb-3 tracking-wide">
                 Scripture
               </h3>
-              <p className="text-gray-200">
+              <p className="text-blue-100 leading-relaxed text-sm">
                 Grow in faith through God's word and biblical teaching
               </p>
             </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="group p-8 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2">
+              <div className="w-16 h-16 bg-gradient-to-br from-white/20 to-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500">
                 <svg
-                  className="w-8 h-8 text-white"
+                  className="w-8 h-8 text-yellow-300"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -136,16 +131,16 @@ const HeroSection = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">Service</h3>
-              <p className="text-gray-200">
+              <h3 className="text-xl font-bold text-white mb-3 tracking-wide">
+                Service
+              </h3>
+              <p className="text-blue-100 leading-relaxed text-sm">
                 Serve others with love and make a difference in our communities
               </p>
             </div>
           </div>
         </div>
       </div>
-
-
     </section>
   );
 };
