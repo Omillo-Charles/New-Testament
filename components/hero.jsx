@@ -140,7 +140,7 @@ const HeroSection = () => {
               
               <Link
                 href="/programs/events"
-                className="w-full sm:w-auto bg-white/15 border border-white/40 text-white font-bold py-5 px-12 rounded-xl shadow-2xl"
+                className="w-full sm:w-auto bg-transparent border-2 border-white text-white font-bold py-5 px-12 rounded-xl shadow-2xl"
               >
                 <span className="flex items-center justify-center gap-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -43,8 +43,8 @@ export default function Home() {
 
       {/* Call to Action Section */}
       <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1E4E9A] to-[#0a1e3f] z-0"></div>
+        {/* Solid Blue Background */}
+        <div className="absolute inset-0 bg-[#1E4E9A] z-0"></div>
 
         <div className="relative z-10 container-max text-center max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight leading-tight">
@@ -58,13 +58,13 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
             <Link
               href="/portals"
-              className="w-full sm:w-auto bg-[#E02020] hover:bg-[#B81C1C] text-white font-bold py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-900/50 text-center"
+              className="w-full sm:w-auto bg-[#E02020] hover:bg-[#B81C1C] text-white font-bold py-4 px-10 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-900/50 text-center"
             >
               Find a Branch
             </Link>
             <Link
               href="/contact"
-              className="w-full sm:w-auto bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white hover:text-[#1E4E9A] font-bold py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-center"
+              className="w-full sm:w-auto bg-white text-[#1E4E9A] hover:bg-gray-50 font-bold py-4 px-10 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg text-center"
             >
               Contact Us
             </Link>
