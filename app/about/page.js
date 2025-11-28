@@ -41,10 +41,9 @@ export default function About() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-[1600px] mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
               Our Identity
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#E02020] to-[#1E4E9A] rounded-full mx-auto"></div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">

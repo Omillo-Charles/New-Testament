@@ -316,7 +316,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full sm:w-auto bg-gradient-to-r from-[#E02020] to-[#1E4E9A] hover:from-[#B81C1C] hover:to-[#163E7A] text-white font-semibold py-4 px-12 sm:px-16 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                    className="w-full sm:w-auto bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-4 px-12 sm:px-16 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                   >
                     {loading ? (
                       <span className="flex items-center justify-center">

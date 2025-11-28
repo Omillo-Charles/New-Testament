@@ -242,21 +242,20 @@ const Navbar = () => {
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center group">
-            <div className="relative w-12 h-12 mr-3 transition-transform duration-300 group-hover:scale-105">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#E02020]/10 to-[#1E4E9A]/10 rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300"></div>
-              <div className="relative w-full h-full bg-white rounded-xl shadow-sm p-1.5 border border-gray-100">
-                <Image
-                  src="/mainLogo.png"
-                  alt="NTCG Kenya Logo"
-                  fill
-                  className="object-contain"
-                />
-              </div>
+          <Link href="/" className="flex items-center space-x-3">
+            <div className="w-12 h-12 relative rounded-lg shadow-md bg-white p-1">
+              <Image
+                src="/mainLogo.png"
+                alt="NTCG Kenya Logo"
+                fill
+                className="object-contain rounded-md"
+              />
             </div>
-            <div className="flex flex-col">
-              <span className="text-2xl font-bold text-[#E02020] leading-none tracking-tight">NTCG</span>
-              <span className="text-sm font-semibold text-[#1E4E9A] tracking-widest uppercase">Kenya</span>
+            <div>
+              <span className="text-2xl font-bold text-[#E02020]">NTCG</span>
+              <span className="text-lg text-[#1E4E9A] block leading-tight font-medium">
+                Kenya
+              </span>
             </div>
           </Link>
 
@@ -316,7 +315,7 @@ const Navbar = () => {
           </div>
 
           {/* Auth Buttons & Profile */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-2">
             {isAuthenticated ? (
               <div className="relative profile-dropdown">
                 <button

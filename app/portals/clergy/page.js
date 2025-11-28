@@ -67,7 +67,7 @@ const ClergyPage = () => {
       title: "Event Calendar",
       description:
         "View upcoming clergy meetings, conferences, and important church events.",
-      link: "/events",
+      link: "/resources/events-calendar",
       icon: <FaCalendarAlt className="text-3xl" />,
       color: "from-[#E02020] to-[#B81C1C]",
     },

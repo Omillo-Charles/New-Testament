@@ -35,23 +35,13 @@ const ShopPage = () => {
         ></div>
 
         <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-3xl md:text-5xl font-bold mb-4">
-                Church Shop
-              </h1>
-              <p className="text-lg md:text-xl text-blue-100 max-w-2xl">
-                Browse our collection of books, apparel, music, and gifts
-              </p>
-            </div>
-            <div className="relative">
-              <FaShoppingCart className="text-4xl" />
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-[#E02020] text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
-                  {cartCount}
-                </span>
-              )}
-            </div>
+          <div className="text-center">
+            <h1 className="text-3xl md:text-5xl font-bold mb-4">
+              Church Shop
+            </h1>
+            <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto">
+              Browse our collection of books, apparel, music, and gifts
+            </p>
           </div>
         </div>
       </section>

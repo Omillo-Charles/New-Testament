@@ -80,7 +80,7 @@ const HeroSection = () => {
 
           {/* Enhanced Main Heading */}
           <div className={`mb-8 transition-all duration-1500 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-white mb-4 leading-[1.1] tracking-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-4 leading-[1.1] tracking-tight">
               <span className="inline-block hover:scale-105 transition-transform duration-300">Welcome</span>{" "}
               <span className="inline-block hover:scale-105 transition-transform duration-300 delay-75">to</span>
               <br />
@@ -115,7 +115,7 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-4xl mx-auto">
               <Link
                 href="/about"
-                className="w-full sm:w-auto bg-white text-[#E02020] font-bold py-5 px-12 rounded-xl shadow-2xl"
+                className="w-[85%] sm:w-auto bg-white text-[#E02020] font-bold py-5 px-12 rounded-xl shadow-2xl"
               >
                 <span className="flex items-center justify-center gap-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -127,7 +127,7 @@ const HeroSection = () => {
               
               <Link
                 href="/portals"
-                className="w-full sm:w-auto bg-[#1E4E9A] text-white font-bold py-5 px-12 rounded-xl shadow-2xl border border-white/20"
+                className="w-[85%] sm:w-auto bg-[#1E4E9A] text-white font-bold py-5 px-12 rounded-xl shadow-2xl border border-white/20"
               >
                 <span className="flex items-center justify-center gap-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -140,7 +140,7 @@ const HeroSection = () => {
               
               <Link
                 href="/programs/events"
-                className="w-full sm:w-auto bg-transparent border-2 border-white text-white font-bold py-5 px-12 rounded-xl shadow-2xl"
+                className="w-[85%] sm:w-auto bg-transparent border-2 border-white text-white font-bold py-5 px-12 rounded-xl shadow-2xl"
               >
                 <span className="flex items-center justify-center gap-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
