@@ -219,12 +219,12 @@ export default function SubmissionDetail() {
             </svg>
             Back to Submissions
           </Link>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Submission Details</h1>
               <p className="text-gray-600 mt-2">ID: {submission.submissionId}</p>
             </div>
-            <span className={`inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold border-2 ${getStatusColor(submission.status)}`}>
+            <span className={`inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold border-2 w-fit ${getStatusColor(submission.status)}`}>
               {(submission.status || "pending").charAt(0).toUpperCase() + (submission.status || "pending").slice(1).replace("-", " ")}
             </span>
           </div>
@@ -314,9 +314,9 @@ export default function SubmissionDetail() {
               {submission.files && submission.files.length > 0 ? (
                 <div className="space-y-3">
                   {submission.files.map((file, index) => (
-                    <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <div key={index} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
                       <div className="flex items-center space-x-3">
-                        <svg className="w-8 h-8 text-[#1E4E9A]" fill="currentColor" viewBox="0 0 20 20">
+                        <svg className="w-8 h-8 text-[#1E4E9A] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
                         </svg>
                         <div>
@@ -328,7 +328,7 @@ export default function SubmissionDetail() {
                       </div>
                       <button
                         onClick={() => downloadFile(file.fileId, file.fileName)}
-                        className="inline-flex items-center px-4 py-2 bg-[#1E4E9A] hover:bg-[#163E7A] text-white rounded-lg transition-colors"
+                        className="inline-flex items-center justify-center px-4 py-2 bg-[#1E4E9A] hover:bg-[#163E7A] text-white rounded-lg transition-colors w-full sm:w-auto"
                       >
                         <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
