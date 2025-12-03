@@ -11,17 +11,6 @@ export default function EventsCalendar() {
   // Events data
   const events = [
     {
-      name: "Annual General Meeting",
-      shortName: "AGM", // Abbreviation for calendar display
-      startDate: new Date(2025, 10, 27), // November 27, 2025 (month is 0-indexed)
-      endDate: new Date(2025, 10, 28), // November 28, 2025
-      color: "#1E4E9A",
-      time: "9:00 AM - 5:00 PM",
-      venue: "EastMore Model Academy, Nakuru",
-      registrationFee: "N/A",
-      expectedAttendance: "TBD",
-    },
-    {
       name: "Youth Explosion",
       shortName: "Youth Explosion", // Short enough to display as is
       startDate: new Date(2025, 11, 8), // December 8, 2025 (month is 0-indexed)
@@ -196,10 +185,10 @@ export default function EventsCalendar() {
                 const isToday = isCurrentMonth && day === today.getDate();
                 const event = day
                   ? getEventForDate(
-                      currentDate.getFullYear(),
-                      currentDate.getMonth(),
-                      day
-                    )
+                    currentDate.getFullYear(),
+                    currentDate.getMonth(),
+                    day
+                  )
                   : null;
 
                 return (
@@ -210,14 +199,13 @@ export default function EventsCalendar() {
                       rounded-lg text-sm md:text-base
                       transition-all duration-200
                       ${day ? "hover:bg-blue-50 cursor-pointer" : ""}
-                      ${
-                        isToday
-                          ? "bg-[#E02020] text-white font-bold hover:bg-[#B81C1C]"
-                          : event
+                      ${isToday
+                        ? "bg-[#E02020] text-white font-bold hover:bg-[#B81C1C]"
+                        : event
                           ? "bg-purple-100 text-purple-900 font-semibold hover:bg-purple-200"
                           : day
-                          ? "bg-gray-50 text-gray-900"
-                          : "bg-transparent"
+                            ? "bg-gray-50 text-gray-900"
+                            : "bg-transparent"
                       }
                     `}
                     title={event ? event.name : ""}
