@@ -74,28 +74,20 @@ export default function AdminSubmissions() {
       const apiUrl = isProduction
         ? 'https://ntcogk-submissions-service.vercel.app/api/submissions' // Update this when you deploy
         : (process.env.NEXT_PUBLIC_SUBMISSIONS_API_URL || "http://localhost:5501/api/submissions");
-      console.log("Fetching submissions from:", apiUrl);
-
       const response = await fetch(apiUrl, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      console.log("Response status:", response.status);
-
       if (response.ok) {
         const data = await response.json();
-        console.log("Submissions data:", data);
 
         if (data.success) {
           const submissionsArray = data.data?.submissions || data.data || [];
-          console.log("Submissions array:", submissionsArray);
           setSubmissions(submissionsArray);
           setFilteredSubmissions(submissionsArray);
         }
-      } else {
-        console.error("Failed to fetch submissions:", response.statusText);
       }
     } catch (error) {
       console.error("Error fetching submissions:", error);

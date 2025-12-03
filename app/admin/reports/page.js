@@ -34,7 +34,7 @@ export default function GenerateReports() {
 
       try {
         const parsedUser = JSON.parse(userData);
-        
+
         if (parsedUser.role !== "admin" && parsedUser.role !== "super-admin") {
           router.push("/");
           return;
@@ -57,7 +57,7 @@ export default function GenerateReports() {
     try {
       // Fetch user stats
       const authProvider = localStorage.getItem("authProvider");
-      const authApiUrl = authProvider === "social" 
+      const authApiUrl = authProvider === "social"
         ? process.env.NEXT_PUBLIC_SOCIAL_AUTH_API_URL || "http://localhost:5503/api/auth"
         : process.env.NEXT_PUBLIC_AUTH_API_URL || "http://localhost:5502/api/auth";
 
@@ -84,10 +84,10 @@ export default function GenerateReports() {
 
       // Fetch submissions stats
       const isProduction = typeof window !== 'undefined' && window.location.hostname !== 'localhost';
-      const submissionsApiUrl = isProduction 
+      const submissionsApiUrl = isProduction
         ? 'https://ntcogk-submissions-service.vercel.app/api' // Update this when you deploy
         : (process.env.NEXT_PUBLIC_SUBMISSIONS_API_URL?.replace('/submissions', '') || "http://localhost:5501/api");
-      
+
       const submissionsResponse = await fetch(`${submissionsApiUrl}/submissions/stats`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -127,11 +127,11 @@ export default function GenerateReports() {
 
       const authProvider = localStorage.getItem("authProvider");
       const isProduction = typeof window !== 'undefined' && window.location.hostname !== 'localhost';
-      
+
       console.log("Downloading report:", reportType);
       console.log("Auth provider:", authProvider);
       console.log("Is production:", isProduction);
-      
+
       if (reportType.includes("Users") || reportType.includes("Registrations")) {
         // Fetch users data
         let authApiUrl;
@@ -145,7 +145,7 @@ export default function GenerateReports() {
             : (process.env.NEXT_PUBLIC_AUTH_API_URL || "http://localhost:5502/api/auth");
         }
 
-        console.log("Fetching users from:", `${authApiUrl}/admin/users`);
+
 
         const response = await fetch(`${authApiUrl}/admin/users`, {
           headers: { Authorization: `Bearer ${token}` },
@@ -156,10 +156,10 @@ export default function GenerateReports() {
         if (response.ok) {
           const result = await response.json();
           console.log("Users result:", result);
-          
+
           const users = result.data?.users || result.data || [];
           console.log("Users array length:", users.length);
-          
+
           // Filter based on report type
           if (reportType === "Active Users") {
             data = users.filter(u => u.isActive);
@@ -170,7 +170,7 @@ export default function GenerateReports() {
           } else {
             data = users;
           }
-          
+
           console.log("Filtered data length:", data.length);
 
           headers = ["Name", "Email", "Role", "Verified", "Active", "Joined", "Last Login"];
@@ -193,7 +193,7 @@ export default function GenerateReports() {
         }
       } else if (reportType.includes("Submissions")) {
         // Fetch submissions data
-        const submissionsApiUrl = isProduction 
+        const submissionsApiUrl = isProduction
           ? 'https://ntcogk-submissions-service.vercel.app/api'
           : (process.env.NEXT_PUBLIC_SUBMISSIONS_API_URL?.replace('/submissions', '') || "http://localhost:5501/api");
 
@@ -204,7 +204,7 @@ export default function GenerateReports() {
         if (response.ok) {
           const result = await response.json();
           const submissions = result.data?.submissions || result.data || [];
-          
+
           // Filter based on report type
           if (reportType === "Pending Submissions") {
             data = submissions.filter(s => s.status === "pending");
@@ -232,7 +232,7 @@ export default function GenerateReports() {
       }
 
       console.log("Final data length:", data.length);
-      
+
       if (data.length === 0) {
         alert(`No data available for this report. Please check:\n1. You are logged in as admin\n2. The API is accessible\n3. There is data in the database\n\nCheck browser console for details.`);
         return;
@@ -526,7 +526,7 @@ export default function GenerateReports() {
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Report Information</h3>
               <p className="text-gray-700 text-sm">
-                Reports are generated in real-time and include the most up-to-date information. 
+                Reports are generated in real-time and include the most up-to-date information.
                 Downloaded reports are in CSV format and can be opened in Excel or Google Sheets.
               </p>
             </div>

@@ -13,11 +13,11 @@ function AuthCallbackContent() {
       const provider = searchParams.get("provider");
       const error = searchParams.get("error");
 
-      console.log('🔍 Callback received:', { 
-        hasAccessToken: !!accessToken, 
+      console.log('🔍 Callback received:', {
+        hasAccessToken: !!accessToken,
         hasRefreshToken: !!refreshToken,
         provider,
-        error 
+        error
       });
 
       if (error) {
@@ -33,13 +33,13 @@ function AuthCallbackContent() {
           localStorage.setItem("refreshToken", refreshToken);
         }
         localStorage.setItem("authProvider", provider || "social");
-        
+
         console.log('✅ Tokens stored in localStorage');
 
         // Fetch user profile
         try {
-          console.log('🔍 Fetching user profile from:', process.env.NEXT_PUBLIC_SOCIAL_AUTH_API_URL);
-          
+
+
           const response = await fetch(
             `${process.env.NEXT_PUBLIC_SOCIAL_AUTH_API_URL || 'http://localhost:5503/api/auth'}/profile`,
             {
@@ -49,22 +49,22 @@ function AuthCallbackContent() {
             }
           );
 
-          console.log('📡 Profile API response status:', response.status);
+
 
           if (response.ok) {
             const data = await response.json();
             console.log('✅ Profile fetch successful:', data);
-            
+
             if (data.success && data.data) {
               // Store user data
               localStorage.setItem("user", JSON.stringify(data.data));
-              
+
               console.log('✅ User data stored:', data.data.email);
-              
+
               // Trigger auth state change event
               window.dispatchEvent(new Event('authStateChanged'));
               console.log('📢 Auth state change event dispatched');
-              
+
               // Use window.location for a hard redirect to ensure state updates
               setTimeout(() => {
                 console.log('🏠 Redirecting to home...');
