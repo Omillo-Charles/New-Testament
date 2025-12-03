@@ -5,13 +5,41 @@ import Link from "next/link";
 
 export default function ManageUsers() {
   const router = useRouter();
-  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterRole, setFilterRole] = useState("all");
   const [filterStatus, setFilterStatus] = useState("all");
+  const [displayCount, setDisplayCount] = useState(10);
+
+  // Helper function to check if user is verified
+  const isUserVerified = (user) => {
+    return user.isVerified || user.verified || user.emailVerified || user.isEmailVerified || user.verificationStatus === 'verified';
+  };
+
+  // Helper function to check if user is active
+  const isUserActive = (user) => {
+    return user.isActive !== false && user.active !== false && user.status !== 'inactive';
+  };
+
+  // Get users per page based on screen size
+  const getUsersPerPage = () => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth >= 768 ? 10 : 5;
+    }
+    return 10;
+  };
+
+  // Load more users
+  const loadMoreUsers = () => {
+    setDisplayCount(prev => prev + getUsersPerPage());
+  };
+
+  // Reset display count when filters change
+  useEffect(() => {
+    setDisplayCount(getUsersPerPage());
+  }, [searchTerm, filterRole, filterStatus]);
 
   useEffect(() => {
     const checkAdminAccess = async () => {
@@ -25,13 +53,12 @@ export default function ManageUsers() {
 
       try {
         const parsedUser = JSON.parse(userData);
-        
+
         if (parsedUser.role !== "admin" && parsedUser.role !== "super-admin") {
           router.push("/");
           return;
         }
 
-        setUser(parsedUser);
         await fetchUsers(accessToken);
       } catch (error) {
         console.error("Error:", error);
@@ -47,10 +74,10 @@ export default function ManageUsers() {
   const fetchUsers = async (token) => {
     try {
       const authProvider = localStorage.getItem("authProvider") || "form";
-      
+
       console.log("Auth provider:", authProvider);
       console.log("Hostname:", window.location.hostname);
-      
+
       // Use the same logic as the main admin page
       let apiUrl;
       if (authProvider === "social") {
@@ -84,14 +111,36 @@ export default function ManageUsers() {
       if (response.ok) {
         const result = await response.json();
         console.log("Users data:", result);
-        
+
         if (result.success) {
           const usersArray = result.data?.users || result.data || [];
           console.log("Users array length:", usersArray.length);
           console.log("First user sample:", usersArray[0]);
+
+          // Log verification status for debugging
+          if (usersArray.length > 0) {
+            console.log("User verification properties:", {
+              isVerified: usersArray[0]?.isVerified,
+              verified: usersArray[0]?.verified,
+              emailVerified: usersArray[0]?.emailVerified,
+              isEmailVerified: usersArray[0]?.isEmailVerified,
+              verificationStatus: usersArray[0]?.verificationStatus
+            });
+
+            // Count verified users with different property names
+            const verifiedCounts = {
+              isVerified: usersArray.filter(u => u.isVerified).length,
+              verified: usersArray.filter(u => u.verified).length,
+              emailVerified: usersArray.filter(u => u.emailVerified).length,
+              isEmailVerified: usersArray.filter(u => u.isEmailVerified).length,
+              verificationStatus: usersArray.filter(u => u.verificationStatus === 'verified').length
+            };
+            console.log("Verified user counts by property:", verifiedCounts);
+          }
+
           setUsers(usersArray);
           setFilteredUsers(usersArray);
-          
+
           if (usersArray.length === 0) {
             console.warn("No users found in the response");
           }
@@ -102,7 +151,7 @@ export default function ManageUsers() {
         console.error("Failed to fetch users. Status:", response.status, response.statusText);
         const errorData = await response.json().catch(() => ({}));
         console.error("Error details:", errorData);
-        
+
         // Show helpful message
         if (response.status === 404) {
           console.error(`Endpoint not found: ${apiUrl}/admin/users`);
@@ -123,7 +172,7 @@ export default function ManageUsers() {
     let filtered = users;
 
     if (searchTerm) {
-      filtered = filtered.filter(u => 
+      filtered = filtered.filter(u =>
         u.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         u.firstName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         u.lastName?.toLowerCase().includes(searchTerm.toLowerCase())
@@ -136,13 +185,13 @@ export default function ManageUsers() {
 
     if (filterStatus !== "all") {
       if (filterStatus === "verified") {
-        filtered = filtered.filter(u => u.isVerified);
+        filtered = filtered.filter(u => isUserVerified(u));
       } else if (filterStatus === "unverified") {
-        filtered = filtered.filter(u => !u.isVerified);
+        filtered = filtered.filter(u => !isUserVerified(u));
       } else if (filterStatus === "active") {
-        filtered = filtered.filter(u => u.isActive);
+        filtered = filtered.filter(u => isUserActive(u));
       } else if (filterStatus === "inactive") {
-        filtered = filtered.filter(u => !u.isActive);
+        filtered = filtered.filter(u => !isUserActive(u));
       }
     }
 
@@ -189,13 +238,13 @@ export default function ManageUsers() {
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             <p className="text-sm font-medium text-gray-600">Verified</p>
             <p className="text-3xl font-bold text-green-600 mt-2">
-              {users.filter(u => u.isVerified).length}
+              {users.filter(u => isUserVerified(u)).length}
             </p>
           </div>
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             <p className="text-sm font-medium text-gray-600">Active</p>
             <p className="text-3xl font-bold text-blue-600 mt-2">
-              {users.filter(u => u.isActive).length}
+              {users.filter(u => isUserActive(u)).length}
             </p>
           </div>
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
@@ -286,7 +335,7 @@ export default function ManageUsers() {
                     </td>
                   </tr>
                 ) : (
-                  filteredUsers.map((u) => (
+                  filteredUsers.slice(0, displayCount).map((u) => (
                     <tr key={u._id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
@@ -304,24 +353,31 @@ export default function ManageUsers() {
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                          u.role === "super-admin" ? "bg-purple-100 text-purple-800" :
+                        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${u.role === "super-admin" ? "bg-purple-100 text-purple-800" :
                           u.role === "admin" ? "bg-blue-100 text-blue-800" :
-                          "bg-gray-100 text-gray-800"
-                        }`}>
+                            "bg-gray-100 text-gray-800"
+                          }`}>
                           {u.role}
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center space-x-2">
-                          {u.isVerified && (
+                          {isUserVerified(u) ? (
                             <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
                               Verified
                             </span>
+                          ) : (
+                            <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">
+                              Unverified
+                            </span>
                           )}
-                          {u.isActive && (
+                          {isUserActive(u) ? (
                             <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
                               Active
+                            </span>
+                          ) : (
+                            <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">
+                              Inactive
                             </span>
                           )}
                         </div>
@@ -338,6 +394,21 @@ export default function ManageUsers() {
               </tbody>
             </table>
           </div>
+
+          {/* View More Button */}
+          {filteredUsers.length > displayCount && (
+            <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 text-center">
+              <button
+                onClick={loadMoreUsers}
+                className="inline-flex items-center px-4 py-2 bg-[#1E4E9A] hover:bg-[#163E7A] text-white font-medium rounded-lg transition-colors"
+              >
+                View More ({Math.min(getUsersPerPage(), filteredUsers.length - displayCount)} more)
+              </button>
+              <p className="text-sm text-gray-500 mt-2">
+                Showing {displayCount} of {filteredUsers.length} users
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
