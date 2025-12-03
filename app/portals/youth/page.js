@@ -277,18 +277,8 @@ const YouthPage = () => {
             {(() => {
               const today = new Date();
               today.setHours(0, 0, 0, 0);
-              
+
               const events = [
-                {
-                  id: 1,
-                  title: "Annual General Meeting",
-                  date: "November 27-28, 2025",
-                  endDate: new Date(2025, 10, 28),
-                  time: "9:00 AM - 5:00 PM",
-                  location: "EastMore Model Academy, Nakuru",
-                  description: "Join us for our Annual General Meeting where we review the year's achievements and discuss future plans.",
-                  image: "/clergyImages/clergy20.png",
-                },
                 {
                   id: 2,
                   title: "Youth Explosion",

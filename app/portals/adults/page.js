@@ -4,12 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   FaUsers,
-  FaBook,
-  FaPray,
-  FaHandsHelping,
-  FaHeart,
   FaCalendarAlt,
-  FaComments,
   FaGraduationCap,
   FaUserFriends,
   FaMale,
@@ -100,13 +95,13 @@ const AdultsPage = () => {
 
           <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              Our Adults Ministry is designed to help men and women grow in their relationship with Christ, 
-              build meaningful connections with fellow believers, and discover their purpose in God's kingdom. 
+              Our Adults Ministry is designed to help men and women grow in their relationship with Christ,
+              build meaningful connections with fellow believers, and discover their purpose in God's kingdom.
               Whether you're single, married, a parent, or an empty-nester, there's a place for you here.
             </p>
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              We believe that spiritual growth doesn't stop after youth. Through Bible studies, fellowship 
-              groups, service opportunities, and special events, we provide a supportive community where 
+              We believe that spiritual growth doesn't stop after youth. Through Bible studies, fellowship
+              groups, service opportunities, and special events, we provide a supportive community where
               adults can deepen their faith, strengthen their families, and make a lasting impact.
             </p>
             <div className="bg-blue-50 border-l-4 border-[#1E4E9A] p-6 rounded-lg">
@@ -213,18 +208,9 @@ const AdultsPage = () => {
           {(() => {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
-            
+
             const events = [
-              {
-                id: 1,
-                title: "Annual General Meeting",
-                date: "November 27-28, 2025",
-                endDate: new Date(2025, 10, 28),
-                time: "9:00 AM - 5:00 PM",
-                location: "EastMore Model Academy, Nakuru",
-                description: "Join us for our Annual General Meeting where we review the year's achievements, discuss future plans, and make important decisions for the church.",
-                image: "/clergyImages/clergy20.png",
-              },
+              // Future events will be added here
             ].filter(event => event.endDate >= today);
 
             return events.length > 0 ? (

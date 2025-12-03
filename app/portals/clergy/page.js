@@ -11,7 +11,6 @@ import {
   FaCalendarAlt,
   FaFileAlt,
   FaChurch,
-  FaHeart,
   FaBullseye,
   FaPhone,
   FaClock,
@@ -182,18 +181,9 @@ const ClergyPage = () => {
           {(() => {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
-            
+
             const events = [
-              {
-                id: 1,
-                title: "Annual General Meeting",
-                date: "November 27-28, 2025",
-                endDate: new Date(2025, 10, 28),
-                time: "9:00 AM - 5:00 PM",
-                location: "EastMore Model Academy, Nakuru",
-                description: "Join us for our Annual General Meeting where we review the year's achievements, discuss future plans, and make important decisions for the church.",
-                image: "/clergyImages/clergy20.png",
-              },
+              // Future events will be added here
             ].filter(event => event.endDate >= today);
 
             return events.length > 0 ? (
