@@ -8,8 +8,6 @@ export default function AdminDashboard() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState({
-    totalSubmissions: 0,
-    pendingSubmissions: 0,
     totalUsers: 0,
     recentActivity: 0,
     verifiedUsers: 0,
@@ -30,7 +28,7 @@ export default function AdminDashboard() {
 
       try {
         const parsedUser = JSON.parse(userData);
-        
+
         // Check if user is admin
         if (parsedUser.role !== "admin" && parsedUser.role !== "super-admin") {
           router.push("/");
@@ -56,7 +54,7 @@ export default function AdminDashboard() {
     try {
       // Fetch user stats
       const authProvider = localStorage.getItem("authProvider");
-      const authApiUrl = authProvider === "social" 
+      const authApiUrl = authProvider === "social"
         ? process.env.NEXT_PUBLIC_SOCIAL_AUTH_API_URL || "http://localhost:5503/api/auth"
         : process.env.NEXT_PUBLIC_AUTH_API_URL || "http://localhost:5502/api/auth";
 
@@ -79,37 +77,6 @@ export default function AdminDashboard() {
             socialAuthUsers: result.data.socialAuthUsers || 0,
           }));
         }
-      }
-
-      // Fetch submissions stats
-      const isProduction = typeof window !== 'undefined' && window.location.hostname !== 'localhost';
-      const submissionsApiUrl = isProduction 
-        ? 'https://ntcogk-submissions-service.vercel.app/api' // Update this when you deploy
-        : (process.env.NEXT_PUBLIC_SUBMISSIONS_API_URL?.replace('/submissions', '') || "http://localhost:5501/api");
-      
-      console.log("Fetching submission stats from:", `${submissionsApiUrl}/submissions/stats`);
-      
-      const submissionsResponse = await fetch(`${submissionsApiUrl}/submissions/stats`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      console.log("Submissions stats response status:", submissionsResponse.status);
-
-      if (submissionsResponse.ok) {
-        const submissionsResult = await submissionsResponse.json();
-        console.log("Submissions stats data:", submissionsResult);
-        
-        if (submissionsResult.success) {
-          setStats(prevStats => ({
-            ...prevStats,
-            totalSubmissions: submissionsResult.data.total || 0,
-            pendingSubmissions: submissionsResult.data.pending || 0,
-          }));
-        }
-      } else {
-        console.error("Failed to fetch submission stats:", submissionsResponse.statusText);
       }
     } catch (error) {
       console.error("Error fetching stats:", error);
@@ -215,42 +182,7 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Submissions Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600">Total Submissions</p>
-                <p className="text-3xl font-bold text-gray-900 mt-2">{stats.totalSubmissions}</p>
-                <p className="text-xs text-gray-500 mt-1">
-                  All document submissions
-                </p>
-              </div>
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <svg className="w-6 h-6 text-[#1E4E9A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-            </div>
-          </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600">Pending Review</p>
-                <p className="text-3xl font-bold text-orange-600 mt-2">{stats.pendingSubmissions}</p>
-                <p className="text-xs text-gray-500 mt-1">
-                  Awaiting review
-                </p>
-              </div>
-              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
 
         {/* Quick Actions */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
@@ -320,13 +252,13 @@ export default function AdminDashboard() {
               <div className="flex items-center justify-between py-3 border-b border-gray-200">
                 <span className="text-sm font-medium text-gray-600">Last Login</span>
                 <span className="text-sm text-gray-900">
-                  {user.lastLogin 
-                    ? new Date(user.lastLogin).toLocaleString('en-US', { 
-                        month: 'short', 
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                      })
+                  {user.lastLogin
+                    ? new Date(user.lastLogin).toLocaleString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })
                     : "N/A"}
                 </span>
               </div>
