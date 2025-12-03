@@ -282,96 +282,98 @@ export default function AdminSubmissions() {
               <p className="text-gray-600 text-lg">No submissions found</p>
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Submitter
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Type
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Subject
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Priority
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Status
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Date
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {filteredSubmissions.slice(0, displayCount).map((submission) => (
-                    <tr key={submission._id || submission.submissionId} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div>
-                          <div className="text-sm font-medium text-gray-900">{submission.fullName}</div>
-                          <div className="text-sm text-gray-500">{submission.email}</div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">{submission.submissionType}</div>
-                        <div className="text-sm text-gray-500">{submission.branch}</div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="text-sm text-gray-900">{submission.subject}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className={`text-sm font-medium ${getUrgencyColor(submission.urgency)}`}>
-                          {submission.urgency?.charAt(0).toUpperCase() + submission.urgency?.slice(1)}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(submission.status || "pending")}`}>
-                          {(submission.status || "pending").charAt(0).toUpperCase() + (submission.status || "pending").slice(1)}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {submission.createdAt
-                          ? new Date(submission.createdAt).toLocaleDateString('en-US', {
-                            month: 'short',
-                            day: 'numeric',
-                            year: 'numeric'
-                          })
-                          : "N/A"}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <Link
-                          href={`/admin/submissions/${submission._id || submission.submissionId}`}
-                          className="text-[#1E4E9A] hover:text-[#163E7A]"
-                        >
-                          View Details
-                        </Link>
-                      </td>
+            <>
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Submitter
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Type
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Subject
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Priority
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Status
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Date
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Actions
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            
-            {/* View More Button */}
-          {filteredSubmissions.length > displayCount && (
-            <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 text-center">
-              <button
-                onClick={loadMoreSubmissions}
-                className="inline-flex items-center px-4 py-2 bg-[#1E4E9A] hover:bg-[#163E7A] text-white font-medium rounded-lg transition-colors"
-              >
-                View More ({Math.min(getSubmissionsPerPage(), filteredSubmissions.length - displayCount)} more)
-              </button>
-              <p className="text-sm text-gray-500 mt-2">
-                Showing {displayCount} of {filteredSubmissions.length} submissions
-              </p>
-            </div>
-          )}
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {filteredSubmissions.slice(0, displayCount).map((submission) => (
+                      <tr key={submission._id || submission.submissionId} className="hover:bg-gray-50">
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div>
+                            <div className="text-sm font-medium text-gray-900">{submission.fullName}</div>
+                            <div className="text-sm text-gray-500">{submission.email}</div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-900">{submission.submissionType}</div>
+                          <div className="text-sm text-gray-500">{submission.branch}</div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="text-sm text-gray-900">{submission.subject}</div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className={`text-sm font-medium ${getUrgencyColor(submission.urgency)}`}>
+                            {submission.urgency?.charAt(0).toUpperCase() + submission.urgency?.slice(1)}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(submission.status || "pending")}`}>
+                            {(submission.status || "pending").charAt(0).toUpperCase() + (submission.status || "pending").slice(1)}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {submission.createdAt
+                            ? new Date(submission.createdAt).toLocaleDateString('en-US', {
+                              month: 'short',
+                              day: 'numeric',
+                              year: 'numeric'
+                            })
+                            : "N/A"}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                          <Link
+                            href={`/admin/submissions/${submission._id || submission.submissionId}`}
+                            className="text-[#1E4E9A] hover:text-[#163E7A]"
+                          >
+                            View Details
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* View More Button */}
+              {filteredSubmissions.length > displayCount && (
+                <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 text-center">
+                  <button
+                    onClick={loadMoreSubmissions}
+                    className="inline-flex items-center px-4 py-2 bg-[#1E4E9A] hover:bg-[#163E7A] text-white font-medium rounded-lg transition-colors"
+                  >
+                    View More ({Math.min(getSubmissionsPerPage(), filteredSubmissions.length - displayCount)} more)
+                  </button>
+                  <p className="text-sm text-gray-500 mt-2">
+                    Showing {displayCount} of {filteredSubmissions.length} submissions
+                  </p>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
