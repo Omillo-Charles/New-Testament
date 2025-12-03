@@ -13,11 +13,6 @@ export default function ManageUsers() {
   const [filterStatus, setFilterStatus] = useState("all");
   const [displayCount, setDisplayCount] = useState(10);
 
-  // Helper function to check if user is verified
-  const isUserVerified = (user) => {
-    return user.isVerified || user.verified || user.emailVerified || user.isEmailVerified || user.verificationStatus === 'verified';
-  };
-
   // Helper function to check if user is active
   const isUserActive = (user) => {
     return user.isActive !== false && user.active !== false && user.status !== 'inactive';
@@ -75,9 +70,6 @@ export default function ManageUsers() {
     try {
       const authProvider = localStorage.getItem("authProvider") || "form";
 
-      console.log("Auth provider:", authProvider);
-      console.log("Hostname:", window.location.hostname);
-
       // Use the same logic as the main admin page
       let apiUrl;
       if (authProvider === "social") {
@@ -86,85 +78,37 @@ export default function ManageUsers() {
         apiUrl = process.env.NEXT_PUBLIC_AUTH_API_URL || "http://localhost:5502/api/auth";
       }
 
-      console.log("API URL:", apiUrl);
-      console.log("Fetching users from:", `${apiUrl}/admin/users`);
-
       let response = await fetch(`${apiUrl}/admin/users`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      console.log("Users response status:", response.status);
-
       // If 404, try alternative endpoint
       if (response.status === 404) {
-        console.log("Trying alternative endpoint: /users");
         response = await fetch(`${apiUrl}/users`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log("Alternative endpoint status:", response.status);
       }
 
       if (response.ok) {
         const result = await response.json();
-        console.log("Users data:", result);
 
         if (result.success) {
           const usersArray = result.data?.users || result.data || [];
-          console.log("Users array length:", usersArray.length);
-          console.log("First user sample:", usersArray[0]);
-
-          // Log verification status for debugging
-          if (usersArray.length > 0) {
-            console.log("User verification properties:", {
-              isVerified: usersArray[0]?.isVerified,
-              verified: usersArray[0]?.verified,
-              emailVerified: usersArray[0]?.emailVerified,
-              isEmailVerified: usersArray[0]?.isEmailVerified,
-              verificationStatus: usersArray[0]?.verificationStatus
-            });
-
-            // Count verified users with different property names
-            const verifiedCounts = {
-              isVerified: usersArray.filter(u => u.isVerified).length,
-              verified: usersArray.filter(u => u.verified).length,
-              emailVerified: usersArray.filter(u => u.emailVerified).length,
-              isEmailVerified: usersArray.filter(u => u.isEmailVerified).length,
-              verificationStatus: usersArray.filter(u => u.verificationStatus === 'verified').length
-            };
-            console.log("Verified user counts by property:", verifiedCounts);
-          }
-
           setUsers(usersArray);
           setFilteredUsers(usersArray);
-
-          if (usersArray.length === 0) {
-            console.warn("No users found in the response");
-          }
-        } else {
-          console.error("API returned success: false");
         }
       } else {
-        console.error("Failed to fetch users. Status:", response.status, response.statusText);
-        const errorData = await response.json().catch(() => ({}));
-        console.error("Error details:", errorData);
-
-        // Show helpful message
+        // Show helpful message for 404 errors
         if (response.status === 404) {
-          console.error(`Endpoint not found: ${apiUrl}/admin/users`);
-          console.log("Note: The /admin/stats endpoint works, but /admin/users is not implemented.");
-          console.log("You need to add the /admin/users endpoint to your authentication backend.");
           alert(`The user list endpoint is not available.\n\nThe authentication backend needs to implement:\nGET ${apiUrl}/admin/users\n\nThis endpoint should return all users for admin management.`);
-        } else {
-          alert(`Failed to fetch users. Status: ${response.status}. Check console for details.`);
         }
       }
     } catch (error) {
       console.error("Error fetching users:", error);
-      alert(`Error fetching users: ${error.message}. Check console for details.`);
     }
   };
 
@@ -184,11 +128,7 @@ export default function ManageUsers() {
     }
 
     if (filterStatus !== "all") {
-      if (filterStatus === "verified") {
-        filtered = filtered.filter(u => isUserVerified(u));
-      } else if (filterStatus === "unverified") {
-        filtered = filtered.filter(u => !isUserVerified(u));
-      } else if (filterStatus === "active") {
+      if (filterStatus === "active") {
         filtered = filtered.filter(u => isUserActive(u));
       } else if (filterStatus === "inactive") {
         filtered = filtered.filter(u => !isUserActive(u));
@@ -230,16 +170,10 @@ export default function ManageUsers() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             <p className="text-sm font-medium text-gray-600">Total Users</p>
             <p className="text-3xl font-bold text-gray-900 mt-2">{users.length}</p>
-          </div>
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <p className="text-sm font-medium text-gray-600">Verified</p>
-            <p className="text-3xl font-bold text-green-600 mt-2">
-              {users.filter(u => isUserVerified(u)).length}
-            </p>
           </div>
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             <p className="text-sm font-medium text-gray-600">Active</p>
@@ -295,8 +229,6 @@ export default function ManageUsers() {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent"
               >
                 <option value="all">All Status</option>
-                <option value="verified">Verified</option>
-                <option value="unverified">Unverified</option>
                 <option value="active">Active</option>
                 <option value="inactive">Inactive</option>
               </select>
@@ -361,26 +293,15 @@ export default function ManageUsers() {
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center space-x-2">
-                          {isUserVerified(u) ? (
-                            <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                              Verified
-                            </span>
-                          ) : (
-                            <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">
-                              Unverified
-                            </span>
-                          )}
-                          {isUserActive(u) ? (
-                            <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
-                              Active
-                            </span>
-                          ) : (
-                            <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">
-                              Inactive
-                            </span>
-                          )}
-                        </div>
+                        {isUserActive(u) ? (
+                          <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                            Active
+                          </span>
+                        ) : (
+                          <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">
+                            Inactive
+                          </span>
+                        )}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {new Date(u.createdAt).toLocaleDateString()}
