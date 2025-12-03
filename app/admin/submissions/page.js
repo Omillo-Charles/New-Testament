@@ -13,6 +13,25 @@ export default function AdminSubmissions() {
   const [searchTerm, setSearchTerm] = useState("");
   const [churchFilter, setChurchFilter] = useState("all");
   const [churches, setChurches] = useState([]);
+  const [displayCount, setDisplayCount] = useState(10);
+
+  // Get submissions per page based on screen size
+  const getSubmissionsPerPage = () => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth >= 768 ? 10 : 5;
+    }
+    return 10;
+  };
+
+  // Load more submissions
+  const loadMoreSubmissions = () => {
+    setDisplayCount(prev => prev + getSubmissionsPerPage());
+  };
+
+  // Reset display count when filters change
+  useEffect(() => {
+    setDisplayCount(getSubmissionsPerPage());
+  }, [filter, searchTerm, churchFilter]);
 
   useEffect(() => {
     const checkAdminAccess = async () => {
@@ -26,7 +45,7 @@ export default function AdminSubmissions() {
 
       try {
         const parsedUser = JSON.parse(userData);
-        
+
         // Check if user is admin
         if (parsedUser.role !== "admin" && parsedUser.role !== "super-admin") {
           router.push("/");
@@ -34,7 +53,7 @@ export default function AdminSubmissions() {
         }
 
         setUser(parsedUser);
-        
+
         // Fetch submissions
         await fetchSubmissions(accessToken);
       } catch (error) {
@@ -52,11 +71,11 @@ export default function AdminSubmissions() {
     try {
       // Use production URL if on production, otherwise use local
       const isProduction = window.location.hostname !== 'localhost';
-      const apiUrl = isProduction 
+      const apiUrl = isProduction
         ? 'https://ntcogk-submissions-service.vercel.app/api/submissions' // Update this when you deploy
         : (process.env.NEXT_PUBLIC_SUBMISSIONS_API_URL || "http://localhost:5501/api/submissions");
       console.log("Fetching submissions from:", apiUrl);
-      
+
       const response = await fetch(apiUrl, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -64,11 +83,11 @@ export default function AdminSubmissions() {
       });
 
       console.log("Response status:", response.status);
-      
+
       if (response.ok) {
         const data = await response.json();
         console.log("Submissions data:", data);
-        
+
         if (data.success) {
           const submissionsArray = data.data?.submissions || data.data || [];
           console.log("Submissions array:", submissionsArray);
@@ -104,7 +123,7 @@ export default function AdminSubmissions() {
 
     // Apply search filter
     if (searchTerm) {
-      filtered = filtered.filter(sub => 
+      filtered = filtered.filter(sub =>
         sub.fullName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         sub.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         sub.subject?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -291,7 +310,7 @@ export default function AdminSubmissions() {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {filteredSubmissions.map((submission) => (
+                  {filteredSubmissions.slice(0, displayCount).map((submission) => (
                     <tr key={submission._id || submission.submissionId} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div>
@@ -317,12 +336,12 @@ export default function AdminSubmissions() {
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {submission.createdAt 
-                          ? new Date(submission.createdAt).toLocaleDateString('en-US', { 
-                              month: 'short', 
-                              day: 'numeric',
-                              year: 'numeric'
-                            })
+                        {submission.createdAt
+                          ? new Date(submission.createdAt).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric'
+                          })
                           : "N/A"}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
@@ -338,6 +357,21 @@ export default function AdminSubmissions() {
                 </tbody>
               </table>
             </div>
+            
+            {/* View More Button */}
+          {filteredSubmissions.length > displayCount && (
+            <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 text-center">
+              <button
+                onClick={loadMoreSubmissions}
+                className="inline-flex items-center px-4 py-2 bg-[#1E4E9A] hover:bg-[#163E7A] text-white font-medium rounded-lg transition-colors"
+              >
+                View More ({Math.min(getSubmissionsPerPage(), filteredSubmissions.length - displayCount)} more)
+              </button>
+              <p className="text-sm text-gray-500 mt-2">
+                Showing {displayCount} of {filteredSubmissions.length} submissions
+              </p>
+            </div>
+          )}
           )}
         </div>
       </div>
