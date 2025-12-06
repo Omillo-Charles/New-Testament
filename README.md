@@ -15,21 +15,24 @@ The official website for the New Testament Church of God Kenya (NTCG Kenya), a v
 ## Features
 
 ### Public Features
+
 - **Home Page** - Welcome section with hero carousel, statistics, and call-to-action
 - **About Us** - Church history, vision, mission, and leadership information
 - **Resources Hub** - Access to church resources, gallery, beliefs, and FAQs
 - **Ministry Portals** - Dedicated sections for Youth, Children, Adults, and Clergy
 - **Programs** - Bible College, Discipleship Courses, and Events information
 - **Contact** - Contact form and church location information
-- **Church Locator** - Interactive map to find NTCG branches across Kenya
+- **Church Locator Map** - Interactive map to find NTCG branches across Kenya
 
 ### User Features
+
 - **User Authentication** - Secure login and registration system
 - **User Profiles** - Personal profile management
 - **Document Submissions** - Submit church documents and reports
 - **Event Registration** - Register for church events and programs
 
 ### Admin Features
+
 - **Admin Dashboard** - Comprehensive administrative control panel
 - **User Management** - Manage user accounts and permissions
 - **Submission Management** - Review and process document submissions
@@ -38,6 +41,7 @@ The official website for the New Testament Church of God Kenya (NTCG Kenya), a v
 ## Technology Stack
 
 ### Frontend
+
 - **Framework:** Next.js 15.1.3 (App Router)
 - **UI Library:** React 19.0.0
 - **Styling:** Tailwind CSS 3.4.17
@@ -45,12 +49,14 @@ The official website for the New Testament Church of God Kenya (NTCG Kenya), a v
 - **Image Optimization:** Next.js Image Component with Sharp
 
 ### Backend Integration
+
 - **Authentication:** JWT-based authentication
 - **API Communication:** Fetch API with custom error handling
 - **State Management:** React Hooks (useState, useEffect)
 - **Form Handling:** Native form handling with validation
 
 ### Development Tools
+
 - **Linting:** ESLint with Next.js configuration
 - **Code Quality:** TypeScript ESLint
 - **Package Manager:** npm
@@ -101,6 +107,7 @@ The official website for the New Testament Church of God Kenya (NTCG Kenya), a v
 ## Installation
 
 ### Prerequisites
+
 - Node.js 18.x or higher
 - npm or yarn package manager
 - Git
@@ -108,29 +115,34 @@ The official website for the New Testament Church of God Kenya (NTCG Kenya), a v
 ### Setup Instructions
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/your-org/ntcg-kenya-website.git
 cd ntcg-kenya-website
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Configure environment variables:
-Create a `.env.local` file in the root directory:
+   Create a `.env.local` file in the root directory:
+
 ```env
 NEXT_PUBLIC_API_URL=your_api_url
 NEXT_PUBLIC_SUBMISSIONS_API_URL=your_submissions_api_url
 ```
 
 4. Run the development server:
+
 ```bash
 npm run dev
 ```
 
 5. Open your browser and navigate to:
+
 ```
 http://localhost:3000
 ```
@@ -138,6 +150,7 @@ http://localhost:3000
 ## Available Scripts
 
 ### Development
+
 ```bash
 npm run dev          # Start development server
 npm run build        # Build for production
@@ -149,14 +162,15 @@ npm run lint         # Run ESLint
 
 ### Environment Variables
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| NEXT_PUBLIC_API_URL | Main API endpoint | Yes |
-| NEXT_PUBLIC_SUBMISSIONS_API_URL | Submissions API endpoint | Yes |
+| Variable                        | Description              | Required |
+| ------------------------------- | ------------------------ | -------- |
+| NEXT_PUBLIC_API_URL             | Main API endpoint        | Yes      |
+| NEXT_PUBLIC_SUBMISSIONS_API_URL | Submissions API endpoint | Yes      |
 
 ### Tailwind CSS Configuration
 
 The project uses a custom Tailwind configuration with:
+
 - Custom color palette matching church branding
 - Extended font families
 - Custom animations and transitions
@@ -165,6 +179,7 @@ The project uses a custom Tailwind configuration with:
 ### Next.js Configuration
 
 Key configurations in `next.config.mjs`:
+
 - Image optimization enabled
 - Custom image domains configured
 - Strict mode enabled
@@ -173,24 +188,28 @@ Key configurations in `next.config.mjs`:
 ## Key Features Implementation
 
 ### Authentication System
+
 - JWT-based authentication
 - Secure token storage in localStorage
 - Protected routes with middleware
 - Role-based access control (User, Admin, Super Admin)
 
 ### Document Submission System
+
 - Multi-step form with validation
 - File upload with type and size restrictions
 - Integration with Google Drive for storage
 - Real-time submission tracking
 
 ### Church Locator
+
 - Interactive map integration
 - Region-based church filtering
 - Searchable church directory
 - 224+ churches across 6 regions
 
 ### Responsive Design
+
 - Mobile-first approach
 - Optimized for all screen sizes
 - Touch-friendly navigation
@@ -223,18 +242,21 @@ Key configurations in `next.config.mjs`:
 ## Deployment
 
 ### Production Build
+
 ```bash
 npm run build
 npm run start
 ```
 
 ### Deployment Platforms
+
 - Vercel (Recommended)
 - Netlify
 - AWS Amplify
 - Custom server with Node.js
 
 ### Environment Setup
+
 Ensure all environment variables are configured in your deployment platform.
 
 ## Contributing
@@ -256,6 +278,7 @@ This is a private project for NTCG Kenya. For internal development:
 ## Church Information
 
 **New Testament Church of God Kenya**
+
 - **Established:** 1977
 - **Churches:** 224+ across Kenya
 - **Members:** 15,000+
@@ -263,6 +286,7 @@ This is a private project for NTCG Kenya. For internal development:
 - **Districts:** 28+
 
 ### Regional Structure
+
 - North Central Region
 - Nairobi Region
 - Coast Region
@@ -286,6 +310,7 @@ This project is proprietary and confidential. Unauthorized copying, distribution
 ## Version History
 
 **Version 1.0.0** - Initial Release
+
 - Complete website with all core features
 - User authentication system
 - Admin dashboard
