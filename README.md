@@ -36,7 +36,7 @@ The official website for the New Testament Church of God Kenya (NTCG Kenya), a v
 - **Admin Dashboard** - Comprehensive administrative control panel
 - **User Management** - Manage user accounts and permissions
 - **Submission Management** - Review and process document submissions
-- **Content Management** - Update church information and resources
+- **Content Management System** - Update church information and resources
 
 ## Technology Stack
 
