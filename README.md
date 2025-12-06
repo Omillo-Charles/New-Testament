@@ -22,7 +22,7 @@ The official website for the New Testament Church of God Kenya (NTCG Kenya), a v
 - **Ministry Portals** - Dedicated sections for Youth, Children, Adults, and Clergy
 - **Programs** - Bible College, Discipleship Courses, and Events information
 - **Contact** - Contact form and church location information
-- **Church Locator Map** - Interactive map to find NTCG branches across Kenya
+- **Church Locator** - Interactive map to find NTCG branches across Kenya
 
 ### User Features
 
