@@ -18,20 +18,20 @@ export default function Home() {
         <div className="relative container-max max-w-6xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-12">
             {[
-              { end: 223, label: "Churches", color: "text-[#E02020]", suffix: "+" },
+              { end: 224, label: "Churches", color: "text-[#E02020]", suffix: "+" },
               { end: 15000, label: "Members", color: "text-[#1E4E9A]", suffix: "+" },
               { end: 6, label: "Regional Offices", color: "text-[#E02020]", suffix: "" },
               { end: 28, label: "Districts", color: "text-[#1E4E9A]", suffix: "" },
             ].map((stat, index) => (
               <div
                 key={index}
-                className="group relative p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100"
+                className="relative p-6 bg-white rounded-2xl shadow-sm border border-gray-100"
               >
                 <div className="text-center">
                   <StatCounter
                     end={stat.end}
                     suffix={stat.suffix}
-                    className={`text-5xl md:text-6xl font-extrabold ${stat.color} mb-2 tracking-tight group-hover:scale-110 transition-transform duration-300 inline-block`}
+                    className={`text-5xl md:text-6xl font-extrabold ${stat.color} mb-2 tracking-tight`}
                   />
                   <div className="text-gray-600 text-sm md:text-base font-semibold uppercase tracking-wider">{stat.label}</div>
                 </div>
