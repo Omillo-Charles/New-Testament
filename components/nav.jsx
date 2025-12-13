@@ -123,8 +123,8 @@ const Navbar = () => {
       <button
         onClick={toggle}
         className={`flex items-center text-sm font-semibold tracking-wide transition-all duration-300 px-3 py-2 rounded-full hover:bg-gray-100/50 ${active || isOpen
-            ? "text-[#1E4E9A]"
-            : "text-gray-600 hover:text-[#1E4E9A]"
+          ? "text-[#1E4E9A]"
+          : "text-gray-600 hover:text-[#1E4E9A]"
           }`}
       >
         {label}
@@ -142,8 +142,8 @@ const Navbar = () => {
       {/* Dropdown Menu */}
       <div
         className={`absolute top-full left-0 mt-2 w-64 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 ring-1 ring-black/5 transform transition-all duration-300 origin-top-left z-50 ${isOpen
-            ? "opacity-100 scale-100 translate-y-0 visible"
-            : "opacity-0 scale-95 -translate-y-2 invisible"
+          ? "opacity-100 scale-100 translate-y-0 visible"
+          : "opacity-0 scale-95 -translate-y-2 invisible"
           }`}
       >
         <div className="p-2 space-y-1">
@@ -152,8 +152,8 @@ const Navbar = () => {
               key={link.href}
               href={link.href}
               className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${isActiveLink(link.href)
-                  ? "bg-blue-50 text-[#1E4E9A]"
-                  : "text-gray-600 hover:bg-gray-50 hover:text-[#E02020] hover:pl-6"
+                ? "bg-blue-50 text-[#1E4E9A]"
+                : "text-gray-600 hover:bg-gray-50 hover:text-[#E02020] hover:pl-6"
                 }`}
               onClick={() => toggle(false)}
             >
@@ -167,10 +167,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled
-          ? "bg-white/80 backdrop-blur-md shadow-lg py-2"
-          : "bg-white py-4 shadow-sm"
-        }`}
+      className="fixed top-0 left-0 right-0 z-[100] bg-white shadow-sm py-4"
     >
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -199,8 +196,8 @@ const Navbar = () => {
                 key={link.href}
                 href={link.href}
                 className={`text-sm font-semibold tracking-wide px-4 py-2 rounded-full transition-all duration-300 ${isActiveLink(link.href)
-                    ? "text-[#E02020] bg-red-50"
-                    : "text-gray-600 hover:text-[#1E4E9A] hover:bg-gray-50"
+                  ? "text-[#E02020] bg-red-50"
+                  : "text-gray-600 hover:text-[#1E4E9A] hover:bg-gray-50"
                   }`}
               >
                 {link.label}
@@ -236,8 +233,8 @@ const Navbar = () => {
                 key={link.href}
                 href={link.href}
                 className={`text-sm font-semibold tracking-wide px-4 py-2 rounded-full transition-all duration-300 ${isActiveLink(link.href)
-                    ? "text-[#E02020] bg-red-50"
-                    : "text-gray-600 hover:text-[#1E4E9A] hover:bg-gray-50"
+                  ? "text-[#E02020] bg-red-50"
+                  : "text-gray-600 hover:text-[#1E4E9A] hover:bg-gray-50"
                   }`}
               >
                 {link.label}
@@ -274,8 +271,8 @@ const Navbar = () => {
                 key={link.href}
                 href={link.href}
                 className={`block px-4 py-3 rounded-xl text-base font-semibold transition-all ${isActiveLink(link.href)
-                    ? "bg-red-50 text-[#E02020]"
-                    : "text-gray-600 hover:bg-gray-50"
+                  ? "bg-red-50 text-[#E02020]"
+                  : "text-gray-600 hover:bg-gray-50"
                   }`}
               >
                 {link.label}
@@ -329,8 +326,8 @@ const Navbar = () => {
                 key={link.href}
                 href={link.href}
                 className={`block px-4 py-3 rounded-xl text-base font-semibold transition-all ${isActiveLink(link.href)
-                    ? "bg-red-50 text-[#E02020]"
-                    : "text-gray-600 hover:bg-gray-50"
+                  ? "bg-red-50 text-[#E02020]"
+                  : "text-gray-600 hover:bg-gray-50"
                   }`}
               >
                 {link.label}
