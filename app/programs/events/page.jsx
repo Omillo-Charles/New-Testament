@@ -27,44 +27,8 @@ const EventsPage = () => {
     { id: "special", name: "Special Events", icon: <FaMusic /> },
   ];
 
-  const allEvents = [
-    {
-      id: 1,
-      title: "Annual General Meeting",
-      category: "special",
-      date: "November 27-28, 2025",
-      endDate: new Date(2025, 10, 28), // November 28, 2025 (month is 0-indexed)
-      time: "9:00 AM - 5:00 PM",
-      location: "EastMore Model Academy, Nakuru",
-      description:
-        "Join us for our Annual General Meeting where we review the year's achievements, discuss future plans, and make important decisions for the church.",
-      image: "/clergyImages/clergy20.png",
-      recurring: false,
-      hasRegistration: false,
-    },
-    {
-      id: 2,
-      title: "Youth Explosion",
-      category: "youth",
-      date: "December 8-13, 2025",
-      endDate: new Date(2025, 11, 13), // December 13, 2025 (month is 0-indexed)
-      time: "8:00 AM - 5:00 PM",
-      location: "LifeSpring Academy, Langata, Nairobi",
-      description:
-        "An explosive week of worship, teaching, and fellowship for young people. Registration Fee: KSh 1,500. Expected Attendance: 2,000.",
-      image: "/youthImages/youth10.png",
-      recurring: false,
-      hasRegistration: true,
-    },
-  ];
-
-  // Filter out past events
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  
-  const upcomingEvents = allEvents.filter((event) => {
-    return event.endDate >= today;
-  });
+  // No events currently scheduled
+  const upcomingEvents = [];
 
   const filteredEvents =
     selectedCategory === "all"
@@ -103,11 +67,10 @@ const EventsPage = () => {
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-semibold transition-all duration-200 whitespace-nowrap text-sm ${
-                    selectedCategory === category.id
-                      ? "bg-[#E02020] text-white shadow-md"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                  }`}
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-semibold transition-all duration-200 whitespace-nowrap text-sm ${selectedCategory === category.id
+                    ? "bg-[#E02020] text-white shadow-md"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    }`}
                 >
                   <span className="text-base">{category.icon}</span>
                   <span>{category.name}</span>
