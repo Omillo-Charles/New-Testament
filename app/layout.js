@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "../components/nav";
 import Footer from "../components/footer";
 import { ScrollProgress } from "../components/ui/scroll-progress";
+import ClientLayout from "../components/client-layout";
 
 export const metadata = {
   title: "New Testament Church of God Kenya",
@@ -24,10 +25,12 @@ export default function RootLayout({ children }) {
             '"Webly Sleek UI", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif',
         }}
       >
-        <ScrollProgress />
-        <Navbar />
-        <main className="pt-16">{children}</main>
-        <Footer />
+        <ClientLayout>
+          <ScrollProgress />
+          <Navbar />
+          <main className="pt-16">{children}</main>
+          <Footer />
+        </ClientLayout>
       </body>
     </html>
   );
