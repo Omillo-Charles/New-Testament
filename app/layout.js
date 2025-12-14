@@ -25,9 +25,11 @@ export default function RootLayout({ children }) {
             '"Webly Sleek UI", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif',
         }}
       >
+        {/* Fixed elements outside of transitions */}
+        <ScrollProgress />
+        <Navbar />
+
         <ClientLayout>
-          <ScrollProgress />
-          <Navbar />
           <main className="pt-16">{children}</main>
           <Footer />
         </ClientLayout>
