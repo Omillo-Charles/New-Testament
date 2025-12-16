@@ -169,35 +169,34 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-[100] bg-white shadow-lg">
       {/* First Level - Contact & Social Media */}
-      <div className={`bg-[#1E4E9A] text-white py-2 hidden lg:block transition-all duration-500 ease-in-out overflow-hidden ${scrolled ? 'max-h-0 opacity-0 -translate-y-full' : 'max-h-20 opacity-100 translate-y-0'
-        }`}>
+      <div className="bg-[#1E4E9A] text-white py-2">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between text-sm">
             {/* Contact Info */}
-            <div className="flex items-center space-x-6">
-              <div className="flex items-center space-x-2">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <div className="flex items-center space-x-3 lg:space-x-6">
+              <div className="flex items-center space-x-1 lg:space-x-2">
+                <svg className="w-3 h-3 lg:w-4 lg:h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
-                <span>+254 759 120 222</span>
+                <span className="text-xs lg:text-sm">+254 759 120 222</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <div className="hidden sm:flex items-center space-x-1 lg:space-x-2">
+                <svg className="w-3 h-3 lg:w-4 lg:h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                   <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                 </svg>
-                <span>info@ntcogk.org</span>
+                <span className="text-xs lg:text-sm">info@ntcogk.org</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
+                <svg className="w-3 h-3 lg:w-4 lg:h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                 </svg>
-                <span>Karen, Nairobi</span>
+                <span className="text-xs lg:text-sm">Karen, Nairobi</span>
               </div>
             </div>
 
             {/* Social Media Icons */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 lg:space-x-4">
               {/* Facebook */}
               <a href="#" className="hover:text-[#E02020] transition-colors" title="Facebook">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -233,46 +232,76 @@ const Navbar = () => {
       {/* Second Level - Logo, Church Name & Search */}
       <div className="bg-white border-b border-gray-200 py-4 transition-all duration-300">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            {/* Church Name */}
-            <div className="hidden lg:block">
-              <h1 className="text-2xl font-bold text-[#1E4E9A]">NTCoGK</h1>
-              <p className="text-sm text-gray-600">New Testament Church of God Kenya</p>
-            </div>
-
-            {/* Logo - Center on Desktop, Left with Text on Mobile */}
+          {/* Mobile Layout */}
+          <div className="flex items-center justify-between lg:hidden">
+            {/* Mobile Logo - Left */}
             <Link href="/" className="flex items-center">
-              {/* Desktop Logo - Center */}
-              <div className="hidden lg:block w-16 h-16 relative bg-white border border-gray-200 rounded-lg shadow-sm p-2 hover:shadow-md transition-shadow duration-300">
+              <div className="w-12 h-12 relative rounded-lg shadow-md bg-white p-1">
                 <Image
                   src="/mainLogo.png"
-                  alt="NTCOGK Logo"
+                  alt="NTCoG Kenya Logo"
                   fill
                   className="object-contain rounded-md"
                 />
               </div>
+            </Link>
 
-              {/* Mobile Logo with Text - Left */}
-              <div className="lg:hidden flex items-center space-x-3">
-                <div className="w-12 h-12 relative rounded-lg shadow-md bg-white p-1">
+            {/* Mobile Search Bar */}
+            <div className="flex-1 max-w-md mx-4">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full px-4 py-2 pl-10 pr-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent text-sm"
+                />
+                <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={`p-2 rounded-xl transition-all duration-300 focus:outline-none ${isOpen
+                ? "bg-red-500 text-white hover:bg-red-600"
+                : "text-gray-600 hover:bg-gray-100"
+                }`}
+            >
+              <div className="w-6 h-5 flex flex-col justify-between">
+                <span className={`h-0.5 bg-current rounded-full transition-all duration-300 ${isOpen ? "w-6 rotate-45 translate-y-2.5" : "w-6"}`} />
+                <span className={`h-0.5 bg-current rounded-full transition-all duration-300 ${isOpen ? "w-0 opacity-0" : "w-4 ml-auto"}`} />
+                <span className={`h-0.5 bg-current rounded-full transition-all duration-300 ${isOpen ? "w-6 -rotate-45 -translate-y-2" : "w-5 ml-auto"}`} />
+              </div>
+            </button>
+          </div>
+
+          {/* Desktop Layout */}
+          <div className="hidden lg:grid lg:grid-cols-3 lg:items-center">
+            {/* Church Name - Left */}
+            <div>
+              <h1 className="text-2xl font-bold text-[#1E4E9A]">NTCoGK</h1>
+              <p className="text-sm text-gray-600">New Testament Church of God Kenya</p>
+            </div>
+
+            {/* Logo - Center */}
+            <div className="flex justify-center">
+              <Link href="/" className="flex items-center">
+                <div className="w-16 h-16 relative bg-white border border-gray-200 rounded-lg shadow-sm p-2 hover:shadow-md transition-shadow duration-300">
                   <Image
                     src="/mainLogo.png"
-                    alt="NTCoG Kenya Logo"
+                    alt="NTCOGK Logo"
                     fill
                     className="object-contain rounded-md"
                   />
                 </div>
-                <div>
-                  <span className="text-2xl font-bold text-[#E02020]">NTCoG</span>
-                  <span className="text-lg text-[#1E4E9A] block leading-tight font-medium">
-                    Kenya
-                  </span>
-                </div>
-              </div>
-            </Link>
+              </Link>
+            </div>
 
-            {/* Search Bar */}
-            <div className="hidden lg:block">
+            {/* Search Bar - Right */}
+            <div className="flex justify-end">
               <div className="relative">
                 <input
                   type="text"
@@ -286,18 +315,6 @@ const Navbar = () => {
                 </svg>
               </div>
             </div>
-
-            {/* Mobile Menu Toggle */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors focus:outline-none"
-            >
-              <div className="w-6 h-5 flex flex-col justify-between">
-                <span className={`h-0.5 bg-current rounded-full transition-all duration-300 ${isOpen ? "w-6 rotate-45 translate-y-2.5" : "w-6"}`} />
-                <span className={`h-0.5 bg-current rounded-full transition-all duration-300 ${isOpen ? "w-0 opacity-0" : "w-4 ml-auto"}`} />
-                <span className={`h-0.5 bg-current rounded-full transition-all duration-300 ${isOpen ? "w-6 -rotate-45 -translate-y-2" : "w-5 ml-auto"}`} />
-              </div>
-            </button>
           </div>
         </div>
       </div>
@@ -361,7 +378,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation Menu */}
       <div
-        className={`lg:hidden fixed inset-x-0 top-[72px] bottom-0 bg-white/95 backdrop-blur-xl z-40 transition-all duration-500 ease-in-out ${isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+        className={`lg:hidden fixed inset-x-0 top-[112px] bottom-0 bg-white/95 backdrop-blur-xl z-40 transition-all duration-500 ease-in-out ${isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
           }`}
       >
         <div className="h-full overflow-y-auto pb-20">
@@ -436,7 +453,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </nav>
+    </nav >
   );
 };
 
