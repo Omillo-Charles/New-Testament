@@ -27,8 +27,17 @@ export default function Contact() {
     setButtonState('loading');
 
     // Start the 3-second timer immediately
-    const buttonTimer = setTimeout(() => {
+    setTimeout(() => {
       setButtonState('sent');
+
+      // Clear form when button changes to "Sent"
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: ""
+      });
 
       // After another 3 seconds, return to normal
       setTimeout(() => {
@@ -49,16 +58,7 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        // Clear form on successful submission
-        setFormData({
-          fullName: "",
-          email: "",
-          phone: "",
-          subject: "",
-          message: ""
-        });
-      }
+      // API call completed (success or failure doesn't affect UI)
 
     } catch (err) {
       console.error("Error submitting form:", err);
