@@ -13,13 +13,13 @@ const Footer = () => {
               <div className="w-12 h-12 relative rounded-lg shadow-md bg-white p-1">
                 <Image
                   src="/mainLogo.png"
-                  alt="NTCG Kenya Logo"
+                  alt="NTCoG Kenya Logo"
                   fill
                   className="object-contain rounded-md"
                 />
               </div>
               <div>
-                <span className="text-2xl font-bold text-white">NTCG</span>
+                <span className="text-2xl font-bold text-white">NTCoG</span>
                 <span className="text-lg text-gray-200 block leading-tight font-medium">
                   Kenya
                 </span>

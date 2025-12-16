@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
         <Navbar />
 
         <ClientLayout>
-          <main className="pt-16">{children}</main>
+          <main className="pt-20 lg:pt-40">{children}</main>
           <Footer />
         </ClientLayout>
       </body>

@@ -24,7 +24,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-8 lg:pt-0">
       {/* Background Carousel */}
       <HeroCarousel />
 
@@ -59,7 +59,7 @@ const HeroSection = () => {
               <span className="inline-block animate-pulse">to</span>
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E02020] via-red-400 to-orange-500 inline-block drop-shadow-2xl animate-bounce">
-                NTCG
+                NTCoG
               </span>{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1E4E9A] via-blue-400 to-cyan-300 inline-block drop-shadow-2xl animate-bounce">
                 Kenya
