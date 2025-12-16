@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
 export default function Contact() {
@@ -12,30 +12,7 @@ export default function Contact() {
   });
 
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
-
-  // Auto-dismiss success message after 5 seconds
-  useEffect(() => {
-    if (success) {
-      const timer = setTimeout(() => {
-        setSuccess(false);
-      }, 5000); // 5 seconds
-
-      return () => clearTimeout(timer);
-    }
-  }, [success]);
-
-  // Auto-dismiss error message after 7 seconds
-  useEffect(() => {
-    if (error) {
-      const timer = setTimeout(() => {
-        setError("");
-      }, 7000); // 7 seconds
-
-      return () => clearTimeout(timer);
-    }
-  }, [error]);
+  const [buttonState, setButtonState] = useState('normal'); // 'normal', 'loading', 'sent'
 
   const handleChange = (e) => {
     setFormData({
@@ -47,8 +24,18 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError("");
-    setSuccess(false);
+    setButtonState('loading');
+
+    // Start the 3-second timer immediately
+    const buttonTimer = setTimeout(() => {
+      setButtonState('sent');
+
+      // After another 3 seconds, return to normal
+      setTimeout(() => {
+        setButtonState('normal');
+        setLoading(false);
+      }, 3000);
+    }, 3000);
 
     try {
       const apiUrl = process.env.NEXT_PUBLIC_CONTACT_API_URL || "https://ntcogkcontactapi.onrender.com/api/contact";
@@ -58,43 +45,24 @@ export default function Contact() {
         headers: {
           "Content-Type": "application/json",
         },
-        mode: "cors", // Explicitly set CORS mode
+        mode: "cors",
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) {
-        // Try to parse error message from response
-        const data = await response.json().catch(() => ({ message: "Server error" }));
-        throw new Error(data.message || `Server returned ${response.status}`);
+      if (response.ok) {
+        // Clear form on successful submission
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: ""
+        });
       }
-
-      const data = await response.json();
-
-      setSuccess(true);
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: ""
-      });
-
-      // Scroll to top to show success message
-      window.scrollTo({ top: 0, behavior: "smooth" });
 
     } catch (err) {
       console.error("Error submitting form:", err);
-
-      // Provide more specific error messages
-      if (err.message.includes("Failed to fetch") || err.name === "TypeError") {
-        setError("Unable to connect to the server. The backend service may be offline or there's a network issue. Please try again later or contact us directly at +254 759 120 222.");
-      } else if (err.message.includes("Too many")) {
-        setError("You've submitted too many requests. Please wait a few minutes before trying again.");
-      } else {
-        setError(err.message || "Failed to send message. Please try again or contact us directly.");
-      }
-    } finally {
-      setLoading(false);
+      // Continue with button animation regardless of error
     }
   };
 
@@ -169,56 +137,6 @@ export default function Contact() {
 
             {/* Contact Form */}
             <div className="max-w-4xl mx-auto">
-              {/* Success Message */}
-              {success && (
-                <div className="mb-6 bg-green-500 border-2 border-green-600 p-6 rounded-xl shadow-2xl animate-bounce-in">
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-12 h-12 bg-white rounded-full flex items-center justify-center mr-4">
-                      <svg className="w-8 h-8 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-white mb-2">✓ Message Sent Successfully!</h3>
-                      <p className="text-green-50 text-lg">Thank you for contacting us. We've received your message and will get back to you soon.</p>
-                    </div>
-                    <button
-                      onClick={() => setSuccess(false)}
-                      className="flex-shrink-0 text-white hover:text-green-100 ml-4"
-                    >
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* Error Message */}
-              {error && (
-                <div className="mb-6 bg-red-500 border-2 border-red-600 p-6 rounded-xl shadow-2xl animate-shake">
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-12 h-12 bg-white rounded-full flex items-center justify-center mr-4">
-                      <svg className="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-white mb-2">⚠ Error Sending Message</h3>
-                      <p className="text-red-50 text-lg">{error}</p>
-                    </div>
-                    <button
-                      onClick={() => setError("")}
-                      className="flex-shrink-0 text-white hover:text-red-100 ml-4"
-                    >
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              )}
-
               <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
                 <h3 className="text-2xl font-semibold text-gray-900 mb-6 text-center">
                   Send Us a Message
@@ -316,15 +234,25 @@ export default function Contact() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full sm:w-auto bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-4 px-12 sm:px-16 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                      className={`w-full sm:w-auto font-semibold py-4 px-12 sm:px-16 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:cursor-not-allowed disabled:transform-none ${buttonState === 'sent'
+                        ? 'bg-green-500 hover:bg-green-500 text-white'
+                        : 'bg-[#E02020] hover:bg-[#B81C1C] text-white'
+                        } ${loading ? 'opacity-75' : ''}`}
                     >
-                      {loading ? (
+                      {buttonState === 'loading' ? (
                         <span className="flex items-center justify-center">
                           <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                           </svg>
                           Sending...
+                        </span>
+                      ) : buttonState === 'sent' ? (
+                        <span className="flex items-center justify-center">
+                          <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                          Sent
                         </span>
                       ) : (
                         "Send Message"
