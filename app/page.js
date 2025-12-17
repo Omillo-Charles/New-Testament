@@ -2,6 +2,40 @@ import HeroSection from '../components/hero';
 import StatCounter from '../components/stats-counter';
 import Link from 'next/link';
 
+export const metadata = {
+  title: "Home - Building Faith, Community, and Hope Across Kenya",
+  description: "Welcome to New Testament Church of God Kenya (NTCoG). Join our vibrant Pentecostal community of 15,000+ members across 224+ churches. Find a branch near you and experience Spirit-filled worship, biblical teaching, and genuine fellowship.",
+  keywords: [
+    "NTCoG Kenya home",
+    "Pentecostal church Kenya",
+    "Church services Kenya",
+    "Christian community Kenya",
+    "Find church Kenya",
+    "Spirit-filled worship",
+    "Biblical teaching Kenya",
+    "Church branches Kenya",
+    "Christian fellowship Kenya",
+    "Nairobi church services"
+  ],
+  openGraph: {
+    title: "New Testament Church of God Kenya - Building Faith, Community, and Hope",
+    description: "Join our vibrant Pentecostal community of 15,000+ members across 224+ churches in Kenya. Experience Spirit-filled worship and biblical teaching.",
+    images: [
+      {
+        url: '/og-home.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'New Testament Church of God Kenya - Welcome Home',
+      },
+    ],
+  },
+  twitter: {
+    title: "New Testament Church of God Kenya - Building Faith, Community, and Hope",
+    description: "Join our vibrant Pentecostal community of 15,000+ members across 224+ churches in Kenya.",
+    images: ['/og-home.jpg'],
+  },
+};
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
