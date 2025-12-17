@@ -2,7 +2,6 @@ import "./globals.css";
 import Navbar from "../components/nav";
 import Footer from "../components/footer";
 import { ScrollProgress } from "../components/ui/scroll-progress";
-import ClientLayout from "../components/client-layout";
 
 export const metadata = {
   title: "New Testament Church of God Kenya",
@@ -29,10 +28,8 @@ export default function RootLayout({ children }) {
         <ScrollProgress />
         <Navbar />
 
-        <ClientLayout>
-          <main className="pt-20 lg:pt-40">{children}</main>
-          <Footer />
-        </ClientLayout>
+        <main className="pt-20 lg:pt-40">{children}</main>
+        <Footer />
       </body>
     </html>
   );
