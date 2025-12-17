@@ -2,6 +2,32 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
+// Note: Since this is a client component, metadata should be added via generateMetadata or moved to a parent server component
+// For now, we'll add it here as a comment for reference:
+/*
+export const metadata = {
+  title: "Contact Us - Get in Touch with NTCoG Kenya",
+  description: "Contact New Testament Church of God Kenya. Send prayer requests, find a branch near you, or connect with our church family. National Headquarters: Karen, Nairobi. Phone: +254 759 120 222",
+  keywords: [
+    "contact NTCoG Kenya",
+    "church contact Kenya",
+    "prayer requests Kenya",
+    "find church branch Kenya",
+    "NTCoG headquarters",
+    "church phone number Kenya",
+    "Karen church Nairobi",
+    "church address Kenya",
+    "contact pastor Kenya",
+    "church inquiry Kenya"
+  ],
+  openGraph: {
+    title: "Contact New Testament Church of God Kenya",
+    description: "Get in touch with NTCoG Kenya. Send prayer requests, find a branch, or connect with our church family across Kenya.",
+    images: ['/og-contact.jpg'],
+  },
+};
+*/
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     fullName: "",

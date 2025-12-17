@@ -3,14 +3,81 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata = {
-  title: "About Us - New Testament Church of God Kenya",
-  description:
-    "Learn about NTCG Kenya's history, mission, vision, and leadership. Established in 1977, we are a vibrant Pentecostal church serving communities across Kenya.",
+  title: "About Us - Our History, Mission & Leadership",
+  description: "Discover the story of New Testament Church of God Kenya (NTCoG). Established in 1977 in Karatina, we've grown to 15,000+ members across 224+ churches. Learn about our mission, vision, leadership under Dr. David Gilbert Bwire, and our commitment to building faith, community, and hope across Kenya.",
+  keywords: [
+    "NTCoG Kenya history",
+    "Church of God Kenya about",
+    "Dr. David Gilbert Bwire",
+    "Pentecostal church history Kenya",
+    "NTCOGK leadership",
+    "Church established 1977",
+    "Karatina church history",
+    "Church of God World Missions Kenya",
+    "Kenya church leadership",
+    "Pentecostal ministry Kenya",
+    "Church mission vision Kenya",
+    "Regional bishops Kenya",
+    "Church growth Kenya",
+    "Christian education Kenya"
+  ],
+  openGraph: {
+    title: "About New Testament Church of God Kenya - Our Story Since 1977",
+    description: "Discover our journey from 1977 to becoming Kenya's leading Pentecostal church with 15,000+ members across 224+ churches.",
+    images: [
+      {
+        url: '/og-about.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'New Testament Church of God Kenya - Our History and Leadership',
+      },
+    ],
+  },
+  twitter: {
+    title: "About New Testament Church of God Kenya - Our Story Since 1977",
+    description: "Discover our journey from 1977 to becoming Kenya's leading Pentecostal church with 15,000+ members.",
+    images: ['/og-about.jpg'],
+  },
 };
 
 export default function About() {
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntity": {
+      "@type": "ReligiousOrganization",
+      "name": "New Testament Church of God Kenya",
+      "foundingDate": "1977-05-13",
+      "founder": {
+        "@type": "Person",
+        "name": "Francis Gachara"
+      },
+      "leader": {
+        "@type": "Person",
+        "name": "Dr. David Gilbert Bwire",
+        "jobTitle": "National Administrative Bishop",
+        "description": "Fifth National Overseer since 1977, serving since 2014"
+      },
+      "numberOfEmployees": "15000+",
+      "location": {
+        "@type": "Place",
+        "name": "Kenya",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "KE"
+        }
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(aboutSchema),
+        }}
+      />
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         {/* Background Image */}

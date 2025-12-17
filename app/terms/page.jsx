@@ -2,9 +2,21 @@ import React from "react";
 import { FaFileContract, FaShieldAlt, FaBalanceScale } from "react-icons/fa";
 
 export const metadata = {
-  title: "Terms of Service - New Testament Church of God Kenya",
-  description:
-    "Terms of Service for the New Testament Church of God Kenya website",
+  title: "Terms of Service - Website Usage Guidelines",
+  description: "Read the terms of service for New Testament Church of God Kenya's website. Understand your rights and responsibilities when using our website, accessing our content, and engaging with our online services.",
+  keywords: [
+    "NTCoG Kenya terms of service",
+    "church website terms",
+    "website usage policy",
+    "terms and conditions Kenya",
+    "church website guidelines",
+    "user agreement",
+    "website legal terms"
+  ],
+  robots: {
+    index: true,
+    follow: false,
+  },
 };
 
 const TermsOfService = () => {

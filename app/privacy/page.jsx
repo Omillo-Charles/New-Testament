@@ -2,9 +2,22 @@ import React from "react";
 import { FaShieldAlt, FaLock, FaUserShield } from "react-icons/fa";
 
 export const metadata = {
-  title: "Privacy Policy - New Testament Church of God Kenya",
-  description:
-    "Privacy Policy for the New Testament Church of God Kenya website",
+  title: "Privacy Policy - How We Protect Your Information",
+  description: "Read New Testament Church of God Kenya's privacy policy. Learn how we collect, use, and protect your personal information when you visit our website or contact our church. Your privacy and data security are important to us.",
+  keywords: [
+    "NTCoG Kenya privacy policy",
+    "church privacy policy",
+    "data protection Kenya",
+    "website privacy",
+    "personal information protection",
+    "church data security",
+    "privacy rights Kenya",
+    "information collection policy"
+  ],
+  robots: {
+    index: true,
+    follow: false,
+  },
 };
 
 const PrivacyPolicy = () => {
