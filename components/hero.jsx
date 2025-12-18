@@ -100,7 +100,7 @@ const HeroSection = () => {
               </Link>
 
               <Link
-                href="/portals"
+                href="/resources/churches"
                 className="w-[85%] sm:w-auto bg-[#1E4E9A] text-white font-bold py-5 px-12 rounded-xl shadow-2xl border border-white/20"
               >
                 <span className="flex items-center justify-center gap-2">
