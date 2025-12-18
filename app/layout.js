@@ -1,7 +1,6 @@
 import "./globals.css";
 import Navbar from "../components/nav";
 import Footer from "../components/footer";
-import { ScrollProgress } from "../components/ui/scroll-progress";
 
 export const metadata = {
   title: {
@@ -85,24 +84,9 @@ export const metadata = {
   category: 'religion',
   classification: 'Church, Religious Organization, Pentecostal Church',
   icons: {
-    icon: [
-      { url: "/icons/favicon.ico" },
-      { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
+    icon: "/icons/favicon.ico",
     shortcut: "/icons/favicon.ico",
-    apple: [
-      { url: "/icons/apple-touch-icon.png" },
-      { url: "/icons/apple-touch-icon-180x180.png", sizes: "180x180", type: "image/png" },
-    ],
-    other: [
-      {
-        rel: "apple-touch-icon-precomposed",
-        url: "/icons/apple-touch-icon-precomposed.png",
-      },
-    ],
   },
-  manifest: "/manifest.json",
 };
 
 export default function RootLayout({ children }) {
@@ -177,9 +161,7 @@ export default function RootLayout({ children }) {
         <meta name="geo.placename" content="Kenya" />
         <meta name="geo.position" content="-1.2921;36.8219" />
         <meta name="ICBM" content="-1.2921, 36.8219" />
-        <meta name="theme-color" content="#1E4E9A" />
-        <meta name="msapplication-TileColor" content="#1E4E9A" />
-        <meta name="msapplication-config" content="/icons/browserconfig.xml" />
+
       </head>
       <body
         className="font-sans antialiased"
@@ -189,7 +171,6 @@ export default function RootLayout({ children }) {
         }}
       >
         {/* Fixed elements outside of transitions */}
-        <ScrollProgress />
         <Navbar />
 
         <main className="pt-20 lg:pt-40">{children}</main>
