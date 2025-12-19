@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const NavLinks = () => {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
+    const menuRef = useRef(null);
 
     const navLinks = [
         { href: "/", label: "Home" },
@@ -45,23 +46,56 @@ const NavLinks = () => {
         setIsOpen(false);
     }, [pathname]);
 
-    // Prevent body scroll when mobile menu is open
+    // Close menu when clicking outside (desktop only)
     useEffect(() => {
+        const handleClickOutside = (event) => {
+            const isDesktop = window.innerWidth >= 1024; // lg breakpoint
+
+            if (isDesktop && isOpen && menuRef.current && !menuRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
         if (isOpen) {
-            document.body.style.overflow = 'hidden';
-            document.body.style.position = 'fixed';
-            document.body.style.width = '100%';
-        } else {
-            document.body.style.overflow = '';
-            document.body.style.position = '';
-            document.body.style.width = '';
+            document.addEventListener('mousedown', handleClickOutside);
         }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isOpen]);
+
+    // Prevent body scroll when mobile menu is open (only on mobile)
+    useEffect(() => {
+        const handleBodyScroll = () => {
+            const isMobile = window.innerWidth < 1024; // lg breakpoint
+
+            if (isOpen && isMobile) {
+                document.body.style.overflow = 'hidden';
+                document.body.style.position = 'fixed';
+                document.body.style.width = '100%';
+                document.body.style.top = `-${window.scrollY}px`;
+            } else {
+                const scrollY = document.body.style.top;
+                document.body.style.overflow = '';
+                document.body.style.position = '';
+                document.body.style.width = '';
+                document.body.style.top = '';
+
+                if (scrollY) {
+                    window.scrollTo(0, parseInt(scrollY || '0') * -1);
+                }
+            }
+        };
+
+        handleBodyScroll();
 
         // Cleanup on unmount
         return () => {
             document.body.style.overflow = '';
             document.body.style.position = '';
             document.body.style.width = '';
+            document.body.style.top = '';
         };
     }, [isOpen]);
 
@@ -71,13 +105,13 @@ const NavLinks = () => {
     };
 
     return (
-        <>
-            {/* Mobile Menu Toggle Button */}
+        <div ref={menuRef} className="relative">
+            {/* Menu Toggle Button - Now works on both mobile and desktop */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`lg:hidden p-2 rounded-xl transition-all duration-300 focus:outline-none ${isOpen
-                        ? "bg-red-500 text-white hover:bg-red-600"
-                        : "text-gray-600 hover:bg-gray-100"
+                className={`flex items-center justify-center p-2 rounded-xl transition-all duration-300 focus:outline-none ${isOpen
+                    ? "bg-red-500 text-white hover:bg-red-600"
+                    : "text-gray-600 hover:bg-gray-100"
                     }`}
             >
                 <div className="w-6 h-5 flex flex-col justify-between">
@@ -103,8 +137,8 @@ const NavLinks = () => {
                                 key={link.href}
                                 href={link.href}
                                 className={`block px-4 py-3 rounded-xl text-base font-semibold transition-all ${isActiveLink(link.href)
-                                        ? "bg-red-50 text-[#E02020]"
-                                        : "text-gray-600 hover:bg-gray-50"
+                                    ? "bg-red-50 text-[#E02020]"
+                                    : "text-gray-600 hover:bg-gray-50"
                                     }`}
                                 onClick={() => setIsOpen(false)}
                             >
@@ -112,7 +146,7 @@ const NavLinks = () => {
                             </Link>
                         ))}
 
-                        {/* Mobile Accordions */}
+                        {/* Navigation Sections */}
                         <div className="space-y-2">
                             {/* Resources Section */}
                             <div className="px-4 py-2">
@@ -124,8 +158,8 @@ const NavLinks = () => {
                                         key={link.href}
                                         href={link.href}
                                         className={`block py-2.5 text-base font-medium transition-all ${isActiveLink(link.href)
-                                                ? "text-[#1E4E9A] font-semibold pl-2"
-                                                : "text-gray-600 hover:text-[#1E4E9A] hover:pl-2"
+                                            ? "text-[#1E4E9A] font-semibold pl-2"
+                                            : "text-gray-600 hover:text-[#1E4E9A] hover:pl-2"
                                             }`}
                                         onClick={() => setIsOpen(false)}
                                     >
@@ -144,8 +178,8 @@ const NavLinks = () => {
                                         key={link.href}
                                         href={link.href}
                                         className={`block py-2.5 text-base font-medium transition-all ${isActiveLink(link.href)
-                                                ? "text-[#1E4E9A] font-semibold pl-2"
-                                                : "text-gray-600 hover:text-[#1E4E9A] hover:pl-2"
+                                            ? "text-[#1E4E9A] font-semibold pl-2"
+                                            : "text-gray-600 hover:text-[#1E4E9A] hover:pl-2"
                                             }`}
                                         onClick={() => setIsOpen(false)}
                                     >
@@ -164,8 +198,8 @@ const NavLinks = () => {
                                         key={link.href}
                                         href={link.href}
                                         className={`block py-2.5 text-base font-medium transition-all ${isActiveLink(link.href)
-                                                ? "text-[#1E4E9A] font-semibold pl-2"
-                                                : "text-gray-600 hover:text-[#1E4E9A] hover:pl-2"
+                                            ? "text-[#1E4E9A] font-semibold pl-2"
+                                            : "text-gray-600 hover:text-[#1E4E9A] hover:pl-2"
                                             }`}
                                         onClick={() => setIsOpen(false)}
                                     >
@@ -181,8 +215,8 @@ const NavLinks = () => {
                                 key={link.href}
                                 href={link.href}
                                 className={`block px-4 py-3 rounded-xl text-base font-semibold transition-all ${isActiveLink(link.href)
-                                        ? "bg-red-50 text-[#E02020]"
-                                        : "text-gray-600 hover:bg-gray-50"
+                                    ? "bg-red-50 text-[#E02020]"
+                                    : "text-gray-600 hover:bg-gray-50"
                                     }`}
                                 onClick={() => setIsOpen(false)}
                             >
@@ -192,7 +226,112 @@ const NavLinks = () => {
                     </div>
                 </div>
             </div>
-        </>
+
+            {/* Desktop Navigation Menu */}
+            <div
+                className={`hidden lg:block absolute top-full right-0 mt-2 w-80 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 ring-1 ring-black/5 z-40 transition-all duration-300 origin-top-right ${isOpen
+                    ? "opacity-100 scale-100 translate-y-0 visible"
+                    : "opacity-0 scale-95 -translate-y-2 invisible"
+                    }`}
+            >
+                <div className="h-auto max-h-96 overflow-y-auto">
+                    <div className="py-4 space-y-1">
+                        {/* Main Navigation Links */}
+                        {navLinks.slice(0, 2).map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={`block px-4 py-2 rounded-xl text-sm font-semibold transition-all ${isActiveLink(link.href)
+                                    ? "bg-red-50 text-[#E02020]"
+                                    : "text-gray-600 hover:bg-gray-50"
+                                    }`}
+                                onClick={() => setIsOpen(false)}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+
+                        {/* Navigation Sections */}
+                        <div className="space-y-1">
+                            {/* Resources Section */}
+                            <div className="px-2 py-1">
+                                <div className="font-bold text-gray-400 text-xs uppercase tracking-wider mb-1">
+                                    Discover
+                                </div>
+                                {resourcesLinks.map((link) => (
+                                    <Link
+                                        key={link.href}
+                                        href={link.href}
+                                        className={`block py-1.5 text-sm font-medium transition-all ${isActiveLink(link.href)
+                                            ? "text-[#1E4E9A] font-semibold pl-2"
+                                            : "text-gray-600 hover:text-[#1E4E9A] hover:pl-2"
+                                            }`}
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                ))}
+                            </div>
+
+                            {/* Portals Section */}
+                            <div className="px-2 py-1">
+                                <div className="font-bold text-gray-400 text-xs uppercase tracking-wider mb-1">
+                                    Connect
+                                </div>
+                                {portalsLinks.map((link) => (
+                                    <Link
+                                        key={link.href}
+                                        href={link.href}
+                                        className={`block py-1.5 text-sm font-medium transition-all ${isActiveLink(link.href)
+                                            ? "text-[#1E4E9A] font-semibold pl-2"
+                                            : "text-gray-600 hover:text-[#1E4E9A] hover:pl-2"
+                                            }`}
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                ))}
+                            </div>
+
+                            {/* Programs Section */}
+                            <div className="px-2 py-1">
+                                <div className="font-bold text-gray-400 text-xs uppercase tracking-wider mb-1">
+                                    Grow
+                                </div>
+                                {programsLinks.map((link) => (
+                                    <Link
+                                        key={link.href}
+                                        href={link.href}
+                                        className={`block py-1.5 text-sm font-medium transition-all ${isActiveLink(link.href)
+                                            ? "text-[#1E4E9A] font-semibold pl-2"
+                                            : "text-gray-600 hover:text-[#1E4E9A] hover:pl-2"
+                                            }`}
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Contact Link */}
+                        {navLinks.slice(2).map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={`block px-4 py-2 rounded-xl text-sm font-semibold transition-all ${isActiveLink(link.href)
+                                    ? "bg-red-50 text-[#E02020]"
+                                    : "text-gray-600 hover:bg-gray-50"
+                                    }`}
+                                onClick={() => setIsOpen(false)}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 };
 

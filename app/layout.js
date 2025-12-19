@@ -173,7 +173,7 @@ export default function RootLayout({ children }) {
         {/* Fixed elements outside of transitions */}
         <Navbar />
 
-        <main className="pt-20 lg:pt-40">{children}</main>
+        <main className="pt-20 lg:pt-32">{children}</main>
         <Footer />
       </body>
     </html>
