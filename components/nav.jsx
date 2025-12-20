@@ -94,9 +94,25 @@ const Navbar = () => {
               </div>
             </Link>
 
-            {/* Mobile Search Bar */}
-            <div className="flex-1 max-w-md mx-4">
-              <SearchBar className="text-sm" placeholder="Search..." />
+            {/* Mobile Center Section - Profile Icon and Search */}
+            <div className="flex items-center space-x-3 flex-1 max-w-md mx-4">
+              {/* Profile Icon */}
+              <a
+                href="https://auth.ntcogk.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-9 h-9 text-gray-600 hover:text-gray-800 bg-gray-50 hover:bg-gray-100 border-2 border-gray-200 hover:border-gray-300 rounded-full transition-all duration-200"
+                title="Sign In / Sign Up"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </a>
+
+              {/* Search Bar */}
+              <div className="flex-1">
+                <SearchBar className="text-sm" placeholder="Search..." />
+              </div>
             </div>
 
             {/* Mobile Menu Toggle - Using NavLinks Component */}
@@ -125,9 +141,23 @@ const Navbar = () => {
               </Link>
             </div>
 
-            {/* Search Bar & Menu - Right */}
+            {/* Search Bar, Profile Icon & Menu - Right */}
             <div className="flex justify-end items-center space-x-3">
               <SearchBar className="w-64" placeholder="Search..." />
+
+              {/* Profile Icon */}
+              <a
+                href="https://auth.ntcogk.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-10 h-10 text-gray-600 hover:text-gray-800 bg-gray-50 hover:bg-gray-100 border-2 border-gray-200 hover:border-gray-300 rounded-full transition-all duration-200"
+                title="Sign In / Sign Up"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </a>
+
               <div className="relative">
                 <NavLinks />
               </div>

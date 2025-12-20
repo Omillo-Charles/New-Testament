@@ -42,7 +42,8 @@ next-env.d.ts
 
 #folders
 /New-Testament-Backend
-/event-register
+/ntcogk-submissions
+/ntcogk-events
 /submissions-handler
 
 NTContactFormHandlerExpressJSRestAPI
