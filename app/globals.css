@@ -112,15 +112,20 @@ label {
   font-size: 16px;
 }
 
-/* Hero Section Headings */
-.hero h1,
-.hero h2,
-.hero h3,
-.hero h4,
-.hero h5,
-.hero h6 {
-  font-family: var(--font-main);
-  font-weight: 700;
+/* Search Results Override */
+.search-result-title {
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  line-height: 1.25rem !important;
+}
+
+.search-result-description {
+  font-size: 0.625rem !important;
+  line-height: 0.875rem !important;
+}
+
+.search-result-meta {
+  font-size: 0.75rem !important;
 }
 
 html {

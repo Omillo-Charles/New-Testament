@@ -157,24 +157,24 @@ const SearchBar = ({ className = "", placeholder = "Search..." }) => {
                                     href={result.url}
                                     onClick={() => handleResultClick(result.url)}
                                     className={`block px-4 py-3 rounded-xl transition-all duration-200 ${selectedIndex === index
-                                            ? "bg-blue-50 text-[#1E4E9A]"
-                                            : "hover:bg-gray-50"
+                                        ? "bg-blue-50 text-[#1E4E9A]"
+                                        : "hover:bg-gray-50"
                                         }`}
                                 >
                                     <div className="flex items-start justify-between">
                                         <div className="flex-1 min-w-0">
-                                            <h4 className="text-sm font-semibold text-gray-900 truncate">
+                                            <h4 className="search-result-title text-gray-900 truncate">
                                                 {result.title}
                                             </h4>
-                                            <p className="text-xs text-gray-600 mt-1 line-clamp-2">
+                                            <p className="search-result-description text-gray-600 mt-1 line-clamp-2">
                                                 {result.description}
                                             </p>
                                             <div className="flex items-center mt-2 space-x-2">
-                                                <span className={`text-xs font-medium ${getCategoryColor(result.category)}`}>
+                                                <span className={`search-result-meta font-medium ${getCategoryColor(result.category)}`}>
                                                     {result.category}
                                                 </span>
-                                                <span className="text-xs text-gray-400">•</span>
-                                                <span className="text-xs text-gray-500 truncate">
+                                                <span className="search-result-meta text-gray-400">•</span>
+                                                <span className="search-result-meta text-gray-500 truncate">
                                                     {result.url}
                                                 </span>
                                             </div>
