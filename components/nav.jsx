@@ -123,7 +123,7 @@ const Navbar = () => {
           <div className="hidden lg:grid lg:grid-cols-3 lg:items-center">
             {/* Church Name - Left */}
             <div>
-              <h1 className="text-2xl font-bold text-[#1E4E9A]">NTCoGK</h1>
+              <h1 className="text-xl font-bold text-[#1E4E9A]">NTCoGK</h1>
               <p className="text-sm text-gray-600">New Testament Church of God Kenya</p>
             </div>
 
