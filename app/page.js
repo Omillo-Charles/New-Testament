@@ -45,7 +45,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-600 mb-6">
               Welcome to Our Church Family
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">

@@ -44,7 +44,7 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href="https://twitter.com/ntcogk"
+                href="https://x.com/ntcogk"
                 className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-black transition-colors duration-300"
                 aria-label="X (Twitter) - @ntcogk"
                 title="X (Twitter) - @ntcogk"
