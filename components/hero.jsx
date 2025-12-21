@@ -1,132 +1,155 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import HeroCarousel from "./herocarousel";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    {
+      type: "scripture",
+      background: "/newHero/hero.jpg",
+      content: {
+        quote: "Come, let us bow down in worship, let us kneel before the Lord our Maker.",
+        reference: "— Psalm 95:6"
+      }
+    },
+    {
+      type: "bishop",
+      background: "/clergyImages/clergy1.png",
+      content: {
+        title: "Welcome to NTCoGK",
+        message: "Grace and peace to you in the name of our Lord Jesus Christ. We are delighted to welcome you to the New Testament Church of God Kenya family. Here, you will find a community rooted in faith, love, and service to God and one another.",
+        author: "Bishop Francis Wamweya",
+        position: "National Bishop, NTCoGK"
+      }
+    }
+  ];
 
   useEffect(() => {
     setIsVisible(true);
 
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 100,
-        y: (e.clientY / window.innerHeight) * 100,
-      });
-    };
+    // Auto-advance slides every 8 seconds
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 8000);
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-8 lg:pt-0">
-      {/* Background Carousel */}
-      <HeroCarousel />
-
-      {/* Dynamic Floating Elements */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
+    <section className="relative h-[70vh] flex items-end overflow-hidden">
+      {/* Background Images */}
+      {slides.map((slide, index) => (
         <div
-          className="absolute w-96 h-96 bg-gradient-to-r from-amber-600/10 to-transparent rounded-full blur-3xl transition-all duration-1000 ease-out"
-          style={{
-            left: `${mousePosition.x * 0.02}%`,
-            top: `${mousePosition.y * 0.02}%`,
-          }}
-        />
-        <div
-          className="absolute w-64 h-64 bg-gradient-to-r from-white/5 to-transparent rounded-full blur-2xl transition-all duration-700 ease-out"
-          style={{
-            right: `${mousePosition.x * 0.01}%`,
-            bottom: `${mousePosition.y * 0.01}%`,
-          }}
-        />
-      </div>
+          key={index}
+          className={`absolute inset-0 z-0 transition-all duration-1500 ease-in-out ${currentSlide === index ? 'opacity-100' : 'opacity-0'
+            }`}
+        >
+          <img
+            src={slide.background}
+            alt={slide.type === 'scripture' ? 'Church worship background' : 'Bishop Francis Wamweya'}
+            className={`w-full h-full ${slide.type === 'bishop' ? 'object-cover' : 'object-cover'
+              }`}
+            style={slide.type === 'bishop' ? { objectPosition: 'center 25%' } : {}}
+          />
+          <div className={`absolute inset-0 ${slide.type === 'bishop'
+            ? 'bg-gradient-to-t from-black/80 via-black/50 to-black/30'
+            : 'bg-gradient-to-t from-black/70 via-black/20 to-transparent'
+            }`}></div>
+        </div>
+      ))}
 
-      {/* Main Content */}
-      <div className="relative z-20 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="max-w-6xl mx-auto">
+      {/* Slide Content */}
+      <div className="relative z-20 w-full pb-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-end justify-between">
+            {/* Left Content */}
+            <div className="relative">
+              {/* Scripture Slide Content */}
+              <div className={`transition-all duration-1500 ease-in-out ${currentSlide === 0
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-4 absolute inset-0'
+                }`}>
+                <div>
+                  <blockquote className="text-lg md:text-xl font-light text-white mb-2 leading-relaxed">
+                    {slides[0].content.quote}
+                  </blockquote>
+                  <cite className="text-sm md:text-base text-blue-200 font-medium">
+                    {slides[0].content.reference}
+                  </cite>
+                </div>
+              </div>
 
+              {/* Bishop Welcome Slide Content */}
+              <div className={`transition-all duration-1500 ease-in-out ${currentSlide === 1
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-4 absolute inset-0'
+                }`}>
+                <div className="max-w-2xl">
+                  <p className="text-base md:text-lg text-white/90 mb-4 leading-relaxed">
+                    {slides[1].content.message}
+                  </p>
+                </div>
+              </div>
+            </div>
 
+            {/* Right Side - Welcome Button and Carousel Dots */}
+            <div className="flex flex-col items-end gap-4">
+              {/* Welcome Button (only on scripture slide) or Bishop Name (on bishop slide) */}
+              <div className="relative">
+                {/* Welcome Button for Scripture Slide */}
+                <div className={`transition-all duration-1500 ease-in-out ${currentSlide === 0
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-4 absolute inset-0'
+                  }`}>
+                  <button className="group relative bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 hover:bg-white/20 hover:shadow-xl hover:shadow-white/20">
+                    <span className="flex items-center gap-2">
+                      Welcome Today
+                      <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
 
-          {/* Enhanced Main Heading */}
-          <div className={`mb-8 transition-all duration-1500 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-4 leading-[1.1] tracking-tight">
-              <span className="inline-block animate-pulse">Welcome</span>{" "}
-              <span className="inline-block animate-pulse">to</span>
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E02020] via-red-400 to-orange-500 inline-block drop-shadow-2xl animate-bounce">
-                NTCoG
-              </span>{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1E4E9A] via-blue-400 to-cyan-300 inline-block drop-shadow-2xl animate-bounce">
-                Kenya
-              </span>
-            </h1>
+                {/* Bishop Name for Bishop Slide */}
+                <div className={`transition-all duration-1500 ease-in-out ${currentSlide === 1
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-4 absolute inset-0'
+                  }`}>
+                  <div className="text-right">
+                    <p className="text-xl md:text-2xl font-semibold text-white">
+                      Bishop Francis Wamweya
+                    </p>
+                    <p className="text-sm md:text-base text-blue-200">
+                      National Bishop, NTCoGK
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-            {/* Enhanced Decorative Line with Animation */}
-            <div className="flex justify-center mb-6">
-              <div className="h-1 w-32 bg-gradient-to-r from-transparent via-amber-600 to-transparent rounded-full animate-pulse shadow-lg shadow-amber-600/50"></div>
+              {/* Carousel Dots */}
+              <div className="flex gap-2">
+                {slides.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${currentSlide === index
+                      ? 'bg-white w-6'
+                      : 'bg-white/40 hover:bg-white/60'
+                      }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
-
-          {/* Enhanced Subtitle */}
-          <div className={`mb-12 transition-all duration-1500 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <p className="text-2xl md:text-3xl text-blue-50 mb-4 max-w-4xl mx-auto leading-relaxed font-light">
-              Building <span className="text-[#E02020] font-semibold">faith</span>,
-              <span className="text-amber-600 font-semibold"> community</span>, and
-              <span className="text-[#1E4E9A] font-semibold"> hope</span> across Kenya
-            </p>
-            <p className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed opacity-90">
-              Join us as we worship together, grow in faith, and serve our communities with love and purpose
-            </p>
-          </div>
-
-          {/* Enhanced Call to Action Buttons */}
-          <div className={`transition-all duration-1500 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-4xl mx-auto">
-              <Link
-                href="/about"
-                className="w-[85%] sm:w-auto bg-white text-[#E02020] font-bold py-5 px-12 rounded-xl shadow-2xl"
-              >
-                <span className="flex items-center justify-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  Learn About Us
-                </span>
-              </Link>
-
-              <Link
-                href="/resources/churches"
-                className="w-[85%] sm:w-auto bg-[#1E4E9A] text-white font-bold py-5 px-12 rounded-xl shadow-2xl border border-white/20"
-              >
-                <span className="flex items-center justify-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  Find a Branch
-                </span>
-              </Link>
-
-              <Link
-                href="/programs/events"
-                className="w-[85%] sm:w-auto bg-transparent border-2 border-white text-white font-bold py-5 px-12 rounded-xl shadow-2xl"
-              >
-                <span className="flex items-center justify-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z" />
-                  </svg>
-                  Upcoming Events
-                </span>
-              </Link>
-            </div>
-          </div>
-
-
         </div>
       </div>
     </section>
