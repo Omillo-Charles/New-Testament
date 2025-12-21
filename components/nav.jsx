@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import SearchBar from "./SearchBar";
 import NavLinks from "./NavLinks";
 
 const Navbar = () => {
@@ -94,8 +93,19 @@ const Navbar = () => {
               </div>
             </Link>
 
-            {/* Mobile Center Section - Profile Icon and Search */}
-            <div className="flex items-center space-x-3 flex-1 max-w-md mx-4">
+            {/* Mobile Center Section - Profile Icon and Search Icon */}
+            <div className="flex items-center space-x-3 flex-1 justify-end max-w-md mx-4">
+              {/* Search Icon */}
+              <Link
+                href="/search"
+                className="flex items-center justify-center p-2 text-gray-600 hover:text-[#1E4E9A] hover:bg-gray-100 rounded-lg transition-all duration-200"
+                title="Search"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </Link>
+
               {/* Profile Icon */}
               <a
                 href="https://auth.ntcogk.org"
@@ -108,11 +118,6 @@ const Navbar = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
               </a>
-
-              {/* Search Bar */}
-              <div className="flex-1">
-                <SearchBar className="text-sm" placeholder="Search..." />
-              </div>
             </div>
 
             {/* Mobile Menu Toggle - Using NavLinks Component */}
@@ -123,7 +128,7 @@ const Navbar = () => {
           <div className="hidden lg:grid lg:grid-cols-3 lg:items-center">
             {/* Church Name - Left */}
             <div>
-              <h1 className="text-2xl font-bold text-[#1E4E9A]">NTCoGK</h1>
+              <h1 className="text-xl font-bold text-[#1E4E9A]">NTCoGK</h1>
               <p className="text-sm text-gray-600">New Testament Church of God Kenya</p>
             </div>
 
@@ -141,9 +146,18 @@ const Navbar = () => {
               </Link>
             </div>
 
-            {/* Search Bar, Profile Icon & Menu - Right */}
+            {/* Search Icon, Profile Icon & Menu - Right */}
             <div className="flex justify-end items-center space-x-3">
-              <SearchBar className="w-64" placeholder="Search..." />
+              {/* Search Icon */}
+              <Link
+                href="/search"
+                className="flex items-center justify-center p-2 text-gray-600 hover:text-[#1E4E9A] hover:bg-gray-100 rounded-lg transition-all duration-200"
+                title="Search"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </Link>
 
               {/* Profile Icon */}
               <a
