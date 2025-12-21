@@ -101,7 +101,7 @@ const Navbar = () => {
                 href="https://auth.ntcogk.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-9 h-9 text-gray-600 hover:text-gray-800 bg-gray-50 hover:bg-gray-100 border-2 border-gray-200 hover:border-gray-300 rounded-full transition-all duration-200"
+                className="flex items-center justify-center w-9 h-9 text-white bg-gray-500 hover:bg-gray-600 rounded-full transition-all duration-200"
                 title="Sign In / Sign Up"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -150,7 +150,7 @@ const Navbar = () => {
                 href="https://auth.ntcogk.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-10 h-10 text-gray-600 hover:text-gray-800 bg-gray-50 hover:bg-gray-100 border-2 border-gray-200 hover:border-gray-300 rounded-full transition-all duration-200"
+                className="flex items-center justify-center w-10 h-10 text-white bg-gray-500 hover:bg-gray-600 rounded-full transition-all duration-200"
                 title="Sign In / Sign Up"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
