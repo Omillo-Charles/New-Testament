@@ -92,7 +92,7 @@ const ChildrenPage = () => {
 
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-pink-50">
         {/* Hero Section */}
-        <section className="relative h-screen w-full overflow-hidden">
+        <section className="relative h-screen w-full overflow-hidden pt-28">
           {/* Background Image with Cinematic Treatment */}
           <div className="absolute inset-0">
             <div
@@ -107,7 +107,7 @@ const ChildrenPage = () => {
           </div>
 
           {/* Content Container */}
-          <div className="relative z-40 h-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center lg:pt-20 py-8">
+          <div className="relative z-40 h-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center py-8">
             <div className="w-full lg:w-3/5 lg:ml-0">
               {/* Main Headline with Stagger Animation */}
               <div className="mb-6">
@@ -200,31 +200,6 @@ const ChildrenPage = () => {
                     Learn More
                   </span>
                 </Link>
-              </div>
-
-              {/* Stats or Quick Info - Hidden on desktop for children's page */}
-              <div
-                className="mt-12 flex flex-wrap gap-8 text-white/90 animate-fade-in-up lg:hidden"
-                style={{ animationDelay: "1.2s" }}
-              >
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-red-300">5000+</div>
-                  <div className="text-sm uppercase tracking-wider">
-                    Happy Kids
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-red-300">300+</div>
-                  <div className="text-sm uppercase tracking-wider">
-                    Teachers
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-red-300">15+</div>
-                  <div className="text-sm uppercase tracking-wider">
-                    Fun Programs
-                  </div>
-                </div>
               </div>
             </div>
           </div>
