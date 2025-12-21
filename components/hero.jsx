@@ -39,8 +39,7 @@ const HeroSection = () => {
             {/* Welcome Button - Right Side (Desktop only) */}
             <div className={`hidden lg:block transition-all duration-1500 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <a
-                href="https://auth.ntcogk.org"
-                target="_self"
+                href="/auth/signin"
                 className="group relative bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 hover:bg-white/20 hover:shadow-xl hover:shadow-white/20 inline-flex items-center"
               >
                 <span className="flex items-center gap-2">

@@ -9,8 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "jsonwebtoken": "^9.0.3",
     "lucide-react": "^0.561.0",
     "motion": "^12.23.26",
     "next": "^16.0.7",
