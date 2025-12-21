@@ -14,6 +14,7 @@
     "lucide-react": "^0.561.0",
     "motion": "^12.23.26",
     "next": "^16.0.7",
+    "nodemailer": "^7.0.11",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-icons": "^5.5.0",
