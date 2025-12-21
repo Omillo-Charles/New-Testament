@@ -92,116 +92,19 @@ const ChildrenPage = () => {
 
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-pink-50">
         {/* Hero Section */}
-        <section className="relative h-screen w-full overflow-hidden pt-28">
-          {/* Background Image with Cinematic Treatment */}
-          <div className="absolute inset-0">
-            <div
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-105 transition-transform duration-20000 ease-linear hover:scale-110"
-              style={{
-                backgroundImage: "url('/childrenImages/child15.png')",
-              }}
-            ></div>
+        <section className="relative bg-[#1E4E9A] text-white py-16 overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+            style={{
+              backgroundImage: "url('/childrenImages/child15.png')",
+            }}
+          ></div>
 
-            {/* Cinematic Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-blue-900/85 via-red-600/65 to-black/75 mix-blend-multiply"></div>
-          </div>
-
-          {/* Content Container */}
-          <div className="relative z-40 h-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center py-8">
-            <div className="w-full lg:w-3/5 lg:ml-0">
-              {/* Main Headline with Stagger Animation */}
-              <div className="mb-6">
-                <h1 className="font-black text-white leading-none tracking-wider">
-                  <div
-                    className="text-4xl md:text-5xl lg:text-6xl mb-2 animate-fade-in-up"
-                    style={{ animationDelay: "0.2s" }}
-                  >
-                    RAISING.
-                  </div>
-                  <div
-                    className="text-4xl md:text-5xl lg:text-6xl mb-2 animate-fade-in-up"
-                    style={{
-                      animationDelay: "0.4s",
-                      textShadow: "0 0 30px rgba(255, 215, 0, 0.5)",
-                    }}
-                  >
-                    CHAMPIONS.
-                  </div>
-                  <div
-                    className="text-4xl md:text-5xl lg:text-6xl font-black animate-fade-in-up"
-                    style={{ animationDelay: "0.6s" }}
-                  >
-                    FOR CHRIST.
-                  </div>
-                </h1>
-              </div>
-
-              {/* Subheading */}
-              <div
-                className="mb-8 animate-fade-in-up"
-                style={{ animationDelay: "0.8s" }}
-              >
-                <p
-                  className="text-xl md:text-2xl text-gray-100 max-w-2xl leading-relaxed tracking-wide"
-                  style={{ textShadow: "0 2px 10px rgba(0, 0, 0, 0.5)" }}
-                >
-                  <span className="hidden md:inline">
-                    Nurturing young hearts and minds to know, love, and serve
-                    Jesus from an early age. Where every child discovers they
-                    are wonderfully made by God!
-                  </span>
-                  <span className="md:hidden">
-                    Where every child discovers God's amazing love and purpose
-                    for their life.
-                  </span>
-                </p>
-              </div>
-
-              {/* Call-to-Action Buttons */}
-              <div
-                className="flex flex-col sm:flex-row gap-4 animate-fade-in-up"
-                style={{ animationDelay: "1s" }}
-              >
-                <Link
-                  href="/contact"
-                  className="group bg-gradient-to-r from-[#E02020] to-[#B81C1C] hover:from-[#B81C1C] hover:to-[#8B1A1A] text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg text-center"
-                >
-                  <span className="flex items-center justify-center">
-                    Join Sunday School
-                    <svg
-                      className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </span>
-                </Link>
-                <Link
-                  href="/about"
-                  className="group border-2 border-white text-white hover:bg-white hover:text-[#1E4E9A] font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm text-center"
-                >
-                  <span className="flex items-center justify-center">
-                    <svg
-                      className="mr-2 w-5 h-5"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Learn More
-                  </span>
-                </Link>
-              </div>
-            </div>
+          <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">Children's Ministry</h1>
+            <p className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
+              Raising champions for Christ - nurturing young hearts and minds to know, love, and serve Jesus
+            </p>
           </div>
         </section>
 

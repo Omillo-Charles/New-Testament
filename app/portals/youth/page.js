@@ -46,112 +46,19 @@ const YouthPage = () => {
 
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-red-50">
         {/* Hero Section */}
-        <section className="relative h-screen w-full overflow-hidden pt-28">
-          {/* Background Image with Cinematic Treatment */}
-          <div className="absolute inset-0">
-            <div
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-105 transition-transform duration-20000 ease-linear hover:scale-110"
-              style={{
-                backgroundImage: "url('/youthImages/youth7.png')",
-              }}
-            ></div>
+        <section className="relative bg-[#1E4E9A] text-white py-16 overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+            style={{
+              backgroundImage: "url('/youthImages/youth7.png')",
+            }}
+          ></div>
 
-            {/* Cinematic Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-purple-900/85 via-orange-600/65 to-black/75 mix-blend-multiply"></div>
-          </div>
-
-          {/* Content Container */}
-          <div className="relative z-40 h-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center py-8">
-            <div className="w-full lg:w-3/5 lg:ml-0">
-              {/* Main Headline with Stagger Animation */}
-              <div className="mb-6">
-                <h1 className="font-black text-white leading-none tracking-wider">
-                  <div
-                    className="text-5xl md:text-6xl lg:text-7xl mb-2 animate-fade-in-up"
-                    style={{ animationDelay: "0.2s" }}
-                  >
-                    ARISE.
-                  </div>
-                  <div
-                    className="text-5xl md:text-6xl lg:text-7xl mb-2 animate-fade-in-up"
-                    style={{
-                      animationDelay: "0.4s",
-                      textShadow: "0 0 30px rgba(255, 215, 0, 0.5)",
-                    }}
-                  >
-                    SHINE.
-                  </div>
-                  <div
-                    className="text-5xl md:text-6xl lg:text-7xl font-black animate-fade-in-up"
-                    style={{ animationDelay: "0.6s" }}
-                  >
-                    IMPACT.
-                  </div>
-                </h1>
-              </div>
-
-              {/* Subheading */}
-              <div
-                className="mb-8 animate-fade-in-up"
-                style={{ animationDelay: "0.8s" }}
-              >
-                <p
-                  className="text-xl md:text-2xl text-gray-100 max-w-2xl leading-relaxed tracking-wide"
-                  style={{ textShadow: "0 2px 10px rgba(0, 0, 0, 0.5)" }}
-                >
-                  <span className="hidden md:inline">
-                    Join thousands of young people across Kenya discovering
-                    purpose, building community, and transforming lives through
-                    Christ.
-                  </span>
-                  <span className="md:hidden">
-                    Discover purpose. Build community. Transform lives through
-                    Christ.
-                  </span>
-                </p>
-              </div>
-
-              {/* Call-to-Action Buttons */}
-              <div
-                className="flex flex-col sm:flex-row gap-4 animate-fade-in-up"
-                style={{ animationDelay: "1s" }}
-              >
-                <Link
-                  href="/contact"
-                  className="group bg-gradient-to-r from-[#E02020] to-[#B81C1C] hover:from-[#B81C1C] hover:to-[#8B1A1A] text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg text-center"
-                >
-                  <span className="flex items-center justify-center">
-                    Join the Movement
-                    <svg
-                      className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </span>
-                </Link>
-                <a
-                  href="tel:+254721549789"
-                  className="group border-2 border-white text-white hover:bg-white hover:text-[#1E4E9A] font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm text-center"
-                >
-                  <span className="flex items-center justify-center">
-                    <svg
-                      className="mr-2 w-5 h-5"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                    </svg>
-                    Contact Youth Pastor
-                  </span>
-                </a>
-              </div>
-            </div>
+          <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">Youth Ministry</h1>
+            <p className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
+              Empowering young people to arise, shine, and make an impact for Christ across Kenya
+            </p>
           </div>
         </section>
 
