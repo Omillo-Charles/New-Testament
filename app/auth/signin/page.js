@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function SignIn() {
+function SignInContent() {
     const searchParams = useSearchParams();
     const [formData, setFormData] = useState({
         email: "",
@@ -214,5 +215,24 @@ export default function SignIn() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function SignIn() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+                <div className="sm:mx-auto sm:w-full sm:max-w-md">
+                    <div className="text-center">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1E4E9A] mx-auto"></div>
+                        <h2 className="mt-6 text-2xl font-bold text-gray-900">
+                            Loading...
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        }>
+            <SignInContent />
+        </Suspense>
     );
 }
