@@ -21,15 +21,6 @@ import {
 
 const DiscipleshipPage = () => {
   const [expandedCourse, setExpandedCourse] = useState(null);
-  const [formData, setFormData] = useState({
-    fullName: "",
-    phone: "",
-    email: "",
-    homeChurch: "",
-    course: "",
-    mode: "",
-    referralLetter: null,
-  });
 
   const courses = [
     {
@@ -142,22 +133,6 @@ const DiscipleshipPage = () => {
         "Yes, scholarships are available for church-sponsored candidates. Contact our admissions office for more details.",
     },
   ];
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, referralLetter: e.target.files[0] });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // In production, this would send to backend/email
-    console.log("Form submitted:", formData);
-    alert("Application submitted successfully! We will contact you soon.");
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
@@ -360,152 +335,10 @@ const DiscipleshipPage = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-3">
                   <FaEnvelope className="text-2xl text-[#1E4E9A]" />
                 </div>
-                <p className="font-semibold text-gray-900">Apply Online</p>
-                <p className="text-sm text-gray-600">Use the form below</p>
+                <p className="font-semibold text-gray-900">Email Us</p>
+                <p className="text-sm text-gray-600">info@ntcogk.org</p>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Enrollment Form */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Apply Now
-              </h2>
-              <p className="text-lg text-gray-600">
-                Fill out the form below to start your discipleship journey
-              </p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    name="fullName"
-                    required
-                    value={formData.fullName}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent"
-                    placeholder="John Doe"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Phone Number *
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    required
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent"
-                    placeholder="+254 700 000 000"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent"
-                  placeholder="john@example.com"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Home Church *
-                </label>
-                <input
-                  type="text"
-                  name="homeChurch"
-                  required
-                  value={formData.homeChurch}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent"
-                  placeholder="Church Name"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Course Selection *
-                </label>
-                <select
-                  name="course"
-                  required
-                  value={formData.course}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent"
-                >
-                  <option value="">Select a course</option>
-                  {courses.map((course) => (
-                    <option key={course.id} value={course.name}>
-                      {course.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Mode of Study *
-                </label>
-                <select
-                  name="mode"
-                  required
-                  value={formData.mode}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent"
-                >
-                  <option value="">Select mode</option>
-                  <option value="full-time">Full-time</option>
-                  <option value="part-time">Part-time</option>
-                  <option value="weekend">Weekend</option>
-                  <option value="evening">Evening</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Upload Referral Letter (Optional)
-                </label>
-                <input
-                  type="file"
-                  name="referralLetter"
-                  onChange={handleFileChange}
-                  accept=".pdf,.doc,.docx"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E4E9A] focus:border-transparent"
-                />
-                <p className="text-xs text-gray-500 mt-1">
-                  Accepted formats: PDF, DOC, DOCX
-                </p>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-[#E02020] hover:bg-[#B81C1C] text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
-              >
-                Submit Application
-              </button>
-            </form>
           </div>
         </div>
       </section>
