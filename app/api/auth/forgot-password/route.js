@@ -1,10 +1,8 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
-
-// In a real app, you'd use a database. This should match your other auth routes
-// Replace this with your actual database implementation
-let users = [];
+import connectDB from '@/lib/mongodb';
+import User from '@/lib/models/User';
 
 export async function POST(request) {
     try {
@@ -19,7 +17,8 @@ export async function POST(request) {
         }
 
         // Find user
-        const user = users.find(u => u.email === email);
+        await connectDB();
+        const user = await User.findByEmail(email);
         if (!user) {
             // For security, don't reveal if email exists or not
             return NextResponse.json(
@@ -30,7 +29,7 @@ export async function POST(request) {
 
         // Generate reset token (expires in 1 hour)
         const resetToken = jwt.sign(
-            { userId: user.id, email: user.email },
+            { userId: user._id.toString(), email: user.email },
             process.env.JWT_SECRET || 'your-secret-key',
             { expiresIn: '1h' }
         );
@@ -98,8 +97,6 @@ export async function POST(request) {
 
         // Send email
         await transporter.sendMail(mailOptions);
-
-        console.log('Password reset email sent to:', email);
 
         return NextResponse.json(
             { message: 'If an account with that email exists, we have sent a password reset link.' },

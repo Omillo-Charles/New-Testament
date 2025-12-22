@@ -4,8 +4,58 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import NavLinks from "./NavLinks";
+import { useAuth } from "../lib/auth";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
+  const { isAuthenticated, user } = useAuth();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const ProfileSection = ({ isMobile = false }) => {
+    if (!mounted) {
+      // Show loading state
+      return (
+        <div className={`flex items-center justify-center ${isMobile ? 'w-9 h-9' : 'w-10 h-10'} bg-gray-300 rounded-full animate-pulse`}>
+        </div>
+      );
+    }
+
+    if (isAuthenticated && user) {
+      return (
+        <div className="relative">
+          <button className={`flex items-center justify-center ${isMobile ? 'w-9 h-9' : 'w-10 h-10'} rounded-full transition-all duration-200 ${user.picture ? '' : 'bg-[#E02020] text-white'}`}>
+            {user.picture ? (
+              <img
+                src={user.picture}
+                alt={user.fullName}
+                className={`${isMobile ? 'w-9 h-9' : 'w-10 h-10'} rounded-full border-2 border-gray-300`}
+              />
+            ) : (
+              <span className="text-sm font-medium">
+                {user.fullName?.charAt(0)?.toUpperCase() || 'U'}
+              </span>
+            )}
+          </button>
+        </div>
+      );
+    }
+
+    return (
+      <Link
+        href="/auth/signin"
+        className={`flex items-center justify-center ${isMobile ? 'w-9 h-9' : 'w-10 h-10'} text-white bg-gray-500 hover:bg-gray-600 rounded-full transition-all duration-200`}
+        title="Sign In / Sign Up"
+      >
+        <svg className={`${isMobile ? 'w-5 h-5' : 'w-6 h-6'}`} fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+        </svg>
+      </Link>
+    );
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-[100] bg-white shadow-lg">
@@ -73,15 +123,7 @@ const Navbar = () => {
               </Link>
 
               {/* Profile Icon */}
-              <Link
-                href="/auth/signin"
-                className="flex items-center justify-center w-9 h-9 text-white bg-gray-500 hover:bg-gray-600 rounded-full transition-all duration-200"
-                title="Sign In / Sign Up to get notified on upcoming events and other announcements."
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </Link>
+              <ProfileSection isMobile={true} />
             </div>
 
             {/* Mobile Menu Toggle - Using NavLinks Component */}
@@ -124,15 +166,7 @@ const Navbar = () => {
               </Link>
 
               {/* Profile Icon */}
-              <Link
-                href="/auth/signin"
-                className="flex items-center justify-center w-10 h-10 text-white bg-gray-500 hover:bg-gray-600 rounded-full transition-all duration-200"
-                title="Sign In / Sign Up"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </Link>
+              <ProfileSection isMobile={false} />
 
               <div className="relative">
                 <NavLinks />

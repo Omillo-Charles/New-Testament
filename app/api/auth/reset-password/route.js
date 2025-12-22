@@ -1,10 +1,8 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-
-// In a real app, you'd use a database. This should match your other auth routes
-// Replace this with your actual database implementation
-let users = [];
+import connectDB from '@/lib/mongodb';
+import User from '@/lib/models/User';
 
 export async function POST(request) {
     try {
@@ -37,8 +35,9 @@ export async function POST(request) {
         }
 
         // Find user
-        const userIndex = users.findIndex(u => u.id === decoded.userId);
-        if (userIndex === -1) {
+        await connectDB();
+        const user = await User.findById(decoded.userId);
+        if (!user) {
             return NextResponse.json(
                 { error: 'User not found' },
                 { status: 404 }
@@ -50,13 +49,8 @@ export async function POST(request) {
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
         // Update user password
-        users[userIndex].password = hashedPassword;
-        users[userIndex].updatedAt = new Date().toISOString();
-
-        console.log('Password reset successful for user:', {
-            email: users[userIndex].email,
-            timestamp: users[userIndex].updatedAt
-        });
+        user.password = hashedPassword;
+        await user.save();
 
         return NextResponse.json(
             { message: 'Password reset successfully' },

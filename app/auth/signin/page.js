@@ -47,8 +47,9 @@ function SignInContent() {
             const result = await response.json();
 
             if (response.ok) {
-                // Store token and redirect to dashboard or home
+                // Store token and user data, then redirect to home page
                 localStorage.setItem('authToken', result.token);
+                localStorage.setItem('user', JSON.stringify(result.user));
                 window.location.href = '/';
             } else {
                 setError(result.error || 'Failed to sign in');
@@ -66,13 +67,23 @@ function SignInContent() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 pt-32 lg:pt-40">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="text-center">
                     <h2 className="text-3xl font-bold text-gray-900">Welcome Back</h2>
                     <p className="mt-2 text-sm text-gray-600">
                         Sign in to your NTCoG Kenya account
                     </p>
+                    <div className="mt-4 bg-blue-50 border border-blue-200 rounded-md p-3">
+                        <div className="flex items-center">
+                            <svg className="w-5 h-5 text-blue-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                            </svg>
+                            <p className="text-sm text-blue-700">
+                                Stay connected! Sign in to receive notifications about upcoming church events, programs, and important announcements.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
 

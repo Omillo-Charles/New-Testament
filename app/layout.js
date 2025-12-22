@@ -171,7 +171,7 @@ export default function RootLayout({ children }) {
         }}
       >
         <Navbar />
-        <main className="pt-20 lg:pt-32">{children}</main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

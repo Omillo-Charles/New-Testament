@@ -1,10 +1,8 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-
-// In a real app, you'd use a database. This should match your signup route
-// Replace this with your actual database implementation
-let users = [];
+import connectDB from '@/lib/mongodb';
+import User from '@/lib/models/User';
 
 export async function POST(request) {
     try {
@@ -19,7 +17,8 @@ export async function POST(request) {
         }
 
         // Find user
-        const user = users.find(u => u.email === email);
+        await connectDB();
+        const user = await User.findByEmail(email);
         if (!user) {
             return NextResponse.json(
                 { error: 'Invalid email or password' },
@@ -27,19 +26,30 @@ export async function POST(request) {
             );
         }
 
-        // Check password
-        const isValidPassword = await bcrypt.compare(password, user.password);
-        if (!isValidPassword) {
+        // Check password (only for email/password users)
+        if (user.provider === 'email') {
+            const isValidPassword = await bcrypt.compare(password, user.password);
+            if (!isValidPassword) {
+                return NextResponse.json(
+                    { error: 'Invalid email or password' },
+                    { status: 401 }
+                );
+            }
+        } else {
             return NextResponse.json(
-                { error: 'Invalid email or password' },
+                { error: 'Please sign in with Google for this account' },
                 { status: 401 }
             );
         }
 
+        // Update last login
+        user.lastLogin = new Date();
+        await user.save();
+
         // Generate JWT token
         const token = jwt.sign(
             {
-                userId: user.id,
+                userId: user._id.toString(),
                 email: user.email,
                 fullName: user.fullName
             },
@@ -47,18 +57,12 @@ export async function POST(request) {
             { expiresIn: '7d' }
         );
 
-        console.log('User signed in:', {
-            email: user.email,
-            fullName: user.fullName,
-            timestamp: new Date().toISOString()
-        });
-
         return NextResponse.json(
             {
                 message: 'Signed in successfully',
                 token,
                 user: {
-                    id: user.id,
+                    id: user._id.toString(),
                     fullName: user.fullName,
                     email: user.email
                 }

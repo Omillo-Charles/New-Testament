@@ -55,8 +55,10 @@ export default function SignUp() {
             const result = await response.json();
 
             if (response.ok) {
-                // Redirect to signin page with success message
-                window.location.href = '/auth/signin?message=Account created successfully';
+                // Store token and redirect to home page
+                localStorage.setItem('authToken', result.token);
+                localStorage.setItem('user', JSON.stringify(result.user));
+                window.location.href = '/';
             } else {
                 setError(result.error || 'Failed to create account');
             }
@@ -73,13 +75,23 @@ export default function SignUp() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-6 sm:py-12 sm:px-6 lg:px-8 pt-32 lg:pt-40">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="text-center">
                     <h2 className="text-3xl font-bold text-gray-900">Create Account</h2>
                     <p className="mt-2 text-sm text-gray-600">
                         Join the NTCoG Kenya family
                     </p>
+                    <div className="mt-4 bg-green-50 border border-green-200 rounded-md p-3">
+                        <div className="flex items-center">
+                            <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                            </svg>
+                            <p className="text-sm text-green-700">
+                                Join our community! Create an account to receive notifications about church events, ministry programs, and stay connected with your church family.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
 

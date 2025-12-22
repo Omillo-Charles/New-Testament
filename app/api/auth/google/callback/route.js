@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
-
-// In a real app, you'd use a database. This should match your other auth routes
-// Replace this with your actual database implementation
-let users = [];
+import connectDB from '@/lib/mongodb';
+import User from '@/lib/models/User';
 
 export async function GET(request) {
     try {
@@ -57,35 +55,30 @@ export async function GET(request) {
         }
 
         // Check if user exists
-        let user = users.find(u => u.email === googleUser.email);
+        await connectDB();
+        let user = await User.findByEmail(googleUser.email);
 
         if (!user) {
             // Create new user
-            user = {
-                id: Date.now().toString(),
+            user = new User({
                 fullName: googleUser.name,
                 email: googleUser.email,
                 googleId: googleUser.id,
                 picture: googleUser.picture,
-                createdAt: new Date().toISOString(),
-                provider: 'google'
-            };
-            users.push(user);
-            console.log('New Google user registered:', {
-                email: user.email,
-                fullName: user.fullName
+                provider: 'google',
+                lastLogin: new Date()
             });
+            await user.save();
         } else {
-            console.log('Existing Google user signed in:', {
-                email: user.email,
-                fullName: user.fullName
-            });
+            // Update last login
+            user.lastLogin = new Date();
+            await user.save();
         }
 
         // Generate JWT token
         const token = jwt.sign(
             {
-                userId: user.id,
+                userId: user._id.toString(),
                 email: user.email,
                 fullName: user.fullName
             },
@@ -97,7 +90,7 @@ export async function GET(request) {
         const redirectUrl = new URL(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/auth/callback`);
         redirectUrl.searchParams.set('token', token);
         redirectUrl.searchParams.set('user', JSON.stringify({
-            id: user.id,
+            id: user._id.toString(),
             fullName: user.fullName,
             email: user.email,
             picture: user.picture

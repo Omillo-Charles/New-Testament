@@ -1,10 +1,8 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-
-// In a real app, you'd use a database. For now, we'll use a simple in-memory store
-// Replace this with your actual database implementation
-let users = [];
+import connectDB from '@/lib/mongodb';
+import User from '@/lib/models/User';
 
 export async function POST(request) {
     try {
@@ -26,7 +24,8 @@ export async function POST(request) {
         }
 
         // Check if user already exists
-        const existingUser = users.find(user => user.email === email);
+        await connectDB();
+        const existingUser = await User.findByEmail(email);
         if (existingUser) {
             return NextResponse.json(
                 { error: 'User with this email already exists' },
@@ -39,21 +38,19 @@ export async function POST(request) {
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
         // Create user
-        const newUser = {
-            id: Date.now().toString(),
+        const newUser = new User({
             fullName,
             email,
             password: hashedPassword,
-            createdAt: new Date().toISOString(),
-            provider: 'email'
-        };
-
-        users.push(newUser);
+            provider: 'email',
+            lastLogin: new Date()
+        });
+        await newUser.save();
 
         // Generate JWT token
         const token = jwt.sign(
             {
-                userId: newUser.id,
+                userId: newUser._id.toString(),
                 email: newUser.email,
                 fullName: newUser.fullName
             },
@@ -61,18 +58,12 @@ export async function POST(request) {
             { expiresIn: '7d' }
         );
 
-        console.log('New user registered:', {
-            email: newUser.email,
-            fullName: newUser.fullName,
-            timestamp: newUser.createdAt
-        });
-
         return NextResponse.json(
             {
                 message: 'Account created successfully',
                 token,
                 user: {
-                    id: newUser.id,
+                    id: newUser._id.toString(),
                     fullName: newUser.fullName,
                     email: newUser.email
                 }
