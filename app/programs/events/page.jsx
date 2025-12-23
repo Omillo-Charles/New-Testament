@@ -36,7 +36,7 @@ const EventsPage = () => {
       : upcomingEvents.filter((event) => event.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-[108px] lg:pt-32">
       {/* Hero Section */}
       <section className="relative bg-[#1E4E9A] text-white py-16 overflow-hidden">
         <div

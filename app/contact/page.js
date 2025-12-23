@@ -76,7 +76,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-[108px] lg:pt-32">
       {/* Hero Section */}
       <section
         className="relative bg-[#1E4E9A] text-white py-20 bg-cover bg-center bg-no-repeat"

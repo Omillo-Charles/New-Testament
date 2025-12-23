@@ -64,7 +64,7 @@ const PortalsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-[108px] lg:pt-32">
       {/* Hero Section */}
       <section className="relative bg-[#1E4E9A] text-white py-20 overflow-hidden">
         <div
@@ -91,9 +91,9 @@ const PortalsPage = () => {
             Find Your Ministry Home
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
-            At NTCG Kenya, we believe everyone has a place to belong, grow, and serve. 
-            Whether you're a young person seeking purpose, a parent looking for quality 
-            children's programs, an adult wanting to deepen your faith, or a church leader 
+            At NTCG Kenya, we believe everyone has a place to belong, grow, and serve.
+            Whether you're a young person seeking purpose, a parent looking for quality
+            children's programs, an adult wanting to deepen your faith, or a church leader
             needing resources - we have a portal designed just for you.
           </p>
         </div>
@@ -207,7 +207,7 @@ const PortalsPage = () => {
             Ready to Get Involved?
           </h2>
           <p className="text-lg text-gray-600 mb-8">
-            Join us this Sunday and experience the warmth of our community. 
+            Join us this Sunday and experience the warmth of our community.
             Everyone is welcome at NTCG Kenya!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

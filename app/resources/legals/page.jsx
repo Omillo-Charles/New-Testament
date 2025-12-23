@@ -3,7 +3,7 @@ import { FaFileAlt, FaGavel, FaShieldAlt } from "react-icons/fa";
 
 const LegalsPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-[108px] lg:pt-32">
       {/* Hero Section */}
       <section className="relative bg-[#1E4E9A] text-white py-16 overflow-hidden">
         <div
@@ -42,10 +42,10 @@ const LegalsPage = () => {
 
             <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
               <p className="text-lg mb-6 text-center">
-                We are currently compiling a comprehensive collection of legal documents, 
+                We are currently compiling a comprehensive collection of legal documents,
                 policies, and official church guidelines for your reference.
               </p>
-              
+
               <div className="bg-blue-50 border-l-4 border-[#1E4E9A] p-6 rounded-lg mb-6">
                 <h3 className="text-xl font-bold text-[#1E4E9A] mb-3 flex items-center">
                   <FaShieldAlt className="mr-2" />
@@ -80,8 +80,8 @@ const LegalsPage = () => {
               </div>
 
               <p className="text-center text-gray-600 mb-6">
-                These documents are being carefully reviewed and prepared to ensure 
-                accuracy and compliance with all relevant regulations. We appreciate 
+                These documents are being carefully reviewed and prepared to ensure
+                accuracy and compliance with all relevant regulations. We appreciate
                 your patience as we work to make these resources available to you.
               </p>
 
@@ -90,7 +90,7 @@ const LegalsPage = () => {
                   Need Immediate Access to Legal Documents?
                 </p>
                 <p className="text-gray-600 mb-6">
-                  For urgent inquiries or to request specific documents, please contact 
+                  For urgent inquiries or to request specific documents, please contact
                   the National Office directly.
                 </p>
                 <a
@@ -112,7 +112,7 @@ const LegalsPage = () => {
             Stay Updated
           </h3>
           <p className="text-lg text-gray-600">
-            We will notify all members once the legal documents section is complete 
+            We will notify all members once the legal documents section is complete
             and available for download. Thank you for your understanding.
           </p>
         </div>

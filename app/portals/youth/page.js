@@ -44,7 +44,7 @@ const YouthPage = () => {
         }
       `}</style>
 
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-red-50">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-red-50 pt-[108px] lg:pt-32">
         {/* Hero Section */}
         <section className="relative bg-[#1E4E9A] text-white py-16 overflow-hidden">
           <div

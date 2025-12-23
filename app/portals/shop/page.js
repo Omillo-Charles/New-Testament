@@ -24,7 +24,7 @@ const ShopPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-[108px] lg:pt-32">
       {/* Hero Section */}
       <section className="relative bg-[#1E4E9A] text-white py-12 overflow-hidden">
         <div
@@ -73,11 +73,10 @@ const ShopPage = () => {
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`flex items-center space-x-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap ${
-                    selectedCategory === category.id
+                  className={`flex items-center space-x-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap ${selectedCategory === category.id
                       ? "bg-[#E02020] text-white shadow-lg"
                       : "bg-white text-gray-700 hover:bg-gray-100 shadow"
-                  }`}
+                    }`}
                 >
                   {category.icon}
                   <span>{category.name}</span>

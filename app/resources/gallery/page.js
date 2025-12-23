@@ -90,7 +90,7 @@ const GalleryPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-red-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-red-50 pt-[108px] lg:pt-32">
       {/* Hero Section */}
       <section className="relative bg-[#1E4E9A] text-white py-12 overflow-hidden">
         {/* Background Image */}
@@ -117,11 +117,10 @@ const GalleryPage = () => {
             <div className="flex gap-3 min-w-max sm:justify-center pb-2">
               <button
                 onClick={() => setSelectedCategory("all")}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap ${
-                  selectedCategory === "all"
+                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap ${selectedCategory === "all"
                     ? "bg-[#E02020] text-white shadow-lg"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
+                  }`}
               >
                 All Photos ({allImages.length})
               </button>
@@ -129,11 +128,10 @@ const GalleryPage = () => {
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap ${
-                    selectedCategory === category.id
+                  className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 whitespace-nowrap ${selectedCategory === category.id
                       ? "bg-[#1E4E9A] text-white shadow-lg"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                  }`}
+                    }`}
                 >
                   {category.name} ({category.images.length})
                 </button>

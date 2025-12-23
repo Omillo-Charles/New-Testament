@@ -16,7 +16,7 @@ const SubmissionsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pt-[108px] lg:pt-32">
       {/* Hero Section */}
       <section className="relative bg-[#1E4E9A] text-white py-16 overflow-hidden">
         <div
@@ -47,11 +47,11 @@ const SubmissionsPage = () => {
             <div className="inline-flex items-center justify-center w-24 h-24 bg-[#1E4E9A] rounded-full mb-6 shadow-lg">
               <FaExternalLinkAlt className="text-4xl text-white" />
             </div>
-            
+
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Access Submissions Portal
             </h2>
-            
+
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
               Our document submission system has been moved to a dedicated secure portal for better performance and security.
             </p>
