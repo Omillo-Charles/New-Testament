@@ -75,19 +75,19 @@ export default function SignUp() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-6 sm:py-12 sm:px-6 lg:px-8 pt-32 lg:pt-40">
-            <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="min-h-[80vh] sm:min-h-screen bg-gray-50 flex flex-col justify-center py-6 px-4 sm:py-12 sm:px-6 lg:px-8 pt-32 sm:pt-32 lg:pt-40">
+            <div className="mx-auto w-full max-w-sm sm:max-w-md">
                 <div className="text-center">
-                    <h2 className="text-3xl font-bold text-gray-900">Create Account</h2>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Create Account</h2>
                     <p className="mt-2 text-sm text-gray-600">
                         Join the NTCoG Kenya family
                     </p>
-                    <div className="mt-4 bg-green-50 border border-green-200 rounded-md p-3">
-                        <div className="flex items-center">
-                            <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="mt-4 bg-green-50 border border-green-200 rounded-md p-2 sm:p-3">
+                        <div className="flex items-start sm:items-center">
+                            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-green-400 mr-2 mt-0.5 sm:mt-0 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                             </svg>
-                            <p className="text-sm text-green-700">
+                            <p className="text-xs sm:text-sm text-green-700 leading-tight">
                                 Join our community! Create an account to receive notifications about church events, ministry programs, and stay connected with your church family.
                             </p>
                         </div>
@@ -95,15 +95,15 @@ export default function SignUp() {
                 </div>
             </div>
 
-            <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <div className="mt-6 sm:mt-8 mx-auto w-full max-w-sm sm:max-w-md">
+                <div className="bg-white py-6 px-4 shadow sm:rounded-lg sm:py-8 sm:px-10">
                     {error && (
                         <div className="mb-4 bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md">
                             {error}
                         </div>
                     )}
 
-                    <form className="space-y-6" onSubmit={handleSubmit}>
+                    <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
                                 Full Name
@@ -117,7 +117,7 @@ export default function SignUp() {
                                     value={formData.fullName}
                                     onChange={handleChange}
                                     disabled={loading}
-                                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-[#1E4E9A] focus:border-[#1E4E9A] disabled:bg-gray-100"
+                                    className="appearance-none block w-full px-3 py-2.5 sm:py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-[#1E4E9A] focus:border-[#1E4E9A] disabled:bg-gray-100 text-base sm:text-sm"
                                     placeholder="Enter your full name"
                                 />
                             </div>
@@ -136,7 +136,7 @@ export default function SignUp() {
                                     value={formData.email}
                                     onChange={handleChange}
                                     disabled={loading}
-                                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-[#1E4E9A] focus:border-[#1E4E9A] disabled:bg-gray-100"
+                                    className="appearance-none block w-full px-3 py-2.5 sm:py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-[#1E4E9A] focus:border-[#1E4E9A] disabled:bg-gray-100 text-base sm:text-sm"
                                     placeholder="Enter your email"
                                 />
                             </div>
@@ -155,7 +155,7 @@ export default function SignUp() {
                                     value={formData.password}
                                     onChange={handleChange}
                                     disabled={loading}
-                                    className="appearance-none block w-full px-3 py-2 pr-10 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-[#1E4E9A] focus:border-[#1E4E9A] disabled:bg-gray-100"
+                                    className="appearance-none block w-full px-3 py-2.5 sm:py-2 pr-10 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-[#1E4E9A] focus:border-[#1E4E9A] disabled:bg-gray-100 text-base sm:text-sm"
                                     placeholder="Enter your password"
                                 />
                                 <button
@@ -191,7 +191,7 @@ export default function SignUp() {
                                     value={formData.confirmPassword}
                                     onChange={handleChange}
                                     disabled={loading}
-                                    className="appearance-none block w-full px-3 py-2 pr-10 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-[#1E4E9A] focus:border-[#1E4E9A] disabled:bg-gray-100"
+                                    className="appearance-none block w-full px-3 py-2.5 sm:py-2 pr-10 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-[#1E4E9A] focus:border-[#1E4E9A] disabled:bg-gray-100 text-base sm:text-sm"
                                     placeholder="Confirm your password"
                                 />
                                 <button
@@ -218,7 +218,7 @@ export default function SignUp() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#E02020] hover:bg-[#B81C1C] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E02020] disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full flex justify-center py-2.5 sm:py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#E02020] hover:bg-[#B81C1C] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E02020] disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {loading ? 'Creating Account...' : 'Create Account'}
                             </button>
@@ -235,11 +235,11 @@ export default function SignUp() {
                             </div>
                         </div>
 
-                        <div className="mt-6">
+                        <div className="mt-4 sm:mt-6">
                             <button
                                 onClick={handleGoogleSignUp}
                                 disabled={loading}
-                                className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full inline-flex justify-center py-2.5 sm:py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -252,7 +252,7 @@ export default function SignUp() {
                         </div>
                     </div>
 
-                    <div className="mt-6 text-center">
+                    <div className="mt-4 sm:mt-6 text-center">
                         <p className="text-sm text-gray-600">
                             Already have an account?{' '}
                             <Link href="/auth/signin" className="font-medium text-[#1E4E9A] hover:text-[#0F2A5A]">

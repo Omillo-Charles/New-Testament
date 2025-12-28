@@ -38,23 +38,23 @@ export default function ForgotPassword() {
 
     if (success) {
         return (
-            <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-                <div className="sm:mx-auto sm:w-full sm:max-w-md">
+            <div className="min-h-[80vh] sm:min-h-screen bg-gray-50 flex flex-col justify-center py-8 px-4 sm:py-12 sm:px-6 lg:px-8 pt-32">
+                <div className="mx-auto w-full max-w-sm sm:max-w-md">
                     <div className="text-center">
                         <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
                             <svg className="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
                         </div>
-                        <h2 className="mt-6 text-3xl font-bold text-gray-900">Check Your Email</h2>
+                        <h2 className="mt-6 text-2xl sm:text-3xl font-bold text-gray-900">Check Your Email</h2>
                         <p className="mt-2 text-sm text-gray-600">
                             We've sent a password reset link to {email}
                         </p>
                     </div>
                 </div>
 
-                <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                    <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                <div className="mt-6 sm:mt-8 mx-auto w-full max-w-sm sm:max-w-md">
+                    <div className="bg-white py-6 px-4 shadow sm:rounded-lg sm:py-8 sm:px-10">
                         <div className="text-center space-y-4">
                             <p className="text-sm text-gray-600">
                                 Didn't receive the email? Check your spam folder or try again.
@@ -86,18 +86,18 @@ export default function ForgotPassword() {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-            <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="min-h-[80vh] sm:min-h-screen bg-gray-50 flex flex-col justify-center py-8 px-4 sm:py-12 sm:px-6 lg:px-8 pt-32">
+            <div className="mx-auto w-full max-w-sm sm:max-w-md">
                 <div className="text-center">
-                    <h2 className="text-3xl font-bold text-gray-900">Forgot Password</h2>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Forgot Password</h2>
                     <p className="mt-2 text-sm text-gray-600">
                         Enter your email address and we'll send you a link to reset your password
                     </p>
                 </div>
             </div>
 
-            <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <div className="mt-6 sm:mt-8 mx-auto w-full max-w-sm sm:max-w-md">
+                <div className="bg-white py-6 px-4 shadow sm:rounded-lg sm:py-8 sm:px-10">
                     {error && (
                         <div className="mb-4 bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md">
                             {error}
