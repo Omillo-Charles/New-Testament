@@ -144,7 +144,7 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/75 to-black/40"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="text-lg font-semibold mb-2">Adults Ministry</h3>
+                  <h3 className="text-lg font-semibold mb-2">Adults Fellowship</h3>
                   <p className="text-sm text-gray-200 mb-4 leading-relaxed">
                     Deepening faith through Bible study, fellowship, and service opportunities
                     designed for adults seeking spiritual growth and community connection.
@@ -228,7 +228,7 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/75 to-black/40"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="text-lg font-semibold mb-2">Children</h3>
+                  <h3 className="text-lg font-semibold mb-2">Children Ministry</h3>
                   <p className="text-sm text-gray-200 mb-4 leading-relaxed">
                     Creating a safe, fun environment where children learn about God's love
                     through age-appropriate activities, stories, and interactive worship.
