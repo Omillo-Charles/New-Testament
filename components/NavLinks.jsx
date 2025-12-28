@@ -260,12 +260,37 @@ const NavLinks = () => {
                 </div>
             </button>
 
+            {/* Mobile Backdrop Overlay */}
+            {isOpen && (
+                <div
+                    className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300"
+                    onClick={() => setIsOpen(false)}
+                />
+            )}
+
             {/* Mobile Navigation Menu */}
             <div
-                className={`lg:hidden fixed top-[112px] bottom-0 right-0 w-64 max-w-[60vw] bg-white/95 backdrop-blur-xl z-40 transition-all duration-500 ease-in-out shadow-2xl ${isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+                className={`lg:hidden fixed top-0 bottom-0 right-0 w-1/2 bg-white/95 backdrop-blur-xl z-50 transition-all duration-500 ease-in-out shadow-2xl ${isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
                     }`}
+                style={{
+                    borderTopLeftRadius: '24px',
+                    borderBottomLeftRadius: '24px',
+                }}
             >
-                <div className="h-full overflow-y-auto pb-4">
+                {/* Header with close button */}
+                <div className="flex items-center justify-between p-4 border-b border-gray-100">
+                    <h3 className="text-lg font-semibold text-gray-900">Menu</h3>
+                    <button
+                        onClick={() => setIsOpen(false)}
+                        className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                    >
+                        <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div className="h-full overflow-y-auto pb-20">
                     <div className="px-4 py-6 space-y-2">
                         {/* Main Navigation Links */}
                         {navLinks.slice(0, 2).map((link) => (
@@ -286,7 +311,7 @@ const NavLinks = () => {
                         {/* Navigation Sections */}
                         <div className="space-y-2">
                             {/* Resources Section */}
-                            <div className="px-4 py-2">
+                            <div className="px-2 py-2">
                                 <div className="font-bold text-gray-400 text-xs uppercase tracking-wider mb-2">
                                     Discover
                                 </div>
@@ -307,7 +332,7 @@ const NavLinks = () => {
                             </div>
 
                             {/* Portals Section */}
-                            <div className="px-4 py-2 border-t border-gray-100">
+                            <div className="px-2 py-2 border-t border-gray-100">
                                 <div className="font-bold text-gray-400 text-xs uppercase tracking-wider mb-2">
                                     Connect
                                 </div>
@@ -328,7 +353,7 @@ const NavLinks = () => {
                             </div>
 
                             {/* Programs Section */}
-                            <div className="px-4 py-2 border-t border-gray-100">
+                            <div className="px-2 py-2 border-t border-gray-100">
                                 <div className="font-bold text-gray-400 text-xs uppercase tracking-wider mb-2">
                                     Grow
                                 </div>
@@ -366,7 +391,7 @@ const NavLinks = () => {
                         ))}
 
                         {/* Social Media Icons */}
-                        <div className="px-4 py-4 border-t border-gray-100 mt-4">
+                        <div className="px-2 py-4 border-t border-gray-100 mt-4">
                             <div className="font-bold text-gray-400 text-xs uppercase tracking-wider mb-3">
                                 Follow Us
                             </div>
