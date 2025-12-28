@@ -67,19 +67,19 @@ function SignInContent() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 pt-32 lg:pt-40">
-            <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="min-h-[80vh] sm:min-h-screen bg-gray-50 flex flex-col justify-center py-8 px-4 sm:py-12 sm:px-6 lg:px-8 pt-32 sm:pt-32 lg:pt-40">
+            <div className="mx-auto w-full max-w-sm sm:max-w-md">
                 <div className="text-center">
-                    <h2 className="text-3xl font-bold text-gray-900">Welcome Back</h2>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Welcome Back</h2>
                     <p className="mt-2 text-sm text-gray-600">
                         Sign in to your NTCoG Kenya account
                     </p>
-                    <div className="mt-4 bg-blue-50 border border-blue-200 rounded-md p-3">
-                        <div className="flex items-center">
-                            <svg className="w-5 h-5 text-blue-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="mt-4 bg-blue-50 border border-blue-200 rounded-md p-2 sm:p-3">
+                        <div className="flex items-start sm:items-center">
+                            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 mr-2 mt-0.5 sm:mt-0 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                             </svg>
-                            <p className="text-sm text-blue-700">
+                            <p className="text-xs sm:text-sm text-blue-700 leading-tight">
                                 Stay connected! Sign in to receive notifications about upcoming church events, programs, and important announcements.
                             </p>
                         </div>
@@ -87,8 +87,8 @@ function SignInContent() {
                 </div>
             </div>
 
-            <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <div className="mt-6 sm:mt-8 mx-auto w-full max-w-sm sm:max-w-md">
+                <div className="bg-white py-6 px-4 shadow sm:rounded-lg sm:py-8 sm:px-10">
                     {successMessage && (
                         <div className="mb-4 bg-green-50 border border-green-200 text-green-600 px-4 py-3 rounded-md">
                             {successMessage}
@@ -101,7 +101,7 @@ function SignInContent() {
                         </div>
                     )}
 
-                    <form className="space-y-6" onSubmit={handleSubmit}>
+                    <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                                 Email Address
@@ -115,7 +115,7 @@ function SignInContent() {
                                     value={formData.email}
                                     onChange={handleChange}
                                     disabled={loading}
-                                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-[#1E4E9A] focus:border-[#1E4E9A] disabled:bg-gray-100"
+                                    className="appearance-none block w-full px-3 py-2.5 sm:py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-[#1E4E9A] focus:border-[#1E4E9A] disabled:bg-gray-100 text-base sm:text-sm"
                                     placeholder="Enter your email"
                                 />
                             </div>
@@ -134,7 +134,7 @@ function SignInContent() {
                                     value={formData.password}
                                     onChange={handleChange}
                                     disabled={loading}
-                                    className="appearance-none block w-full px-3 py-2 pr-10 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-[#1E4E9A] focus:border-[#1E4E9A] disabled:bg-gray-100"
+                                    className="appearance-none block w-full px-3 py-2.5 sm:py-2 pr-10 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-[#1E4E9A] focus:border-[#1E4E9A] disabled:bg-gray-100 text-base sm:text-sm"
                                     placeholder="Enter your password"
                                 />
                                 <button
@@ -157,7 +157,7 @@ function SignInContent() {
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between text-sm">
                             <div className="flex items-center">
                                 <input
                                     id="remember-me"
@@ -170,7 +170,7 @@ function SignInContent() {
                                 </label>
                             </div>
 
-                            <div className="text-sm">
+                            <div>
                                 <Link href="/auth/forgot-password" className="font-medium text-[#1E4E9A] hover:text-[#0F2A5A]">
                                     Forgot password?
                                 </Link>
@@ -181,7 +181,7 @@ function SignInContent() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#E02020] hover:bg-[#B81C1C] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E02020] disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full flex justify-center py-2.5 sm:py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#E02020] hover:bg-[#B81C1C] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E02020] disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {loading ? 'Signing in...' : 'Sign In'}
                             </button>
@@ -198,11 +198,11 @@ function SignInContent() {
                             </div>
                         </div>
 
-                        <div className="mt-6">
+                        <div className="mt-4 sm:mt-6">
                             <button
                                 onClick={handleGoogleSignIn}
                                 disabled={loading}
-                                className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full inline-flex justify-center py-2.5 sm:py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -215,7 +215,7 @@ function SignInContent() {
                         </div>
                     </div>
 
-                    <div className="mt-6 text-center">
+                    <div className="mt-4 sm:mt-6 text-center">
                         <p className="text-sm text-gray-600">
                             Don't have an account?{' '}
                             <Link href="/auth/signup" className="font-medium text-[#1E4E9A] hover:text-[#0F2A5A]">
@@ -232,8 +232,8 @@ function SignInContent() {
 export default function SignIn() {
     return (
         <Suspense fallback={
-            <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-                <div className="sm:mx-auto sm:w-full sm:max-w-md">
+            <div className="min-h-[80vh] sm:min-h-screen bg-gray-50 flex flex-col justify-center py-8 px-4 sm:py-12 sm:px-6 lg:px-8 pt-32">
+                <div className="mx-auto w-full max-w-sm sm:max-w-md">
                     <div className="text-center">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1E4E9A] mx-auto"></div>
                         <h2 className="mt-6 text-2xl font-bold text-gray-900">
