@@ -1,13 +1,27 @@
+import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/nav";
 import Footer from "../components/footer";
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
 export const metadata = {
   title: {
     default: "New Testament Church of God Kenya | NTCoG Kenya",
-    template: "%s | NTCoG Kenya"
+    template: "%s | NTCoG Kenya",
   },
-  description: "New Testament Church of God Kenya (NTCoG) - A vibrant Pentecostal church serving Kenya since 1977. Join our 15,000+ members across 224+ churches in 28+ districts. Building faith, community, and hope across Kenya.",
+  description:
+    "New Testament Church of God Kenya (NTCoG) - A vibrant Pentecostal church serving Kenya since 1977. Join our 15,000+ members across 224+ churches in 28+ districts. Building faith, community, and hope across Kenya.",
   keywords: [
     "New Testament Church of God Kenya",
     "NTCoG Kenya",
@@ -28,7 +42,7 @@ export const metadata = {
     "Faith community Kenya",
     "Church branches Kenya",
     "Regional churches Kenya",
-    "Dr. David Gilbert Bwire"
+    "Dr. David Gilbert Bwire",
   ],
   authors: [{ name: "New Testament Church of God Kenya" }],
   creator: "New Testament Church of God Kenya",
@@ -38,32 +52,34 @@ export const metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://ntcogk.org'),
+  metadataBase: new URL("https://ntcogk.org"),
   alternates: {
-    canonical: '/',
+    canonical: "/",
   },
   openGraph: {
     title: "New Testament Church of God Kenya | NTCoG Kenya",
-    description: "A vibrant Pentecostal church serving Kenya since 1977. Join our 15,000+ members across 224+ churches in 28+ districts. Building faith, community, and hope across Kenya.",
-    url: 'https://ntcogk.org',
-    siteName: 'New Testament Church of God Kenya',
+    description:
+      "A vibrant Pentecostal church serving Kenya since 1977. Join our 15,000+ members across 224+ churches in 28+ districts. Building faith, community, and hope across Kenya.",
+    url: "https://ntcogk.org",
+    siteName: "New Testament Church of God Kenya",
     images: [
       {
-        url: '/og-image.jpg',
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: 'New Testament Church of God Kenya - Building Faith, Community, and Hope',
+        alt: "New Testament Church of God Kenya - Building Faith, Community, and Hope",
       },
     ],
-    locale: 'en_KE',
-    type: 'website',
+    locale: "en_KE",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: "New Testament Church of God Kenya | NTCoG Kenya",
-    description: "A vibrant Pentecostal church serving Kenya since 1977. Join our 15,000+ members across 224+ churches in 28+ districts.",
-    images: ['/og-image.jpg'],
-    creator: '@ntcogk',
+    description:
+      "A vibrant Pentecostal church serving Kenya since 1977. Join our 15,000+ members across 224+ churches in 28+ districts.",
+    images: ["/og-image.jpg"],
+    creator: "@ntcogk",
   },
   robots: {
     index: true,
@@ -71,18 +87,18 @@ export const metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   verification: {
-    google: 'your-google-verification-code',
-    yandex: 'your-yandex-verification-code',
-    yahoo: 'your-yahoo-verification-code',
+    google: "your-google-verification-code",
+    yandex: "your-yandex-verification-code",
+    yahoo: "your-yahoo-verification-code",
   },
-  category: 'religion',
-  classification: 'Church, Religious Organization, Pentecostal Church',
+  category: "religion",
+  classification: "Church, Religious Organization, Pentecostal Church",
   icons: {
     icon: "/icons/favicon.ico",
     shortcut: "/icons/favicon.ico",
@@ -93,58 +109,56 @@ export default function RootLayout({ children }) {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "ReligiousOrganization",
-    "name": "New Testament Church of God Kenya",
-    "alternateName": ["NTCoG Kenya", "NTCOGK"],
-    "url": "https://ntcogk.org",
-    "logo": "https://ntcogk.org/icons/logo.png",
-    "description": "A vibrant Pentecostal church serving Kenya since 1977. Building faith, community, and hope across Kenya.",
-    "foundingDate": "1977-05-13",
-    "foundingLocation": {
+    name: "New Testament Church of God Kenya",
+    alternateName: ["NTCoG Kenya", "NTCOGK"],
+    url: "https://ntcogk.org",
+    logo: "https://ntcogk.org/icons/logo.png",
+    description:
+      "A vibrant Pentecostal church serving Kenya since 1977. Building faith, community, and hope across Kenya.",
+    foundingDate: "1977-05-13",
+    foundingLocation: {
       "@type": "Place",
-      "name": "Karatina, Nyeri District, Kenya"
+      name: "Karatina, Nyeri District, Kenya",
     },
-    "address": {
+    address: {
       "@type": "PostalAddress",
-      "streetAddress": "Kwarara Rd/Ndege Rd, Off Bugani Rd",
-      "addressLocality": "Karen, Langata",
-      "addressRegion": "Nairobi",
-      "postalCode": "00502",
-      "addressCountry": "KE"
+      streetAddress: "Kwarara Rd/Ndege Rd, Off Bugani Rd",
+      addressLocality: "Karen, Langata",
+      addressRegion: "Nairobi",
+      postalCode: "00502",
+      addressCountry: "KE",
     },
-    "contactPoint": {
+    contactPoint: {
       "@type": "ContactPoint",
-      "telephone": "+254-759-120-222",
-      "contactType": "customer service",
-      "availableLanguage": ["English", "Swahili"]
+      telephone: "+254-759-120-222",
+      contactType: "customer service",
+      availableLanguage: ["English", "Swahili"],
     },
-    "sameAs": [
-      "https://www.facebook.com/ntcogk",
-      "https://www.ntcogk.org"
-    ],
-    "member": {
+    sameAs: ["https://www.facebook.com/ntcogk", "https://www.ntcogk.org"],
+    member: {
       "@type": "Organization",
-      "name": "Church of God World Missions",
-      "address": {
+      name: "Church of God World Missions",
+      address: {
         "@type": "PostalAddress",
-        "addressLocality": "Cleveland",
-        "addressRegion": "Tennessee",
-        "addressCountry": "US"
-      }
+        addressLocality: "Cleveland",
+        addressRegion: "Tennessee",
+        addressCountry: "US",
+      },
     },
-    "numberOfEmployees": "15000+",
-    "areaServed": {
+    numberOfEmployees: "15000+",
+    areaServed: {
       "@type": "Country",
-      "name": "Kenya"
+      name: "Kenya",
     },
-    "knowsAbout": [
+    knowsAbout: [
       "Pentecostal Christianity",
       "Church Planting",
       "Community Care",
       "Evangelism",
       "Biblical Education",
       "Youth Ministry",
-      "Pastoral Care"
-    ]
+      "Pastoral Care",
+    ],
   };
 
   return (
@@ -161,14 +175,9 @@ export default function RootLayout({ children }) {
         <meta name="geo.placename" content="Kenya" />
         <meta name="geo.position" content="-1.2921;36.8219" />
         <meta name="ICBM" content="-1.2921, 36.8219" />
-
       </head>
       <body
-        className="font-sans antialiased"
-        style={{
-          fontFamily:
-            '"Webly Sleek UI", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif',
-        }}
+        className={`${inter.variable} ${montserrat.variable} font-sans antialiased`}
       >
         <Navbar />
         <main>{children}</main>
