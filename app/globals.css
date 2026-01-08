@@ -1,34 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Arial, sans-serif;
-  --font-heading: var(--font-montserrat), -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Arial, sans-serif;
+  --font-sans: var(--font-webly-sleek), "Webly Sleek UI Custom", sans-serif;
+  --font-heading: var(--font-webly-sleek), "Webly Sleek UI Custom", sans-serif;
+}
+
+@font-face {
+  font-family: "Webly Sleek UI Custom";
+  src: url("/fonts/weblysleekuisb.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-
-  /* Typography Variables */
-  --font-main: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Arial, sans-serif;
-  --font-heading: var(--font-montserrat), -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Arial, sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-main);
+  font-family: var(--font-webly-sleek), "Webly Sleek UI Custom", sans-serif;
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
@@ -41,39 +34,34 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-webly-sleek), "Webly Sleek UI Custom", sans-serif;
   font-weight: 700;
   line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 h1 {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2.5rem;
 }
 
 h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 2rem;
 }
 
 h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.75rem;
 }
 
 h4 {
-  font-size: 1.125rem;
-  font-weight: 600;
+  font-size: 1.5rem;
 }
 
 h5 {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.25rem;
 }
 
 h6 {
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: 1rem;
 }
 
 p,
@@ -82,7 +70,7 @@ div,
 li,
 td,
 th {
-  font-family: var(--font-main);
+  font-family: var(--font-webly-sleek), "Webly Sleek UI Custom", sans-serif;
   line-height: 1.6;
 }
 
@@ -91,7 +79,7 @@ nav,
 nav a,
 nav button,
 nav span {
-  font-family: var(--font-heading);
+  font-family: var(--font-webly-sleek), "Webly Sleek UI Custom", sans-serif;
   font-weight: 600;
 }
 
@@ -100,7 +88,7 @@ button,
 .btn,
 input[type="button"],
 input[type="submit"] {
-  font-family: var(--font-heading);
+  font-family: var(--font-webly-sleek), "Webly Sleek UI Custom", sans-serif;
   font-weight: 600;
   cursor: pointer;
 }
@@ -110,7 +98,7 @@ input,
 textarea,
 select,
 label {
-  font-family: var(--font-main);
+  font-family: var(--font-webly-sleek), "Webly Sleek UI Custom", sans-serif;
   font-size: 16px;
 }
 

@@ -1,17 +1,11 @@
-import { Montserrat, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "../components/nav";
 import Footer from "../components/footer";
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-montserrat",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+const weblySleek = localFont({
+  src: "./fonts/weblysleekuisb.ttf",
+  variable: "--font-webly-sleek",
   display: "swap",
 });
 
@@ -177,7 +171,7 @@ export default function RootLayout({ children }) {
         <meta name="ICBM" content="-1.2921, 36.8219" />
       </head>
       <body
-        className={`${inter.variable} ${montserrat.variable} font-sans antialiased`}
+        className={`${weblySleek.variable} font-sans antialiased`}
       >
         <Navbar />
         <main>{children}</main>

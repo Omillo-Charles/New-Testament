@@ -13,9 +13,9 @@ const nextConfig = {
     minimumCacheTTL: 60,
   },
 
-  // Enable experimental features for better SEO
+  // Enable experimental features
   experimental: {
-    optimizeCss: true,
+    optimizeCss: false,
     scrollRestoration: true,
   },
 
