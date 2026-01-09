@@ -22,8 +22,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-webly-sleek), "Webly Sleek UI Custom", sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 11px;
+  line-height: 1.3;
   overflow-x: hidden;
 }
 
@@ -37,31 +37,31 @@ h6 {
   font-family: var(--font-webly-sleek), "Webly Sleek UI Custom", sans-serif;
   font-weight: 700;
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 1.4rem;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 1.2rem;
 }
 
 h3 {
-  font-size: 1.75rem;
+  font-size: 1.1rem;
 }
 
 h4 {
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 h5 {
-  font-size: 1.25rem;
+  font-size: 0.9rem;
 }
 
 h6 {
-  font-size: 1rem;
+  font-size: 0.75rem;
 }
 
 p,
@@ -71,7 +71,7 @@ li,
 td,
 th {
   font-family: var(--font-webly-sleek), "Webly Sleek UI Custom", sans-serif;
-  line-height: 1.6;
+  line-height: 1.3;
 }
 
 /* Navigation and UI Elements */
@@ -99,7 +99,7 @@ textarea,
 select,
 label {
   font-family: var(--font-webly-sleek), "Webly Sleek UI Custom", sans-serif;
-  font-size: 16px;
+  font-size: 11px;
 }
 
 /* Search Results Override */
